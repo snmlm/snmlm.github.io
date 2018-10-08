@@ -29,6 +29,7 @@
       <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
   
   <!-- 加载特效 -->
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     <script src="/js/pace.js"></script>
     <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
   <script>
@@ -47,7 +48,7 @@
 </head>
 <body>
   <div id="container">
-    <div class="left-col">
+    <div class="left-col" style="background-size: cover; background-position: center center;">
     <div class="overlay"></div>
 <div class="intrude-less">
     <header id="header" class="inner">
@@ -64,6 +65,10 @@
         
         <p class="header-subtitle">付出总会有回报~</p>
         
+        
+            <form>
+                <input type="text" class="st-default-search-input search" id="search" placeholder=" Search...">
+            </form>
         
         
             <div id="switch-btn" class="switch-btn">
@@ -290,8 +295,8 @@
 
     <script>
         $(document).ready(function() {
-            var backgroundnum = 24;
-            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            var backgroundnum = 1;
+            var backgroundimg = "url(/background/bg-" + backgroundnum +".jpg)";
             $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
             $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
         })
@@ -325,8 +330,7 @@
         });
     </script>
 
-<!-- <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>-->
-<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
 
   <script language="javascript">
     $(function() {
@@ -354,6 +358,23 @@
     });
 </script>
 
+
+    <script type="text/javascript">
+      window.onload = function(){
+        document.getElementById("search").onclick = function(){
+            console.log("search")
+            search();
+        }
+      }
+      function search(){
+        (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+        (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+        e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+        })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+        _st('install','A1Pz-LKMXbrzcFg2FWi6','2.0.0');
+      }
+    </script>
 
   </div>
 </body>
