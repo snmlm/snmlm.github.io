@@ -29,7 +29,7 @@
 <meta property="og:image" content="https://i.imgur.com/r3QFah0.png">
 <meta property="og:image" content="https://i.imgur.com/YnPSlWX.png">
 <meta property="og:image" content="https://i.imgur.com/3Sqc0NV.png">
-<meta property="og:updated_time" content="2018-09-30T03:46:57.110Z">
+<meta property="og:updated_time" content="2018-10-09T02:38:03.974Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo博客+spfk主题+LiveRe评论+Github pages">
 <meta name="twitter:description" content="动机刚接触Blog，觉得很新鲜，选择一个免费空间来写。">
@@ -89,8 +89,10 @@
         
         
             <form>
-                <input type="text" class="st-default-search-input search" id="search" placeholder=" Search...">
+                <!--<input type="text" class="st-default-search-input search" id="search" placeholder=" Search...">-->
+				<input type="text" class="st-default-search-input search" id="local-search-input" placeholder="搜索一下" autocomplete="off">
             </form>
+			<div id="local-search-result"></div>
         
         
             <div id="switch-btn" class="switch-btn">
@@ -508,7 +510,7 @@
         <p><span>本文标题:</span><a href="/2018/09/28/Hexo+spfk+LiveRe+Github_pages/">Hexo博客+spfk主题+LiveRe评论+Github pages</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 君不见 的个人博客">君不见</a></p>
         <p><span>发布时间:</span>2018年09月28日 - 00时00分</p>
-        <p><span>最后更新:</span>2018年09月30日 - 11时46分</p>
+        <p><span>最后更新:</span>2018年10月09日 - 10时38分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2018/09/28/Hexo+spfk+LiveRe+Github_pages/" title="Hexo博客+spfk主题+LiveRe评论+Github pages">http://yoursite.com/2018/09/28/Hexo+spfk+LiveRe+Github_pages/</a>
             <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2018/09/28/Hexo+spfk+LiveRe+Github_pages/　　作者: 君不见" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -724,23 +726,51 @@ style="width:90%;margin:5% auto 0 auto;background: #fff;padding: 0 12px;border-r
 </script>
 
 
-    <script type="text/javascript">
-      window.onload = function(){
-        document.getElementById("search").onclick = function(){
-            console.log("search")
-            search();
-        }
-      }
-      function search(){
-        (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
-        (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
-        e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
-        })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
-
-        _st('install','A1Pz-LKMXbrzcFg2FWi6','2.0.0');
-      }
-    </script>
-
+            <script type="text/javascript">
+                (function() {
+                    'use strict';
+                    function getMatchData(keyword, data) {
+                        var matchData = [];
+                        for(var i =0;i<data.length;i++){
+                            if(data[i].title.toLowerCase().indexOf(keyword)>=0) 
+                                matchData.push(data[i])
+                        }
+                        return matchData;
+                    }
+                    var $input = $('#local-search-input');
+                    var $resultContent = $('#local-search-result');
+                    $input.keyup(function(){
+                        $.ajax({
+                            url: '/search.json',
+                            dataType: "json",
+                            success: function( json ) {
+                                var str='<ul class=\"search-result-list\">';                
+                                var keyword = $input.val().trim().toLowerCase();
+                                $resultContent.innerHTML = "";
+                                if ($input.val().trim().length <= 0) {
+                                    $resultContent.empty();
+                                    $('#switch-area').show();
+                                    return;
+                                }
+                                var results = getMatchData(keyword, json);
+                                if(results.length === 0){
+                                    $resultContent.empty();
+                                    $('#switch-area').show();
+                                    return;
+                                } 
+                                for(var i =0; i<results.length; i++){
+                                    str += "<li><a href='"+ results[i].url +"' class='search-result-title'>"+ results[i].title +"</a></li>";
+                                }
+                                str += "</ul>";
+                                $resultContent.empty();
+                                $resultContent.append(str);
+                                $('#switch-area').hide();
+                            }
+                        });
+                    });
+                })();
+            </script>
+        
   </div>
 </body>
 </html>
