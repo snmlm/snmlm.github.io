@@ -3,20 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>for与foreach用法的区别 | 君不见</title>
+  <title>从尾到头打印链表 | 君不见</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="for or foreach 当集合是实现了RandomAccess(随机存储接口),也就意味着，数据是随机访问的，例如arraylist，则尽量用for(int i = 0; i &amp;lt; size; i++) 来遍历。 反过来，如果List是Sequence List，例如linkedlist，则最好用迭代器来进行迭代。 数组特殊，for比foreach快">
-<meta name="keywords" content="知识点">
+  <meta name="description" content="题目描述 输入一个链表，按链表值从尾到头的顺序返回一个ArrayList。">
+<meta name="keywords" content="算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="for与foreach用法的区别">
-<meta property="og:url" content="http://yoursite.com/2018/10/10/for_foreach/index.html">
+<meta property="og:title" content="从尾到头打印链表">
+<meta property="og:url" content="http://yoursite.com/2018/10/23/Offer-3/index.html">
 <meta property="og:site_name" content="君不见">
-<meta property="og:description" content="for or foreach 当集合是实现了RandomAccess(随机存储接口),也就意味着，数据是随机访问的，例如arraylist，则尽量用for(int i = 0; i &amp;lt; size; i++) 来遍历。 反过来，如果List是Sequence List，例如linkedlist，则最好用迭代器来进行迭代。 数组特殊，for比foreach快">
+<meta property="og:description" content="题目描述 输入一个链表，按链表值从尾到头的顺序返回一个ArrayList。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-10T03:13:54.374Z">
+<meta property="og:updated_time" content="2018-10-23T08:15:28.935Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="for与foreach用法的区别">
-<meta name="twitter:description" content="for or foreach 当集合是实现了RandomAccess(随机存储接口),也就意味着，数据是随机访问的，例如arraylist，则尽量用for(int i = 0; i &amp;lt; size; i++) 来遍历。 反过来，如果List是Sequence List，例如linkedlist，则最好用迭代器来进行迭代。 数组特殊，for比foreach快">
+<meta name="twitter:title" content="从尾到头打印链表">
+<meta name="twitter:description" content="题目描述 输入一个链表，按链表值从尾到头的顺序返回一个ArrayList。">
   
     <link rel="alternative" href="/atom.xml" title="君不见" type="application/atom+xml">
   
@@ -190,11 +190,11 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-for_foreach" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Offer-3" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2018/10/10/for_foreach/" class="article-date">
-      <time datetime="2018-10-09T16:00:00.000Z" itemprop="datePublished">2018-10-10</time>
+      <a href="/2018/10/23/Offer-3/" class="article-date">
+      <time datetime="2018-10-22T16:00:00.000Z" itemprop="datePublished">2018-10-23</time>
 </a>
     </div>
   
@@ -207,7 +207,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      for与foreach用法的区别
+      从尾到头打印链表
     </h1>
   
 
@@ -216,13 +216,13 @@
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/知识点/">知识点</a>
+    <a class="article-category-link" href="/categories/算法/">算法</a>
     </div>
 
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/知识点/">知识点</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -234,12 +234,15 @@
           
          <meta name="referrer" content="no-referrer">
 
-<h3 id="for-or-foreach"><a href="#for-or-foreach" class="headerlink" title="for or foreach"></a>for or foreach</h3><ul>
-<li>当集合是实现了RandomAccess(随机存储接口),也就意味着，数据是随机访问的，例如arraylist，则尽量用for(int i = 0; i &lt; size; i++) 来遍历。</li>
-<li>反过来，如果List是Sequence List，例如linkedlist，则最好用迭代器来进行迭代。</li>
-<li>数组特殊，for比foreach快</li>
+<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><ul>
+<li>输入一个链表，按链表值从尾到头的顺序返回一个ArrayList。<a id="more"></a></li>
+<li>思路：</li>
+<li>正常思路：利用递归，循环到最后，进行插入</li>
+<li>C++ vector的特性，可以插入特定位置</li>
+<li>java arraylist有Collections工具类，可以直接插入，然后反转</li>
 </ul>
-
+<h3 id="C-11"><a href="#C-11" class="headerlink" title="C++ 11"></a>C++ 11</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">*  struct ListNode &#123;</span><br><span class="line">*        int val;</span><br><span class="line">*        struct ListNode *next;</span><br><span class="line">*        ListNode(int x) :</span><br><span class="line">*              val(x), next(NULL) &#123;</span><br><span class="line">*        &#125;</span><br><span class="line">*  &#125;;</span><br><span class="line">*/</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;int&gt; printListFromTailToHead(ListNode* head) &#123;</span><br><span class="line">        vector&lt;int&gt; vr;</span><br><span class="line">        if (head != NULL)&#123;</span><br><span class="line">            vr.insert(vr.begin(), head-&gt;val);</span><br><span class="line">			while (head-&gt;next != NULL)&#123;</span><br><span class="line">                head = head-&gt;next;</span><br><span class="line">				vr.insert(vr.begin(), head-&gt;val);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">        return vr;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="Java-1-8"><a href="#Java-1-8" class="headerlink" title="Java 1.8"></a>Java 1.8</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">*    public class ListNode &#123;</span><br><span class="line">*        int val;</span><br><span class="line">*        ListNode next = null;</span><br><span class="line">*</span><br><span class="line">*        ListNode(int val) &#123;</span><br><span class="line">*            this.val = val;</span><br><span class="line">*        &#125;</span><br><span class="line">*    &#125;</span><br><span class="line">*</span><br><span class="line">*/</span><br><span class="line">import java.util.ArrayList;</span><br><span class="line">public class Solution &#123;</span><br><span class="line">    ArrayList&lt;Integer&gt; list = new ArrayList&lt;&gt;();</span><br><span class="line">    public ArrayList&lt;Integer&gt; printListFromTailToHead(ListNode listNode) &#123;</span><br><span class="line">        if(listNode != null)&#123;</span><br><span class="line">            if(listNode.next!=null)&#123;</span><br><span class="line">                list = printListFromTailToHead(listNode.next);</span><br><span class="line">            &#125;</span><br><span class="line">            list.add(listNode.val);</span><br><span class="line">        &#125;</span><br><span class="line">        return list;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
       
     </div>
@@ -248,13 +251,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2018/10/10/for_foreach/">for与foreach用法的区别</a></p>
+        <p><span>本文标题:</span><a href="/2018/10/23/Offer-3/">从尾到头打印链表</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 君不见 的个人博客">君不见</a></p>
-        <p><span>发布时间:</span>2018年10月10日 - 00时00分</p>
-        <p><span>最后更新:</span>2018年10月10日 - 11时13分</p>
+        <p><span>发布时间:</span>2018年10月23日 - 00时00分</p>
+        <p><span>最后更新:</span>2018年10月23日 - 16时15分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2018/10/10/for_foreach/" title="for与foreach用法的区别">http://yoursite.com/2018/10/10/for_foreach/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2018/10/10/for_foreach/　　作者: 君不见" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2018/10/23/Offer-3/" title="从尾到头打印链表">http://yoursite.com/2018/10/23/Offer-3/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2018/10/23/Offer-3/　　作者: 君不见" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -267,18 +270,9 @@
 
 <nav id="article-nav">
   
-    <a href="/2018/10/10/JavaObject/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          java Object
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/10/10/TenGoodAdvice/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">10条好建议</div>
+    <a href="/2018/10/23/Offer-4/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">重建二叉树</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -289,7 +283,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#for-or-foreach"><span class="toc-number">1.</span> <span class="toc-text">for or foreach</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目描述"><span class="toc-number">1.</span> <span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#C-11"><span class="toc-number">2.</span> <span class="toc-text">C++ 11</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-1-8"><span class="toc-number">3.</span> <span class="toc-text">Java 1.8</span></a></li></ol>
 </div>
 <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 
@@ -360,13 +354,11 @@ style="width:90%;margin:5% auto 0 auto;background: #fff;padding: 0 12px;border-r
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2018/10/10/JavaObject/" title="上一篇: java Object">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a href="/2018/10/10/TenGoodAdvice/" title="下一篇: 10条好建议">
+            <a href="/2018/10/23/Offer-4/" title="下一篇: 重建二叉树">
                 <i class="fa fa-angle-right"></i>
             </a>
         
