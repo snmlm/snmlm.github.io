@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="君不见">
 <meta property="og:description" content="题目描述 输入某二叉树的前序遍历和中序遍历的结果，请重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。例如输入前序遍历序列{1,2,4,7,3,5,6,8}和中序遍历序列{4,7,2,1,5,3,8,6}，则重建二叉树并返回。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-23T09:41:23.219Z">
+<meta property="og:updated_time" content="2018-11-07T07:25:24.321Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="重建二叉树">
 <meta name="twitter:description" content="题目描述 输入某二叉树的前序遍历和中序遍历的结果，请重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。例如输入前序遍历序列{1,2,4,7,3,5,6,8}和中序遍历序列{4,7,2,1,5,3,8,6}，则重建二叉树并返回。">
@@ -134,7 +134,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/源码/" style="font-size: 10px;">源码</a> <a href="/tags/知识点/" style="font-size: 20px;">知识点</a> <a href="/tags/算法/" style="font-size: 20px;">算法</a>
+                        <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/架构/" style="font-size: 10px;">架构</a> <a href="/tags/源码/" style="font-size: 10px;">源码</a> <a href="/tags/知识点/" style="font-size: 20px;">知识点</a> <a href="/tags/算法/" style="font-size: 20px;">算法</a> <a href="/tags/试题/" style="font-size: 10px;">试题</a>
                     </div>
                 </section>
                 
@@ -235,7 +235,7 @@
          <meta name="referrer" content="no-referrer">
 
 <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><ul>
-<li>输入某二叉树的前序遍历和中序遍历的结果，请重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。例如输入前序遍历序列{1,2,4,7,3,5,6,8}和中序遍历序列{4,7,2,1,5,3,8,6}，则重建二叉树并返回。<a id="more"></a>
+<li>输入某二叉树的前序遍历和中序遍历的结果，请重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都<code>不含重复</code>的数字。例如输入前序遍历序列{1,2,4,7,3,5,6,8}和中序遍历序列{4,7,2,1,5,3,8,6}，则重建二叉树并返回。<a id="more"></a>
 </li>
 </ul>
 <blockquote>
@@ -261,10 +261,10 @@
 </ul>
 </blockquote>
 <ul>
-<li>思路：</li>
+<li>思路：<br>   1<br> 2   3<br>4 5 6 8<br>7<h3 id="C-11"><a href="#C-11" class="headerlink" title="C++ 11"></a>C++ 11</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<h3 id="C-11"><a href="#C-11" class="headerlink" title="C++ 11"></a>C++ 11</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="Java-1-8"><a href="#Java-1-8" class="headerlink" title="Java 1.8"></a>Java 1.8</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="Java-1-8"><a href="#Java-1-8" class="headerlink" title="Java 1.8"></a>Java 1.8</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Definition for binary tree</span><br><span class="line"> * public class TreeNode &#123;</span><br><span class="line"> *     int val;</span><br><span class="line"> *     TreeNode left;</span><br><span class="line"> *     TreeNode right;</span><br><span class="line"> *     TreeNode(int x) &#123; val = x; &#125;</span><br><span class="line"> * &#125;</span><br><span class="line"> */</span><br><span class="line">public class Solution &#123;</span><br><span class="line">    public TreeNode reConstructBinaryTree(int [] pre,int [] in) &#123;</span><br><span class="line">        TreeNode root = reConstructBinaryTree(pre,0,pre.length-1,in,0,in.length-1);</span><br><span class="line">        return root;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    //前序遍历&#123;1,2,4,7,3,5,6,8&#125;和中序遍历序列&#123;4,7,2,1,5,3,8,6&#125;</span><br><span class="line">    public TreeNode reConstructBinaryTree(int [] pre,int startPre,int endPre,int [] in,int startIn,int endIn)&#123;</span><br><span class="line">         if(startPre&gt;endPre||startIn&gt;endIn)</span><br><span class="line">            return null;</span><br><span class="line">        TreeNode root=new TreeNode(pre[startPre]);</span><br><span class="line">         </span><br><span class="line">        for(int i=startIn;i&lt;=endIn;i++)</span><br><span class="line">            if(in[i]==pre[startPre])&#123;</span><br><span class="line">                root.left=reConstructBinaryTree(pre,startPre+1,startPre+i-startIn,in,startIn,i-1);</span><br><span class="line">                root.right=reConstructBinaryTree(pre,i-startIn+startPre+1,endPre,in,i+1,endIn);</span><br><span class="line">            &#125;</span><br><span class="line">                 </span><br><span class="line">        return root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
       
     </div>
@@ -276,7 +276,7 @@
         <p><span>本文标题:</span><a href="/2018/10/23/Offer-4/">重建二叉树</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 君不见 的个人博客">君不见</a></p>
         <p><span>发布时间:</span>2018年10月23日 - 00时00分</p>
-        <p><span>最后更新:</span>2018年10月23日 - 17时41分</p>
+        <p><span>最后更新:</span>2018年11月07日 - 15时25分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2018/10/23/Offer-4/" title="重建二叉树">http://yoursite.com/2018/10/23/Offer-4/</a>
             <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2018/10/23/Offer-4/　　作者: 君不见" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -396,7 +396,7 @@ style="width:90%;margin:5% auto 0 auto;background: #fff;padding: 0 12px;border-r
             </a>
         
     </div>
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/10/23/Offer-3/">从尾到头打印链表</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/23/Offer-4/">重建二叉树</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/22/Offer-2/">替换空格</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/19/Offer-1/">二维数组中的查找</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/11/GcAndFinalize/">System.gc()与Object.finalize()的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/10/JavaObject/">java Object</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/10/for_foreach/">for与foreach用法的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/10/TenGoodAdvice/">10条好建议</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/30/ReadJava/">读java源码的顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/28/Hexo_spfk_LiveRe_GithubPages/">Hexo博客+spfk主题+LiveRe评论+Github pages</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/01/11/20190111/">20190111</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/10/20190110/">项目</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/15/questions/">试题</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/23/Offer-3/">从尾到头打印链表</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/23/Offer-4/">重建二叉树</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/22/Offer-2/">替换空格</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/19/Offer-1/">二维数组中的查找</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/11/GcAndFinalize/">System.gc()与Object.finalize()的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/10/for_foreach/">for与foreach用法的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/10/JavaObject/">java Object</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/10/TenGoodAdvice/">10条好建议</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/30/ReadJava/">读java源码的顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/28/Hexo_spfk_LiveRe_GithubPages/">Hexo博客+spfk主题+LiveRe评论+Github pages</a></li></ul>
     <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
     <script>
         $(".post-list").addClass("toc-article");
@@ -426,7 +426,7 @@ style="width:90%;margin:5% auto 0 auto;background: #fff;padding: 0 12px;border-r
     <div class="outer">
         <div id="footer-info">
             <div class="footer-left">
-                &copy; 2018 君不见
+                &copy; 2019 君不见
             </div>
             <!-- <div class="footer-right">
                 <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/luuman/hexo-theme-spfk" target="_blank">spfk</a> by luuman

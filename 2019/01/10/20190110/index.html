@@ -3,15 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Tag: 知识点 | 君不见</title>
+  <title>项目 | 君不见</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="君不见">
-<meta property="og:url" content="http://yoursite.com/tags/知识点/index.html">
+  <meta name="description" content="承保系统项目架构图（太大，不好画）">
+<meta name="keywords" content="架构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="项目">
+<meta property="og:url" content="http://yoursite.com/2019/01/10/20190110/index.html">
 <meta property="og:site_name" content="君不见">
+<meta property="og:description" content="承保系统项目架构图（太大，不好画）">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-01-11T07:35:03.749Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="君不见">
+<meta name="twitter:title" content="项目">
+<meta name="twitter:description" content="承保系统项目架构图（太大，不好画）">
   
     <link rel="alternative" href="/atom.xml" title="君不见" type="application/atom+xml">
   
@@ -38,9 +43,9 @@
           fancybox: true,
           animate: true,
           isHome: false,
-          isPost: false,
+          isPost: true,
           isArchive: false,
-          isTag: true,
+          isTag: false,
           isCategory: false,
           open_in_new: false
       }
@@ -185,163 +190,232 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-20190110" class="article article-type-post" itemscope itemprop="blogPost">
   
+    <div class="article-meta">
+      <a href="/2019/01/10/20190110/" class="article-date">
+      <time datetime="2019-01-09T16:00:00.000Z" itemprop="datePublished">2019-01-10</time>
+</a>
+    </div>
   
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
     
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      项目
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/架构/">架构</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/架构/">架构</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p> <meta name="referrer" content="no-referrer"></p>
+<h3 id="承保系统"><a href="#承保系统" class="headerlink" title="承保系统"></a>承保系统</h3><p>项目架构图（太大，不好画）</p>
+<a id="more"></a>
+<ul>
+<li>登陆用单点系统，做到集群下，多个系统，不需要重复登陆<ul>
+<li>使用acegi security安全框架处理，应用请求先通过acegi security的拦截器，判断是否已经登陆，在redis进行查询，集群或多系统配置，需要对系统进行重命名。</li>
+<li>请求时，先经过拦截器，多个拦截器，登出，登陆，匿名处理，异常处理，安全处理。</li>
+<li>登陆之后，sessionid放到redis中，生成cookie存放到浏览器。</li>
+<li>登出时候，销毁cookie和redis中的数据，抛弃当前session。</li>
+<li>超时或异常时，重定向，销毁cookie和redis中的数据，抛弃当前session。</li>
+</ul>
+</li>
+<li>jsp（struts2的自定义标签。重redis中获取数据）+js</li>
+<li>spring（事务）+struts2+hibernate（连接池）</li>
+<li>mysql（分库分表，读写分离？）+redis（存放不宜改变的，不用多次查询数据库，不作为数据缓冲）</li>
+<li>侧面有dubbo（服务模块化，水平拓展，支持高并发。中间连带垂直拓展，由于业务性质导致，数据表比较多）+zookeeper（注册中心集群，1主2辅，2n+1的模式，防脑裂，节省资源）</li>
+<li>activitymq降低并发，处理实时性不高的业务。</li>
+<li>服务接口有servlet和webservice，webservice框架用的axis2-1.4.1版本。<ul>
+<li>axis2版本之间兼容性比较差，自定义类型在反射的时候，类型有可能会变化。接口定义的时候，如果传输的是对象，注意序列化问题。List没有序列化，ArrayList有序列化，另外，泛型的转换的问题。</li>
+</ul>
+</li>
+<li>文件解析用的poi</li>
+</ul>
+<h3 id="异步系统"><a href="#异步系统" class="headerlink" title="异步系统"></a>异步系统</h3><ul>
+<li>没有页面</li>
+<li>maven管理项目包,springboot+Mybatis</li>
+</ul>
+
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
+    </div>
     
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2018/10/11/GcAndFinalize/" class="archive-article-date">
-      <time datetime="2018-10-10T16:00:00.000Z" itemprop="datePublished">10-11</time>
-</a>
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/10/11/GcAndFinalize/">System.gc()与Object.finalize()的区别</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/知识点/">知识点</a>
-    </div>
-
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/知识点/">知识点</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
   </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2019/01/10/20190110/">项目</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 君不见 的个人博客">君不见</a></p>
+        <p><span>发布时间:</span>2019年01月10日 - 00时00分</p>
+        <p><span>最后更新:</span>2019年01月11日 - 15时35分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2019/01/10/20190110/" title="项目">http://yoursite.com/2019/01/10/20190110/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2019/01/10/20190110/　　作者: 君不见" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+    <a href="/2019/01/11/20190111/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/11/15/questions/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">试题</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2018/10/10/TenGoodAdvice/" class="archive-article-date">
-      <time datetime="2018-10-09T16:00:00.000Z" itemprop="datePublished">10-10</time>
-</a>
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/10/10/TenGoodAdvice/">10条好建议</a>
-    </h1>
-  
 
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/知识点/">知识点</a>
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#承保系统"><span class="toc-number">1.</span> <span class="toc-text">承保系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#异步系统"><span class="toc-number">2.</span> <span class="toc-text">异步系统</span></a></li></ol>
+</div>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+    }
+</script>
+
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+        <!-- ������City�氲װ���� -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zOTk3Ny8xNjUwNA==" 
+style="width:90%;margin:5% auto 0 auto;background: #fff;padding: 0 12px;border-radius: 5px;">
+<script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+</script>
+<noscript>Ϊ����ʹ�����������۹����뼤��JavaScript</noscript>
+</div>
+<!-- City�氲װ��������� -->
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2019/01/11/20190111/" title="上一篇: ">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/2018/11/15/questions/" title="下一篇: 试题">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
     </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/01/11/20190111/">20190111</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/10/20190110/">项目</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/15/questions/">试题</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/23/Offer-3/">从尾到头打印链表</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/23/Offer-4/">重建二叉树</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/22/Offer-2/">替换空格</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/19/Offer-1/">二维数组中的查找</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/11/GcAndFinalize/">System.gc()与Object.finalize()的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/10/for_foreach/">for与foreach用法的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/10/JavaObject/">java Object</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/10/TenGoodAdvice/">10条好建议</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/30/ReadJava/">读java源码的顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/28/Hexo_spfk_LiveRe_GithubPages/">Hexo博客+spfk主题+LiveRe评论+Github pages</a></li></ul>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+            }
+        })
+    </script>
 
 
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/知识点/">知识点</a></li></ul>
-    </div>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2018/10/10/for_foreach/" class="archive-article-date">
-      <time datetime="2018-10-09T16:00:00.000Z" itemprop="datePublished">10-10</time>
-</a>
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/10/10/for_foreach/">for与foreach用法的区别</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/知识点/">知识点</a>
-    </div>
-
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/知识点/">知识点</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2018/09/30/ReadJava/" class="archive-article-date">
-      <time datetime="2018-09-29T16:00:00.000Z" itemprop="datePublished">09-30</time>
-</a>
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/30/ReadJava/">读java源码的顺序</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/知识点/">知识点</a>
-    </div>
-
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/知识点/">知识点</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-
+    <script>
+        
+    </script>
 </div>
       <footer id="footer">
     <div class="outer">
