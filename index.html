@@ -217,8 +217,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <p> <meta name="referrer" content="no-referrer"><br>MySQL手册中find_in_set函数的语法：<br>FIND_IN_SET(str,strlist)<br>str 要查询的字符串<br>strlist 字段名 参数以”,”分隔 如 (1,2,6,8)<br>查询字段(strlist)中包含(str)的结果，返回结果为null或记录<br>假如字符串str在由N个子链组成的字符串列表strlist 中，则返回值的范围在 1 到 N 之间。 一个字符串列表就是一个由一些被 ‘,’ 符号分开的子链组成的字符串。如果第一个参数是一个常数字符串，而第二个是type SET列，则FIND_IN_SET() 函数被优化，使用比特计算。 如果str不在strlist 或strlist 为空字符串，则返回值为 0 。如任意一个参数为NULL，则返回值为 NULL。这个函数在第一个参数包含一个逗号(‘,’)时将无法正常运行。<br>用find_in_set(str,strList)函数去进行处理，一个字段多条件的查询</p>
-<p>set @field = ‘P106620190101X0000012,P106620190101X0000013’;<br>select * from table where find_in_set(field,@field);<br>
+              <p> <meta name="referrer" content="no-referrer"><br>MySQL手册中find_in_set函数的语法：<br>FIND_IN_SET(str,strlist)<br>str 要查询的字符串<br>strlist 字段名 参数以”,”分隔 如 (1,2,6,8)<br>
           
       
       

@@ -5,18 +5,18 @@
   
   <title>mysql利用find_in_set去查询in的集合 | 君不见</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="MySQL手册中find_in_set函数的语法：FIND_IN_SET(str,strlist)str 要查询的字符串strlist 字段名 参数以”,”分隔 如 (1,2,6,8)查询字段(strlist)中包含(str)的结果，返回结果为null或记录假如字符串str在由N个子链组成的字符串列表strlist 中，则返回值的范围在 1 到 N 之间。 一个字符串列表就是一个由一些被 ‘,’">
+  <meta name="description" content="MySQL手册中find_in_set函数的语法：FIND_IN_SET(str,strlist)str 要查询的字符串strlist 字段名 参数以”,”分隔 如 (1,2,6,8)">
 <meta name="keywords" content="mysql">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mysql利用find_in_set去查询in的集合">
 <meta property="og:url" content="http://yoursite.com/2019/03/27/20190327_1/index.html">
 <meta property="og:site_name" content="君不见">
-<meta property="og:description" content="MySQL手册中find_in_set函数的语法：FIND_IN_SET(str,strlist)str 要查询的字符串strlist 字段名 参数以”,”分隔 如 (1,2,6,8)查询字段(strlist)中包含(str)的结果，返回结果为null或记录假如字符串str在由N个子链组成的字符串列表strlist 中，则返回值的范围在 1 到 N 之间。 一个字符串列表就是一个由一些被 ‘,’">
+<meta property="og:description" content="MySQL手册中find_in_set函数的语法：FIND_IN_SET(str,strlist)str 要查询的字符串strlist 字段名 参数以”,”分隔 如 (1,2,6,8)">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-28T01:34:23.322Z">
+<meta property="og:updated_time" content="2019-03-28T01:40:48.607Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mysql利用find_in_set去查询in的集合">
-<meta name="twitter:description" content="MySQL手册中find_in_set函数的语法：FIND_IN_SET(str,strlist)str 要查询的字符串strlist 字段名 参数以”,”分隔 如 (1,2,6,8)查询字段(strlist)中包含(str)的结果，返回结果为null或记录假如字符串str在由N个子链组成的字符串列表strlist 中，则返回值的范围在 1 到 N 之间。 一个字符串列表就是一个由一些被 ‘,’">
+<meta name="twitter:description" content="MySQL手册中find_in_set函数的语法：FIND_IN_SET(str,strlist)str 要查询的字符串strlist 字段名 参数以”,”分隔 如 (1,2,6,8)">
   
     <link rel="alternative" href="/atom.xml" title="君不见" type="application/atom+xml">
   
@@ -232,8 +232,8 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p> <meta name="referrer" content="no-referrer"><br>MySQL手册中find_in_set函数的语法：<br>FIND_IN_SET(str,strlist)<br>str 要查询的字符串<br>strlist 字段名 参数以”,”分隔 如 (1,2,6,8)<br>查询字段(strlist)中包含(str)的结果，返回结果为null或记录<br>假如字符串str在由N个子链组成的字符串列表strlist 中，则返回值的范围在 1 到 N 之间。 一个字符串列表就是一个由一些被 ‘,’ 符号分开的子链组成的字符串。如果第一个参数是一个常数字符串，而第二个是type SET列，则FIND_IN_SET() 函数被优化，使用比特计算。 如果str不在strlist 或strlist 为空字符串，则返回值为 0 。如任意一个参数为NULL，则返回值为 NULL。这个函数在第一个参数包含一个逗号(‘,’)时将无法正常运行。<br>用find_in_set(str,strList)函数去进行处理，一个字段多条件的查询</p>
-<p>set @field = ‘P106620190101X0000012,P106620190101X0000013’;<br>select * from table where find_in_set(field,@field);<br><a id="more"></a></p>
+        <p> <meta name="referrer" content="no-referrer"><br>MySQL手册中find_in_set函数的语法：<br>FIND_IN_SET(str,strlist)<br>str 要查询的字符串<br>strlist 字段名 参数以”,”分隔 如 (1,2,6,8)<br><a id="more"></a><br>查询字段(strlist)中包含(str)的结果，返回结果为null或记录<br>假如字符串str在由N个子链组成的字符串列表strlist 中，则返回值的范围在 1 到 N 之间。 一个字符串列表就是一个由一些被 ‘,’ 符号分开的子链组成的字符串。如果第一个参数是一个常数字符串，而第二个是type SET列，则FIND_IN_SET() 函数被优化，使用比特计算。 如果str不在strlist 或strlist 为空字符串，则返回值为 0 。如任意一个参数为NULL，则返回值为 NULL。这个函数在第一个参数包含一个逗号(‘,’)时将无法正常运行。<br>用find_in_set(str,strList)函数去进行处理，一个字段多条件的查询</p>
+<p>set @field = ‘P106620190101X0000012,P106620190101X0000013’;<br>select * from table where find_in_set(field,@field);</p>
 
       
       
@@ -246,7 +246,7 @@
         <p><span>本文标题:</span><a href="/2019/03/27/20190327_1/">mysql利用find_in_set去查询in的集合</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 君不见 的个人博客">君不见</a></p>
         <p><span>发布时间:</span>2019年03月27日 - 00时00分</p>
-        <p><span>最后更新:</span>2019年03月28日 - 09时34分</p>
+        <p><span>最后更新:</span>2019年03月28日 - 09时40分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2019/03/27/20190327_1/" title="mysql利用find_in_set去查询in的集合">http://yoursite.com/2019/03/27/20190327_1/</a>
             <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2019/03/27/20190327_1/　　作者: 君不见" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
