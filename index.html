@@ -132,7 +132,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/Assembly-Language-Second-Edition/" style="font-size: 10px;">Assembly-Language-Second-Edition</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/java/" style="font-size: 15px;">java</a> <a href="/tags/tcp-ip/" style="font-size: 10px;">tcp-ip</a> <a href="/tags/动态规划/" style="font-size: 10px;">动态规划</a> <a href="/tags/日常/" style="font-size: 10px;">日常</a> <a href="/tags/架构/" style="font-size: 10px;">架构</a> <a href="/tags/源码/" style="font-size: 10px;">源码</a> <a href="/tags/知识点/" style="font-size: 20px;">知识点</a> <a href="/tags/算法/" style="font-size: 20px;">算法</a> <a href="/tags/试题/" style="font-size: 10px;">试题</a>
+                        <a href="/tags/Assembly-Language-Second-Edition/" style="font-size: 10px;">Assembly-Language-Second-Edition</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/java/" style="font-size: 15px;">java</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/tcp-ip/" style="font-size: 10px;">tcp-ip</a> <a href="/tags/动态规划/" style="font-size: 10px;">动态规划</a> <a href="/tags/日常/" style="font-size: 10px;">日常</a> <a href="/tags/架构/" style="font-size: 10px;">架构</a> <a href="/tags/源码/" style="font-size: 10px;">源码</a> <a href="/tags/知识点/" style="font-size: 20px;">知识点</a> <a href="/tags/算法/" style="font-size: 20px;">算法</a> <a href="/tags/试题/" style="font-size: 10px;">试题</a>
                     </div>
                 </section>
                 
@@ -190,11 +190,11 @@
 </nav>
       <div class="body-wrap">
   
-    <article id="post-20190311_3" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-20190327_1" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/03/11/20190311_3/" class="article-date">
-      <time datetime="2019-03-10T16:00:00.000Z" itemprop="datePublished">2019-03-11</time>
+      <a href="/2019/03/27/20190327_1/" class="article-date">
+      <time datetime="2019-03-26T16:00:00.000Z" itemprop="datePublished">2019-03-27</time>
 </a>
     </div>
   
@@ -207,7 +207,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/11/20190311_3/">github上传限制</a>
+      <a class="article-title" href="/2019/03/27/20190327_1/">mysql利用find_in_set去查询in的集合</a>
     </h1>
   
 
@@ -217,7 +217,8 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <p> <meta name="referrer" content="no-referrer"><br>github 限制在1G，单个文件不能超过100M，有50M的文件，就会警告了。<br>所以上传的时候把编译的之后生成的东西去掉，对大文件进行拆分。<br>linux： du -h xxxx<br>
+              <p> <meta name="referrer" content="no-referrer"><br>MySQL手册中find_in_set函数的语法：<br>FIND_IN_SET(str,strlist)<br>str 要查询的字符串<br>strlist 字段名 参数以”,”分隔 如 (1,2,6,8)<br>查询字段(strlist)中包含(str)的结果，返回结果为null或记录<br>假如字符串str在由N个子链组成的字符串列表strlist 中，则返回值的范围在 1 到 N 之间。 一个字符串列表就是一个由一些被 ‘,’ 符号分开的子链组成的字符串。如果第一个参数是一个常数字符串，而第二个是type SET列，则FIND_IN_SET() 函数被优化，使用比特计算。 如果str不在strlist 或strlist 为空字符串，则返回值为 0 。如任意一个参数为NULL，则返回值为 NULL。这个函数在第一个参数包含一个逗号(‘,’)时将无法正常运行。<br>用find_in_set(str,strList)函数去进行处理，一个字段多条件的查询</p>
+<p>set @field = ‘P106620190101X0000012,P106620190101X0000013’;<br>select * from table where find_in_set(field,@field);<br>
           
       
       
@@ -227,18 +228,18 @@
       
       
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/日常/">日常</a>
+    <a class="article-category-link" href="/categories/知识点/">知识点</a>
     </div>
 
 
       
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/日常/">日常</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li></ul>
     </div>
 
       
         <p class="article-more-link">
-          <a  href="/2019/03/11/20190311_3/#more">阅读全文 >></a>
+          <a  href="/2019/03/27/20190327_1/#more">阅读全文 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -306,6 +307,73 @@
       
         <p class="article-more-link">
           <a  href="/2019/03/11/20190311_2/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-20190311_3" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/03/11/20190311_3/" class="article-date">
+      <time datetime="2019-03-10T16:00:00.000Z" itemprop="datePublished">2019-03-11</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/11/20190311_3/">github上传限制</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p> <meta name="referrer" content="no-referrer"><br>github 限制在1G，单个文件不能超过100M，有50M的文件，就会警告了。<br>所以上传的时候把编译的之后生成的东西去掉，对大文件进行拆分。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">du -h xxxx</span><br><span class="line">spilt -b 200M xxxx</span><br></pre></td></tr></table></figure></p>
+          
+      
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/日常/">日常</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/日常/">日常</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a  href="/2019/03/11/20190311_3/#more">阅读全文 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -724,76 +792,6 @@
       
         <p class="article-more-link">
           <a  href="/2018/11/15/questions/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Offer_4" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2018/10/23/Offer_4/" class="article-date">
-      <time datetime="2018-10-22T16:00:00.000Z" itemprop="datePublished">2018-10-23</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/10/23/Offer_4/">重建二叉树</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <meta name="referrer" content="no-referrer">
-
-<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><ul>
-<li>输入某二叉树的前序遍历和中序遍历的结果，请重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都<code>不含重复</code>的数字。例如输入前序遍历序列{1,2,4,7,3,5,6,8}和中序遍历序列{4,7,2,1,5,3,8,6}，则重建二叉树并返回。
-          
-      
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/算法/">算法</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a  href="/2018/10/23/Offer_4/#more">阅读全文 >></a>
         </p>
       
       <div class="clearfix"></div>
