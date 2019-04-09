@@ -3,20 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>替换空格 | 君不见</title>
+  <title>linux CTRL+Z和CTRL+C区别 | 君不见</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="题目描述 请实现一个函数，将一个字符串中的每个空格替换成“%20”。例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。">
-<meta name="keywords" content="算法">
+  <meta name="description" content="Linux CTRL+Z和CTRL+C区别ctrl+c&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;( kill foreground process ) 发送 SIGINT 信号给前台进程组中的所有进程，强制终止程序的执行；">
+<meta name="keywords" content="linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="替换空格">
-<meta property="og:url" content="http://yoursite.com/2018/10/22/Offer_2/index.html">
+<meta property="og:title" content="linux CTRL+Z和CTRL+C区别">
+<meta property="og:url" content="http://yoursite.com/2019/04/09/20190409_2/index.html">
 <meta property="og:site_name" content="君不见">
-<meta property="og:description" content="题目描述 请实现一个函数，将一个字符串中的每个空格替换成“%20”。例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。">
+<meta property="og:description" content="Linux CTRL+Z和CTRL+C区别ctrl+c&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;( kill foreground process ) 发送 SIGINT 信号给前台进程组中的所有进程，强制终止程序的执行；">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-28T06:52:00.162Z">
+<meta property="og:updated_time" content="2019-04-09T06:23:42.429Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="替换空格">
-<meta name="twitter:description" content="题目描述 请实现一个函数，将一个字符串中的每个空格替换成“%20”。例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。">
+<meta name="twitter:title" content="linux CTRL+Z和CTRL+C区别">
+<meta name="twitter:description" content="Linux CTRL+Z和CTRL+C区别ctrl+c&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;( kill foreground process ) 发送 SIGINT 信号给前台进程组中的所有进程，强制终止程序的执行；">
   
     <link rel="alternative" href="/atom.xml" title="君不见" type="application/atom+xml">
   
@@ -190,11 +190,11 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-Offer_2" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-20190409_2" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2018/10/22/Offer_2/" class="article-date">
-      <time datetime="2018-10-21T16:00:00.000Z" itemprop="datePublished">2018-10-22</time>
+      <a href="/2019/04/09/20190409_2/" class="article-date">
+      <time datetime="2019-04-08T16:00:00.000Z" itemprop="datePublished">2019-04-09</time>
 </a>
     </div>
   
@@ -207,7 +207,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      替换空格
+      linux CTRL+Z和CTRL+C区别
     </h1>
   
 
@@ -216,13 +216,13 @@
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/剑指offer/">剑指offer</a>
+    <a class="article-category-link" href="/categories/知识点/">知识点</a>
     </div>
 
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -232,21 +232,26 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-         <meta name="referrer" content="no-referrer">
+        <p> <meta name="referrer" content="no-referrer"></p>
+<h3 id="Linux-CTRL-Z和CTRL-C区别"><a href="#Linux-CTRL-Z和CTRL-C区别" class="headerlink" title="Linux CTRL+Z和CTRL+C区别"></a>Linux CTRL+Z和CTRL+C区别</h3><h4 id="ctrl-c"><a href="#ctrl-c" class="headerlink" title="ctrl+c"></a>ctrl+c</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;( kill foreground process ) 发送 SIGINT 信号给前台进程组中的所有进程，强制终止程序的执行；<br><a id="more"></a></p>
+<h4 id="ctrl-z"><a href="#ctrl-z" class="headerlink" title="ctrl+z"></a>ctrl+z</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;( suspend foreground process ) 发送 SIGTSTP 信号给前台进程组中的所有进程，常用于挂起一个进程，而并非结束进程，用户可以使用使用fg/bg操作恢复执行前台或后台的进程。fg命令在前台恢复执行被挂起的进程，此时可以使用ctrl+z再次挂起该进程，bg命令在后台恢复执行被挂起的进程，而此时将无法使用ctrl+z再次挂起该进程；</p>
+<ul>
+<li>CTRL+Z停止进程并放入后台</li>
+<li>jobs 显示当前暂停的进程</li>
+<li>bg %N 使第N个任务在后台运行（%前有空格）</li>
+<li>fg %N 使第N个任务在前台运行</li>
+<li>默认bg，fg不带%N时表示对最后一个进程操作！</li>
+</ul>
+<blockquote>
+<p>一个比较常用的功能：<br>正在使用vi编辑一个文件时，需要执行shell命令查询一些需要的信息，可以使用ctrl-z挂起vi，等执行完shell命令后再使用fg恢复vi继续编辑你的文件（当然，也可以在vi中使用！command方式执行shell命令，但是没有该方法方便）。</p>
+</blockquote>
+<h4 id="ctrl-d"><a href="#ctrl-d" class="headerlink" title="ctrl+d:"></a>ctrl+d:</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;( Terminate input, or exit shell ) 一个特殊的二进制值，表示 EOF，作用相当于在终端中输入exit后回车；</p>
+<h4 id="ctrl"><a href="#ctrl" class="headerlink" title="ctrl+/"></a>ctrl+/</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;发送 SIGQUIT 信号给前台进程组中的所有进程，终止前台进程并生成 core 文件</p>
+<h4 id="ctrl-s"><a href="#ctrl-s" class="headerlink" title="ctrl+s"></a>ctrl+s</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;中断控制台输出</p>
+<h4 id="ctrl-q"><a href="#ctrl-q" class="headerlink" title="ctrl+q"></a>ctrl+q</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;恢复控制台输出</p>
+<h4 id="ctrl-l"><a href="#ctrl-l" class="headerlink" title="ctrl+l"></a>ctrl+l</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;清屏</p>
+<h4 id="查看配置"><a href="#查看配置" class="headerlink" title="查看配置"></a>查看配置</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;其实，控制字符都是可以通过stty命令更改的，可在终端中输入命令”stty -a”查看终端配置</p>
 
-<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><ul>
-<li>请实现一个函数，将一个字符串中的每个空格替换成“%20”。例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。<a id="more"></a></li>
-<li>思路：</li>
-<li>用另一个字符串去存储，思路简单，但消耗内存</li>
-<li>用同一个字符串做处理，都需要先获取空格的个数，两种方式，但耗时间，做两次循环<ul>
-<li>从前向后移动字符串，空格后的字符每次都要移动，消耗时间比第二种更多</li>
-<li>从后向前移动字符串，字符只移动一次</li>
-</ul>
-</li>
-<li>这里只给从后向前的方式</li>
-</ul>
-<h3 id="C-11"><a href="#C-11" class="headerlink" title="C++ 11"></a>C++ 11</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    void replaceSpace(char *str,int length) &#123;</span><br><span class="line">        int spaceNum = 0;</span><br><span class="line">        int pIndexOld = 0;</span><br><span class="line">        while (str[pIndexOld] != &apos;\0&apos;)//char * 有&apos;\0&apos;结尾，string没有</span><br><span class="line">        &#123;</span><br><span class="line">            if (str[pIndexOld++] == &apos; &apos;)</span><br><span class="line">            &#123;</span><br><span class="line">                spaceNum++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        int pIndexNew = pIndexOld + spaceNum * 2;</span><br><span class="line">        if(pIndexNew&gt;length)//length作用的猜想，应该是str的长度</span><br><span class="line">        &#123;</span><br><span class="line">            return ;</span><br><span class="line">        &#125;</span><br><span class="line">        while (pIndexNew != pIndexOld)</span><br><span class="line">        &#123;</span><br><span class="line">            if (str[pIndexOld] == &apos; &apos;)</span><br><span class="line">            &#123;</span><br><span class="line">                str[pIndexNew--] = &apos;0&apos;;</span><br><span class="line">                str[pIndexNew--] = &apos;2&apos;;</span><br><span class="line">                str[pIndexNew] = &apos;%&apos;;</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                str[pIndexNew] = str[pIndexOld];</span><br><span class="line">            &#125;</span><br><span class="line">            pIndexNew--;</span><br><span class="line">            pIndexOld--;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="Java-1-8"><a href="#Java-1-8" class="headerlink" title="Java 1.8"></a>Java 1.8</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">    public String replaceSpace(StringBuffer str) &#123;</span><br><span class="line">        int spaceNum = 0;//字符串中空格的个数</span><br><span class="line">        for (int i = 0; i &lt; str.length(); i++) &#123;</span><br><span class="line">        	if(str.charAt(i) == &apos; &apos;)&#123;</span><br><span class="line">        		spaceNum++;</span><br><span class="line">        	&#125;</span><br><span class="line">        &#125;</span><br><span class="line">        int indexOld = str.length()-1;//原长度下，最有一个字符的下标</span><br><span class="line">        //重设StringBuffer长度，不然会有空指针，空格换%20，多空格的2倍长度</span><br><span class="line">        str.setLength(str.length()+spaceNum*2);</span><br><span class="line">        int indexNew = str.length()-1;//新长度下，最有一个字符的下标</span><br><span class="line">        //当indexNew和indexOld相等时，说明前面就没有空格了，即可退出</span><br><span class="line">        while (indexNew != indexOld) &#123;</span><br><span class="line">        	if(str.charAt(indexOld) == &apos; &apos;)&#123;</span><br><span class="line">        		str.setCharAt(indexNew--, &apos;0&apos;);</span><br><span class="line">        		str.setCharAt(indexNew--, &apos;2&apos;);</span><br><span class="line">        		str.setCharAt(indexNew--, &apos;%&apos;);</span><br><span class="line">        		</span><br><span class="line">        	&#125;else&#123;</span><br><span class="line">        		str.setCharAt(indexNew--, str.charAt(indexOld));</span><br><span class="line">        	&#125;</span><br><span class="line">        	indexOld--;</span><br><span class="line">        &#125;</span><br><span class="line">        return str.toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
       
     </div>
@@ -255,13 +260,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2018/10/22/Offer_2/">替换空格</a></p>
+        <p><span>本文标题:</span><a href="/2019/04/09/20190409_2/">linux CTRL+Z和CTRL+C区别</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 君不见 的个人博客">君不见</a></p>
-        <p><span>发布时间:</span>2018年10月22日 - 00时00分</p>
-        <p><span>最后更新:</span>2019年03月28日 - 14时52分</p>
+        <p><span>发布时间:</span>2019年04月09日 - 00时00分</p>
+        <p><span>最后更新:</span>2019年04月09日 - 14时23分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2018/10/22/Offer_2/" title="替换空格">http://yoursite.com/2018/10/22/Offer_2/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2018/10/22/Offer_2/　　作者: 君不见" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2019/04/09/20190409_2/" title="linux CTRL+Z和CTRL+C区别">http://yoursite.com/2019/04/09/20190409_2/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2019/04/09/20190409_2/　　作者: 君不见" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -274,18 +279,18 @@
 
 <nav id="article-nav">
   
-    <a href="/2018/10/23/Offer_4/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/04/09/20190409_1/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          重建二叉树
+          mysql关键字执行顺序
         
       </div>
     </a>
   
   
-    <a href="/2018/10/19/Offer_1/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">二维数组中的查找</div>
+    <a href="/2019/03/27/20190327_1/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">mysql利用find_in_set去查询in的集合</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -296,7 +301,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目描述"><span class="toc-number">1.</span> <span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#C-11"><span class="toc-number">2.</span> <span class="toc-text">C++ 11</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-1-8"><span class="toc-number">3.</span> <span class="toc-text">Java 1.8</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux-CTRL-Z和CTRL-C区别"><span class="toc-number">1.</span> <span class="toc-text">Linux CTRL+Z和CTRL+C区别</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ctrl-c"><span class="toc-number">1.1.</span> <span class="toc-text">ctrl+c</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ctrl-z"><span class="toc-number">1.2.</span> <span class="toc-text">ctrl+z</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ctrl-d"><span class="toc-number">1.3.</span> <span class="toc-text">ctrl+d:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ctrl"><span class="toc-number">1.4.</span> <span class="toc-text">ctrl+/</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ctrl-s"><span class="toc-number">1.5.</span> <span class="toc-text">ctrl+s</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ctrl-q"><span class="toc-number">1.6.</span> <span class="toc-text">ctrl+q</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ctrl-l"><span class="toc-number">1.7.</span> <span class="toc-text">ctrl+l</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#查看配置"><span class="toc-number">1.8.</span> <span class="toc-text">查看配置</span></a></li></ol></li></ol>
 </div>
 <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 
@@ -367,13 +372,13 @@ style="width:90%;margin:5% auto 0 auto;background: #fff;padding: 0 12px;border-r
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2018/10/23/Offer_4/" title="上一篇: 重建二叉树">
+            <a href="/2019/04/09/20190409_1/" title="上一篇: mysql关键字执行顺序">
                 <i class="fa fa-angle-left"></i>
             </a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a href="/2018/10/19/Offer_1/" title="下一篇: 二维数组中的查找">
+            <a href="/2019/03/27/20190327_1/" title="下一篇: mysql利用find_in_set去查询in的集合">
                 <i class="fa fa-angle-right"></i>
             </a>
         
