@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="君不见">
 <meta property="og:description" content="spring boot&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;配置属性的方式很多，Spring boot使用了一种独有的 PropertySource 可以很方便的覆盖属性的值。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-10T09:07:25.798Z">
+<meta property="og:updated_time" content="2019-04-10T09:16:35.396Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="spring boot 配置加载顺序">
 <meta name="twitter:description" content="spring boot&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;配置属性的方式很多，Spring boot使用了一种独有的 PropertySource 可以很方便的覆盖属性的值。">
@@ -246,8 +246,8 @@
 <li>Java系统参数（来源：<code>System.getProperties()</code>），java源码包级的配置；</li>
 <li>操作系统环境变量参数；</li>
 <li><code>RandomValuePropertySource</code> 随机数，仅匹配：<code>ramdom.*</code>；</li>
-<li>JAR包外面的配置文件参数（<code>application-{profile}.properties（YAML）</code>）,类子目录下的；</li>
-<li>JAR包里面的配置文件参数（<code>application-{profile}.properties（YAML）</code>）,类根目录下的；</li>
+<li>JAR包外面的配置文件参数（<code>application-{profile}.properties（YAML）</code>），类子目录下的；</li>
+<li>JAR包里面的配置文件参数（<code>application-{profile}.properties（YAML）</code>），类根目录下的；</li>
 <li>JAR包外面的配置文件参数（<code>application.properties（YAML）</code>），src子目录下的；</li>
 <li>JAR包里面的配置文件参数（<code>application.properties（YAML）</code>），src根目录下的；</li>
 <li><code>@Configuration</code>配置文件上 <code>@PropertySource</code> 注解加载的参数，java代码的配置文件；</li>
@@ -265,7 +265,7 @@
         <p><span>本文标题:</span><a href="/2019/04/10/20190410_2/">spring boot 配置加载顺序</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 君不见 的个人博客">君不见</a></p>
         <p><span>发布时间:</span>2019年04月10日 - 00时00分</p>
-        <p><span>最后更新:</span>2019年04月10日 - 17时07分</p>
+        <p><span>最后更新:</span>2019年04月10日 - 17时16分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2019/04/10/20190410_2/" title="spring boot 配置加载顺序">http://yoursite.com/2019/04/10/20190410_2/</a>
             <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2019/04/10/20190410_2/　　作者: 君不见" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
