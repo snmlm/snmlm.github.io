@@ -132,7 +132,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/Books/" style="font-size: 13.33px;">Books</a> <a href="/tags/hexo/" style="font-size: 13.33px;">hexo</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/mysql/" style="font-size: 13.33px;">mysql</a> <a href="/tags/日常/" style="font-size: 13.33px;">日常</a> <a href="/tags/架构/" style="font-size: 10px;">架构</a> <a href="/tags/算法/" style="font-size: 16.67px;">算法</a> <a href="/tags/试题/" style="font-size: 10px;">试题</a>
+                        <a href="/tags/Books/" style="font-size: 13.33px;">Books</a> <a href="/tags/dubbo/" style="font-size: 10px;">dubbo</a> <a href="/tags/hexo/" style="font-size: 13.33px;">hexo</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/mysql/" style="font-size: 13.33px;">mysql</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/spring-boot/" style="font-size: 10px;">spring boot</a> <a href="/tags/日常/" style="font-size: 13.33px;">日常</a> <a href="/tags/架构/" style="font-size: 10px;">架构</a> <a href="/tags/算法/" style="font-size: 16.67px;">算法</a> <a href="/tags/试题/" style="font-size: 10px;">试题</a>
                     </div>
                 </section>
                 
@@ -189,6 +189,143 @@
     </div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-20190410_2" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/04/10/20190410_2/" class="article-date">
+      <time datetime="2019-04-09T16:00:00.000Z" itemprop="datePublished">2019-04-10</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/10/20190410_2/">spring boot 配置加载顺序</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p> <meta name="referrer" content="no-referrer"></p>
+<h3 id="spring-boot"><a href="#spring-boot" class="headerlink" title="spring boot"></a>spring boot</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;配置属性的方式很多，Spring boot使用了一种独有的 PropertySource 可以很方便的覆盖属性的值。<br>
+          
+      
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/知识点/">知识点</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring-boot/">spring boot</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a  href="/2019/04/10/20190410_2/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-20190410_1" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/04/10/20190410_1/" class="article-date">
+      <time datetime="2019-04-09T16:00:00.000Z" itemprop="datePublished">2019-04-10</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/10/20190410_1/">dubbo的坑（持续更新）</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p> <meta name="referrer" content="no-referrer"></p>
+<h3 id="dubbo"><a href="#dubbo" class="headerlink" title="dubbo"></a>dubbo</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;加载自定义配置文件，本地测试的路径和打包之后项目路径不一致问题。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">//本地测试需改成/conf</span><br><span class="line">//打包发环境时，改成/</span><br><span class="line">this.getClass().getResource(&quot;/&quot;).getPath()</span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本类的路径下去找资源文件的路径。并且不会去下级文件夹寻找文件。<br>
+          
+      
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/知识点/">知识点</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dubbo/">dubbo</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a  href="/2019/04/10/20190410_1/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-20190409_1" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -251,6 +388,75 @@
       
         <p class="article-more-link">
           <a  href="/2019/04/09/20190409_1/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-20190409_3" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/04/09/20190409_3/" class="article-date">
+      <time datetime="2019-04-08T16:00:00.000Z" itemprop="datePublished">2019-04-09</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/09/20190409_3/">spring容器外调用容器内的对象</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <meta name="referrer" content="no-referrer">
+
+<h3 id="spring"><a href="#spring" class="headerlink" title="spring"></a>spring</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;简单的方法，就是把调用对象放到spring容器内。直接调用其他对象即可。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;要么就是实现ApplicationContextAware接口，并把类加载到spring容器中，获取到ApplicationContext，用ApplicationContext.getbean方法拿到spring容器里的对象，进行调用。<br>
+          
+      
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/知识点/">知识点</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring/">spring</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a  href="/2019/04/09/20190409_3/#more">阅读全文 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -337,6 +543,75 @@
 
 
   
+    <article id="post-20190327_2" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/03/27/20190327_2/" class="article-date">
+      <time datetime="2019-03-26T16:00:00.000Z" itemprop="datePublished">2019-03-27</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/27/20190327_2/">hexo指令</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p> <meta name="referrer" content="no-referrer"></p>
+<h3 id="init"><a href="#init" class="headerlink" title="init"></a>init</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init</span><br></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;新建一个网站。如果没有设置 folder ，Hexo 默认在目前的文件夹建立网站。<br>
+          
+      
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/hexo/">hexo</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a  href="/2019/03/27/20190327_2/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-20190327_1" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -404,11 +679,11 @@
 
 
   
-    <article id="post-20190327_2" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-20190311_3" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/03/27/20190327_2/" class="article-date">
-      <time datetime="2019-03-26T16:00:00.000Z" itemprop="datePublished">2019-03-27</time>
+      <a href="/2019/03/11/20190311_3/" class="article-date">
+      <time datetime="2019-03-10T16:00:00.000Z" itemprop="datePublished">2019-03-11</time>
 </a>
     </div>
   
@@ -421,7 +696,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/27/20190327_2/">hexo指令</a>
+      <a class="article-title" href="/2019/03/11/20190311_3/">github上传限制</a>
     </h1>
   
 
@@ -431,9 +706,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <p> <meta name="referrer" content="no-referrer"></p>
-<h3 id="init"><a href="#init" class="headerlink" title="init"></a>init</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init</span><br></pre></td></tr></table></figure>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;新建一个网站。如果没有设置 folder ，Hexo 默认在目前的文件夹建立网站。<br>
+              <p> <meta name="referrer" content="no-referrer"><br>github 限制在1G，单个文件不能超过100M，有50M的文件，就会警告了。<br>所以上传的时候把编译的之后生成的东西去掉，对大文件进行拆分。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">du -h xxxx</span><br><span class="line">spilt -b 200M xxxx</span><br></pre></td></tr></table></figure></p>
           
       
       
@@ -443,18 +716,18 @@
       
       
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/hexo/">hexo</a>
+    <a class="article-category-link" href="/categories/日常/">日常</a>
     </div>
 
 
       
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/日常/">日常</a></li></ul>
     </div>
 
       
         <p class="article-more-link">
-          <a  href="/2019/03/27/20190327_2/#more">阅读全文 >></a>
+          <a  href="/2019/03/11/20190311_3/#more">阅读全文 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -589,278 +862,6 @@
       
         <p class="article-more-link">
           <a  href="/2019/03/11/20190311_2/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-20190311_3" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/03/11/20190311_3/" class="article-date">
-      <time datetime="2019-03-10T16:00:00.000Z" itemprop="datePublished">2019-03-11</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/11/20190311_3/">github上传限制</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p> <meta name="referrer" content="no-referrer"><br>github 限制在1G，单个文件不能超过100M，有50M的文件，就会警告了。<br>所以上传的时候把编译的之后生成的东西去掉，对大文件进行拆分。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">du -h xxxx</span><br><span class="line">spilt -b 200M xxxx</span><br></pre></td></tr></table></figure></p>
-          
-      
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/日常/">日常</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/日常/">日常</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a  href="/2019/03/11/20190311_3/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-20190307_2" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/03/07/20190307_2/" class="article-date">
-      <time datetime="2019-03-06T16:00:00.000Z" itemprop="datePublished">2019-03-07</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/07/20190307_2/">公式算法</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p> <meta name="referrer" content="no-referrer"></p>
-<h2 id="公式算法"><a href="#公式算法" class="headerlink" title="公式算法"></a>公式算法</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;前缀表达式、中缀表达式、后缀表达式都是四则运算的表达方式，用以四则运算表达式求值,即数学表达式的求职。<br>
-          
-      
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/Demo/">Demo</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a  href="/2019/03/07/20190307_2/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-20190307_1" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/03/07/20190307_1/" class="article-date">
-      <time datetime="2019-03-06T16:00:00.000Z" itemprop="datePublished">2019-03-07</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/07/20190307_1/">数字大小写</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p> <meta name="referrer" content="no-referrer"></p>
-<h2 id="数字大小写"><a href="#数字大小写" class="headerlink" title="数字大小写"></a>数字大小写</h2><h3 id="小写转大写"><a href="#小写转大写" class="headerlink" title="小写转大写"></a>小写转大写</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;硬性拆分</p>
-          
-      
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/Demo/">Demo</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a  href="/2019/03/07/20190307_1/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-20190305" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/03/05/20190305/" class="article-date">
-      <time datetime="2019-03-04T16:00:00.000Z" itemprop="datePublished">2019-03-05</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/05/20190305/">动态规划</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p> <meta name="referrer" content="no-referrer"></p>
-<h2 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h2><h3 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h3><ul>
-<li>通过把原问题分解为相对简单的子问题的方式求解复杂问题的方法。动态规划常常适用于有重叠子问题和最优子结构性质的问题。
-          
-      
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/动态规划/">动态规划</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a  href="/2019/03/05/20190305/#more">阅读全文 >></a>
         </p>
       
       <div class="clearfix"></div>

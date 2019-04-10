@@ -3,20 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>for与foreach用法的区别 | 君不见</title>
+  <title>spring boot 配置加载顺序 | 君不见</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="for or foreach 当集合是实现了RandomAccess(随机存储接口),也就意味着，数据是随机访问的，例如arraylist，则尽量用for(int i = 0; i &amp;lt; size; i++) 来遍历。 反过来，如果List是Sequence List，例如linkedlist，则最好用迭代器来进行迭代。 数组特殊，for比foreach快">
-<meta name="keywords" content="java">
+  <meta name="description" content="spring boot&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;配置属性的方式很多，Spring boot使用了一种独有的 PropertySource 可以很方便的覆盖属性的值。">
+<meta name="keywords" content="spring boot">
 <meta property="og:type" content="article">
-<meta property="og:title" content="for与foreach用法的区别">
-<meta property="og:url" content="http://yoursite.com/2018/10/10/for_foreach/index.html">
+<meta property="og:title" content="spring boot 配置加载顺序">
+<meta property="og:url" content="http://yoursite.com/2019/04/10/20190410_2/index.html">
 <meta property="og:site_name" content="君不见">
-<meta property="og:description" content="for or foreach 当集合是实现了RandomAccess(随机存储接口),也就意味着，数据是随机访问的，例如arraylist，则尽量用for(int i = 0; i &amp;lt; size; i++) 来遍历。 反过来，如果List是Sequence List，例如linkedlist，则最好用迭代器来进行迭代。 数组特殊，for比foreach快">
+<meta property="og:description" content="spring boot&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;配置属性的方式很多，Spring boot使用了一种独有的 PropertySource 可以很方便的覆盖属性的值。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-28T02:04:05.538Z">
+<meta property="og:updated_time" content="2019-04-10T09:07:25.798Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="for与foreach用法的区别">
-<meta name="twitter:description" content="for or foreach 当集合是实现了RandomAccess(随机存储接口),也就意味着，数据是随机访问的，例如arraylist，则尽量用for(int i = 0; i &amp;lt; size; i++) 来遍历。 反过来，如果List是Sequence List，例如linkedlist，则最好用迭代器来进行迭代。 数组特殊，for比foreach快">
+<meta name="twitter:title" content="spring boot 配置加载顺序">
+<meta name="twitter:description" content="spring boot&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;配置属性的方式很多，Spring boot使用了一种独有的 PropertySource 可以很方便的覆盖属性的值。">
   
     <link rel="alternative" href="/atom.xml" title="君不见" type="application/atom+xml">
   
@@ -190,11 +190,11 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-for_foreach" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-20190410_2" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2018/10/10/for_foreach/" class="article-date">
-      <time datetime="2018-10-09T16:00:00.000Z" itemprop="datePublished">2018-10-10</time>
+      <a href="/2019/04/10/20190410_2/" class="article-date">
+      <time datetime="2019-04-09T16:00:00.000Z" itemprop="datePublished">2019-04-10</time>
 </a>
     </div>
   
@@ -207,7 +207,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      for与foreach用法的区别
+      spring boot 配置加载顺序
     </h1>
   
 
@@ -222,7 +222,7 @@
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring-boot/">spring boot</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -232,13 +232,27 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-         <meta name="referrer" content="no-referrer">
-
-<h3 id="for-or-foreach"><a href="#for-or-foreach" class="headerlink" title="for or foreach"></a>for or foreach</h3><ul>
-<li>当集合是实现了RandomAccess(随机存储接口),也就意味着，数据是随机访问的，例如arraylist，则尽量用for(int i = 0; i &lt; size; i++) 来遍历。</li>
-<li>反过来，如果List是Sequence List，例如linkedlist，则最好用迭代器来进行迭代。</li>
-<li>数组特殊，for比foreach快</li>
-</ul>
+        <p> <meta name="referrer" content="no-referrer"></p>
+<h3 id="spring-boot"><a href="#spring-boot" class="headerlink" title="spring boot"></a>spring boot</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;配置属性的方式很多，Spring boot使用了一种独有的 PropertySource 可以很方便的覆盖属性的值。<br><a id="more"></a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;配置属性加载的顺序如下：</p>
+<ol>
+<li>开发者工具 <code>Devtools</code> 全局配置参数，例如eclipse配置的参数；</li>
+<li>单元测试上的 <code>@TestPropertySource</code> 注解指定的参数；</li>
+<li>单元测试上的 <code>@SpringBootTest</code> 注解指定的参数；</li>
+<li>命令行指定的参数，如 <code>java -jar springboot.jar --name=&quot;Javaxxx&quot;</code>；</li>
+<li>命令行中的 <code>SPRING_APPLICATION_JSONJSON</code> 指定参数, 如 <code>java -Dspring.application.json=&#39;{&quot;name&quot;:&quot;Javaxxx&quot;}&#39; -jar springboot.jar</code></li>
+<li><code>ServletConfig</code> 初始化参数；</li>
+<li><code>ServletContext</code> 初始化参数；</li>
+<li>JNDI参数（如 <code>java:comp/env/spring.application.json</code>）；</li>
+<li>Java系统参数（来源：<code>System.getProperties()</code>），java源码包级的配置；</li>
+<li>操作系统环境变量参数；</li>
+<li><code>RandomValuePropertySource</code> 随机数，仅匹配：<code>ramdom.*</code>；</li>
+<li>JAR包外面的配置文件参数（<code>application-{profile}.properties（YAML）</code>）,类子目录下的；</li>
+<li>JAR包里面的配置文件参数（<code>application-{profile}.properties（YAML）</code>）,类根目录下的；</li>
+<li>JAR包外面的配置文件参数（<code>application.properties（YAML）</code>），src子目录下的；</li>
+<li>JAR包里面的配置文件参数（<code>application.properties（YAML）</code>），src根目录下的；</li>
+<li><code>@Configuration</code>配置文件上 <code>@PropertySource</code> 注解加载的参数，java代码的配置文件；</li>
+<li>默认参数（通过 <code>SpringApplication.setDefaultProperties</code> 指定），启动时手动设置；</li>
+</ol>
 
       
       
@@ -248,13 +262,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2018/10/10/for_foreach/">for与foreach用法的区别</a></p>
+        <p><span>本文标题:</span><a href="/2019/04/10/20190410_2/">spring boot 配置加载顺序</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 君不见 的个人博客">君不见</a></p>
-        <p><span>发布时间:</span>2018年10月10日 - 00时00分</p>
-        <p><span>最后更新:</span>2019年03月28日 - 10时04分</p>
+        <p><span>发布时间:</span>2019年04月10日 - 00时00分</p>
+        <p><span>最后更新:</span>2019年04月10日 - 17时07分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2018/10/10/for_foreach/" title="for与foreach用法的区别">http://yoursite.com/2018/10/10/for_foreach/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2018/10/10/for_foreach/　　作者: 君不见" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2019/04/10/20190410_2/" title="spring boot 配置加载顺序">http://yoursite.com/2019/04/10/20190410_2/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2019/04/10/20190410_2/　　作者: 君不见" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -267,18 +281,9 @@
 
 <nav id="article-nav">
   
-    <a href="/2018/10/10/TenGoodAdvice/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          10条好建议
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/10/10/JavaObject/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">java Object</div>
+    <a href="/2019/04/10/20190410_1/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">dubbo的坑（持续更新）</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -289,7 +294,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#for-or-foreach"><span class="toc-number">1.</span> <span class="toc-text">for or foreach</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#spring-boot"><span class="toc-number">1.</span> <span class="toc-text">spring boot</span></a></li></ol>
 </div>
 <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 
@@ -360,13 +365,11 @@ style="width:90%;margin:5% auto 0 auto;background: #fff;padding: 0 12px;border-r
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2018/10/10/TenGoodAdvice/" title="上一篇: 10条好建议">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a href="/2018/10/10/JavaObject/" title="下一篇: java Object">
+            <a href="/2019/04/10/20190410_1/" title="下一篇: dubbo的坑（持续更新）">
                 <i class="fa fa-angle-right"></i>
             </a>
         
