@@ -3,20 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>spring容器外调用容器内的对象 | 君不见</title>
+  <title>java调用js方法 | 君不见</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="spring&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;简单的方法，就是把调用对象放到spring容器内。直接调用其他对象即可。&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;要么就是实现ApplicationContextAware接口，并把类加载到spring容器中，获取到Applicati">
-<meta name="keywords" content="spring">
+  <meta name="description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;jdk1.6开始就提供了动态脚本语言诸如JavaScript动态的支持。这无疑是一个很好的功能，毕竟Java的语法不是适合成为动态语言。而JDK通过执行JavaScript脚本可以弥补这一不足。这也符合“Java虚拟机不仅仅是Java一种语言的虚拟机“这一目标。&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;n">
+<meta name="keywords" content="java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="spring容器外调用容器内的对象">
-<meta property="og:url" content="http://yoursite.com/2019/04/09/20190409_3/index.html">
+<meta property="og:title" content="java调用js方法">
+<meta property="og:url" content="http://yoursite.com/2019/04/11/20190411_2/index.html">
 <meta property="og:site_name" content="君不见">
-<meta property="og:description" content="spring&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;简单的方法，就是把调用对象放到spring容器内。直接调用其他对象即可。&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;要么就是实现ApplicationContextAware接口，并把类加载到spring容器中，获取到Applicati">
+<meta property="og:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;jdk1.6开始就提供了动态脚本语言诸如JavaScript动态的支持。这无疑是一个很好的功能，毕竟Java的语法不是适合成为动态语言。而JDK通过执行JavaScript脚本可以弥补这一不足。这也符合“Java虚拟机不仅仅是Java一种语言的虚拟机“这一目标。&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;n">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-10T08:12:36.358Z">
+<meta property="og:updated_time" content="2019-04-11T07:47:52.344Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="spring容器外调用容器内的对象">
-<meta name="twitter:description" content="spring&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;简单的方法，就是把调用对象放到spring容器内。直接调用其他对象即可。&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;要么就是实现ApplicationContextAware接口，并把类加载到spring容器中，获取到Applicati">
+<meta name="twitter:title" content="java调用js方法">
+<meta name="twitter:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;jdk1.6开始就提供了动态脚本语言诸如JavaScript动态的支持。这无疑是一个很好的功能，毕竟Java的语法不是适合成为动态语言。而JDK通过执行JavaScript脚本可以弥补这一不足。这也符合“Java虚拟机不仅仅是Java一种语言的虚拟机“这一目标。&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;n">
   
     <link rel="alternative" href="/atom.xml" title="君不见" type="application/atom+xml">
   
@@ -190,11 +190,11 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-20190409_3" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-20190411_2" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/04/09/20190409_3/" class="article-date">
-      <time datetime="2019-04-08T16:00:00.000Z" itemprop="datePublished">2019-04-09</time>
+      <a href="/2019/04/11/20190411_2/" class="article-date">
+      <time datetime="2019-04-10T16:00:00.000Z" itemprop="datePublished">2019-04-11</time>
 </a>
     </div>
   
@@ -207,7 +207,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      spring容器外调用容器内的对象
+      java调用js方法
     </h1>
   
 
@@ -222,7 +222,7 @@
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring/">spring</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -232,10 +232,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-         <meta name="referrer" content="no-referrer">
-
-<h3 id="spring"><a href="#spring" class="headerlink" title="spring"></a>spring</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;简单的方法，就是把调用对象放到spring容器内。直接调用其他对象即可。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;要么就是实现ApplicationContextAware接口，并把类加载到spring容器中，获取到ApplicationContext，用ApplicationContext.getbean方法拿到spring容器里的对象，进行调用。<br><a id="more"></a></p>
-<h3 id="dubbo"><a href="#dubbo" class="headerlink" title="dubbo"></a>dubbo</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;正如上面写的，dubbo中有对应的类进行处理，ServiceBean，但是ServiceBean这个类只有在对外发布服务的时候，才会被加载到spring中，实实在在被坑了一波。</p>
+        <p> <meta name="referrer" content="no-referrer"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;jdk1.6开始就提供了动态脚本语言诸如JavaScript动态的支持。这无疑是一个很好的功能，毕竟Java的语法不是适合成为动态语言。而JDK通过执行JavaScript脚本可以弥补这一不足。这也符合“Java虚拟机不仅仅是Java一种语言的虚拟机“这一目标。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ScriptEngine功能强大，基本能实现笔者所能想到的Java与JavaScript交互的需求。而且十分的方便简洁。jdk1.8又对ScriptEngine接口进行了一定改变，因此，在jdk1.8能运行的代码，在1.6中可能会报错，反之亦然。<br><a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><span class="line">public void test2()</span><br><span class="line">&#123;</span><br><span class="line">    ScriptEngineManager manager = new ScriptEngineManager();</span><br><span class="line">    List&lt;ScriptEngineFactory&gt; factories = manager.getEngineFactories();</span><br><span class="line">    for (ScriptEngineFactory factory: factories)&#123;</span><br><span class="line">    // 打印脚本信息</span><br><span class="line">        System.out.println(factory.getEngineName());</span><br><span class="line">        System.out.println(factory.getEngineVersion());</span><br><span class="line">        System.out.println(factory.getLanguageName());</span><br><span class="line">        System.out.println(factory.getLanguageVersion());</span><br><span class="line">        System.out.println(factory.getExtensions());</span><br><span class="line">        System.out.println(factory.getMimeTypes());</span><br><span class="line">        System.out.println(factory.getNames());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//输出</span><br><span class="line">Oracle Nashorn</span><br><span class="line">1.8.0_77</span><br><span class="line">ECMAScript</span><br><span class="line">ECMA - 262 Edition 5.1</span><br><span class="line">[js]</span><br><span class="line">[application/javascript, application/ecmascript, text/javascript, text/ecmascript]</span><br><span class="line">[nashorn, Nashorn, js, JS, JavaScript, javascript, ECMAScript, ecmascript]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">/*</span><br><span class="line"> * 加载脚本引擎，并在java中调用js方法</span><br><span class="line"> */</span><br><span class="line">public void test2()</span><br><span class="line">&#123;</span><br><span class="line">     ScriptEngineManager manager = new ScriptEngineManager();</span><br><span class="line">     ScriptEngine engine = manager.getEngineByName(&quot;javascript&quot;);</span><br><span class="line">     try &#123;</span><br><span class="line">         String str=&quot;1+2*(3+4)&quot;;</span><br><span class="line">         System.out.println(engine.eval(str));</span><br><span class="line">     &#125; catch (ScriptException ex) &#123;</span><br><span class="line">        ex.printStackTrace();</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br><span class="line">/*</span><br><span class="line"> * 在java中调用js，jdk1.6中有加载js引擎类，然后由它来调用js方法。</span><br><span class="line"> * 并通过JDK平台给script的方法中的形参赋值  </span><br><span class="line"> */</span><br><span class="line">public void test(String name)</span><br><span class="line">&#123;</span><br><span class="line">    ScriptEngineManager sem = new ScriptEngineManager(); </span><br><span class="line">    /*sem.getEngineByExtension(String extension)参数为js   </span><br><span class="line">      sem.getEngineByMimeType(String mimeType) 参数为application/javascript 或者text/javascript   </span><br><span class="line">      sem.getEngineByName(String shortName)参数为js或javascript或JavaScript </span><br><span class="line">     */</span><br><span class="line">    ScriptEngine se = sem.getEngineByName(&quot;js&quot;); </span><br><span class="line">    try</span><br><span class="line">    &#123; </span><br><span class="line">      String script = &quot;function say()&#123; return &apos;hello,&apos;&quot;+name+&quot;; &#125;&quot;;</span><br><span class="line">      se.eval(script); </span><br><span class="line">      Invocable inv2 = (Invocable) se; </span><br><span class="line">      String res=(String)inv2.invokeFunction(&quot;say&quot;,name); </span><br><span class="line">      System.out.println(res);</span><br><span class="line">    &#125; </span><br><span class="line">    catch(Exception e) </span><br><span class="line">    &#123; </span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125; </span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line">/*</span><br><span class="line"> * 演示如何将java中对象作为js中全局变量，同时演示将file类赋给脚本语言，并获得其属性。</span><br><span class="line"> */</span><br><span class="line">public void testScriptVariables()</span><br><span class="line">&#123;</span><br><span class="line">    ScriptEngineManager sem=new ScriptEngineManager();</span><br><span class="line">    ScriptEngine engine=sem.getEngineByName(&quot;js&quot;);</span><br><span class="line">    File file=new File(&quot;c:\\1.txt&quot;);</span><br><span class="line">    engine.put(&quot;f&quot;, file);</span><br><span class="line">    try &#123;</span><br><span class="line">        engine.eval(&quot;println(&apos;path:&apos;+f.getPath())&quot;);//无法使用alert方法</span><br><span class="line">    &#125; catch (ScriptException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">&#125;</span><br><span class="line">/*</span><br><span class="line"> * 演示如何在java中如何通过线程来启动一个js方法</span><br><span class="line"> */</span><br><span class="line">public void testScriptInterface() throws ScriptException</span><br><span class="line">&#123;</span><br><span class="line">    ScriptEngineManager sem=new ScriptEngineManager();</span><br><span class="line">    ScriptEngine engine=sem.getEngineByName(&quot;js&quot;);</span><br><span class="line">    String script=&quot;var obj=new Object();obj.run=function()&#123;println(&apos;test thread&apos;)&#125;&quot;;</span><br><span class="line">    engine.eval(script);</span><br><span class="line">    Object obj=engine.get(&quot;obj&quot;);//获取js中对象</span><br><span class="line">    Invocable inv=(Invocable)engine;</span><br><span class="line">    Runnable r=inv.getInterface(obj,Runnable.class);</span><br><span class="line">    Thread t=new Thread(r);</span><br><span class="line">    t.start();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
       
       
@@ -245,13 +242,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/04/09/20190409_3/">spring容器外调用容器内的对象</a></p>
+        <p><span>本文标题:</span><a href="/2019/04/11/20190411_2/">java调用js方法</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 君不见 的个人博客">君不见</a></p>
-        <p><span>发布时间:</span>2019年04月09日 - 00时00分</p>
-        <p><span>最后更新:</span>2019年04月10日 - 16时12分</p>
+        <p><span>发布时间:</span>2019年04月11日 - 00时00分</p>
+        <p><span>最后更新:</span>2019年04月11日 - 15时47分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/04/09/20190409_3/" title="spring容器外调用容器内的对象">http://yoursite.com/2019/04/09/20190409_3/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2019/04/09/20190409_3/　　作者: 君不见" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2019/04/11/20190411_2/" title="java调用js方法">http://yoursite.com/2019/04/11/20190411_2/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2019/04/11/20190411_2/　　作者: 君不见" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -264,18 +261,9 @@
 
 <nav id="article-nav">
   
-    <a href="/2019/04/09/20190409_2/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          linux CTRL+Z和CTRL+C区别
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/03/27/20190327_2/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">hexo指令</div>
+    <a href="/2019/04/11/20190411_1/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">java类中缓存机制类</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -286,7 +274,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#spring"><span class="toc-number">1.</span> <span class="toc-text">spring</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dubbo"><span class="toc-number">2.</span> <span class="toc-text">dubbo</span></a></li></ol>
+    
 </div>
 <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 
@@ -357,13 +345,11 @@ style="width:90%;margin:5% auto 0 auto;background: #fff;padding: 0 12px;border-r
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2019/04/09/20190409_2/" title="上一篇: linux CTRL+Z和CTRL+C区别">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a href="/2019/03/27/20190327_2/" title="下一篇: hexo指令">
+            <a href="/2019/04/11/20190411_1/" title="下一篇: java类中缓存机制类">
                 <i class="fa fa-angle-right"></i>
             </a>
         

@@ -3,20 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>spring容器外调用容器内的对象 | 君不见</title>
+  <title>java类中缓存机制类 | 君不见</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="spring&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;简单的方法，就是把调用对象放到spring容器内。直接调用其他对象即可。&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;要么就是实现ApplicationContextAware接口，并把类加载到spring容器中，获取到Applicati">
-<meta name="keywords" content="spring">
+  <meta name="description" content="具有缓存机制的类&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Byte、Short、Integer、Long、Character都具有缓存机制。缓存工作都是在静态块中完成，在类生命周期（loading verify prepare resolving initial using unload）的初始化阶段执行。">
+<meta name="keywords" content="java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="spring容器外调用容器内的对象">
-<meta property="og:url" content="http://yoursite.com/2019/04/09/20190409_3/index.html">
+<meta property="og:title" content="java类中缓存机制类">
+<meta property="og:url" content="http://yoursite.com/2019/04/11/20190411_1/index.html">
 <meta property="og:site_name" content="君不见">
-<meta property="og:description" content="spring&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;简单的方法，就是把调用对象放到spring容器内。直接调用其他对象即可。&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;要么就是实现ApplicationContextAware接口，并把类加载到spring容器中，获取到Applicati">
+<meta property="og:description" content="具有缓存机制的类&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Byte、Short、Integer、Long、Character都具有缓存机制。缓存工作都是在静态块中完成，在类生命周期（loading verify prepare resolving initial using unload）的初始化阶段执行。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-10T08:12:36.358Z">
+<meta property="og:updated_time" content="2019-04-11T07:19:55.146Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="spring容器外调用容器内的对象">
-<meta name="twitter:description" content="spring&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;简单的方法，就是把调用对象放到spring容器内。直接调用其他对象即可。&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;要么就是实现ApplicationContextAware接口，并把类加载到spring容器中，获取到Applicati">
+<meta name="twitter:title" content="java类中缓存机制类">
+<meta name="twitter:description" content="具有缓存机制的类&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Byte、Short、Integer、Long、Character都具有缓存机制。缓存工作都是在静态块中完成，在类生命周期（loading verify prepare resolving initial using unload）的初始化阶段执行。">
   
     <link rel="alternative" href="/atom.xml" title="君不见" type="application/atom+xml">
   
@@ -190,11 +190,11 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-20190409_3" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-20190411_1" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/04/09/20190409_3/" class="article-date">
-      <time datetime="2019-04-08T16:00:00.000Z" itemprop="datePublished">2019-04-09</time>
+      <a href="/2019/04/11/20190411_1/" class="article-date">
+      <time datetime="2019-04-10T16:00:00.000Z" itemprop="datePublished">2019-04-11</time>
 </a>
     </div>
   
@@ -207,7 +207,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      spring容器外调用容器内的对象
+      java类中缓存机制类
     </h1>
   
 
@@ -222,7 +222,7 @@
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring/">spring</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -234,8 +234,9 @@
           
          <meta name="referrer" content="no-referrer">
 
-<h3 id="spring"><a href="#spring" class="headerlink" title="spring"></a>spring</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;简单的方法，就是把调用对象放到spring容器内。直接调用其他对象即可。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;要么就是实现ApplicationContextAware接口，并把类加载到spring容器中，获取到ApplicationContext，用ApplicationContext.getbean方法拿到spring容器里的对象，进行调用。<br><a id="more"></a></p>
-<h3 id="dubbo"><a href="#dubbo" class="headerlink" title="dubbo"></a>dubbo</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;正如上面写的，dubbo中有对应的类进行处理，ServiceBean，但是ServiceBean这个类只有在对外发布服务的时候，才会被加载到spring中，实实在在被坑了一波。</p>
+<h3 id="具有缓存机制的类"><a href="#具有缓存机制的类" class="headerlink" title="具有缓存机制的类"></a>具有缓存机制的类</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Byte、Short、Integer、Long、Character都具有缓存机制。缓存工作都是在静态块中完成，在类生命周期（loading verify prepare resolving initial using unload）的初始化阶段执行。<br><a id="more"></a></p>
+<h3 id="缓存范围"><a href="#缓存范围" class="headerlink" title="缓存范围"></a>缓存范围</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Byte，Short，Integer，Long为 -128 到 127，Character范围为 0 到 127</p>
+<h3 id="是否可以改变缓存范围"><a href="#是否可以改变缓存范围" class="headerlink" title="是否可以改变缓存范围"></a>是否可以改变缓存范围</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;除了Integer可以指定缓存范围，其它类都不行。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Integer的缓存上界high可以通过jvm参数-XX:AutoBoxCacheMax=size指定，取指定值与127的最大值并且不超过Integer表示范围，而下界low不能指定，只能为-128</p>
 
       
       
@@ -245,13 +246,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/04/09/20190409_3/">spring容器外调用容器内的对象</a></p>
+        <p><span>本文标题:</span><a href="/2019/04/11/20190411_1/">java类中缓存机制类</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 君不见 的个人博客">君不见</a></p>
-        <p><span>发布时间:</span>2019年04月09日 - 00时00分</p>
-        <p><span>最后更新:</span>2019年04月10日 - 16时12分</p>
+        <p><span>发布时间:</span>2019年04月11日 - 00时00分</p>
+        <p><span>最后更新:</span>2019年04月11日 - 15时19分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/04/09/20190409_3/" title="spring容器外调用容器内的对象">http://yoursite.com/2019/04/09/20190409_3/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2019/04/09/20190409_3/　　作者: 君不见" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2019/04/11/20190411_1/" title="java类中缓存机制类">http://yoursite.com/2019/04/11/20190411_1/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2019/04/11/20190411_1/　　作者: 君不见" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -264,18 +265,18 @@
 
 <nav id="article-nav">
   
-    <a href="/2019/04/09/20190409_2/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/04/11/20190411_2/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          linux CTRL+Z和CTRL+C区别
+          java调用js方法
         
       </div>
     </a>
   
   
-    <a href="/2019/03/27/20190327_2/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">hexo指令</div>
+    <a href="/2019/04/10/20190410_3/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">dubbo 配置加载顺序</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -286,7 +287,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#spring"><span class="toc-number">1.</span> <span class="toc-text">spring</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dubbo"><span class="toc-number">2.</span> <span class="toc-text">dubbo</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#具有缓存机制的类"><span class="toc-number">1.</span> <span class="toc-text">具有缓存机制的类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#缓存范围"><span class="toc-number">2.</span> <span class="toc-text">缓存范围</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#是否可以改变缓存范围"><span class="toc-number">3.</span> <span class="toc-text">是否可以改变缓存范围</span></a></li></ol>
 </div>
 <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 
@@ -357,13 +358,13 @@ style="width:90%;margin:5% auto 0 auto;background: #fff;padding: 0 12px;border-r
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2019/04/09/20190409_2/" title="上一篇: linux CTRL+Z和CTRL+C区别">
+            <a href="/2019/04/11/20190411_2/" title="上一篇: java调用js方法">
                 <i class="fa fa-angle-left"></i>
             </a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a href="/2019/03/27/20190327_2/" title="下一篇: hexo指令">
+            <a href="/2019/04/10/20190410_3/" title="下一篇: dubbo 配置加载顺序">
                 <i class="fa fa-angle-right"></i>
             </a>
         
