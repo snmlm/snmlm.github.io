@@ -190,11 +190,11 @@
 </nav>
       <div class="body-wrap">
   
-    <article id="post-20190411_2" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-20190415_3" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/04/11/20190411_2/" class="article-date">
-      <time datetime="2019-04-10T16:00:00.000Z" itemprop="datePublished">2019-04-11</time>
+      <a href="/2019/04/15/20190415_3/" class="article-date">
+      <time datetime="2019-04-14T16:00:00.000Z" itemprop="datePublished">2019-04-15</time>
 </a>
     </div>
   
@@ -207,7 +207,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/11/20190411_2/">java调用js方法</a>
+      <a class="article-title" href="/2019/04/15/20190415_3/">spring加载对象问题（坑）</a>
     </h1>
   
 
@@ -217,7 +217,47 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <p> <meta name="referrer" content="no-referrer"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;jdk1.6开始就提供了动态脚本语言诸如JavaScript动态的支持。这无疑是一个很好的功能，毕竟Java的语法不是适合成为动态语言。而JDK通过执行JavaScript脚本可以弥补这一不足。这也符合“Java虚拟机不仅仅是Java一种语言的虚拟机“这一目标。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ScriptEngine功能强大，基本能实现笔者所能想到的Java与JavaScript交互的需求。而且十分的方便简洁。jdk1.8又对ScriptEngine接口进行了一定改变，因此，在jdk1.8能运行的代码，在1.6中可能会报错，反之亦然。<br>
+              <h3 id="父类子类属性传递问题，外带懒加载问题"><a href="#父类子类属性传递问题，外带懒加载问题" class="headerlink" title="父类子类属性传递问题，外带懒加载问题"></a>父类子类属性传递问题，外带懒加载问题</h3><h4 id="父类子类属性-gt-权限问题"><a href="#父类子类属性-gt-权限问题" class="headerlink" title="父类子类属性-&gt;权限问题"></a>父类子类属性-&gt;权限问题</h4><table>
+<thead>
+<tr>
+<th>作用域</th>
+<th>当前类</th>
+<th>同一package</th>
+<th>子孙类</th>
+<th>其他package</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>public</td>
+<td>√</td>
+<td>√</td>
+<td>√</td>
+<td>√</td>
+</tr>
+<tr>
+<td>protected</td>
+<td>√</td>
+<td>√</td>
+<td>√</td>
+<td>×</td>
+</tr>
+<tr>
+<td>friendly/default</td>
+<td>√</td>
+<td>√</td>
+<td>×</td>
+<td>×</td>
+</tr>
+<tr>
+<td>private</td>
+<td>√</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+</tr>
+</tbody>
+</table>
           
       
       
@@ -238,8 +278,381 @@
 
       
         <p class="article-more-link">
-          <a  href="/2019/04/11/20190411_2/#more">阅读全文 >></a>
+          <a  href="/2019/04/15/20190415_3/#more">阅读全文 >></a>
         </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-20190415_1" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/04/15/20190415_1/" class="article-date">
+      <time datetime="2019-04-14T16:00:00.000Z" itemprop="datePublished">2019-04-15</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/15/20190415_1/">java子类继承加载顺序</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h3 id="java子类继承加载顺序"><a href="#java子类继承加载顺序" class="headerlink" title="java子类继承加载顺序"></a>java子类继承加载顺序</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;类的加载中包括：</p>
+<ul>
+<li>静态代码块</li>
+<li>代码块</li>
+<li>构造</li>
+<li>析构（c++中）</li>
+</ul>
+          
+      
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/知识点/">知识点</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a  href="/2019/04/15/20190415_1/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-20190415_2" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/04/15/20190415_2/" class="article-date">
+      <time datetime="2019-04-14T16:00:00.000Z" itemprop="datePublished">2019-04-15</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/15/20190415_2/">java基础类型</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h3 id="java基础类型"><a href="#java基础类型" class="headerlink" title="java基础类型"></a>java基础类型</h3><h4 id="bit-普及"><a href="#bit-普及" class="headerlink" title="bit 普及"></a>bit 普及</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;是二进制数的一位包含的信息或2个选项中特别指定1个的需要信息量称为一比特，是表示信息的最小单位，只有两种状态：0和1。这两个值也可以被解释为逻辑值(真/假、yes/no)、代数符号(+/-)、激活状态(on/off)或任何其他两值属性。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1byte = 8bit<br>
+          
+      
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/知识点/">知识点</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a  href="/2019/04/15/20190415_2/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-20190412_1" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/04/12/20190412_1/" class="article-date">
+      <time datetime="2019-04-11T16:00:00.000Z" itemprop="datePublished">2019-04-12</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/12/20190412_1/">ArrayList删除节点（坑）</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h3 id="ArrayList删除节点"><a href="#ArrayList删除节点" class="headerlink" title="ArrayList删除节点"></a>ArrayList删除节点</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ArrayList的remove方法，进行删除的时候，数组的长度不变，但被删除的节点之后的数据会前移，看源码可知。<br>
+          
+      
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/知识点/">知识点</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a  href="/2019/04/12/20190412_1/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-20190412_2" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/04/12/20190412_2/" class="article-date">
+      <time datetime="2019-04-11T16:00:00.000Z" itemprop="datePublished">2019-04-12</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/12/20190412_2/">==和equals</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h3 id="和equals"><a href="#和equals" class="headerlink" title="==和equals"></a>==和equals</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;== 操作比较的是两个变量的值是否相等，对于引用型变量表示的是两个变量在堆中存储的地址是否相同，即栈中的内容是否相同。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;equals操作表示的两个变量是否是对同一个对象的引用，即堆中的内容是否相同。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;==一般用在基本数据类型中，equals()一般比较字符串是否相等<br>
+          
+      
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/知识点/">知识点</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a  href="/2019/04/12/20190412_2/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-20190412_3" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/04/12/20190412_3/" class="article-date">
+      <time datetime="2019-04-11T16:00:00.000Z" itemprop="datePublished">2019-04-12</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/12/20190412_3/">java总结</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h3 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/2019/04/15/20190415_2/" title="java基础类型">java基础类型</a></p>
+<h3 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h3><h4 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h4><h5 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h5><ul>
+<li>二分法查找</li>
+<li>冒泡</li>
+<li>快速（选择）</li>
+<li>Arrays（工具类   sort（二分法排序））</li>
+</ul>
+<h4 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h4><h5 id="String"><a href="#String" class="headerlink" title="String"></a>String</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;是常量字符串（final类，值不变，改变的是指向的内存地址）<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;缺点：频繁拼接字符串非常耗内存</p>
+<h5 id="StringBulider，StringBuffer"><a href="#StringBulider，StringBuffer" class="headerlink" title="StringBulider，StringBuffer"></a>StringBulider，StringBuffer</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;值是可以改变的，长度可变<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;StringBuffer 与 StringBuilder 中的方法和功能完全是等价的，只是StringBuffer中的方法大都采用了 synchronized 关键字进行修饰，因此是线程安全的，而 StringBuilder 没有这个修饰，可以被认为是线程不安全的。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;由于完全等价，所以都继承AbstractStringBuilder。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;无参初始化，长度为16，有参初始化是参数长度+16。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;扩容时是对象当前长度*2+2<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;每次append的时候，最下层执行的System.arraycopy这个方法进行数组的添加。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;StringBuffer 始于 JDK 1.0<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;StringBuilder 始于 JDK 1.5<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;从 JDK 1.5 开始，带有字符串变量的连接操作（+），JVM 内部采用的是 StringBuilder 来实现的，而之前这个操作是采用 StringBuffer 实现的。如果是直接的字符串的拼接，会直接指向拼接后的字符串常量。</p>
+<h4 id="自定义创建的对象"><a href="#自定义创建的对象" class="headerlink" title="自定义创建的对象"></a>自定义创建的对象</h4><h5 id="内部类"><a href="#内部类" class="headerlink" title="内部类"></a>内部类</h5><h5 id="代码块"><a href="#代码块" class="headerlink" title="代码块"></a>代码块</h5><ul>
+<li>静态代码块（类相同的代码）</li>
+<li>构造代码块（对象相同的代码）</li>
+<li>局部代码块（）</li>
+</ul>
+<h5 id="重载"><a href="#重载" class="headerlink" title="重载"></a>重载</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;方法名相同，形参列表不同。</p>
+<h5 id="重写"><a href="#重写" class="headerlink" title="重写"></a>重写</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;子类继承覆盖。</p>
+<h5 id="继承（加载顺序）"><a href="#继承（加载顺序）" class="headerlink" title="继承（加载顺序）"></a>继承（加载顺序）</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/2019/04/15/20190415_1/" title="java子类继承加载顺序">java子类继承加载顺序</a></p>
+<h4 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;map不是集合 Collection的接口下的都是集合，map不是子类</p>
+<h5 id="List"><a href="#List" class="headerlink" title="List"></a>List</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;有序能重复</p>
+<h6 id="ArrayList"><a href="#ArrayList" class="headerlink" title="ArrayList"></a>ArrayList</h6><h6 id="LinkedList"><a href="#LinkedList" class="headerlink" title="LinkedList"></a>LinkedList</h6><h5 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;无序不能重复</p>
+<h6 id="HashSet"><a href="#HashSet" class="headerlink" title="HashSet"></a>HashSet</h6><h6 id="TreeSet"><a href="#TreeSet" class="headerlink" title="TreeSet"></a>TreeSet</h6><p>比较器接口</p>
+<h4 id="图-Map"><a href="#图-Map" class="headerlink" title="图 Map"></a>图 Map</h4><h5 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h5><h5 id="LinkedHashMap"><a href="#LinkedHashMap" class="headerlink" title="LinkedHashMap"></a>LinkedHashMap</h5><h4 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h4><p>接口和抽象类</p>
+<h4 id="基本类型对应的引用类型"><a href="#基本类型对应的引用类型" class="headerlink" title="基本类型对应的引用类型"></a>基本类型对应的引用类型</h4><p>1&gt; byte       ——    Byte<br>2&gt; short      ——   Short<br>3&gt; int          ——    Integer<br>4&gt; long       ——    Long<br>5&gt; char       ——    Character<br>6&gt; float       ——    Float<br>7&gt; double   ——    Double<br>8&gt; boolean ——    Boolean<br> 想搞清楚各种基本数据类型占用的字节数，首先要有一些基本知识，例：计算机最小的存储单位是 位(bit)，而一个字节等于8位即（1byte = 8bit)</p>
+<h4 id="强引用-软引用-弱引用-虚引用"><a href="#强引用-软引用-弱引用-虚引用" class="headerlink" title="强引用,软引用,弱引用,虚引用"></a>强引用,软引用,弱引用,虚引用</h4><h3 id="访问权限修饰符"><a href="#访问权限修饰符" class="headerlink" title="访问权限修饰符"></a>访问权限修饰符</h3><p>public private（本包本类） protected（本包不本类 自类能用）<br>默认不属于权限修饰符 不能继承</p>
+<h3 id="java中对象分类"><a href="#java中对象分类" class="headerlink" title="java中对象分类"></a>java中对象分类</h3><p>a.runnable class（）主类（运行类）含有main方法，可以直接执行<br>b.java bean（） （不含有main方法，构造方法，set get 方法）<br>c.POJO对象（简单的java对象，只含有set get方法）</p>
+<h3 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h3><p>a.封装（维护性）：隐藏成员变量和方法，隐藏共能实现的具体细节<br>b.继承（可扩展性）：子类继承父类的变量或者方法，也可以定义自己的<br>c.多态（灵活性）：父类的引用指向子类的实力（上转型对象）</p>
+<h3 id="java中的两大机制：（跨平台）"><a href="#java中的两大机制：（跨平台）" class="headerlink" title="java中的两大机制：（跨平台）"></a>java中的两大机制：（跨平台）</h3><p>a.JVM java虚拟机<br>b.GC 垃圾回收</p>
+<h3 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h3><p>程序中出现的不正常的情况（会阻止程序的继续运行）（子类不能抛出比父类更多的异常，可以抛出父类的子异常）<br>1.编译异常（概率发生高的定义为编译异常）Exception直接子类<br>2.运行异常（概率发生低的定义为运行异常）继承RuntimeException</p>
+<h3 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h3><p>1.for<br>2.foreach<br>3.do while<br>4.while<br>5.递归<br>    1.构造方法不能递归、<br>    2.必须有出口，if判断，否则死循环（肯定内存溢出）<br>    3.次数不易过多，否则会出现内存溢出<br>    递归解决问题的思想：（大-&gt;小）<br>    将大问题拆成小问题<br>6.if go(java中go无用，字段保留)</p>
+<h3 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h3><p>线程与进程<br>start（）方法和run（）方法的区别？<br>    run方法只是一个普通的方法（还是单线程）<br>    start方法启动多线程，其次自动调用run方法<br>Thread，Runnable，callable<br>使用ExecutorService、Callable、Future实现有返回结果的线程</p>
+<h3 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h3><p>23种<br>3类：<br>a.创建型<br>b.模板型<br>c.功能型<br>单例，工厂，装饰，代理等。</p>
+<h3 id="对象的序列化和反序列化"><a href="#对象的序列化和反序列化" class="headerlink" title="对象的序列化和反序列化"></a>对象的序列化和反序列化</h3><p>a.序列化：将对象以二进制的形式存储到硬盘中<br>b.反序列化：将以二进制形式的对象读取到内存中<br>要求：被序列化的对象必须要实现Serializable（标记接口）接口<br>不被序列化的字段处理，SerializableID问题</p>
+<h3 id="XML格式，json格式"><a href="#XML格式，json格式" class="headerlink" title="XML格式，json格式"></a>XML格式，json格式</h3><h4 id="XML"><a href="#XML" class="headerlink" title="XML"></a>XML</h4><p>读取，格式化等<br>DOM<br>SAX<br>JDOM<br>DOM4J</p>
+<h4 id="json"><a href="#json" class="headerlink" title="json"></a>json</h4><p>读取，格式化等<br>jsonobject<br>gson<br>fastjson<br>等</p>
+<h3 id="网络编程"><a href="#网络编程" class="headerlink" title="网络编程"></a>网络编程</h3><p>在日本东京大学申请ip地址<br>UDP 不用连接<br>TCP 三次握手<br>一个好的通讯软件（io流技术，多线程，udp tcp技术）</p>
+<h3 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h3><p>1.transient（在对象序列化的时候，如果某个属性不想被序列化就是该关键字修饰）<br>2.abstract：<br>a.修饰类（被他修饰的类为抽象类）<br>b.修饰方法（权限：public protected，抽象方法不能有方法体）<br>3.final：<br>a.修饰类：不能有子类<br>b.修饰方法：不能被重写 （不能修饰抽象方法）<br>c.修饰变量：常量（要赋初始值）<br>4.implements：实现接口<br>5.static：<br>a.修饰类：（内部类）<br>b.静态变量是属于类的，对象共享<br>c.修饰方法：静态方法只能调用的静态的东西<br>6.instanceof：<br>eg：a instanceof A：判断对象a是不是类A及其子类创建的实力<br>final finally，顺道finalize()</p>
+<h3 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h3><h3 id="IO"><a href="#IO" class="headerlink" title="IO"></a>IO</h3><p>IO(BIO) 同步堵塞<br>NIO 同步非堵塞<br>AIO 异步（非）堵塞</p>
+
+      
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/总结/">总结</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+    </div>
+
       
       <div class="clearfix"></div>
     </div>
@@ -326,11 +739,11 @@
 
 
   
-    <article id="post-20190410_3" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-20190411_2" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/04/10/20190410_3/" class="article-date">
-      <time datetime="2019-04-09T16:00:00.000Z" itemprop="datePublished">2019-04-10</time>
+      <a href="/2019/04/11/20190411_2/" class="article-date">
+      <time datetime="2019-04-10T16:00:00.000Z" itemprop="datePublished">2019-04-11</time>
 </a>
     </div>
   
@@ -343,7 +756,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/10/20190410_3/">dubbo 配置加载顺序</a>
+      <a class="article-title" href="/2019/04/11/20190411_2/">java调用js方法</a>
     </h1>
   
 
@@ -353,8 +766,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <p> <meta name="referrer" content="no-referrer"></p>
-<h3 id="dubbo-覆盖策略"><a href="#dubbo-覆盖策略" class="headerlink" title="dubbo 覆盖策略"></a>dubbo 覆盖策略</h3><p><img src="https://raw.githubusercontent.com/snmlm/resources/master/picture/rELywxc.jpg" alt=""><br>
+              <p> <meta name="referrer" content="no-referrer"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;jdk1.6开始就提供了动态脚本语言诸如JavaScript动态的支持。这无疑是一个很好的功能，毕竟Java的语法不是适合成为动态语言。而JDK通过执行JavaScript脚本可以弥补这一不足。这也符合“Java虚拟机不仅仅是Java一种语言的虚拟机“这一目标。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ScriptEngine功能强大，基本能实现笔者所能想到的Java与JavaScript交互的需求。而且十分的方便简洁。jdk1.8又对ScriptEngine接口进行了一定改变，因此，在jdk1.8能运行的代码，在1.6中可能会报错，反之亦然。<br>
           
       
       
@@ -370,80 +782,12 @@
 
       
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dubbo/">dubbo</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
     </div>
 
       
         <p class="article-more-link">
-          <a  href="/2019/04/10/20190410_3/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-20190410_2" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/04/10/20190410_2/" class="article-date">
-      <time datetime="2019-04-09T16:00:00.000Z" itemprop="datePublished">2019-04-10</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/10/20190410_2/">spring boot 配置加载顺序</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p> <meta name="referrer" content="no-referrer"></p>
-<h3 id="spring-boot"><a href="#spring-boot" class="headerlink" title="spring boot"></a>spring boot</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;配置属性的方式很多，Spring boot使用了一种独有的 PropertySource 可以很方便的覆盖属性的值。<br>
-          
-      
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/知识点/">知识点</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring-boot/">spring boot</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a  href="/2019/04/10/20190410_2/#more">阅读全文 >></a>
+          <a  href="/2019/04/11/20190411_2/#more">阅读全文 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -531,11 +875,11 @@
 
 
   
-    <article id="post-20190409_1" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-20190410_3" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/04/09/20190409_1/" class="article-date">
-      <time datetime="2019-04-08T16:00:00.000Z" itemprop="datePublished">2019-04-09</time>
+      <a href="/2019/04/10/20190410_3/" class="article-date">
+      <time datetime="2019-04-09T16:00:00.000Z" itemprop="datePublished">2019-04-10</time>
 </a>
     </div>
   
@@ -548,86 +892,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/09/20190409_1/">mysql关键字执行顺序</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <meta name="referrer" content="no-referrer">
-
-<h3 id="mysql关键字执行顺序"><a href="#mysql关键字执行顺序" class="headerlink" title="mysql关键字执行顺序"></a>mysql关键字执行顺序</h3><ol>
-<li>from</li>
-<li>on</li>
-<li>join</li>
-<li>where</li>
-<li>group by</li>
-<li>having</li>
-<li>select</li>
-<li>distinc </li>
-<li>union</li>
-<li>order by
-          
-      
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/知识点/">知识点</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a  href="/2019/04/09/20190409_1/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-20190409_2" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/04/09/20190409_2/" class="article-date">
-      <time datetime="2019-04-08T16:00:00.000Z" itemprop="datePublished">2019-04-09</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/09/20190409_2/">linux CTRL+Z和CTRL+C区别</a>
+      <a class="article-title" href="/2019/04/10/20190410_3/">dubbo 配置加载顺序</a>
     </h1>
   
 
@@ -638,7 +903,7 @@
       
           
               <p> <meta name="referrer" content="no-referrer"></p>
-<h3 id="Linux-CTRL-Z和CTRL-C区别"><a href="#Linux-CTRL-Z和CTRL-C区别" class="headerlink" title="Linux CTRL+Z和CTRL+C区别"></a>Linux CTRL+Z和CTRL+C区别</h3><h4 id="ctrl-c"><a href="#ctrl-c" class="headerlink" title="ctrl+c"></a>ctrl+c</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;( kill foreground process ) 发送 SIGINT 信号给前台进程组中的所有进程，强制终止程序的执行；<br>
+<h3 id="dubbo-覆盖策略"><a href="#dubbo-覆盖策略" class="headerlink" title="dubbo 覆盖策略"></a>dubbo 覆盖策略</h3><p><img src="https://raw.githubusercontent.com/snmlm/resources/master/picture/rELywxc.jpg" alt=""></p>
           
       
       
@@ -654,217 +919,12 @@
 
       
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dubbo/">dubbo</a></li></ul>
     </div>
 
       
         <p class="article-more-link">
-          <a  href="/2019/04/09/20190409_2/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-20190409_3" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/04/09/20190409_3/" class="article-date">
-      <time datetime="2019-04-08T16:00:00.000Z" itemprop="datePublished">2019-04-09</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/09/20190409_3/">spring容器外调用容器内的对象</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <meta name="referrer" content="no-referrer">
-
-<h3 id="spring"><a href="#spring" class="headerlink" title="spring"></a>spring</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;简单的方法，就是把调用对象放到spring容器内。直接调用其他对象即可。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;要么就是实现ApplicationContextAware接口，并把类加载到spring容器中，获取到ApplicationContext，用ApplicationContext.getbean方法拿到spring容器里的对象，进行调用。<br>
-          
-      
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/知识点/">知识点</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring/">spring</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a  href="/2019/04/09/20190409_3/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-20190327_2" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/03/27/20190327_2/" class="article-date">
-      <time datetime="2019-03-26T16:00:00.000Z" itemprop="datePublished">2019-03-27</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/27/20190327_2/">hexo指令</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p> <meta name="referrer" content="no-referrer"></p>
-<h3 id="init"><a href="#init" class="headerlink" title="init"></a>init</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init</span><br></pre></td></tr></table></figure>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;新建一个网站。如果没有设置 folder ，Hexo 默认在目前的文件夹建立网站。<br>
-          
-      
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/hexo/">hexo</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a  href="/2019/03/27/20190327_2/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-20190327_1" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/03/27/20190327_1/" class="article-date">
-      <time datetime="2019-03-26T16:00:00.000Z" itemprop="datePublished">2019-03-27</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/27/20190327_1/">mysql利用find_in_set去查询in的集合</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p> <meta name="referrer" content="no-referrer"><br>MySQL手册中find_in_set函数的语法：<br>FIND_IN_SET(str,strlist)<br>str 要查询的字符串<br>strlist 字段名 参数以”,”分隔 如 (1,2,6,8)<br>
-          
-      
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/知识点/">知识点</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a  href="/2019/03/27/20190327_1/#more">阅读全文 >></a>
+          <a  href="/2019/04/10/20190410_3/#more">阅读全文 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -885,7 +945,7 @@
   
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 </div>
