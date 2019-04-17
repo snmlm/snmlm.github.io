@@ -132,7 +132,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/Books/" style="font-size: 13.33px;">Books</a> <a href="/tags/dubbo/" style="font-size: 13.33px;">dubbo</a> <a href="/tags/hexo/" style="font-size: 13.33px;">hexo</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/mysql/" style="font-size: 13.33px;">mysql</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/spring-boot/" style="font-size: 10px;">spring boot</a> <a href="/tags/日常/" style="font-size: 13.33px;">日常</a> <a href="/tags/架构/" style="font-size: 10px;">架构</a> <a href="/tags/算法/" style="font-size: 16.67px;">算法</a> <a href="/tags/试题/" style="font-size: 10px;">试题</a>
+                        <a href="/tags/Books/" style="font-size: 13.33px;">Books</a> <a href="/tags/dubbo/" style="font-size: 13.33px;">dubbo</a> <a href="/tags/hexo/" style="font-size: 13.33px;">hexo</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/mysql/" style="font-size: 13.33px;">mysql</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/spring-boot/" style="font-size: 10px;">spring boot</a> <a href="/tags/日常/" style="font-size: 13.33px;">日常</a> <a href="/tags/架构/" style="font-size: 10px;">架构</a> <a href="/tags/算法/" style="font-size: 16.67px;">算法</a> <a href="/tags/解决方案/" style="font-size: 10px;">解决方案</a> <a href="/tags/试题/" style="font-size: 10px;">试题</a>
                     </div>
                 </section>
                 
@@ -189,6 +189,150 @@
     </div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-20190417_3" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/04/17/20190417_3/" class="article-date">
+      <time datetime="2019-04-16T16:00:00.000Z" itemprop="datePublished">2019-04-17</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/17/20190417_3/">利用activityMQ做处理，消息的顺序性和服务处理的时效性问题</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;分期缴费的时候，如果有抵扣，把抵扣已批单的形式从保费中扣除。那么就需要进行批单的处理。批单处理上需要一定时间。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;那么问题来了：</p>
+<ol>
+<li>如果短时间内多次进行分期缴费呢，也就意味着需要进行多次批减保费的操作。每次批减保费是基于上次批减操作进行的，批减需要时间去处理，没处理完，之后的批减/退或其他操作是没办法进行的。</li>
+<li>还是同样的情况，如果有一次批减发生了错误，那么之后的操作如何处理。</li>
+</ol>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;总结为同单高并发，且需要按顺序处理</p>
+<h3 id="解决顺序性的方案"><a href="#解决顺序性的方案" class="headerlink" title="解决顺序性的方案"></a>解决顺序性的方案</h3><h4 id="利用mq的JMSXGroupID"><a href="#利用mq的JMSXGroupID" class="headerlink" title="利用mq的JMSXGroupID"></a>利用mq的JMSXGroupID</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mq的JMSXGroupID字段，只要consumer保持active，那么同一组的消息会被分到同一consumer下处理。这样可以保证消息处理顺序的正确性。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;缺点就是在某种情况下，mq队列会堆积，等待一个consumer处理，而其他consumer是空闲的。</p>
+<h4 id="redis锁-mq重发"><a href="#redis锁-mq重发" class="headerlink" title="redis锁+mq重发"></a>redis锁+mq重发</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;加redis锁，consumer消费后，自己重发mq。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;缺点就是耗费资源，而且重发是秒级。</p>
+<h4 id="redis锁-redis队列存放消息"><a href="#redis锁-redis队列存放消息" class="headerlink" title="redis锁+redis队列存放消息"></a>redis锁+redis队列存放消息</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;难点在于，对消息的消费，其实第一种方案比较合理，在不知道第一种的情况下，自己实现顺序消费。将进来的消息放到redis的队列中，集合也行，加上redis锁，在释放锁之前获取redis队列里的数据，取出一条进行重新消费。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;缺点就是，在某种极端情况下，向redis中放数据在查询数据之后，那么，这条数据就在不会被处理。</p>
+
+      
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/经验/">经验</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/解决方案/">解决方案</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-20190415_1" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/04/15/20190415_1/" class="article-date">
+      <time datetime="2019-04-14T16:00:00.000Z" itemprop="datePublished">2019-04-15</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/15/20190415_1/">java子类继承加载顺序</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h3 id="java子类继承加载顺序"><a href="#java子类继承加载顺序" class="headerlink" title="java子类继承加载顺序"></a>java子类继承加载顺序</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;类的加载中包括：</p>
+<ul>
+<li>静态代码块</li>
+<li>代码块</li>
+<li>构造</li>
+<li>析构（c++中）</li>
+</ul>
+          
+      
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/知识点/">知识点</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a  href="/2019/04/15/20190415_1/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-20190415_3" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -279,79 +423,6 @@
       
         <p class="article-more-link">
           <a  href="/2019/04/15/20190415_3/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-20190415_1" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/04/15/20190415_1/" class="article-date">
-      <time datetime="2019-04-14T16:00:00.000Z" itemprop="datePublished">2019-04-15</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/15/20190415_1/">java子类继承加载顺序</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h3 id="java子类继承加载顺序"><a href="#java子类继承加载顺序" class="headerlink" title="java子类继承加载顺序"></a>java子类继承加载顺序</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;类的加载中包括：</p>
-<ul>
-<li>静态代码块</li>
-<li>代码块</li>
-<li>构造</li>
-<li>析构（c++中）</li>
-</ul>
-          
-      
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/知识点/">知识点</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a  href="/2019/04/15/20190415_1/#more">阅读全文 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -598,44 +669,8 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/2019/04/15/20190415_2/" title="java基础类型">java基础类型</a></p>
-<h3 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h3><h4 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h4><h5 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h5><ul>
-<li>二分法查找</li>
-<li>冒泡</li>
-<li>快速（选择）</li>
-<li>Arrays（工具类   sort（二分法排序））</li>
-</ul>
-<h4 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h4><h5 id="String"><a href="#String" class="headerlink" title="String"></a>String</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;是常量字符串（final类，值不变，改变的是指向的内存地址）<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;缺点：频繁拼接字符串非常耗内存</p>
-<h5 id="StringBulider，StringBuffer"><a href="#StringBulider，StringBuffer" class="headerlink" title="StringBulider，StringBuffer"></a>StringBulider，StringBuffer</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;值是可以改变的，长度可变<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;StringBuffer 与 StringBuilder 中的方法和功能完全是等价的，只是StringBuffer中的方法大都采用了 synchronized 关键字进行修饰，因此是线程安全的，而 StringBuilder 没有这个修饰，可以被认为是线程不安全的。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;由于完全等价，所以都继承AbstractStringBuilder。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;无参初始化，长度为16，有参初始化是参数长度+16。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;扩容时是对象当前长度*2+2<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;每次append的时候，最下层执行的System.arraycopy这个方法进行数组的添加。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;StringBuffer 始于 JDK 1.0<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;StringBuilder 始于 JDK 1.5<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;从 JDK 1.5 开始，带有字符串变量的连接操作（+），JVM 内部采用的是 StringBuilder 来实现的，而之前这个操作是采用 StringBuffer 实现的。如果是直接的字符串的拼接，会直接指向拼接后的字符串常量。</p>
-<h4 id="自定义创建的对象"><a href="#自定义创建的对象" class="headerlink" title="自定义创建的对象"></a>自定义创建的对象</h4><h5 id="内部类"><a href="#内部类" class="headerlink" title="内部类"></a>内部类</h5><h5 id="代码块"><a href="#代码块" class="headerlink" title="代码块"></a>代码块</h5><ul>
-<li>静态代码块（类相同的代码）</li>
-<li>构造代码块（对象相同的代码）</li>
-<li>局部代码块（）</li>
-</ul>
-<h5 id="重载"><a href="#重载" class="headerlink" title="重载"></a>重载</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;方法名相同，形参列表不同。</p>
-<h5 id="重写"><a href="#重写" class="headerlink" title="重写"></a>重写</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;子类继承覆盖。</p>
-<h5 id="继承（加载顺序）"><a href="#继承（加载顺序）" class="headerlink" title="继承（加载顺序）"></a>继承（加载顺序）</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/2019/04/15/20190415_1/" title="java子类继承加载顺序">java子类继承加载顺序</a></p>
-<h4 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;map不是集合 Collection的接口下的都是集合，map不是子类</p>
-<h5 id="List"><a href="#List" class="headerlink" title="List"></a>List</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;有序能重复</p>
-<h6 id="ArrayList"><a href="#ArrayList" class="headerlink" title="ArrayList"></a>ArrayList</h6><h6 id="LinkedList"><a href="#LinkedList" class="headerlink" title="LinkedList"></a>LinkedList</h6><h5 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;无序不能重复</p>
-<h6 id="HashSet"><a href="#HashSet" class="headerlink" title="HashSet"></a>HashSet</h6><h6 id="TreeSet"><a href="#TreeSet" class="headerlink" title="TreeSet"></a>TreeSet</h6><p>比较器接口</p>
-<h4 id="图-Map"><a href="#图-Map" class="headerlink" title="图 Map"></a>图 Map</h4><h5 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h5><h5 id="LinkedHashMap"><a href="#LinkedHashMap" class="headerlink" title="LinkedHashMap"></a>LinkedHashMap</h5><h4 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h4><p>接口和抽象类</p>
-<h4 id="基本类型对应的引用类型"><a href="#基本类型对应的引用类型" class="headerlink" title="基本类型对应的引用类型"></a>基本类型对应的引用类型</h4><p>1&gt; byte       ——    Byte<br>2&gt; short      ——   Short<br>3&gt; int          ——    Integer<br>4&gt; long       ——    Long<br>5&gt; char       ——    Character<br>6&gt; float       ——    Float<br>7&gt; double   ——    Double<br>8&gt; boolean ——    Boolean<br> 想搞清楚各种基本数据类型占用的字节数，首先要有一些基本知识，例：计算机最小的存储单位是 位(bit)，而一个字节等于8位即（1byte = 8bit)</p>
-<h4 id="强引用-软引用-弱引用-虚引用"><a href="#强引用-软引用-弱引用-虚引用" class="headerlink" title="强引用,软引用,弱引用,虚引用"></a>强引用,软引用,弱引用,虚引用</h4><h3 id="访问权限修饰符"><a href="#访问权限修饰符" class="headerlink" title="访问权限修饰符"></a>访问权限修饰符</h3><p>public private（本包本类） protected（本包不本类 自类能用）<br>默认不属于权限修饰符 不能继承</p>
-<h3 id="java中对象分类"><a href="#java中对象分类" class="headerlink" title="java中对象分类"></a>java中对象分类</h3><p>a.runnable class（）主类（运行类）含有main方法，可以直接执行<br>b.java bean（） （不含有main方法，构造方法，set get 方法）<br>c.POJO对象（简单的java对象，只含有set get方法）</p>
-<h3 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h3><p>a.封装（维护性）：隐藏成员变量和方法，隐藏共能实现的具体细节<br>b.继承（可扩展性）：子类继承父类的变量或者方法，也可以定义自己的<br>c.多态（灵活性）：父类的引用指向子类的实力（上转型对象）</p>
-<h3 id="java中的两大机制：（跨平台）"><a href="#java中的两大机制：（跨平台）" class="headerlink" title="java中的两大机制：（跨平台）"></a>java中的两大机制：（跨平台）</h3><p>a.JVM java虚拟机<br>b.GC 垃圾回收</p>
-<h3 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h3><p>程序中出现的不正常的情况（会阻止程序的继续运行）（子类不能抛出比父类更多的异常，可以抛出父类的子异常）<br>1.编译异常（概率发生高的定义为编译异常）Exception直接子类<br>2.运行异常（概率发生低的定义为运行异常）继承RuntimeException</p>
-<h3 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h3><p>1.for<br>2.foreach<br>3.do while<br>4.while<br>5.递归<br>    1.构造方法不能递归、<br>    2.必须有出口，if判断，否则死循环（肯定内存溢出）<br>    3.次数不易过多，否则会出现内存溢出<br>    递归解决问题的思想：（大-&gt;小）<br>    将大问题拆成小问题<br>6.if go(java中go无用，字段保留)</p>
-<h3 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h3><p>线程与进程<br>start（）方法和run（）方法的区别？<br>    run方法只是一个普通的方法（还是单线程）<br>    start方法启动多线程，其次自动调用run方法<br>Thread，Runnable，callable<br>使用ExecutorService、Callable、Future实现有返回结果的线程</p>
-<h3 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h3><p>23种<br>3类：<br>a.创建型<br>b.模板型<br>c.功能型<br>单例，工厂，装饰，代理等。</p>
-<h3 id="对象的序列化和反序列化"><a href="#对象的序列化和反序列化" class="headerlink" title="对象的序列化和反序列化"></a>对象的序列化和反序列化</h3><p>a.序列化：将对象以二进制的形式存储到硬盘中<br>b.反序列化：将以二进制形式的对象读取到内存中<br>要求：被序列化的对象必须要实现Serializable（标记接口）接口<br>不被序列化的字段处理，SerializableID问题</p>
-<h3 id="XML格式，json格式"><a href="#XML格式，json格式" class="headerlink" title="XML格式，json格式"></a>XML格式，json格式</h3><h4 id="XML"><a href="#XML" class="headerlink" title="XML"></a>XML</h4><p>读取，格式化等<br>DOM<br>SAX<br>JDOM<br>DOM4J</p>
-<h4 id="json"><a href="#json" class="headerlink" title="json"></a>json</h4><p>读取，格式化等<br>jsonobject<br>gson<br>fastjson<br>等</p>
-<h3 id="网络编程"><a href="#网络编程" class="headerlink" title="网络编程"></a>网络编程</h3><p>在日本东京大学申请ip地址<br>UDP 不用连接<br>TCP 三次握手<br>一个好的通讯软件（io流技术，多线程，udp tcp技术）</p>
-<h3 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h3><p>1.transient（在对象序列化的时候，如果某个属性不想被序列化就是该关键字修饰）<br>2.abstract：<br>a.修饰类（被他修饰的类为抽象类）<br>b.修饰方法（权限：public protected，抽象方法不能有方法体）<br>3.final：<br>a.修饰类：不能有子类<br>b.修饰方法：不能被重写 （不能修饰抽象方法）<br>c.修饰变量：常量（要赋初始值）<br>4.implements：实现接口<br>5.static：<br>a.修饰类：（内部类）<br>b.静态变量是属于类的，对象共享<br>c.修饰方法：静态方法只能调用的静态的东西<br>6.instanceof：<br>eg：a instanceof A：判断对象a是不是类A及其子类创建的实力<br>final finally，顺道finalize()</p>
-<h3 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h3><h3 id="IO"><a href="#IO" class="headerlink" title="IO"></a>IO</h3><p>IO(BIO) 同步堵塞<br>NIO 同步非堵塞<br>AIO 异步（非）堵塞</p>
-
+              <h3 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/2019/04/15/20190415_2/" title="java基础类型">java基础类型</a></p>
+          
       
       
     </div>
@@ -654,73 +689,8 @@
     </div>
 
       
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-20190411_1" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/04/11/20190411_1/" class="article-date">
-      <time datetime="2019-04-10T16:00:00.000Z" itemprop="datePublished">2019-04-11</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/11/20190411_1/">java类中缓存机制类</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <meta name="referrer" content="no-referrer">
-
-<h3 id="具有缓存机制的类"><a href="#具有缓存机制的类" class="headerlink" title="具有缓存机制的类"></a>具有缓存机制的类</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Byte、Short、Integer、Long、Character都具有缓存机制。缓存工作都是在静态块中完成，在类生命周期（loading verify prepare resolving initial using unload）的初始化阶段执行。<br>
-          
-      
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/知识点/">知识点</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
-    </div>
-
-      
         <p class="article-more-link">
-          <a  href="/2019/04/11/20190411_1/#more">阅读全文 >></a>
+          <a  href="/2019/04/12/20190412_3/#more">阅读全文 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -806,11 +776,11 @@
 
 
   
-    <article id="post-20190410_1" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-20190411_1" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/04/10/20190410_1/" class="article-date">
-      <time datetime="2019-04-09T16:00:00.000Z" itemprop="datePublished">2019-04-10</time>
+      <a href="/2019/04/11/20190411_1/" class="article-date">
+      <time datetime="2019-04-10T16:00:00.000Z" itemprop="datePublished">2019-04-11</time>
 </a>
     </div>
   
@@ -823,7 +793,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/10/20190410_1/">dubbo的坑（持续更新）</a>
+      <a class="article-title" href="/2019/04/11/20190411_1/">java类中缓存机制类</a>
     </h1>
   
 
@@ -833,9 +803,9 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <p> <meta name="referrer" content="no-referrer"></p>
-<h3 id="dubbo"><a href="#dubbo" class="headerlink" title="dubbo"></a>dubbo</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;加载自定义配置文件，本地测试的路径和打包之后项目路径不一致问题。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">//本地测试需改成/conf</span><br><span class="line">//打包发环境时，改成/</span><br><span class="line">this.getClass().getResource(&quot;/&quot;).getPath()</span><br></pre></td></tr></table></figure></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本类的路径下去找资源文件的路径。并且不会去下级文件夹寻找文件。<br>
+              <meta name="referrer" content="no-referrer">
+
+<h3 id="具有缓存机制的类"><a href="#具有缓存机制的类" class="headerlink" title="具有缓存机制的类"></a>具有缓存机制的类</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Byte、Short、Integer、Long、Character都具有缓存机制。缓存工作都是在静态块中完成，在类生命周期（loading verify prepare resolving initial using unload）的初始化阶段执行。<br>
           
       
       
@@ -851,12 +821,12 @@
 
       
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dubbo/">dubbo</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
     </div>
 
       
         <p class="article-more-link">
-          <a  href="/2019/04/10/20190410_1/#more">阅读全文 >></a>
+          <a  href="/2019/04/11/20190411_1/#more">阅读全文 >></a>
         </p>
       
       <div class="clearfix"></div>
