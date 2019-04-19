@@ -9,11 +9,11 @@
 <meta name="keywords" content="解决方案">
 <meta property="og:type" content="article">
 <meta property="og:title" content="利用activityMQ做处理，消息的顺序性和服务处理的时效性问题">
-<meta property="og:url" content="http://yoursite.com/2019/04/17/20190417_3/index.html">
+<meta property="og:url" content="http://yoursite.com/2019/04/17/20190417_1/index.html">
 <meta property="og:site_name" content="君不见">
 <meta property="og:description" content="问题描述&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;分期缴费的时候，如果有抵扣，把抵扣已批单的形式从保费中扣除。那么就需要进行批单的处理。批单处理上需要一定时间。&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;那么问题来了：  如果短时间内多次进行分期缴费呢，也就意味着需要进行多次批减保费的操作。每">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-17T10:18:38.985Z">
+<meta property="og:updated_time" content="2019-04-18T01:37:12.109Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="利用activityMQ做处理，消息的顺序性和服务处理的时效性问题">
 <meta name="twitter:description" content="问题描述&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;分期缴费的时候，如果有抵扣，把抵扣已批单的形式从保费中扣除。那么就需要进行批单的处理。批单处理上需要一定时间。&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;那么问题来了：  如果短时间内多次进行分期缴费呢，也就意味着需要进行多次批减保费的操作。每">
@@ -134,7 +134,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/Books/" style="font-size: 13.33px;">Books</a> <a href="/tags/dubbo/" style="font-size: 13.33px;">dubbo</a> <a href="/tags/hexo/" style="font-size: 13.33px;">hexo</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/mysql/" style="font-size: 13.33px;">mysql</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/spring-boot/" style="font-size: 10px;">spring boot</a> <a href="/tags/日常/" style="font-size: 13.33px;">日常</a> <a href="/tags/架构/" style="font-size: 10px;">架构</a> <a href="/tags/算法/" style="font-size: 16.67px;">算法</a> <a href="/tags/解决方案/" style="font-size: 10px;">解决方案</a> <a href="/tags/试题/" style="font-size: 10px;">试题</a>
+                        <a href="/tags/Books/" style="font-size: 12.5px;">Books</a> <a href="/tags/dubbo/" style="font-size: 12.5px;">dubbo</a> <a href="/tags/hexo/" style="font-size: 12.5px;">hexo</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/mysql/" style="font-size: 15px;">mysql</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/spring-boot/" style="font-size: 10px;">spring boot</a> <a href="/tags/日常/" style="font-size: 12.5px;">日常</a> <a href="/tags/架构/" style="font-size: 10px;">架构</a> <a href="/tags/算法/" style="font-size: 17.5px;">算法</a> <a href="/tags/解决方案/" style="font-size: 10px;">解决方案</a> <a href="/tags/试题/" style="font-size: 10px;">试题</a>
                     </div>
                 </section>
                 
@@ -190,10 +190,10 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-20190417_3" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-20190417_1" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/04/17/20190417_3/" class="article-date">
+      <a href="/2019/04/17/20190417_1/" class="article-date">
       <time datetime="2019-04-16T16:00:00.000Z" itemprop="datePublished">2019-04-17</time>
 </a>
     </div>
@@ -237,7 +237,7 @@
 <li>如果短时间内多次进行分期缴费呢，也就意味着需要进行多次批减保费的操作。每次批减保费是基于上次批减操作进行的，批减需要时间去处理，没处理完，之后的批减/退或其他操作是没办法进行的。</li>
 <li>还是同样的情况，如果有一次批减发生了错误，那么之后的操作如何处理。</li>
 </ol>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;总结为同单高并发，且需要按顺序处理</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;总结为同单高并发，且需要按顺序处理<br><a id="more"></a></p>
 <h3 id="解决顺序性的方案"><a href="#解决顺序性的方案" class="headerlink" title="解决顺序性的方案"></a>解决顺序性的方案</h3><h4 id="利用mq的JMSXGroupID"><a href="#利用mq的JMSXGroupID" class="headerlink" title="利用mq的JMSXGroupID"></a>利用mq的JMSXGroupID</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mq的JMSXGroupID字段，只要consumer保持active，那么同一组的消息会被分到同一consumer下处理。这样可以保证消息处理顺序的正确性。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;缺点就是在某种情况下，mq队列会堆积，等待一个consumer处理，而其他consumer是空闲的。</p>
 <h4 id="redis锁-mq重发"><a href="#redis锁-mq重发" class="headerlink" title="redis锁+mq重发"></a>redis锁+mq重发</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;加redis锁，consumer消费后，自己重发mq。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;缺点就是耗费资源，而且重发是秒级。</p>
 <h4 id="redis锁-redis队列存放消息"><a href="#redis锁-redis队列存放消息" class="headerlink" title="redis锁+redis队列存放消息"></a>redis锁+redis队列存放消息</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;难点在于，对消息的消费，其实第一种方案比较合理，在不知道第一种的情况下，自己实现顺序消费。将进来的消息放到redis的队列中，集合也行，加上redis锁，在释放锁之前获取redis队列里的数据，取出一条进行重新消费。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;缺点就是，在某种极端情况下，向redis中放数据在查询数据之后，那么，这条数据就在不会被处理。</p>
@@ -250,13 +250,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/04/17/20190417_3/">利用activityMQ做处理，消息的顺序性和服务处理的时效性问题</a></p>
+        <p><span>本文标题:</span><a href="/2019/04/17/20190417_1/">利用activityMQ做处理，消息的顺序性和服务处理的时效性问题</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 君不见 的个人博客">君不见</a></p>
         <p><span>发布时间:</span>2019年04月17日 - 00时00分</p>
-        <p><span>最后更新:</span>2019年04月17日 - 18时18分</p>
+        <p><span>最后更新:</span>2019年04月18日 - 09时37分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/04/17/20190417_3/" title="利用activityMQ做处理，消息的顺序性和服务处理的时效性问题">http://yoursite.com/2019/04/17/20190417_3/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2019/04/17/20190417_3/　　作者: 君不见" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2019/04/17/20190417_1/" title="利用activityMQ做处理，消息的顺序性和服务处理的时效性问题">http://yoursite.com/2019/04/17/20190417_1/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2019/04/17/20190417_1/　　作者: 君不见" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -269,9 +269,18 @@
 
 <nav id="article-nav">
   
+    <a href="/2019/04/18/20190418_1/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          十大常见排序
+        
+      </div>
+    </a>
   
-    <a href="/2019/04/15/20190415_1/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">java子类继承加载顺序</div>
+  
+    <a href="/2019/04/15/20190415_3/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">spring加载对象问题（坑）</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -353,16 +362,18 @@ style="width:90%;margin:5% auto 0 auto;background: #fff;padding: 0 12px;border-r
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+            <a href="/2019/04/18/20190418_1/" title="上一篇: 十大常见排序">
+                <i class="fa fa-angle-left"></i>
+            </a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a href="/2019/04/15/20190415_1/" title="下一篇: java子类继承加载顺序">
+            <a href="/2019/04/15/20190415_3/" title="下一篇: spring加载对象问题（坑）">
                 <i class="fa fa-angle-right"></i>
             </a>
         
     </div>
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/04/17/20190417_3/">利用activityMQ做处理，消息的顺序性和服务处理的时效性问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/15/20190415_1/">java子类继承加载顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/15/20190415_3/">spring加载对象问题（坑）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/15/20190415_2/">java基础类型</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/12/20190412_1/">ArrayList删除节点（坑）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/12/20190412_2/">==和equals</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/12/20190412_3/">java总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/11/20190411_2/">java调用js方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/11/20190411_1/">java类中缓存机制类</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/10/20190410_3/">dubbo 配置加载顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/10/20190410_2/">spring boot 配置加载顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/10/20190410_1/">dubbo的坑（持续更新）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/09/20190409_2/">linux CTRL+Z和CTRL+C区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/09/20190409_3/">spring容器外调用容器内的对象</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/09/20190409_1/">mysql关键字执行顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/27/20190327_1/">mysql利用find_in_set去查询in的集合</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/27/20190327_2/">hexo指令</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/11/20190311_1/">tcp-ip</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/11/20190311_3/">github上传限制</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/11/20190311_2/">汇编语言第二版</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/07/20190307_2/">公式算法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/07/20190307_1/">数字大小写</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/05/20190305/">动态规划</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/10/20190110/">项目</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/15/questions/">试题</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/23/Offer_3/">从尾到头打印链表</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/23/Offer_4/">重建二叉树</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/22/Offer_2/">替换空格</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/19/Offer_1/">二维数组中的查找</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/11/GcAndFinalize/">System.gc()与Object.finalize()的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/10/JavaObject/">java Object</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/10/TenGoodAdvice/">10条好建议</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/10/for_foreach/">for与foreach用法的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/30/ReadJava/">读java源码的顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/28/Hexo_spfk_LiveRe_GithubPages/">Hexo博客+spfk主题+LiveRe评论+Github pages</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/04/18/20190418_2/">mysql如何获取当前时间</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/18/20190419_1/">MySQL索引底层实现原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/18/20190418_1/">十大常见排序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/17/20190417_1/">利用activityMQ做处理，消息的顺序性和服务处理的时效性问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/15/20190415_3/">spring加载对象问题（坑）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/15/20190415_2/">java基础类型</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/15/20190415_1/">java子类继承加载顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/12/20190412_3/">java总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/12/20190412_2/">==和equals</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/12/20190412_1/">ArrayList删除节点（坑）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/11/20190411_1/">java类中缓存机制类</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/11/20190411_2/">java调用js方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/10/20190410_2/">spring boot 配置加载顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/10/20190410_3/">dubbo 配置加载顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/10/20190410_1/">dubbo的坑（持续更新）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/09/20190409_3/">spring容器外调用容器内的对象</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/09/20190409_1/">mysql关键字执行顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/09/20190409_2/">linux CTRL+Z和CTRL+C区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/27/20190327_2/">hexo指令</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/27/20190327_1/">mysql利用find_in_set去查询in的集合</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/11/20190311_3/">github上传限制</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/11/20190311_1/">tcp-ip</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/11/20190311_2/">汇编语言第二版</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/07/20190307_1/">数字大小写</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/07/20190307_2/">公式算法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/05/20190305/">动态规划</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/10/20190110/">项目</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/15/questions/">试题</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/23/Offer_4/">重建二叉树</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/23/Offer_3/">从尾到头打印链表</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/22/Offer_2/">替换空格</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/19/Offer_1/">二维数组中的查找</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/11/GcAndFinalize/">System.gc()与Object.finalize()的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/10/TenGoodAdvice/">10条好建议</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/10/for_foreach/">for与foreach用法的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/10/JavaObject/">java Object</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/30/ReadJava/">读java源码的顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/28/Hexo_spfk_LiveRe_GithubPages/">Hexo博客+spfk主题+LiveRe评论+Github pages</a></li></ul>
     <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
     <script>
         $(".post-list").addClass("toc-article");

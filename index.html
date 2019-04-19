@@ -132,7 +132,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/Books/" style="font-size: 13.33px;">Books</a> <a href="/tags/dubbo/" style="font-size: 13.33px;">dubbo</a> <a href="/tags/hexo/" style="font-size: 13.33px;">hexo</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/mysql/" style="font-size: 13.33px;">mysql</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/spring-boot/" style="font-size: 10px;">spring boot</a> <a href="/tags/日常/" style="font-size: 13.33px;">日常</a> <a href="/tags/架构/" style="font-size: 10px;">架构</a> <a href="/tags/算法/" style="font-size: 16.67px;">算法</a> <a href="/tags/解决方案/" style="font-size: 10px;">解决方案</a> <a href="/tags/试题/" style="font-size: 10px;">试题</a>
+                        <a href="/tags/Books/" style="font-size: 12.5px;">Books</a> <a href="/tags/dubbo/" style="font-size: 12.5px;">dubbo</a> <a href="/tags/hexo/" style="font-size: 12.5px;">hexo</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/mysql/" style="font-size: 15px;">mysql</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/spring-boot/" style="font-size: 10px;">spring boot</a> <a href="/tags/日常/" style="font-size: 12.5px;">日常</a> <a href="/tags/架构/" style="font-size: 10px;">架构</a> <a href="/tags/算法/" style="font-size: 17.5px;">算法</a> <a href="/tags/解决方案/" style="font-size: 10px;">解决方案</a> <a href="/tags/试题/" style="font-size: 10px;">试题</a>
                     </div>
                 </section>
                 
@@ -190,11 +190,11 @@
 </nav>
       <div class="body-wrap">
   
-    <article id="post-20190417_3" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-20190418_2" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/04/17/20190417_3/" class="article-date">
-      <time datetime="2019-04-16T16:00:00.000Z" itemprop="datePublished">2019-04-17</time>
+      <a href="/2019/04/18/20190418_2/" class="article-date">
+      <time datetime="2019-04-17T16:00:00.000Z" itemprop="datePublished">2019-04-18</time>
 </a>
     </div>
   
@@ -207,7 +207,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/17/20190417_3/">利用activityMQ做处理，消息的顺序性和服务处理的时效性问题</a>
+      <a class="article-title" href="/2019/04/18/20190418_2/">mysql如何获取当前时间</a>
     </h1>
   
 
@@ -217,15 +217,74 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;分期缴费的时候，如果有抵扣，把抵扣已批单的形式从保费中扣除。那么就需要进行批单的处理。批单处理上需要一定时间。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;那么问题来了：</p>
-<ol>
-<li>如果短时间内多次进行分期缴费呢，也就意味着需要进行多次批减保费的操作。每次批减保费是基于上次批减操作进行的，批减需要时间去处理，没处理完，之后的批减/退或其他操作是没办法进行的。</li>
-<li>还是同样的情况，如果有一次批减发生了错误，那么之后的操作如何处理。</li>
-</ol>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;总结为同单高并发，且需要按顺序处理</p>
-<h3 id="解决顺序性的方案"><a href="#解决顺序性的方案" class="headerlink" title="解决顺序性的方案"></a>解决顺序性的方案</h3><h4 id="利用mq的JMSXGroupID"><a href="#利用mq的JMSXGroupID" class="headerlink" title="利用mq的JMSXGroupID"></a>利用mq的JMSXGroupID</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mq的JMSXGroupID字段，只要consumer保持active，那么同一组的消息会被分到同一consumer下处理。这样可以保证消息处理顺序的正确性。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;缺点就是在某种情况下，mq队列会堆积，等待一个consumer处理，而其他consumer是空闲的。</p>
-<h4 id="redis锁-mq重发"><a href="#redis锁-mq重发" class="headerlink" title="redis锁+mq重发"></a>redis锁+mq重发</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;加redis锁，consumer消费后，自己重发mq。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;缺点就是耗费资源，而且重发是秒级。</p>
-<h4 id="redis锁-redis队列存放消息"><a href="#redis锁-redis队列存放消息" class="headerlink" title="redis锁+redis队列存放消息"></a>redis锁+redis队列存放消息</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;难点在于，对消息的消费，其实第一种方案比较合理，在不知道第一种的情况下，自己实现顺序消费。将进来的消息放到redis的队列中，集合也行，加上redis锁，在释放锁之前获取redis队列里的数据，取出一条进行重新消费。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;缺点就是，在某种极端情况下，向redis中放数据在查询数据之后，那么，这条数据就在不会被处理。</p>
+              <h3 id="mysql如何获取当前时间"><a href="#mysql如何获取当前时间" class="headerlink" title="mysql如何获取当前时间"></a>mysql如何获取当前时间</h3><h4 id="now"><a href="#now" class="headerlink" title="now()"></a>now()</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;获得当前日期+时间（date + time）函数：now()<br>
+          
+      
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/知识点/">知识点</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a  href="/2019/04/18/20190418_2/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-20190419_1" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/04/18/20190419_1/" class="article-date">
+      <time datetime="2019-04-17T16:00:00.000Z" itemprop="datePublished">2019-04-18</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/18/20190419_1/">MySQL索引底层实现原理</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p><a href="https://www.cnblogs.com/boothsun/p/8970952.html" target="_blank" rel="noopener">https://www.cnblogs.com/boothsun/p/8970952.html</a></p>
 
       
       
@@ -235,13 +294,13 @@
       
       
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/经验/">经验</a>
+    <a class="article-category-link" href="/categories/知识点/">知识点</a>
     </div>
 
 
       
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/解决方案/">解决方案</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li></ul>
     </div>
 
       
@@ -261,11 +320,11 @@
 
 
   
-    <article id="post-20190415_1" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-20190418_1" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/04/15/20190415_1/" class="article-date">
-      <time datetime="2019-04-14T16:00:00.000Z" itemprop="datePublished">2019-04-15</time>
+      <a href="/2019/04/18/20190418_1/" class="article-date">
+      <time datetime="2019-04-17T16:00:00.000Z" itemprop="datePublished">2019-04-18</time>
 </a>
     </div>
   
@@ -278,7 +337,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/15/20190415_1/">java子类继承加载顺序</a>
+      <a class="article-title" href="/2019/04/18/20190418_1/">十大常见排序</a>
     </h1>
   
 
@@ -288,13 +347,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <h3 id="java子类继承加载顺序"><a href="#java子类继承加载顺序" class="headerlink" title="java子类继承加载顺序"></a>java子类继承加载顺序</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;类的加载中包括：</p>
-<ul>
-<li>静态代码块</li>
-<li>代码块</li>
-<li>构造</li>
-<li>析构（c++中）</li>
-</ul>
+              <h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;十种常见排序算法可以分为两大类：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;比较类排序：通过比较来决定元素间的相对次序，由于其时间复杂度不能突破O(nlogn)，因此也称为非线性时间比较类排序。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;非比较类排序：不通过比较来决定元素间的相对次序，它可以突破基于比较排序的时间下界，以线性时间运行，因此也称为线性时间非比较类排序。<br>
           
       
       
@@ -310,12 +363,84 @@
 
       
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
     </div>
 
       
         <p class="article-more-link">
-          <a  href="/2019/04/15/20190415_1/#more">阅读全文 >></a>
+          <a  href="/2019/04/18/20190418_1/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-20190417_1" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/04/17/20190417_1/" class="article-date">
+      <time datetime="2019-04-16T16:00:00.000Z" itemprop="datePublished">2019-04-17</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/17/20190417_1/">利用activityMQ做处理，消息的顺序性和服务处理的时效性问题</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;分期缴费的时候，如果有抵扣，把抵扣已批单的形式从保费中扣除。那么就需要进行批单的处理。批单处理上需要一定时间。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;那么问题来了：</p>
+<ol>
+<li>如果短时间内多次进行分期缴费呢，也就意味着需要进行多次批减保费的操作。每次批减保费是基于上次批减操作进行的，批减需要时间去处理，没处理完，之后的批减/退或其他操作是没办法进行的。</li>
+<li>还是同样的情况，如果有一次批减发生了错误，那么之后的操作如何处理。</li>
+</ol>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;总结为同单高并发，且需要按顺序处理<br>
+          
+      
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/经验/">经验</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/解决方案/">解决方案</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a  href="/2019/04/17/20190417_1/#more">阅读全文 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -508,11 +633,11 @@
 
 
   
-    <article id="post-20190412_1" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-20190415_1" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/04/12/20190412_1/" class="article-date">
-      <time datetime="2019-04-11T16:00:00.000Z" itemprop="datePublished">2019-04-12</time>
+      <a href="/2019/04/15/20190415_1/" class="article-date">
+      <time datetime="2019-04-14T16:00:00.000Z" itemprop="datePublished">2019-04-15</time>
 </a>
     </div>
   
@@ -525,7 +650,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/12/20190412_1/">ArrayList删除节点（坑）</a>
+      <a class="article-title" href="/2019/04/15/20190415_1/">java子类继承加载顺序</a>
     </h1>
   
 
@@ -535,7 +660,13 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <h3 id="ArrayList删除节点"><a href="#ArrayList删除节点" class="headerlink" title="ArrayList删除节点"></a>ArrayList删除节点</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ArrayList的remove方法，进行删除的时候，数组的长度不变，但被删除的节点之后的数据会前移，看源码可知。<br>
+              <h3 id="java子类继承加载顺序"><a href="#java子类继承加载顺序" class="headerlink" title="java子类继承加载顺序"></a>java子类继承加载顺序</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;类的加载中包括：</p>
+<ul>
+<li>静态代码块</li>
+<li>代码块</li>
+<li>构造</li>
+<li>析构（c++中）</li>
+</ul>
           
       
       
@@ -556,74 +687,7 @@
 
       
         <p class="article-more-link">
-          <a  href="/2019/04/12/20190412_1/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-20190412_2" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/04/12/20190412_2/" class="article-date">
-      <time datetime="2019-04-11T16:00:00.000Z" itemprop="datePublished">2019-04-12</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/12/20190412_2/">==和equals</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h3 id="和equals"><a href="#和equals" class="headerlink" title="==和equals"></a>==和equals</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;== 操作比较的是两个变量的值是否相等，对于引用型变量表示的是两个变量在堆中存储的地址是否相同，即栈中的内容是否相同。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;equals操作表示的两个变量是否是对同一个对象的引用，即堆中的内容是否相同。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;==一般用在基本数据类型中，equals()一般比较字符串是否相等<br>
-          
-      
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/知识点/">知识点</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a  href="/2019/04/12/20190412_2/#more">阅读全文 >></a>
+          <a  href="/2019/04/15/20190415_1/#more">阅读全文 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -709,11 +773,11 @@
 
 
   
-    <article id="post-20190411_2" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-20190412_2" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/04/11/20190411_2/" class="article-date">
-      <time datetime="2019-04-10T16:00:00.000Z" itemprop="datePublished">2019-04-11</time>
+      <a href="/2019/04/12/20190412_2/" class="article-date">
+      <time datetime="2019-04-11T16:00:00.000Z" itemprop="datePublished">2019-04-12</time>
 </a>
     </div>
   
@@ -726,7 +790,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/11/20190411_2/">java调用js方法</a>
+      <a class="article-title" href="/2019/04/12/20190412_2/">==和equals</a>
     </h1>
   
 
@@ -736,7 +800,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <p> <meta name="referrer" content="no-referrer"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;jdk1.6开始就提供了动态脚本语言诸如JavaScript动态的支持。这无疑是一个很好的功能，毕竟Java的语法不是适合成为动态语言。而JDK通过执行JavaScript脚本可以弥补这一不足。这也符合“Java虚拟机不仅仅是Java一种语言的虚拟机“这一目标。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ScriptEngine功能强大，基本能实现笔者所能想到的Java与JavaScript交互的需求。而且十分的方便简洁。jdk1.8又对ScriptEngine接口进行了一定改变，因此，在jdk1.8能运行的代码，在1.6中可能会报错，反之亦然。<br>
+              <h3 id="和equals"><a href="#和equals" class="headerlink" title="==和equals"></a>==和equals</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;== 操作比较的是两个变量的值是否相等，对于引用型变量表示的是两个变量在堆中存储的地址是否相同，即栈中的内容是否相同。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;equals操作表示的两个变量是否是对同一个对象的引用，即堆中的内容是否相同。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;==一般用在基本数据类型中，equals()一般比较字符串是否相等<br>
           
       
       
@@ -757,7 +821,7 @@
 
       
         <p class="article-more-link">
-          <a  href="/2019/04/11/20190411_2/#more">阅读全文 >></a>
+          <a  href="/2019/04/12/20190412_2/#more">阅读全文 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -776,11 +840,11 @@
 
 
   
-    <article id="post-20190411_1" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-20190412_1" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/04/11/20190411_1/" class="article-date">
-      <time datetime="2019-04-10T16:00:00.000Z" itemprop="datePublished">2019-04-11</time>
+      <a href="/2019/04/12/20190412_1/" class="article-date">
+      <time datetime="2019-04-11T16:00:00.000Z" itemprop="datePublished">2019-04-12</time>
 </a>
     </div>
   
@@ -793,7 +857,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/11/20190411_1/">java类中缓存机制类</a>
+      <a class="article-title" href="/2019/04/12/20190412_1/">ArrayList删除节点（坑）</a>
     </h1>
   
 
@@ -803,9 +867,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <meta name="referrer" content="no-referrer">
-
-<h3 id="具有缓存机制的类"><a href="#具有缓存机制的类" class="headerlink" title="具有缓存机制的类"></a>具有缓存机制的类</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Byte、Short、Integer、Long、Character都具有缓存机制。缓存工作都是在静态块中完成，在类生命周期（loading verify prepare resolving initial using unload）的初始化阶段执行。<br>
+              <h3 id="ArrayList删除节点"><a href="#ArrayList删除节点" class="headerlink" title="ArrayList删除节点"></a>ArrayList删除节点</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ArrayList的remove方法，进行删除的时候，数组的长度不变，但被删除的节点之后的数据会前移，看源码可知。<br>
           
       
       
@@ -826,75 +888,7 @@
 
       
         <p class="article-more-link">
-          <a  href="/2019/04/11/20190411_1/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-20190410_3" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/04/10/20190410_3/" class="article-date">
-      <time datetime="2019-04-09T16:00:00.000Z" itemprop="datePublished">2019-04-10</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/10/20190410_3/">dubbo 配置加载顺序</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p> <meta name="referrer" content="no-referrer"></p>
-<h3 id="dubbo-覆盖策略"><a href="#dubbo-覆盖策略" class="headerlink" title="dubbo 覆盖策略"></a>dubbo 覆盖策略</h3><p><img src="https://raw.githubusercontent.com/snmlm/resources/master/picture/rELywxc.jpg" alt=""></p>
-          
-      
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/知识点/">知识点</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dubbo/">dubbo</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a  href="/2019/04/10/20190410_3/#more">阅读全文 >></a>
+          <a  href="/2019/04/12/20190412_1/#more">阅读全文 >></a>
         </p>
       
       <div class="clearfix"></div>
