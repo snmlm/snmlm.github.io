@@ -3,20 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>spring加载对象问题（坑） | 君不见</title>
+  <title>看到的题，记录一下 | 君不见</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="父类子类属性传递问题，外带懒加载问题父类子类属性-&amp;gt;权限问题   作用域 当前类 同一package 子孙类 其他package     public √ √ √ √   protected √ √ √ ×   friendly/default √ √ × ×   private √ × × ×">
-<meta name="keywords" content="java">
+  <meta name="description" content="http://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&amp;amp;mid=2247485167&amp;amp;idx=1&amp;amp;sn=a35fad235a6bb2b6e31f1ff37e72bfd7&amp;amp;chksm=cea24924f9d5c032cbbeffc87cd366e9aa7b209897a26ad5c7f7b1b766b3c34a2c9b6870">
+<meta name="keywords" content="日常">
 <meta property="og:type" content="article">
-<meta property="og:title" content="spring加载对象问题（坑）">
-<meta property="og:url" content="http://yoursite.com/2019/04/15/20190415_3/index.html">
+<meta property="og:title" content="看到的题，记录一下">
+<meta property="og:url" content="http://yoursite.com/2019/04/18/20190423_2/index.html">
 <meta property="og:site_name" content="君不见">
-<meta property="og:description" content="父类子类属性传递问题，外带懒加载问题父类子类属性-&amp;gt;权限问题   作用域 当前类 同一package 子孙类 其他package     public √ √ √ √   protected √ √ √ ×   friendly/default √ √ × ×   private √ × × ×">
+<meta property="og:description" content="http://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&amp;amp;mid=2247485167&amp;amp;idx=1&amp;amp;sn=a35fad235a6bb2b6e31f1ff37e72bfd7&amp;amp;chksm=cea24924f9d5c032cbbeffc87cd366e9aa7b209897a26ad5c7f7b1b766b3c34a2c9b6870">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-16T08:00:29.930Z">
+<meta property="og:updated_time" content="2019-04-23T10:12:01.339Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="spring加载对象问题（坑）">
-<meta name="twitter:description" content="父类子类属性传递问题，外带懒加载问题父类子类属性-&amp;gt;权限问题   作用域 当前类 同一package 子孙类 其他package     public √ √ √ √   protected √ √ √ ×   friendly/default √ √ × ×   private √ × × ×">
+<meta name="twitter:title" content="看到的题，记录一下">
+<meta name="twitter:description" content="http://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&amp;amp;mid=2247485167&amp;amp;idx=1&amp;amp;sn=a35fad235a6bb2b6e31f1ff37e72bfd7&amp;amp;chksm=cea24924f9d5c032cbbeffc87cd366e9aa7b209897a26ad5c7f7b1b766b3c34a2c9b6870">
   
     <link rel="alternative" href="/atom.xml" title="君不见" type="application/atom+xml">
   
@@ -190,11 +190,11 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-20190415_3" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-20190423_2" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/04/15/20190415_3/" class="article-date">
-      <time datetime="2019-04-14T16:00:00.000Z" itemprop="datePublished">2019-04-15</time>
+      <a href="/2019/04/18/20190423_2/" class="article-date">
+      <time datetime="2019-04-17T16:00:00.000Z" itemprop="datePublished">2019-04-18</time>
 </a>
     </div>
   
@@ -207,7 +207,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      spring加载对象问题（坑）
+      看到的题，记录一下
     </h1>
   
 
@@ -222,7 +222,7 @@
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/日常/">日常</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -232,54 +232,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3 id="父类子类属性传递问题，外带懒加载问题"><a href="#父类子类属性传递问题，外带懒加载问题" class="headerlink" title="父类子类属性传递问题，外带懒加载问题"></a>父类子类属性传递问题，外带懒加载问题</h3><h4 id="父类子类属性-gt-权限问题"><a href="#父类子类属性-gt-权限问题" class="headerlink" title="父类子类属性-&gt;权限问题"></a>父类子类属性-&gt;权限问题</h4><table>
-<thead>
-<tr>
-<th>作用域</th>
-<th>当前类</th>
-<th>同一package</th>
-<th>子孙类</th>
-<th>其他package</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>public</td>
-<td>√</td>
-<td>√</td>
-<td>√</td>
-<td>√</td>
-</tr>
-<tr>
-<td>protected</td>
-<td>√</td>
-<td>√</td>
-<td>√</td>
-<td>×</td>
-</tr>
-<tr>
-<td>friendly/default</td>
-<td>√</td>
-<td>√</td>
-<td>×</td>
-<td>×</td>
-</tr>
-<tr>
-<td>private</td>
-<td>√</td>
-<td>×</td>
-<td>×</td>
-<td>×</td>
-</tr>
-</tbody>
-</table>
-<a id="more"></a>
-<h4 id="遇到的坑"><a href="#遇到的坑" class="headerlink" title="遇到的坑"></a>遇到的坑</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;子类和父类相同的属性对象时，并且用getter和setter方法进行spring管理。子类单独调用子类方法，对象可以使用，父类单独调用父类方法，属性对象可以使用，唯独子类调用父类的方法是，父类的属性对象无法使用，空指针。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;子类衍生的父类和单独的父类不是一个对象，那么是不是可以理解成，子类的属性父类是拿不到的，在向上转型时<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;其原因未探究出来。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;解决方法：</p>
-<ol>
-<li>删除子类的属性对象，删除子类属性对象的getter和setter，对父类的属性对象的访问权限外放，子类调用父类方法，对属性对象可以拿到。</li>
-<li>父类对象纯抽象化，不做业务处理，并在配置的时候，bean标签加上abstract=”true”，不进行实例化。</li>
-<li>子类不调用父类方法。<h4 id="懒加载"><a href="#懒加载" class="headerlink" title="懒加载"></a>懒加载</h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;懒加载，顾名思义，只有用的时候才会加载。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在spring中，配置懒加载优先级：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;beans /&gt;                &lt;bean /&gt;            immediately  </span><br><span class="line">&lt;beans /&gt;                &lt;bean lazy-init=&quot;true&quot; /&gt;   lazy      </span><br><span class="line">&lt;beans /&gt;                &lt;bean lazy-init=&quot;false&quot;/&gt;   immediately           </span><br><span class="line">&lt;beans default-lazy-init=&quot;true&quot;/&gt;  &lt;bean /&gt;          lazy  </span><br><span class="line">&lt;beans default-lazy-init=&quot;true&quot;/&gt;  &lt;bean lazy-init=&quot;true&quot; /&gt;     lazy  </span><br><span class="line">&lt;beans default-lazy-init=&quot;true&quot;/&gt;  &lt;bean lazy-init=&quot;false&quot; /&gt;    immediately  </span><br><span class="line">&lt;beans default-lazy-init=&quot;false&quot;/&gt;  &lt;bean /&gt;             immediately  </span><br><span class="line">&lt;beans default-lazy-init=&quot;false&quot;/&gt;  &lt;bean lazy-init=&quot;true&quot; /&gt;    lazy  </span><br><span class="line">&lt;beans default-lazy-init=&quot;false&quot;/&gt;  &lt;bean lazy-init=&quot;false&quot; /&gt;   immediately</span><br></pre></td></tr></table></figure></li>
-</ol>
+        <p><a href="http://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&amp;mid=2247485167&amp;idx=1&amp;sn=a35fad235a6bb2b6e31f1ff37e72bfd7&amp;chksm=cea24924f9d5c032cbbeffc87cd366e9aa7b209897a26ad5c7f7b1b766b3c34a2c9b6870006c&amp;mpshare=1&amp;scene=1&amp;srcid=#rd" target="_blank" rel="noopener">http://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&amp;mid=2247485167&amp;idx=1&amp;sn=a35fad235a6bb2b6e31f1ff37e72bfd7&amp;chksm=cea24924f9d5c032cbbeffc87cd366e9aa7b209897a26ad5c7f7b1b766b3c34a2c9b6870006c&amp;mpshare=1&amp;scene=1&amp;srcid=#rd</a></p>
 
       
       
@@ -289,13 +242,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/04/15/20190415_3/">spring加载对象问题（坑）</a></p>
+        <p><span>本文标题:</span><a href="/2019/04/18/20190423_2/">看到的题，记录一下</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 君不见 的个人博客">君不见</a></p>
-        <p><span>发布时间:</span>2019年04月15日 - 00时00分</p>
-        <p><span>最后更新:</span>2019年04月16日 - 16时00分</p>
+        <p><span>发布时间:</span>2019年04月18日 - 00时00分</p>
+        <p><span>最后更新:</span>2019年04月23日 - 18时12分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/04/15/20190415_3/" title="spring加载对象问题（坑）">http://yoursite.com/2019/04/15/20190415_3/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2019/04/15/20190415_3/　　作者: 君不见" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2019/04/18/20190423_2/" title="看到的题，记录一下">http://yoursite.com/2019/04/18/20190423_2/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2019/04/18/20190423_2/　　作者: 君不见" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -308,18 +261,18 @@
 
 <nav id="article-nav">
   
-    <a href="/2019/04/15/20190415_1/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/04/18/20190418_2/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          java子类继承加载顺序
+          mysql如何获取当前时间
         
       </div>
     </a>
   
   
-    <a href="/2019/04/12/20190412_1/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">ArrayList删除节点（坑）</div>
+    <a href="/2019/04/18/20190423_1/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">MySQL5.7中Derived table变形记</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -330,7 +283,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#父类子类属性传递问题，外带懒加载问题"><span class="toc-number">1.</span> <span class="toc-text">父类子类属性传递问题，外带懒加载问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#父类子类属性-gt-权限问题"><span class="toc-number">1.1.</span> <span class="toc-text">父类子类属性-&gt;权限问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#遇到的坑"><span class="toc-number">1.2.</span> <span class="toc-text">遇到的坑</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#懒加载"><span class="toc-number">1.3.</span> <span class="toc-text">懒加载</span></a></li></ol></li></ol>
+    
 </div>
 <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 
@@ -401,13 +354,13 @@ style="width:90%;margin:5% auto 0 auto;background: #fff;padding: 0 12px;border-r
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2019/04/15/20190415_1/" title="上一篇: java子类继承加载顺序">
+            <a href="/2019/04/18/20190418_2/" title="上一篇: mysql如何获取当前时间">
                 <i class="fa fa-angle-left"></i>
             </a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a href="/2019/04/12/20190412_1/" title="下一篇: ArrayList删除节点（坑）">
+            <a href="/2019/04/18/20190423_1/" title="下一篇: MySQL5.7中Derived table变形记">
                 <i class="fa fa-angle-right"></i>
             </a>
         
