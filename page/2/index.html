@@ -132,7 +132,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/Books/" style="font-size: 12px;">Books</a> <a href="/tags/dubbo/" style="font-size: 12px;">dubbo</a> <a href="/tags/hexo/" style="font-size: 12px;">hexo</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/mysql/" style="font-size: 16px;">mysql</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/spring-boot/" style="font-size: 10px;">spring boot</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/日常/" style="font-size: 14px;">日常</a> <a href="/tags/架构/" style="font-size: 10px;">架构</a> <a href="/tags/算法/" style="font-size: 18px;">算法</a> <a href="/tags/解决方案/" style="font-size: 10px;">解决方案</a> <a href="/tags/试题/" style="font-size: 10px;">试题</a>
+                        <a href="/tags/Books/" style="font-size: 12px;">Books</a> <a href="/tags/dubbo/" style="font-size: 12px;">dubbo</a> <a href="/tags/hexo/" style="font-size: 12px;">hexo</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/mysql/" style="font-size: 16px;">mysql</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/spring-boot/" style="font-size: 10px;">spring boot</a> <a href="/tags/数据结构/" style="font-size: 12px;">数据结构</a> <a href="/tags/日常/" style="font-size: 14px;">日常</a> <a href="/tags/架构/" style="font-size: 10px;">架构</a> <a href="/tags/算法/" style="font-size: 18px;">算法</a> <a href="/tags/解决方案/" style="font-size: 10px;">解决方案</a> <a href="/tags/试题/" style="font-size: 10px;">试题</a>
                     </div>
                 </section>
                 
@@ -189,6 +189,253 @@
     </div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-20190415_3" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/04/15/20190415_3/" class="article-date">
+      <time datetime="2019-04-14T16:00:00.000Z" itemprop="datePublished">2019-04-15</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/15/20190415_3/">spring加载对象问题（坑）</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h3 id="父类子类属性传递问题，外带懒加载问题"><a href="#父类子类属性传递问题，外带懒加载问题" class="headerlink" title="父类子类属性传递问题，外带懒加载问题"></a>父类子类属性传递问题，外带懒加载问题</h3><h4 id="父类子类属性-gt-权限问题"><a href="#父类子类属性-gt-权限问题" class="headerlink" title="父类子类属性-&gt;权限问题"></a>父类子类属性-&gt;权限问题</h4><table>
+<thead>
+<tr>
+<th>作用域</th>
+<th>当前类</th>
+<th>同一package</th>
+<th>子孙类</th>
+<th>其他package</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>public</td>
+<td>√</td>
+<td>√</td>
+<td>√</td>
+<td>√</td>
+</tr>
+<tr>
+<td>protected</td>
+<td>√</td>
+<td>√</td>
+<td>√</td>
+<td>×</td>
+</tr>
+<tr>
+<td>friendly/default</td>
+<td>√</td>
+<td>√</td>
+<td>×</td>
+<td>×</td>
+</tr>
+<tr>
+<td>private</td>
+<td>√</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+</tr>
+</tbody>
+</table>
+          
+      
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/知识点/">知识点</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a  href="/2019/04/15/20190415_3/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-20190415_1" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/04/15/20190415_1/" class="article-date">
+      <time datetime="2019-04-14T16:00:00.000Z" itemprop="datePublished">2019-04-15</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/15/20190415_1/">java子类继承加载顺序</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h3 id="java子类继承加载顺序"><a href="#java子类继承加载顺序" class="headerlink" title="java子类继承加载顺序"></a>java子类继承加载顺序</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;类的加载中包括：</p>
+<ul>
+<li>静态代码块</li>
+<li>代码块</li>
+<li>构造</li>
+<li>析构（c++中）</li>
+</ul>
+          
+      
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/知识点/">知识点</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a  href="/2019/04/15/20190415_1/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-20190412_3" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/04/12/20190412_3/" class="article-date">
+      <time datetime="2019-04-11T16:00:00.000Z" itemprop="datePublished">2019-04-12</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/12/20190412_3/">java总结</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h3 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/2019/04/15/20190415_2/" title="java基础类型">java基础类型</a></p>
+          
+      
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/总结/">总结</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a  href="/2019/04/12/20190412_3/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-20190412_1" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -306,73 +553,6 @@
       
         <p class="article-more-link">
           <a  href="/2019/04/12/20190412_2/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-20190412_3" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/04/12/20190412_3/" class="article-date">
-      <time datetime="2019-04-11T16:00:00.000Z" itemprop="datePublished">2019-04-12</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/12/20190412_3/">java总结</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h3 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/2019/04/15/20190415_2/" title="java基础类型">java基础类型</a></p>
-          
-      
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/总结/">总结</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a  href="/2019/04/12/20190412_3/#more">阅读全文 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -527,10 +707,10 @@
 
 
   
-    <article id="post-20190410_2" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-20190410_1" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/04/10/20190410_2/" class="article-date">
+      <a href="/2019/04/10/20190410_1/" class="article-date">
       <time datetime="2019-04-09T16:00:00.000Z" itemprop="datePublished">2019-04-10</time>
 </a>
     </div>
@@ -544,7 +724,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/10/20190410_2/">spring boot 配置加载顺序</a>
+      <a class="article-title" href="/2019/04/10/20190410_1/">dubbo的坑（持续更新）</a>
     </h1>
   
 
@@ -555,7 +735,8 @@
       
           
               <p> <meta name="referrer" content="no-referrer"></p>
-<h3 id="spring-boot"><a href="#spring-boot" class="headerlink" title="spring boot"></a>spring boot</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;配置属性的方式很多，Spring boot使用了一种独有的 PropertySource 可以很方便的覆盖属性的值。<br>
+<h3 id="dubbo"><a href="#dubbo" class="headerlink" title="dubbo"></a>dubbo</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;加载自定义配置文件，本地测试的路径和打包之后项目路径不一致问题。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">//本地测试需改成/conf</span><br><span class="line">//打包发环境时，改成/</span><br><span class="line">this.getClass().getResource(&quot;/&quot;).getPath()</span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本类的路径下去找资源文件的路径。并且不会去下级文件夹寻找文件。<br>
           
       
       
@@ -571,12 +752,12 @@
 
       
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring-boot/">spring boot</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dubbo/">dubbo</a></li></ul>
     </div>
 
       
         <p class="article-more-link">
-          <a  href="/2019/04/10/20190410_2/#more">阅读全文 >></a>
+          <a  href="/2019/04/10/20190410_1/#more">阅读全文 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -663,10 +844,10 @@
 
 
   
-    <article id="post-20190410_1" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-20190410_2" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/04/10/20190410_1/" class="article-date">
+      <a href="/2019/04/10/20190410_2/" class="article-date">
       <time datetime="2019-04-09T16:00:00.000Z" itemprop="datePublished">2019-04-10</time>
 </a>
     </div>
@@ -680,7 +861,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/10/20190410_1/">dubbo的坑（持续更新）</a>
+      <a class="article-title" href="/2019/04/10/20190410_2/">spring boot 配置加载顺序</a>
     </h1>
   
 
@@ -691,8 +872,7 @@
       
           
               <p> <meta name="referrer" content="no-referrer"></p>
-<h3 id="dubbo"><a href="#dubbo" class="headerlink" title="dubbo"></a>dubbo</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;加载自定义配置文件，本地测试的路径和打包之后项目路径不一致问题。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">//本地测试需改成/conf</span><br><span class="line">//打包发环境时，改成/</span><br><span class="line">this.getClass().getResource(&quot;/&quot;).getPath()</span><br></pre></td></tr></table></figure></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本类的路径下去找资源文件的路径。并且不会去下级文件夹寻找文件。<br>
+<h3 id="spring-boot"><a href="#spring-boot" class="headerlink" title="spring boot"></a>spring boot</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;配置属性的方式很多，Spring boot使用了一种独有的 PropertySource 可以很方便的覆盖属性的值。<br>
           
       
       
@@ -708,160 +888,12 @@
 
       
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dubbo/">dubbo</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring-boot/">spring boot</a></li></ul>
     </div>
 
       
         <p class="article-more-link">
-          <a  href="/2019/04/10/20190410_1/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-20190409_1" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/04/09/20190409_1/" class="article-date">
-      <time datetime="2019-04-08T16:00:00.000Z" itemprop="datePublished">2019-04-09</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/09/20190409_1/">mysql关键字执行顺序</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <meta name="referrer" content="no-referrer">
-
-<h3 id="mysql关键字执行顺序"><a href="#mysql关键字执行顺序" class="headerlink" title="mysql关键字执行顺序"></a>mysql关键字执行顺序</h3><ol>
-<li>from</li>
-<li>on</li>
-<li>join</li>
-<li>where</li>
-<li>group by</li>
-<li>having</li>
-<li>select</li>
-<li>distinc </li>
-<li>union</li>
-<li>order by
-          
-      
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/知识点/">知识点</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a  href="/2019/04/09/20190409_1/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-20190409_3" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/04/09/20190409_3/" class="article-date">
-      <time datetime="2019-04-08T16:00:00.000Z" itemprop="datePublished">2019-04-09</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/09/20190409_3/">spring容器外调用容器内的对象</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <meta name="referrer" content="no-referrer">
-
-<h3 id="spring"><a href="#spring" class="headerlink" title="spring"></a>spring</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;简单的方法，就是把调用对象放到spring容器内。直接调用其他对象即可。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;要么就是实现ApplicationContextAware接口，并把类加载到spring容器中，获取到ApplicationContext，用ApplicationContext.getbean方法拿到spring容器里的对象，进行调用。<br>
-          
-      
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/知识点/">知识点</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring/">spring</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a  href="/2019/04/09/20190409_3/#more">阅读全文 >></a>
+          <a  href="/2019/04/10/20190410_2/#more">阅读全文 >></a>
         </p>
       
       <div class="clearfix"></div>
