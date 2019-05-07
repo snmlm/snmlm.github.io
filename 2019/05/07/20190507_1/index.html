@@ -3,20 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>for与foreach用法的区别 | 君不见</title>
+  <title>前缀、中缀、后缀表达式(逆波兰表达式) | 君不见</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="for or foreach 当集合是实现了RandomAccess(随机存储接口),也就意味着，数据是随机访问的，例如arraylist，则尽量用for(int i = 0; i &amp;lt; size; i++) 来遍历。 反过来，如果List是Sequence List，例如linkedlist，则最好用迭代器来进行迭代。 数组特殊，for比foreach快">
-<meta name="keywords" content="java">
+  <meta name="description" content="介绍&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;前缀表达式、中缀表达式、后缀表达式都是四则运算的表达方式,用以四则运算表达式求值,即数学表达式的求职。">
+<meta name="keywords" content="算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="for与foreach用法的区别">
-<meta property="og:url" content="https://snmlm.github.io/2018/10/10/for_foreach/index.html">
+<meta property="og:title" content="前缀、中缀、后缀表达式(逆波兰表达式)">
+<meta property="og:url" content="https://snmlm.github.io/2019/05/07/20190507_1/index.html">
 <meta property="og:site_name" content="君不见">
-<meta property="og:description" content="for or foreach 当集合是实现了RandomAccess(随机存储接口),也就意味着，数据是随机访问的，例如arraylist，则尽量用for(int i = 0; i &amp;lt; size; i++) 来遍历。 反过来，如果List是Sequence List，例如linkedlist，则最好用迭代器来进行迭代。 数组特殊，for比foreach快">
+<meta property="og:description" content="介绍&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;前缀表达式、中缀表达式、后缀表达式都是四则运算的表达方式,用以四则运算表达式求值,即数学表达式的求职。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-28T02:04:05.538Z">
+<meta property="og:updated_time" content="2019-05-07T05:54:10.229Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="for与foreach用法的区别">
-<meta name="twitter:description" content="for or foreach 当集合是实现了RandomAccess(随机存储接口),也就意味着，数据是随机访问的，例如arraylist，则尽量用for(int i = 0; i &amp;lt; size; i++) 来遍历。 反过来，如果List是Sequence List，例如linkedlist，则最好用迭代器来进行迭代。 数组特殊，for比foreach快">
+<meta name="twitter:title" content="前缀、中缀、后缀表达式(逆波兰表达式)">
+<meta name="twitter:description" content="介绍&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;前缀表达式、中缀表达式、后缀表达式都是四则运算的表达方式,用以四则运算表达式求值,即数学表达式的求职。">
   
     <link rel="alternative" href="/atom.xml" title="君不见" type="application/atom+xml">
   
@@ -190,11 +190,11 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-for_foreach" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-20190507_1" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2018/10/10/for_foreach/" class="article-date">
-      <time datetime="2018-10-09T16:00:00.000Z" itemprop="datePublished">2018-10-10</time>
+      <a href="/2019/05/07/20190507_1/" class="article-date">
+      <time datetime="2019-05-06T16:00:00.000Z" itemprop="datePublished">2019-05-07</time>
 </a>
     </div>
   
@@ -207,7 +207,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      for与foreach用法的区别
+      前缀、中缀、后缀表达式(逆波兰表达式)
     </h1>
   
 
@@ -222,7 +222,7 @@
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -232,13 +232,208 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-         <meta name="referrer" content="no-referrer">
-
-<h3 id="for-or-foreach"><a href="#for-or-foreach" class="headerlink" title="for or foreach"></a>for or foreach</h3><ul>
-<li>当集合是实现了RandomAccess(随机存储接口),也就意味着，数据是随机访问的，例如arraylist，则尽量用for(int i = 0; i &lt; size; i++) 来遍历。</li>
-<li>反过来，如果List是Sequence List，例如linkedlist，则最好用迭代器来进行迭代。</li>
-<li>数组特殊，for比foreach快</li>
-</ul>
+        <h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;前缀表达式、中缀表达式、后缀表达式都是四则运算的表达方式,用以四则运算表达式求值,即数学表达式的求职。<a id="more"></a></p>
+<h3 id="中缀表达式"><a href="#中缀表达式" class="headerlink" title="中缀表达式"></a>中缀表达式</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;中缀表达式就是常见的运算表达式，如(3+4)×5-6</p>
+<h3 id="前缀表达式"><a href="#前缀表达式" class="headerlink" title="前缀表达式"></a>前缀表达式</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;前缀表达式又称波兰式，前缀表达式的运算符位于操作数之前。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;比如:- + 1 × + 2 3 4 5</p>
+<h4 id="中缀转前缀"><a href="#中缀转前缀" class="headerlink" title="中缀转前缀"></a>中缀转前缀</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;例如:1+((2+3)×4)-5具体过程，如下表</p>
+<table>
+<thead>
+<tr>
+<th>扫描到的元素</th>
+<th>S2(栈底-&gt;栈顶)</th>
+<th>S1 (栈底-&gt;栈顶)</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>5</td>
+<td>5</td>
+<td>空</td>
+<td>数字，直接入栈</td>
+</tr>
+<tr>
+<td>-</td>
+<td>5</td>
+<td>-</td>
+<td>s1为空，运算符直接入栈</td>
+</tr>
+<tr>
+<td>)</td>
+<td>5</td>
+<td>-)</td>
+<td>右括号直接入栈</td>
+</tr>
+<tr>
+<td>4</td>
+<td>5 4</td>
+<td>-)</td>
+<td>数字直接入栈</td>
+</tr>
+<tr>
+<td>x</td>
+<td>5 4</td>
+<td>-)x</td>
+<td>s1栈顶是右括号，直接入栈</td>
+</tr>
+<tr>
+<td>)</td>
+<td>5 4</td>
+<td>-)x)</td>
+<td>右括号直接入栈</td>
+</tr>
+<tr>
+<td>3</td>
+<td>5 4 3</td>
+<td>-)x)</td>
+<td>数字</td>
+</tr>
+<tr>
+<td>+</td>
+<td>5 4 3</td>
+<td>-)x)+</td>
+<td>s1栈顶是右括号，直接入栈</td>
+</tr>
+<tr>
+<td>2</td>
+<td>5 4 3 2</td>
+<td>-)x)+</td>
+<td>数字</td>
+</tr>
+<tr>
+<td>(</td>
+<td>5 4 3 2 +</td>
+<td>-)x</td>
+<td>左括号，弹出运算符直至遇到右括号</td>
+</tr>
+<tr>
+<td>(</td>
+<td>5 4 3 2 + x</td>
+<td>-</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>+</td>
+<td>5 4 3 2 + x</td>
+<td>-+</td>
+<td>优先级与-相同，入栈</td>
+</tr>
+<tr>
+<td>1</td>
+<td>5 4 3 2 + x 1</td>
+<td>-+</td>
+<td>数字</td>
+</tr>
+<tr>
+<td>到达最左端</td>
+<td>5 4 3 2 + x 1 + -</td>
+<td>空</td>
+<td>s1剩余运算符</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;结果是:“- + 1 × + 2 3 4 5”</p>
+<h4 id="计算方式"><a href="#计算方式" class="headerlink" title="计算方式"></a>计算方式</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;从右至左扫描表达式，遇到数字时，将数字压入堆栈，遇到运算符时，弹出栈顶的两个数，用运算符对它们做相应的计算（栈顶元素 op 次顶元素），并将结果入栈；重复上述过程直到表达式最左端，最后运算得出的值即为表达式的结果。</p>
+<h3 id="后缀表达式"><a href="#后缀表达式" class="headerlink" title="后缀表达式"></a>后缀表达式</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;后缀表达式又称逆波兰表达式,与前缀表达式相似，只是运算符位于操作数之后。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;比如:1 2 3 + 4 × + 5 -</p>
+<h4 id="中缀转后缀"><a href="#中缀转后缀" class="headerlink" title="中缀转后缀"></a>中缀转后缀</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;例如，将中缀表达式“1+((2+3)×4)-5”转换为后缀表达式的过程如下：</p>
+<table>
+<thead>
+<tr>
+<th>扫描到的元素</th>
+<th>s2(栈底-&gt;栈顶)</th>
+<th>s1 (栈底-&gt;栈顶)</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>空</td>
+<td>数字，直接入栈</td>
+</tr>
+<tr>
+<td>+</td>
+<td>1</td>
+<td>+</td>
+<td>s1为空，运算符直接入栈</td>
+</tr>
+<tr>
+<td>(</td>
+<td>1</td>
+<td>+ (</td>
+<td>左括号，直接入栈</td>
+</tr>
+<tr>
+<td>(</td>
+<td>1</td>
+<td>+ ( (</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>2</td>
+<td>1 2</td>
+<td>+ ( (</td>
+<td>数字</td>
+</tr>
+<tr>
+<td>+</td>
+<td>1 2</td>
+<td>+ ( ( +</td>
+<td>s1栈顶为左括号，运算符直接入栈</td>
+</tr>
+<tr>
+<td>3</td>
+<td>1 2 3</td>
+<td>+ ( ( +</td>
+<td>数字</td>
+</tr>
+<tr>
+<td>)</td>
+<td>1 2 3 +</td>
+<td>+ (</td>
+<td>右括号，弹出运算符直至遇到左括号</td>
+</tr>
+<tr>
+<td>×</td>
+<td>1 2 3 +</td>
+<td>+ ( ×</td>
+<td>s1栈顶为左括号，运算符直接入栈</td>
+</tr>
+<tr>
+<td>4</td>
+<td>1 2 3 + 4</td>
+<td>+ ( ×</td>
+<td>数字</td>
+</tr>
+<tr>
+<td>)</td>
+<td>1 2 3 + 4 ×</td>
+<td>+</td>
+<td>右括号，弹出运算符直至遇到左括号</td>
+</tr>
+<tr>
+<td>-</td>
+<td>1 2 3 + 4 × +</td>
+<td>-</td>
+<td>-与+优先级相同，因此弹出+，再压入-</td>
+</tr>
+<tr>
+<td>5</td>
+<td>1 2 3 + 4 × + 5</td>
+<td>-</td>
+<td>数字</td>
+</tr>
+<tr>
+<td>到达最右端</td>
+<td>1 2 3 + 4 × + 5 -</td>
+<td>空</td>
+<td>s1中剩余的运算符</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;因此结果为“1 2 3 + 4 × + 5 -”</p>
+<h4 id="计算方式-1"><a href="#计算方式-1" class="headerlink" title="计算方式"></a>计算方式</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;从左至右扫描表达式，遇到数字时，将数字压入堆栈，遇到运算符时，弹出栈顶的两个数，用运算符对它们做相应的计算（次顶元素 op 栈顶元素），并将结果入栈；重复上述过程直到表达式最右端，最后运算得出的值即为表达式的结果。</p>
 
       
       
@@ -248,13 +443,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2018/10/10/for_foreach/">for与foreach用法的区别</a></p>
+        <p><span>本文标题:</span><a href="/2019/05/07/20190507_1/">前缀、中缀、后缀表达式(逆波兰表达式)</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 君不见 的个人博客">君不见</a></p>
-        <p><span>发布时间:</span>2018年10月10日 - 00时00分</p>
-        <p><span>最后更新:</span>2019年03月28日 - 10时04分</p>
+        <p><span>发布时间:</span>2019年05月07日 - 00时00分</p>
+        <p><span>最后更新:</span>2019年05月07日 - 13时54分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2018/10/10/for_foreach/" title="for与foreach用法的区别">https://snmlm.github.io/2018/10/10/for_foreach/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://snmlm.github.io/2018/10/10/for_foreach/　　作者: 君不见" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2019/05/07/20190507_1/" title="前缀、中缀、后缀表达式(逆波兰表达式)">https://snmlm.github.io/2019/05/07/20190507_1/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://snmlm.github.io/2019/05/07/20190507_1/　　作者: 君不见" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -267,18 +462,9 @@
 
 <nav id="article-nav">
   
-    <a href="/2018/10/11/GcAndFinalize/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          System.gc()与Object.finalize()的区别
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/10/10/JavaObject/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">java Object</div>
+    <a href="/2019/04/30/20190430_2/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">常用数据结构</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -289,7 +475,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#for-or-foreach"><span class="toc-number">1.</span> <span class="toc-text">for or foreach</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#介绍"><span class="toc-number">1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#中缀表达式"><span class="toc-number">2.</span> <span class="toc-text">中缀表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#前缀表达式"><span class="toc-number">3.</span> <span class="toc-text">前缀表达式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#中缀转前缀"><span class="toc-number">3.1.</span> <span class="toc-text">中缀转前缀</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#计算方式"><span class="toc-number">3.2.</span> <span class="toc-text">计算方式</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#后缀表达式"><span class="toc-number">4.</span> <span class="toc-text">后缀表达式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#中缀转后缀"><span class="toc-number">4.1.</span> <span class="toc-text">中缀转后缀</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#计算方式-1"><span class="toc-number">4.2.</span> <span class="toc-text">计算方式</span></a></li></ol></li></ol>
 </div>
 <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 
@@ -360,13 +546,11 @@ style="width:90%;margin:5% auto 0 auto;background: #fff;padding: 0 12px;border-r
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2018/10/11/GcAndFinalize/" title="上一篇: System.gc()与Object.finalize()的区别">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a href="/2018/10/10/JavaObject/" title="下一篇: java Object">
+            <a href="/2019/04/30/20190430_2/" title="下一篇: 常用数据结构">
                 <i class="fa fa-angle-right"></i>
             </a>
         
