@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>面试的东东 | 君不见</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="准备阶段算法 leetcode http://leetcode.com/ careerup http://www.careercup.com/">
+<meta name="keywords" content="嘿嘿嘿">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面试的东东">
+<meta property="og:url" content="https://snmlm.github.io/2019/05/15/20190515_1/index.html">
+<meta property="og:site_name" content="君不见">
+<meta property="og:description" content="准备阶段算法 leetcode http://leetcode.com/ careerup http://www.careercup.com/">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-05-15T07:49:47.010Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="面试的东东">
+<meta name="twitter:description" content="准备阶段算法 leetcode http://leetcode.com/ careerup http://www.careercup.com/">
+  
+    <link rel="alternative" href="/atom.xml" title="君不见" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon-n.png">
+  
+  
+      <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          rootUrl: '/',
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col" style="background-size: cover; background-position: center center;">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/head.gif" class="js-avatar">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/" title="君不见">君不见</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">付出总会有回报~</p>
+        
+        
+            <form>
+                <!--<input type="text" class="st-default-search-input search" id="search" placeholder=" Search...">-->
+				<input type="text" class="st-default-search-input search" id="local-search-input" placeholder="搜索一下" autocomplete="off">
+            </form>
+			<div id="local-search-result"></div>
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/archives">文章</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl github" target="_blank" href="https://github.com/snmlm" title="github">github</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/Books/" style="font-size: 12px;">Books</a> <a href="/tags/dubbo/" style="font-size: 12px;">dubbo</a> <a href="/tags/hexo/" style="font-size: 12px;">hexo</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/mysql/" style="font-size: 16px;">mysql</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/spring-boot/" style="font-size: 10px;">spring boot</a> <a href="/tags/嘿嘿嘿/" style="font-size: 10px;">嘿嘿嘿</a> <a href="/tags/数据结构/" style="font-size: 12px;">数据结构</a> <a href="/tags/日常/" style="font-size: 14px;">日常</a> <a href="/tags/架构/" style="font-size: 10px;">架构</a> <a href="/tags/算法/" style="font-size: 18px;">算法</a> <a href="/tags/解决方案/" style="font-size: 10px;">解决方案</a> <a href="/tags/试题/" style="font-size: 10px;">试题</a>
+                    </div>
+                </section>
+                
+                
+                
+
+                
+                
+                <section class="switch-part switch-part3">
+                
+                    <div id="js-aboutme">君不见</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="Me">君不见</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/head.gif" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="Me">君不见</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">付出总会有回报~</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/archives">文章</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="github" target="_blank" href="https://github.com/snmlm" title="github">github</a>
+                    
+                </div>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-20190515_1" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/05/15/20190515_1/" class="article-date">
+      <time datetime="2019-05-14T16:00:00.000Z" itemprop="datePublished">2019-05-15</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      面试的东东
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/知识点/">知识点</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/嘿嘿嘿/">嘿嘿嘿</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h3 id="准备阶段"><a href="#准备阶段" class="headerlink" title="准备阶段"></a>准备阶段</h3><h4 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h4><ul>
+<li>leetcode <a href="http://leetcode.com/" target="_blank" rel="noopener">http://leetcode.com/</a></li>
+<li>careerup <a href="http://www.careercup.com/" target="_blank" rel="noopener">http://www.careercup.com/</a> <a id="more"></a></li>
+<li><a href="http://hawstein.com/posts/ctci-solutions-contents.html" target="_blank" rel="noopener">http://hawstein.com/posts/ctci-solutions-contents.html</a></li>
+<li>glassdoor <a href="http://www.glassdoor.com/index.htm" target="_blank" rel="noopener">http://www.glassdoor.com/index.htm</a></li>
+<li>topcoder <a href="http://www.topcoder.com/" target="_blank" rel="noopener">http://www.topcoder.com/</a></li>
+<li>zoj <a href="http://acm.zju.edu.cn/onlinejudge/" target="_blank" rel="noopener">http://acm.zju.edu.cn/onlinejudge/</a></li>
+<li>july的博客 <a href="http://blog.csdn.net/v_july_v/article/details/6543438" target="_blank" rel="noopener">http://blog.csdn.net/v_july_v/article/details/6543438</a></li>
+<li>mitbbs <a href="http://www.mitbbs.com/bbsdoc/JobHunting.html" target="_blank" rel="noopener">http://www.mitbbs.com/bbsdoc/JobHunting.html</a></li>
+<li>poj <a href="http://poj.org/" target="_blank" rel="noopener">http://poj.org/</a></li>
+<li>杭电acm <a href="http://acm.hdu.edu.cn/" target="_blank" rel="noopener">http://acm.hdu.edu.cn/</a></li>
+<li>codeforces<a href="http://codeforces.com/" target="_blank" rel="noopener">http://codeforces.com/</a></li>
+<li>复杂数据结构的讲解及实现 GeeksForGeeks： <a href="http://www.geeksforgeeks.org/" target="_blank" rel="noopener">http://www.geeksforgeeks.org/</a></li>
+<li>一个比较牛逼的coding challenge网站： <a href="https://www.hackerrank.com/" target="_blank" rel="noopener">https://www.hackerrank.com/</a></li>
+</ul>
+<h4 id="Java基础"><a href="#Java基础" class="headerlink" title="Java基础"></a>Java基础</h4><ul>
+<li>面向对象的特征：继承、封装和多态</li>
+<li>int 和 Integer 有什么区别；Integer的值缓存范围</li>
+<li>说说反射的用途及实现</li>
+<li>Http 请求的 GET 和 POST 方式的区别</li>
+<li>MVC设计思想</li>
+<li>什么是Java序列化和反序列化；如何实现Java序列化；或者请描述</li>
+<li>Serializable接口的作用</li>
+<li>重载和重写的区别</li>
+</ul>
+<h4 id="进程和线程"><a href="#进程和线程" class="headerlink" title="进程和线程"></a>进程和线程</h4><ul>
+<li>线程和进程的概念</li>
+<li>并行和并发的概念</li>
+<li>创建线程的方式及实现</li>
+<li>进程间通信的方式</li>
+<li>说说 CountDownLatch、CyclicBarrier 原理和区别</li>
+<li>说说 Semaphore 原理</li>
+<li>说说 Exchanger 原理</li>
+<li>ThreadLocal 原理分析；ThreadLocal为什么会出现OOM，出现的深</li>
+</ul>
+<h4 id="层次原理"><a href="#层次原理" class="headerlink" title="层次原理"></a>层次原理</h4><ul>
+<li>讲讲线程池的实现原理</li>
+<li>线程池的几种实现方式 </li>
+<li>线程的生命周期；状态是如何转移的</li>
+</ul>
+<h4 id="锁机制"><a href="#锁机制" class="headerlink" title="锁机制"></a>锁机制</h4><ul>
+<li>什么是线程安全？如何保证线程安全？</li>
+<li>重入锁的概念；重入锁为什么可以防止死锁？</li>
+<li>产生死锁的四个条件</li>
+<li>如何检查死锁</li>
+<li>volatile 实现原理</li>
+<li>synchronized 实现原理（对象监视器）</li>
+<li>synchronized 与 lock 的区别</li>
+<li>AQS 同步队列</li>
+<li>CAS 无锁的概念；乐观锁和悲观锁</li>
+<li>常见的原子操作类</li>
+<li>什么是 ABA 问题；出现 ABA 问题 JDK 是如何解决的</li>
+<li>乐观锁的业务场景及实现方式</li>
+<li>Java 8 并发包下常见的并发类</li>
+<li>偏向锁、轻量级锁、重量级锁、自旋锁的概念</li>
+</ul>
+<h4 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h4><ul>
+<li>DDL、DML、DCL 分别指什么</li>
+<li>explain 命令</li>
+<li>脏读、幻读、不可重复读</li>
+<li>事务的隔离级别</li>
+<li>数据库的几大范式</li>
+<li>说说分库与分表设计</li>
+<li>分库与分表带来的分布式困境与对应之策</li>
+<li>说说 SQL 优化之道</li>
+<li>存储引擎的 InnoDB 与 MyISAM 区别、优缺点、使用场景</li>
+<li>索引类别（B+树索引、全文索引、哈希索引）；索引的区别</li>
+<li>什么是自适应哈希索引（AHI）</li>
+<li>为什么要用 B+tree 作为 MySql 索引的数据结构</li>
+<li>聚集索引与非聚集索引的区别</li>
+<li>limit 20000 加载很慢怎么解决</li>
+<li>常见的几种分布式 ID 的设计方案</li>
+</ul>
+<h4 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h4><ul>
+<li>JVM 运行时内存区域划分</li>
+<li>常见的 GC 回收算法及其含义</li>
+<li>常见的 JVM 性能监控和故障处理工具类</li>
+<li>JVM 性能调优</li>
+<li>类加载器、双亲委派模型</li>
+<li>类加载的过程</li>
+<li>强引用、软引用、弱引用、虚引用</li>
+<li>Java 内存模型 JMM</li>
+</ul>
+<blockquote>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在对上面的内容做了准备后，我开始投简历面试，先从小公司开始面，小公司一般 1-2面技术，大公司 3-5 轮技术，一般都是一面基础，二面进阶，三面优化和场景，四面问规划，五面hr.</p>
+</blockquote>
+<h4 id="学习方式"><a href="#学习方式" class="headerlink" title="学习方式"></a>学习方式</h4><ul>
+<li>看面试题 <ul>
+<li>正常人第一步肯定都会看面试题，我也不例外，在看的过程中，我发现有些文章写的不错，对我帮助不小值得推荐 。</li>
+</ul>
+</li>
+<li>对问题深入理解 <ul>
+<li>在看面试题的过程，你会遇到一些自己没接触过的或者以前没深入学习过的知识，例如最常问的HashMap内部实现原理，这就促使你得开始去看jdk的源码或者是学习一些新的东西。看源码是很重要的一步，起步很难，但是会让你收益良多。</li>
+</ul>
+</li>
+<li>熟悉项目的代码和需求<ul>
+<li>把项目中不错的需求拿出来，看会，代码熟悉好，将整个功能的流程和涉及的东西吃透。项目是面试中必问的环节，一般是以一个功能点为基础展开问，因此你必须对这个功能有很深的认识，不能有模糊的地方。如果有时间，能把涉及到的知识点也搞懂最好。 </li>
+</ul>
+</li>
+<li>网上做题和刷题<ul>
+<li>头条会远程面试， 一般会做题。建议去本文开头的一些刷题网站多做些题目。</li>
+</ul>
+</li>
+<li>总结记录 <ul>
+<li>把自己每天学到的内容记录下来，可以让自己更有动力的复习，技术是一个枯燥的过程，你必须让自己时刻保持有动力。 </li>
+</ul>
+</li>
+</ul>
+<h4 id="投简历、约面试环节"><a href="#投简历、约面试环节" class="headerlink" title="投简历、约面试环节"></a>投简历、约面试环节</h4><ul>
+<li>投简历渠道<ul>
+<li>BOSS直聘、猎聘网。拉钩等（一般不靠谱），找靠谱猎头也行。</li>
+</ul>
+</li>
+<li>简历不要海投 <ul>
+<li>为两个情况。 </li>
+<li>没有社招面试经验：建议采取海投的方式，只要职位要求跟自己比较匹配都可以投，累计面试经验。</li>
+<li>社招面试经验已经足够：投那些职位匹配、公司满意的职位。公司评价可以去看准网，企业查等。</li>
+</ul>
+</li>
+<li>投简历没下文<ul>
+<li>简历确实亮点不多，学历不好，项目不行，容易被HR给刷掉，因此他们看得最直接的就是你上家的公司和你毕业的学校，如果你不是从牛逼的公司/学校出来，可能会碰到和我一样的情况，应对的办法就是多投。</li>
+</ul>
+</li>
+<li>一天约几家面试合适？ <ul>
+<li>最理想的情况为2家面试，上午一般在10点左右，下午一般在2点左右。建议把理想的公司放下午，因为下午的时间比较充足，可以让公司更充分的了解你。我开始面的时候，每次都是上午面的不好，下午面的不错。 </li>
+</ul>
+</li>
+<li>是否该裸辞？ <ul>
+<li>我一开始是边上班边投，然后利用调休时间，或者请假去面试。后来，面试机会越来越多，请假太频繁了，自己都不好意思了，并且自己也已经有足够的信心，这个时候我选择了裸辞。</li>
+</ul>
+</li>
+<li>注意事项 <ul>
+<li>千万别迟到。 </li>
+<li>做好特殊情况处理，带简历、充电宝、纸巾、伞。 </li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;裸辞还有一个原因是，在面试过程中你会发现，遇到公司要人紧急的，如果你的入职流程过长可能错过这个公司。 </p>
+</blockquote>
+<h4 id="面试现场"><a href="#面试现场" class="headerlink" title="面试现场"></a>面试现场</h4><ul>
+<li>笔试常见的问题 <ul>
+<li>面试常见的问题上面给的面试题链接基本都有。</li>
+<li>手写代码：手写代码一般考单例、排序、线程、消费者生产者 排序。</li>
+<li>写SQL很常考察group by、内连接和外连接</li>
+</ul>
+</li>
+<li>面试1-5面总结 <ul>
+<li>让你自我介绍 </li>
+<li>做两道算法题（刷题必中）</li>
+<li>问Java基础知识 </li>
+<li>java 高级进阶就是我准备的那些</li>
+<li>问项目中指责和做了什么</li>
+<li>业务情景问题，例如：你的一个功能上了生产环境后，服务器压力骤增，该怎么排查。 </li>
+<li>对职业的规划</li>
+<li>你有什么想问面试官的 </li>
+<li>问期望待遇</li>
+</ul>
+</li>
+<li>常问的知识要点<ul>
+<li>集合相关问题（必问）： </li>
+<li>线程相关问题（必问）：  </li>
+<li>JVM相关问题（必问）：</li>
+<li>设计模式相关问题（必问）： </li>
+<li>数据库相关问题，针对Mysql（必问）： </li>
+<li>主流框架相关问题：  </li>
+<li>Spring的设计模式。 </li>
+<li>Spring中AOP。 </li>
+<li>Spring注入bean的方式。 </li>
+<li>什么是IOC，什么是依赖注入。 </li>
+<li>Spring是单例还是多例，怎么修改。 </li>
+<li>Spring事务隔离级别和传播性。 </li>
+<li>介绍下Mybatis/Hibernate的缓存机制。 </li>
+<li>Mybatis的mapper文件中#和$的区别。 </li>
+<li>Mybatis的mapper文件中resultType和resultMap的区别。 </li>
+<li>Hibernate和Mybatis的区别。 </li>
+<li>Spring MVC和Struts2的区别。</li>
+<li>Mybatis中DAO层接口没有写实现类，Mapper中的方法和DAO接口方法是怎么绑定到一起的，其内部是怎么实现的。 </li>
+</ul>
+</li>
+<li>其他遇到问题： <ul>
+<li>介绍下B树、二叉树。 </li>
+<li>IO和NIO的区别。 </li>
+<li>重载和重写的区别。 </li>
+<li>栈和队列。 </li>
+<li>接口和抽象类的区别。 </li>
+<li>int和Integer的自动拆箱/装箱相关问题。 常量池相关问题。 </li>
+<li>==和equals的区别。 </li>
+<li>String和StringBuilder、StringBuffer的区别。 </li>
+<li>静态变量、实例变量、局部变量线程安全吗，为什么。</li>
+<li>try、catch、finally都有return语句时执行哪个。 </li>
+<li>分布式锁的实现。 </li>
+<li>分布式session存储解决方案。 </li>
+<li>常用的linux命令。</li>
+</ul>
+</li>
+</ul>
+<h4 id="Offer-流程"><a href="#Offer-流程" class="headerlink" title="Offer 流程"></a>Offer 流程</h4><ul>
+<li>面试通过当然还有一些后续的环节<ul>
+<li>提交工资流水（大点的公司），学历，学位照片。</li>
+<li>定薪</li>
+<li>体检通知</li>
+<li>背调 发offer。</li>
+<li>入职材料 选择入职日期。</li>
+</ul>
+</li>
+</ul>
+<h4 id="一些经验"><a href="#一些经验" class="headerlink" title="一些经验"></a>一些经验</h4><ul>
+<li>千万别裸辞，别裸辞，别裸辞 我同事裸辞了，2个月了到现在还没找到工作。</li>
+<li>先投一些普通的小公司，等面出感觉了再去面大公司。 </li>
+<li>自己不会的技术简历不要写 </li>
+<li>很多公司压待遇，期望待遇适当提高。 </li>
+<li>不要去实习期6个月还打8折的公司，除非你没有其他选择了，否则不要去。</li>
+<li>不要去参加很多大大小小的招聘会，纯粹是浪费时间。 </li>
+<li>把面试当作一次技术的交流，不要太在意是否能被录取。 就当学习。</li>
+<li>公司一般面完就决定是否录取了，让你回去等消息这种情况一般没戏，感觉良好也没用。</li>
+<li>地方远的尽量通过电话面试，不然白跑。 </li>
+<li>面试冲刺阶段，要保持每天学习，无论是学习新东西还是复习旧东西。 </li>
+<li>无论好的坏的公司，先拿到offer再说，最后看看自己这个公司自己是否值得去。</li>
+<li>通过面试体验和面试官的风格 可以大概判断入职团队的情况。 </li>
+<li>拉勾投的简历很多会被筛掉，但是拉勾还是面试机会的最主要来源。 </li>
+<li>理想的公司可以多投几次，不同部门要求不一样。</li>
+<li>问到自己有深入研究过的知识，抓住机会好好表现，吹是必须的，不要轻易错过吹得机会。 </li>
+<li>大公司可以走猎头渠道，谈待遇靠谱一点。</li>
+</ul>
+
+      
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2019/05/15/20190515_1/">面试的东东</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 君不见 的个人博客">君不见</a></p>
+        <p><span>发布时间:</span>2019年05月15日 - 00时00分</p>
+        <p><span>最后更新:</span>2019年05月15日 - 15时49分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2019/05/15/20190515_1/" title="面试的东东">https://snmlm.github.io/2019/05/15/20190515_1/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://snmlm.github.io/2019/05/15/20190515_1/　　作者: 君不见" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+    <a href="/2019/05/17/20190517_1/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          redis命令
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/05/07/20190507_1/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">前缀、中缀、后缀表达式(逆波兰表达式)</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#准备阶段"><span class="toc-number">1.</span> <span class="toc-text">准备阶段</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#算法"><span class="toc-number">1.1.</span> <span class="toc-text">算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Java基础"><span class="toc-number">1.2.</span> <span class="toc-text">Java基础</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#进程和线程"><span class="toc-number">1.3.</span> <span class="toc-text">进程和线程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#层次原理"><span class="toc-number">1.4.</span> <span class="toc-text">层次原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#锁机制"><span class="toc-number">1.5.</span> <span class="toc-text">锁机制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数据库"><span class="toc-number">1.6.</span> <span class="toc-text">数据库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#JVM"><span class="toc-number">1.7.</span> <span class="toc-text">JVM</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#学习方式"><span class="toc-number">1.8.</span> <span class="toc-text">学习方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#投简历、约面试环节"><span class="toc-number">1.9.</span> <span class="toc-text">投简历、约面试环节</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#面试现场"><span class="toc-number">1.10.</span> <span class="toc-text">面试现场</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Offer-流程"><span class="toc-number">1.11.</span> <span class="toc-text">Offer 流程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#一些经验"><span class="toc-number">1.12.</span> <span class="toc-text">一些经验</span></a></li></ol></li></ol>
+</div>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+    }
+</script>
+
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+        <!-- ������City�氲װ���� -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zOTk3Ny8xNjUwNA==" 
+style="width:90%;margin:5% auto 0 auto;background: #fff;padding: 0 12px;border-radius: 5px;">
+<script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+</script>
+<noscript>Ϊ����ʹ�����������۹����뼤��JavaScript</noscript>
+</div>
+<!-- City�氲װ��������� -->
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2019/05/17/20190517_1/" title="上一篇: redis命令">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/2019/05/07/20190507_1/" title="下一篇: 前缀、中缀、后缀表达式(逆波兰表达式)">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/05/17/20190517_1/">redis命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/15/20190515_1/">面试的东东</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/07/20190507_1/">前缀、中缀、后缀表达式(逆波兰表达式)</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/30/20190430_2/">常用数据结构</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/30/20190430_1/">Java7/8 中的 HashMap 和 ConcurrentHashMap 全解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/25/20190425_1/">红黑树</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/23/20190423_2/">看到的题，记录一下</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/23/20190423_1/">MySQL5.7中Derived table变形记</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/19/20190419_1/">MySQL索引底层实现原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/18/20190418_1/">十大常见排序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/18/20190418_2/">mysql如何获取当前时间</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/17/20190417_1/">利用activityMQ做处理，消息的顺序性和服务处理的时效性问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/15/20190415_3/">spring加载对象问题（坑）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/15/20190415_2/">java基础类型</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/15/20190415_1/">java子类继承加载顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/12/20190412_1/">ArrayList删除节点（坑）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/12/20190412_3/">java总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/12/20190412_2/">==和equals</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/11/20190411_1/">java类中缓存机制类</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/11/20190411_2/">java调用js方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/10/20190410_1/">dubbo的坑（持续更新）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/10/20190410_2/">spring boot 配置加载顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/10/20190410_3/">dubbo 配置加载顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/09/20190409_3/">spring容器外调用容器内的对象</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/09/20190409_2/">linux CTRL+Z和CTRL+C区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/09/20190409_1/">mysql关键字执行顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/27/20190327_1/">mysql利用find_in_set去查询in的集合</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/27/20190327_2/">hexo指令</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/11/20190311_1/">tcp-ip</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/11/20190311_3/">github上传限制</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/11/20190311_2/">汇编语言第二版</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/07/20190307_1/">数字大小写</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/07/20190307_2/">公式算法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/05/20190305/">动态规划</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/10/20190110/">项目</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/15/questions/">试题</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/23/Offer_4/">重建二叉树</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/23/Offer_3/">从尾到头打印链表</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/22/Offer_2/">替换空格</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/19/Offer_1/">二维数组中的查找</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/11/GcAndFinalize/">System.gc()与Object.finalize()的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/10/for_foreach/">for与foreach用法的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/10/JavaObject/">java Object</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/10/TenGoodAdvice/">10条好建议</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/30/ReadJava/">读java源码的顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/28/Hexo_spfk_LiveRe_GithubPages/">Hexo博客+spfk主题+LiveRe评论+Github pages</a></li></ul>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+            }
+        })
+    </script>
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2019 君不见
+            </div>
+            <!-- <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/luuman/hexo-theme-spfk" target="_blank">spfk</a> by luuman
+            </div> -->
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 1;
+            var backgroundimg = "url(/background/bg-" + backgroundnum +".jpg)";
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+            <script type="text/javascript">
+                (function() {
+                    'use strict';
+                    function getMatchData(keyword, data) {
+                        var matchData = [];
+                        for(var i =0;i<data.length;i++){
+                            if(data[i].title.toLowerCase().indexOf(keyword)>=0) 
+                                matchData.push(data[i])
+                        }
+                        return matchData;
+                    }
+                    var $input = $('#local-search-input');
+                    var $resultContent = $('#local-search-result');
+                    $input.keyup(function(){
+                        $.ajax({
+                            url: '/search.json',
+                            dataType: "json",
+                            success: function( json ) {
+                                var str='<ul class=\"search-result-list\">';                
+                                var keyword = $input.val().trim().toLowerCase();
+                                $resultContent.innerHTML = "";
+                                if ($input.val().trim().length <= 0) {
+                                    $resultContent.empty();
+                                    $('#switch-area').show();
+                                    return;
+                                }
+                                var results = getMatchData(keyword, json);
+                                if(results.length === 0){
+                                    $resultContent.empty();
+                                    $('#switch-area').show();
+                                    return;
+                                } 
+                                for(var i =0; i<results.length; i++){
+                                    str += "<li><a href='"+ results[i].url +"' class='search-result-title'>"+ results[i].title +"</a></li>";
+                                }
+                                str += "</ul>";
+                                $resultContent.empty();
+                                $resultContent.append(str);
+                                $('#switch-area').hide();
+                            }
+                        });
+                    });
+                })();
+            </script>
+        
+  </div>
+</body>
+</html>
