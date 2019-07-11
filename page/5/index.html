@@ -132,7 +132,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/Books/" style="font-size: 12px;">Books</a> <a href="/tags/dubbo/" style="font-size: 12px;">dubbo</a> <a href="/tags/hexo/" style="font-size: 12px;">hexo</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/mysql/" style="font-size: 16px;">mysql</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/spring-boot/" style="font-size: 10px;">spring boot</a> <a href="/tags/嘿嘿嘿/" style="font-size: 10px;">嘿嘿嘿</a> <a href="/tags/数据结构/" style="font-size: 12px;">数据结构</a> <a href="/tags/日常/" style="font-size: 14px;">日常</a> <a href="/tags/架构/" style="font-size: 10px;">架构</a> <a href="/tags/算法/" style="font-size: 18px;">算法</a> <a href="/tags/解决方案/" style="font-size: 10px;">解决方案</a> <a href="/tags/试题/" style="font-size: 10px;">试题</a>
+                        <a href="/tags/Books/" style="font-size: 12px;">Books</a> <a href="/tags/dubbo/" style="font-size: 12px;">dubbo</a> <a href="/tags/hexo/" style="font-size: 12px;">hexo</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/mysql/" style="font-size: 16px;">mysql</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/spring-boot/" style="font-size: 10px;">spring boot</a> <a href="/tags/springboot/" style="font-size: 10px;">springboot</a> <a href="/tags/嘿嘿嘿/" style="font-size: 10px;">嘿嘿嘿</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/日常/" style="font-size: 14px;">日常</a> <a href="/tags/架构/" style="font-size: 10px;">架构</a> <a href="/tags/算法/" style="font-size: 18px;">算法</a> <a href="/tags/解决方案/" style="font-size: 10px;">解决方案</a> <a href="/tags/试题/" style="font-size: 10px;">试题</a>
                     </div>
                 </section>
                 
@@ -190,11 +190,11 @@
 </nav>
       <div class="body-wrap">
   
-    <article id="post-GcAndFinalize" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-TenGoodAdvice" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2018/10/11/GcAndFinalize/" class="article-date">
-      <time datetime="2018-10-10T16:00:00.000Z" itemprop="datePublished">2018-10-11</time>
+      <a href="/2018/10/10/TenGoodAdvice/" class="article-date">
+      <time datetime="2018-10-09T16:00:00.000Z" itemprop="datePublished">2018-10-10</time>
 </a>
     </div>
   
@@ -207,7 +207,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/10/11/GcAndFinalize/">System.gc()与Object.finalize()的区别</a>
+      <a class="article-title" href="/2018/10/10/TenGoodAdvice/">10条好建议</a>
     </h1>
   
 
@@ -219,7 +219,8 @@
           
               <meta name="referrer" content="no-referrer">
 
-<p><code>finalize()</code>是由JVM自动调用的，你可以用<code>System.gc()</code>，但JVM不一定会立刻执行，JVM感觉内存空间有限时，才会开始执行<code>finalize()</code>,至于新的对象创建个数和被收集个数不同是因为收集的对象只和JVM的垃圾收集策略有关。<br>
+<h3 id="想清楚，再动手写代码"><a href="#想清楚，再动手写代码" class="headerlink" title="想清楚，再动手写代码"></a>想清楚，再动手写代码</h3><ul>
+<li>刚入行的新手，为了展示自己的能力，拿到需求迫不及待地就开始上手写代码，大忌！
           
       
       
@@ -235,12 +236,12 @@
 
       
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/日常/">日常</a></li></ul>
     </div>
 
       
         <p class="article-more-link">
-          <a  href="/2018/10/11/GcAndFinalize/#more">阅读全文 >></a>
+          <a  href="/2018/10/10/TenGoodAdvice/#more">阅读全文 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -379,76 +380,6 @@
       
         <p class="article-more-link">
           <a  href="/2018/10/10/JavaObject/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-TenGoodAdvice" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2018/10/10/TenGoodAdvice/" class="article-date">
-      <time datetime="2018-10-09T16:00:00.000Z" itemprop="datePublished">2018-10-10</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/10/10/TenGoodAdvice/">10条好建议</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <meta name="referrer" content="no-referrer">
-
-<h3 id="想清楚，再动手写代码"><a href="#想清楚，再动手写代码" class="headerlink" title="想清楚，再动手写代码"></a>想清楚，再动手写代码</h3><ul>
-<li>刚入行的新手，为了展示自己的能力，拿到需求迫不及待地就开始上手写代码，大忌！
-          
-      
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/知识点/">知识点</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/日常/">日常</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a  href="/2018/10/10/TenGoodAdvice/#more">阅读全文 >></a>
         </p>
       
       <div class="clearfix"></div>
