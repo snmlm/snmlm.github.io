@@ -3,22 +3,22 @@
 <head>
   <meta charset="utf-8">
   
-  <title>斐波那契数列 | 君不见</title>
+  <title>矩形覆盖 | snmlm</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="题目描述 一只青蛙一次可以跳上1级台阶，也可以跳上2级。 求该青蛙跳上一个n级的台阶总共有多少种跳法（先后次序不同算不同的结果）。">
+  <meta name="description" content="题目描述 我们可以用2*1的小矩形横着或者竖着去覆盖更大的矩形。 请问用n个2*1的小矩形无重叠地覆盖一个2*n的大矩形，总共有多少种方法？">
 <meta name="keywords" content="算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="斐波那契数列">
-<meta property="og:url" content="https://snmlm.github.io/2019/10/12/Offer_8/index.html">
-<meta property="og:site_name" content="君不见">
-<meta property="og:description" content="题目描述 一只青蛙一次可以跳上1级台阶，也可以跳上2级。 求该青蛙跳上一个n级的台阶总共有多少种跳法（先后次序不同算不同的结果）。">
+<meta property="og:title" content="矩形覆盖">
+<meta property="og:url" content="https://snmlm.github.io/2020/03/13/offer/Offer_10/index.html">
+<meta property="og:site_name" content="snmlm">
+<meta property="og:description" content="题目描述 我们可以用2*1的小矩形横着或者竖着去覆盖更大的矩形。 请问用n个2*1的小矩形无重叠地覆盖一个2*n的大矩形，总共有多少种方法？">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-10-12T08:17:38.824Z">
+<meta property="og:updated_time" content="2020-03-13T08:50:15.914Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="斐波那契数列">
-<meta name="twitter:description" content="题目描述 一只青蛙一次可以跳上1级台阶，也可以跳上2级。 求该青蛙跳上一个n级的台阶总共有多少种跳法（先后次序不同算不同的结果）。">
+<meta name="twitter:title" content="矩形覆盖">
+<meta name="twitter:description" content="题目描述 我们可以用2*1的小矩形横着或者竖着去覆盖更大的矩形。 请问用n个2*1的小矩形无重叠地覆盖一个2*n的大矩形，总共有多少种方法？">
   
-    <link rel="alternative" href="/atom.xml" title="君不见" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="snmlm" type="application/atom+xml">
   
   
     <link rel="icon" href="/img/favicon-n.png">
@@ -64,7 +64,7 @@
         </a>
 
         <hgroup>
-          <h1 class="header-author"><a href="/" title="君不见">君不见</a></h1>
+          <h1 class="header-author"><a href="/" title="snmlm">snmlm</a></h1>
         </hgroup>
 
         
@@ -134,7 +134,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/Books/" style="font-size: 12px;">Books</a> <a href="/tags/dubbo/" style="font-size: 12px;">dubbo</a> <a href="/tags/hexo/" style="font-size: 12px;">hexo</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/java8/" style="font-size: 10px;">java8</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/mysql/" style="font-size: 16px;">mysql</a> <a href="/tags/redis/" style="font-size: 12px;">redis</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/spring-boot/" style="font-size: 10px;">spring boot</a> <a href="/tags/springboot/" style="font-size: 10px;">springboot</a> <a href="/tags/zookeeper/" style="font-size: 10px;">zookeeper</a> <a href="/tags/嘿嘿嘿/" style="font-size: 10px;">嘿嘿嘿</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/日常/" style="font-size: 14px;">日常</a> <a href="/tags/架构/" style="font-size: 10px;">架构</a> <a href="/tags/算法/" style="font-size: 18px;">算法</a> <a href="/tags/解决方案/" style="font-size: 10px;">解决方案</a> <a href="/tags/试题/" style="font-size: 10px;">试题</a>
+                        <a href="/tags/Books/" style="font-size: 12px;">Books</a> <a href="/tags/dubbo/" style="font-size: 12px;">dubbo</a> <a href="/tags/hexo/" style="font-size: 12px;">hexo</a> <a href="/tags/java/" style="font-size: 18px;">java</a> <a href="/tags/java8/" style="font-size: 10px;">java8</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/mysql/" style="font-size: 16px;">mysql</a> <a href="/tags/redis/" style="font-size: 12px;">redis</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/spring-boot/" style="font-size: 10px;">spring boot</a> <a href="/tags/springboot/" style="font-size: 10px;">springboot</a> <a href="/tags/zookeeper/" style="font-size: 10px;">zookeeper</a> <a href="/tags/嘿嘿嘿/" style="font-size: 10px;">嘿嘿嘿</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/日常/" style="font-size: 14px;">日常</a> <a href="/tags/架构/" style="font-size: 10px;">架构</a> <a href="/tags/算法/" style="font-size: 20px;">算法</a> <a href="/tags/解决方案/" style="font-size: 10px;">解决方案</a> <a href="/tags/试题/" style="font-size: 10px;">试题</a>
                     </div>
                 </section>
                 
@@ -145,7 +145,7 @@
                 
                 <section class="switch-part switch-part3">
                 
-                    <div id="js-aboutme">君不见</div>
+                    <div id="js-aboutme">snmlm</div>
                 </section>
                 
             </div>
@@ -157,7 +157,7 @@
       <nav id="mobile-nav">
       <div class="overlay">
           <div class="slider-trigger"></div>
-          <h1 class="header-author js-mobile-header hide"><a href="/" title="Me">君不见</a></h1>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="Me">snmlm</a></h1>
       </div>
     <div class="intrude-less">
         <header id="header" class="inner">
@@ -167,7 +167,7 @@
                 
             </a>
             <hgroup>
-              <h1 class="header-author"><a href="/" title="Me">君不见</a></h1>
+              <h1 class="header-author"><a href="/" title="Me">snmlm</a></h1>
             </hgroup>
             
             <p class="header-subtitle">付出总会有回报~</p>
@@ -190,11 +190,11 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-Offer_8" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-offer/Offer_10" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/10/12/Offer_8/" class="article-date">
-      <time datetime="2019-10-11T16:00:00.000Z" itemprop="datePublished">2019-10-12</time>
+      <a href="/2020/03/13/offer/Offer_10/" class="article-date">
+      <time datetime="2020-03-13T08:28:13.728Z" itemprop="datePublished">2020-03-13</time>
 </a>
     </div>
   
@@ -207,7 +207,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      斐波那契数列
+      矩形覆盖
     </h1>
   
 
@@ -235,20 +235,21 @@
          <meta name="referrer" content="no-referrer">
 
 <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><ul>
-<li>一只青蛙一次可以跳上1级台阶，也可以跳上2级。</li>
-<li>求该青蛙跳上一个n级的台阶总共有多少种跳法（先后次序不同算不同的结果）。<a id="more"></a>
+<li>我们可以用2*1的小矩形横着或者竖着去覆盖更大的矩形。</li>
+<li>请问用n个<code>2*1</code>的小矩形无重叠地覆盖一个<code>2*n</code>的大矩形，总共有多少种方法？<a id="more"></a>
 </li>
 </ul>
-<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><pre><code>限定了青蛙一次只能有两种跳法，用逆推方式去思考
-如果最后一次跳1级，那么一共有f（n-1）种跳法。
-如果最后一次跳2级，那么一共有f（n-2）种跳法。
-那么，f（n）=f（n-1）+f（n-2）。
-当n=0时，f（0）=0。
-当n=1时，只有一种f（1）=1。
-当n=2时，有两种情况f（2）=2。
-当n=3时，就符合f（n）=f（n-1）+f（n-2）。
-可以想到是斐波那契数列的变形。0,1,2,3,5,8...
-</code></pre><h3 id="Java-1-8"><a href="#Java-1-8" class="headerlink" title="Java 1.8"></a>Java 1.8</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">    public int JumpFloor(int target) &#123;</span><br><span class="line">        int a = 0;</span><br><span class="line">        int b = 1;</span><br><span class="line">        int c = 0;</span><br><span class="line">        if(target&lt;0)&#123;</span><br><span class="line">            return -1;</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            for (int i = 1; i &lt;= target; i++) &#123;</span><br><span class="line">                c = a + b;</span><br><span class="line">                a = b;</span><br><span class="line">                b = c;</span><br><span class="line">            &#125;</span><br><span class="line">            return c;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><pre><code>target=1,f(1)=1;
+target=2,f(2)=2;
+target=3,f(3)=f(1)+f(2);
+....
+target=n-1,当剩最后一块：f(n-1)=f(n-2);
+                  当剩最后两块：f(n-1)=2f(n-3);
+target=n,当剩最后一块：f(n)=f(n-1)(竖);
+         当剩最后两块：f(n)=f(n-2)(横)+f(n-2)(竖);有一种情况包含了f(n-1)(竖),
+         那么两个公式可以合并为f(n)=f(n-2)+f(n-1);
+</code></pre><h3 id="Java-1-8"><a href="#Java-1-8" class="headerlink" title="Java 1.8"></a>Java 1.8</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">    public int RectCover(int target) &#123;</span><br><span class="line">        int a = 1;</span><br><span class="line">        int b = 2;</span><br><span class="line">        int c = 0;</span><br><span class="line">        if(target==1)&#123;</span><br><span class="line">            return 1;</span><br><span class="line">        &#125;else if(target==2)&#123;</span><br><span class="line">            return 2;</span><br><span class="line">        &#125;else &#123;</span><br><span class="line">            for (int i = 3; i &lt;= target; i++) &#123;</span><br><span class="line">                c = a + b;</span><br><span class="line">                a = b;</span><br><span class="line">                b = c;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return c;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
       
       
     </div>
@@ -257,13 +258,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/10/12/Offer_8/">斐波那契数列</a></p>
-        <p><span>文章作者:</span><a href="/" title="访问 君不见 的个人博客">君不见</a></p>
-        <p><span>发布时间:</span>2019年10月12日 - 00时00分</p>
-        <p><span>最后更新:</span>2019年10月12日 - 16时17分</p>
+        <p><span>本文标题:</span><a href="/2020/03/13/offer/Offer_10/">矩形覆盖</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 snmlm 的个人博客">snmlm</a></p>
+        <p><span>发布时间:</span>2020年03月13日 - 16时28分</p>
+        <p><span>最后更新:</span>2020年03月13日 - 16时50分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/10/12/Offer_8/" title="斐波那契数列">https://snmlm.github.io/2019/10/12/Offer_8/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://snmlm.github.io/2019/10/12/Offer_8/　　作者: 君不见" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2020/03/13/offer/Offer_10/" title="矩形覆盖">https://snmlm.github.io/2020/03/13/offer/Offer_10/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://snmlm.github.io/2020/03/13/offer/Offer_10/　　作者: snmlm" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -276,18 +277,18 @@
 
 <nav id="article-nav">
   
-    <a href="/2019/10/12/Offer_7/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/03/13/offer/Offer_11/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          斐波那契数列
+          二进制中1的个数
         
       </div>
     </a>
   
   
-    <a href="/2019/10/09/20191009_1/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">SQL 性能优化梳理</div>
+    <a href="/2020/03/13/offer/Offer_09/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">变态跳台阶</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -369,18 +370,18 @@ style="width:90%;margin:5% auto 0 auto;background: #fff;padding: 0 12px;border-r
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2019/10/12/Offer_7/" title="上一篇: 斐波那契数列">
+            <a href="/2020/03/13/offer/Offer_11/" title="上一篇: 二进制中1的个数">
                 <i class="fa fa-angle-left"></i>
             </a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a href="/2019/10/09/20191009_1/" title="下一篇: SQL 性能优化梳理">
+            <a href="/2020/03/13/offer/Offer_09/" title="下一篇: 变态跳台阶">
                 <i class="fa fa-angle-right"></i>
             </a>
         
     </div>
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/10/12/Offer_7/">斐波那契数列</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/12/Offer_8/">斐波那契数列</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/09/20191009_1/">SQL 性能优化梳理</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/08/Offer_5/">用两个栈实现队列</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/08/Offer_6/">旋转数组的最小数字</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/29/20190929_1/">java8 λ（lambad）表达式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/27/20190927_1/">redis知识点</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/26/20190926_1/">zookeeper知识点</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/10/20190710_1/">springboot项目</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/17/20190517_1/">redis命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/15/20190515_1/">面试的东东</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/07/20190507_1/">前缀、中缀、后缀表达式(逆波兰表达式)</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/30/20190430_1/">Java7/8 中的 HashMap 和 ConcurrentHashMap 全解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/30/20190430_2/">常用数据结构</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/23/20190423_1/">MySQL5.7中Derived table变形记</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/23/20190423_2/">看到的题，记录一下</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/19/20190419_1/">MySQL索引底层实现原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/18/20190418_2/">mysql如何获取当前时间</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/18/20190418_1/">十大常见排序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/17/20190417_1/">利用activityMQ做处理，消息的顺序性和服务处理的时效性问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/15/20190415_3/">spring加载对象问题（坑）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/15/20190415_1/">java子类继承加载顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/15/20190415_2/">java基础类型</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/12/20190412_1/">ArrayList删除节点（坑）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/12/20190412_2/">==和equals</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/12/20190412_3/">java总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/11/20190411_2/">java调用js方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/11/20190411_1/">java类中缓存机制类</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/10/20190410_2/">spring boot 配置加载顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/10/20190410_3/">dubbo 配置加载顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/10/20190410_1/">dubbo的坑（持续更新）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/09/20190409_2/">linux CTRL+Z和CTRL+C区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/09/20190409_3/">spring容器外调用容器内的对象</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/09/20190409_1/">mysql关键字执行顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/27/20190327_2/">hexo指令</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/27/20190327_1/">mysql利用find_in_set去查询in的集合</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/11/20190311_2/">汇编语言第二版</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/11/20190311_1/">tcp-ip</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/11/20190311_3/">github上传限制</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/07/20190307_1/">数字大小写</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/05/20190305/">动态规划</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/10/20190110/">项目</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/15/questions/">试题</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/23/Offer_4/">重建二叉树</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/23/Offer_3/">从尾到头打印链表</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/22/Offer_2/">替换空格</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/19/Offer_1/">二维数组中的查找</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/11/GcAndFinalize/">System.gc()与Object.finalize()的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/10/for_foreach/">for与foreach用法的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/10/TenGoodAdvice/">10条好建议</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/10/JavaObject/">java Object</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/30/ReadJava/">读java源码的顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/28/Hexo_spfk_LiveRe_GithubPages/">Hexo博客+spfk主题+LiveRe评论+Github pages</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2020/03/13/offer/Offer_12/">数值的整数次方</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/13/offer/Offer_11/">二进制中1的个数</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/13/offer/Offer_10/">矩形覆盖</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/13/offer/Offer_09/">变态跳台阶</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/13/offer/Offer_00/">剑指offer 汇总</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/12/offer/Offer_08/">跳台阶</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/12/offer/Offer_07/">斐波那契数列</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/11/offer/Offer_06/">旋转数组的最小数字</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/09/20191009_1/">SQL 性能优化梳理</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/08/offer/Offer_05/">用两个栈实现队列</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/29/20190929_1/">java8 λ（lambad）表达式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/27/20190927_1/">redis知识点</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/26/20190926_1/">zookeeper知识点</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/10/20190710_1/">springboot项目</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/17/20190517_1/">redis命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/15/20190515_1/">面试的东东</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/07/20190507_1/">前缀、中缀、后缀表达式(逆波兰表达式)</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/30/20190430_1/">Java7/8 中的 HashMap 和 ConcurrentHashMap 全解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/30/20190430_2/">常用数据结构</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/23/20190423_1/">MySQL5.7中Derived table变形记</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/23/20190423_2/">看到的题，记录一下</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/19/20190419_1/">MySQL索引底层实现原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/18/20190418_2/">mysql如何获取当前时间</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/18/20190418_1/">十大常见排序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/17/20190417_1/">利用activityMQ做处理，消息的顺序性和服务处理的时效性问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/15/20190415_3/">spring加载对象问题（坑）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/15/20190415_2/">java基础类型</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/15/20190415_1/">java子类继承加载顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/12/20190412_3/">java总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/12/20190412_2/">==和equals</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/12/20190412_1/">ArrayList删除节点（坑）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/11/20190411_1/">java类中缓存机制类</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/11/20190411_2/">java调用js方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/10/20190410_3/">dubbo 配置加载顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/10/20190410_2/">spring boot 配置加载顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/10/20190410_1/">dubbo的坑（持续更新）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/09/20190409_1/">mysql关键字执行顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/09/20190409_2/">linux CTRL+Z和CTRL+C区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/09/20190409_3/">spring容器外调用容器内的对象</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/27/20190327_1/">mysql利用find_in_set去查询in的集合</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/27/20190327_2/">hexo指令</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/11/20190311_1/">tcp-ip</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/11/20190311_2/">汇编语言第二版</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/11/20190311_3/">github上传限制</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/07/20190307_1/">数字大小写</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/05/20190305/">动态规划</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/10/20190110/">项目</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/15/questions/">试题</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/23/offer/Offer_04/">重建二叉树</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/23/offer/Offer_03/">从尾到头打印链表</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/22/offer/Offer_02/">替换空格</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/19/offer/Offer_01/">二维数组中的查找</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/11/GcAndFinalize/">System.gc()与Object.finalize()的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/10/TenGoodAdvice/">10条好建议</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/10/JavaObject/">java Object</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/10/for_foreach/">for与foreach用法的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/30/ReadJava/">读java源码的顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/28/Hexo_spfk_LiveRe_GithubPages/">Hexo博客+spfk主题+LiveRe评论+Github pages</a></li></ul>
     <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
     <script>
         $(".post-list").addClass("toc-article");
@@ -410,7 +411,7 @@ style="width:90%;margin:5% auto 0 auto;background: #fff;padding: 0 12px;border-r
     <div class="outer">
         <div id="footer-info">
             <div class="footer-left">
-                &copy; 2020 君不见
+                &copy; 2020 snmlm
             </div>
             <!-- <div class="footer-right">
                 <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/luuman/hexo-theme-spfk" target="_blank">spfk</a> by luuman

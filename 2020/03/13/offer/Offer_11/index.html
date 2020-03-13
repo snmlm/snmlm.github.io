@@ -3,22 +3,22 @@
 <head>
   <meta charset="utf-8">
   
-  <title>用两个栈实现队列 | 君不见</title>
+  <title>二进制中1的个数 | snmlm</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="题目描述 用两个栈来实现一个队列，完成队列的Push和Pop操作。 队列中的元素为int类型。">
+  <meta name="description" content="题目描述 输入一个整数，输出该数二进制表示中1的个数。其中负数用补码表示。">
 <meta name="keywords" content="算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="用两个栈实现队列">
-<meta property="og:url" content="https://snmlm.github.io/2019/10/08/Offer_5/index.html">
-<meta property="og:site_name" content="君不见">
-<meta property="og:description" content="题目描述 用两个栈来实现一个队列，完成队列的Push和Pop操作。 队列中的元素为int类型。">
+<meta property="og:title" content="二进制中1的个数">
+<meta property="og:url" content="https://snmlm.github.io/2020/03/13/offer/Offer_11/index.html">
+<meta property="og:site_name" content="snmlm">
+<meta property="og:description" content="题目描述 输入一个整数，输出该数二进制表示中1的个数。其中负数用补码表示。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-10-08T03:28:10.227Z">
+<meta property="og:updated_time" content="2020-03-13T08:52:33.619Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="用两个栈实现队列">
-<meta name="twitter:description" content="题目描述 用两个栈来实现一个队列，完成队列的Push和Pop操作。 队列中的元素为int类型。">
+<meta name="twitter:title" content="二进制中1的个数">
+<meta name="twitter:description" content="题目描述 输入一个整数，输出该数二进制表示中1的个数。其中负数用补码表示。">
   
-    <link rel="alternative" href="/atom.xml" title="君不见" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="snmlm" type="application/atom+xml">
   
   
     <link rel="icon" href="/img/favicon-n.png">
@@ -64,7 +64,7 @@
         </a>
 
         <hgroup>
-          <h1 class="header-author"><a href="/" title="君不见">君不见</a></h1>
+          <h1 class="header-author"><a href="/" title="snmlm">snmlm</a></h1>
         </hgroup>
 
         
@@ -134,7 +134,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/Books/" style="font-size: 12px;">Books</a> <a href="/tags/dubbo/" style="font-size: 12px;">dubbo</a> <a href="/tags/hexo/" style="font-size: 12px;">hexo</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/java8/" style="font-size: 10px;">java8</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/mysql/" style="font-size: 16px;">mysql</a> <a href="/tags/redis/" style="font-size: 12px;">redis</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/spring-boot/" style="font-size: 10px;">spring boot</a> <a href="/tags/springboot/" style="font-size: 10px;">springboot</a> <a href="/tags/zookeeper/" style="font-size: 10px;">zookeeper</a> <a href="/tags/嘿嘿嘿/" style="font-size: 10px;">嘿嘿嘿</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/日常/" style="font-size: 14px;">日常</a> <a href="/tags/架构/" style="font-size: 10px;">架构</a> <a href="/tags/算法/" style="font-size: 18px;">算法</a> <a href="/tags/解决方案/" style="font-size: 10px;">解决方案</a> <a href="/tags/试题/" style="font-size: 10px;">试题</a>
+                        <a href="/tags/Books/" style="font-size: 12px;">Books</a> <a href="/tags/dubbo/" style="font-size: 12px;">dubbo</a> <a href="/tags/hexo/" style="font-size: 12px;">hexo</a> <a href="/tags/java/" style="font-size: 18px;">java</a> <a href="/tags/java8/" style="font-size: 10px;">java8</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/mysql/" style="font-size: 16px;">mysql</a> <a href="/tags/redis/" style="font-size: 12px;">redis</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/spring-boot/" style="font-size: 10px;">spring boot</a> <a href="/tags/springboot/" style="font-size: 10px;">springboot</a> <a href="/tags/zookeeper/" style="font-size: 10px;">zookeeper</a> <a href="/tags/嘿嘿嘿/" style="font-size: 10px;">嘿嘿嘿</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/日常/" style="font-size: 14px;">日常</a> <a href="/tags/架构/" style="font-size: 10px;">架构</a> <a href="/tags/算法/" style="font-size: 20px;">算法</a> <a href="/tags/解决方案/" style="font-size: 10px;">解决方案</a> <a href="/tags/试题/" style="font-size: 10px;">试题</a>
                     </div>
                 </section>
                 
@@ -145,7 +145,7 @@
                 
                 <section class="switch-part switch-part3">
                 
-                    <div id="js-aboutme">君不见</div>
+                    <div id="js-aboutme">snmlm</div>
                 </section>
                 
             </div>
@@ -157,7 +157,7 @@
       <nav id="mobile-nav">
       <div class="overlay">
           <div class="slider-trigger"></div>
-          <h1 class="header-author js-mobile-header hide"><a href="/" title="Me">君不见</a></h1>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="Me">snmlm</a></h1>
       </div>
     <div class="intrude-less">
         <header id="header" class="inner">
@@ -167,7 +167,7 @@
                 
             </a>
             <hgroup>
-              <h1 class="header-author"><a href="/" title="Me">君不见</a></h1>
+              <h1 class="header-author"><a href="/" title="Me">snmlm</a></h1>
             </hgroup>
             
             <p class="header-subtitle">付出总会有回报~</p>
@@ -190,11 +190,11 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-Offer_5" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-offer/Offer_11" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/10/08/Offer_5/" class="article-date">
-      <time datetime="2019-10-07T16:00:00.000Z" itemprop="datePublished">2019-10-08</time>
+      <a href="/2020/03/13/offer/Offer_11/" class="article-date">
+      <time datetime="2020-03-13T08:50:36.612Z" itemprop="datePublished">2020-03-13</time>
 </a>
     </div>
   
@@ -207,7 +207,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      用两个栈实现队列
+      二进制中1的个数
     </h1>
   
 
@@ -235,17 +235,17 @@
          <meta name="referrer" content="no-referrer">
 
 <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><ul>
-<li>用两个栈来实现一个队列，完成队列的Push和Pop操作。 队列中的元素为int类型。<a id="more"></a>
+<li>输入一个整数，输出该数二进制表示中1的个数。其中负数用补码表示。<a id="more"></a>
 </li>
 </ul>
-<blockquote>
-<p>栈：后进先出（LIFO-last in first out）<br>队列：现进先出（FIFO-first in first out）</p>
-</blockquote>
-<h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><pre><code>stack1为入口，stack2为出口。
-push的时候，只压入stack1。
-pop的时候，stack2没有数据，就从stack1中数据导入，stack1弹出，stack2压入。
-pop的时候，stack2有数据的时候，直接弹出。
-</code></pre><h3 id="Java-1-8"><a href="#Java-1-8" class="headerlink" title="Java 1.8"></a>Java 1.8</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">import java.util.Stack;</span><br><span class="line"></span><br><span class="line">public class Solution &#123;</span><br><span class="line">    Stack&lt;Integer&gt; stack1 = new Stack&lt;Integer&gt;();</span><br><span class="line">    Stack&lt;Integer&gt; stack2 = new Stack&lt;Integer&gt;();</span><br><span class="line">    </span><br><span class="line">    public void push(int node) &#123;</span><br><span class="line">        stack1.push(node);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public int pop() &#123;</span><br><span class="line">        if(stack2.empty()&amp;&amp;!stack1.empty())&#123;</span><br><span class="line">            while(!stack1.empty())&#123;</span><br><span class="line">            stack2.push(stack1.pop());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return stack2.pop();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><pre><code>先区分正负数，正数，正常二进制，数数即可。
+            负数，正常二进制的补码（最高位为标记位，1代表负数，剩下位取反后加1）。java中int是4字节，32位，需要注意。
+在底层，正负数的确是是以二进制的方式存在的，并且负数就是补码的形式.
+&amp;的方式，可以检验出数据中是否含有0，如果有0， 那么返回就是0。
+n!=0;那么起码有1个1;
+(n - 1) &amp; n;&amp;的方式，可以保留左侧相同的部分留下，右侧数值都是1的。并缩减了比较次数。
+</code></pre><h3 id="Java-1-8"><a href="#Java-1-8" class="headerlink" title="Java 1.8"></a>Java 1.8</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">    public int NumberOf1(int n) &#123;</span><br><span class="line">        int i = 0;</span><br><span class="line">        while(n != 0)&#123;</span><br><span class="line">            i++;</span><br><span class="line">            n = (n - 1) &amp; n;</span><br><span class="line">        &#125;</span><br><span class="line">        return i;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
       
       
     </div>
@@ -254,13 +254,13 @@ pop的时候，stack2有数据的时候，直接弹出。
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/10/08/Offer_5/">用两个栈实现队列</a></p>
-        <p><span>文章作者:</span><a href="/" title="访问 君不见 的个人博客">君不见</a></p>
-        <p><span>发布时间:</span>2019年10月08日 - 00时00分</p>
-        <p><span>最后更新:</span>2019年10月08日 - 11时28分</p>
+        <p><span>本文标题:</span><a href="/2020/03/13/offer/Offer_11/">二进制中1的个数</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 snmlm 的个人博客">snmlm</a></p>
+        <p><span>发布时间:</span>2020年03月13日 - 16时50分</p>
+        <p><span>最后更新:</span>2020年03月13日 - 16时52分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/10/08/Offer_5/" title="用两个栈实现队列">https://snmlm.github.io/2019/10/08/Offer_5/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://snmlm.github.io/2019/10/08/Offer_5/　　作者: 君不见" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2020/03/13/offer/Offer_11/" title="二进制中1的个数">https://snmlm.github.io/2020/03/13/offer/Offer_11/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://snmlm.github.io/2020/03/13/offer/Offer_11/　　作者: snmlm" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -273,18 +273,18 @@ pop的时候，stack2有数据的时候，直接弹出。
 
 <nav id="article-nav">
   
-    <a href="/2019/10/09/20191009_1/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/03/13/offer/Offer_12/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          SQL 性能优化梳理
+          数值的整数次方
         
       </div>
     </a>
   
   
-    <a href="/2019/10/08/Offer_6/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">旋转数组的最小数字</div>
+    <a href="/2020/03/13/offer/Offer_10/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">矩形覆盖</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -295,7 +295,7 @@ pop的时候，stack2有数据的时候，直接弹出。
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目描述"><span class="toc-number">1.</span> <span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#思路："><span class="toc-number">2.</span> <span class="toc-text">思路：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-1-8"><span class="toc-number">3.</span> <span class="toc-text">Java 1.8</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目描述"><span class="toc-number">1.</span> <span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#思路"><span class="toc-number">2.</span> <span class="toc-text">思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-1-8"><span class="toc-number">3.</span> <span class="toc-text">Java 1.8</span></a></li></ol>
 </div>
 <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 
@@ -366,18 +366,18 @@ style="width:90%;margin:5% auto 0 auto;background: #fff;padding: 0 12px;border-r
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2019/10/09/20191009_1/" title="上一篇: SQL 性能优化梳理">
+            <a href="/2020/03/13/offer/Offer_12/" title="上一篇: 数值的整数次方">
                 <i class="fa fa-angle-left"></i>
             </a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a href="/2019/10/08/Offer_6/" title="下一篇: 旋转数组的最小数字">
+            <a href="/2020/03/13/offer/Offer_10/" title="下一篇: 矩形覆盖">
                 <i class="fa fa-angle-right"></i>
             </a>
         
     </div>
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/10/12/Offer_7/">斐波那契数列</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/12/Offer_8/">斐波那契数列</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/09/20191009_1/">SQL 性能优化梳理</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/08/Offer_5/">用两个栈实现队列</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/08/Offer_6/">旋转数组的最小数字</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/29/20190929_1/">java8 λ（lambad）表达式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/27/20190927_1/">redis知识点</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/26/20190926_1/">zookeeper知识点</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/10/20190710_1/">springboot项目</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/17/20190517_1/">redis命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/15/20190515_1/">面试的东东</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/07/20190507_1/">前缀、中缀、后缀表达式(逆波兰表达式)</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/30/20190430_1/">Java7/8 中的 HashMap 和 ConcurrentHashMap 全解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/30/20190430_2/">常用数据结构</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/23/20190423_1/">MySQL5.7中Derived table变形记</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/23/20190423_2/">看到的题，记录一下</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/19/20190419_1/">MySQL索引底层实现原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/18/20190418_2/">mysql如何获取当前时间</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/18/20190418_1/">十大常见排序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/17/20190417_1/">利用activityMQ做处理，消息的顺序性和服务处理的时效性问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/15/20190415_3/">spring加载对象问题（坑）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/15/20190415_1/">java子类继承加载顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/15/20190415_2/">java基础类型</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/12/20190412_1/">ArrayList删除节点（坑）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/12/20190412_2/">==和equals</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/12/20190412_3/">java总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/11/20190411_2/">java调用js方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/11/20190411_1/">java类中缓存机制类</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/10/20190410_2/">spring boot 配置加载顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/10/20190410_3/">dubbo 配置加载顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/10/20190410_1/">dubbo的坑（持续更新）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/09/20190409_2/">linux CTRL+Z和CTRL+C区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/09/20190409_3/">spring容器外调用容器内的对象</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/09/20190409_1/">mysql关键字执行顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/27/20190327_2/">hexo指令</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/27/20190327_1/">mysql利用find_in_set去查询in的集合</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/11/20190311_2/">汇编语言第二版</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/11/20190311_1/">tcp-ip</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/11/20190311_3/">github上传限制</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/07/20190307_1/">数字大小写</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/05/20190305/">动态规划</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/10/20190110/">项目</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/15/questions/">试题</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/23/Offer_4/">重建二叉树</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/23/Offer_3/">从尾到头打印链表</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/22/Offer_2/">替换空格</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/19/Offer_1/">二维数组中的查找</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/11/GcAndFinalize/">System.gc()与Object.finalize()的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/10/for_foreach/">for与foreach用法的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/10/TenGoodAdvice/">10条好建议</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/10/JavaObject/">java Object</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/30/ReadJava/">读java源码的顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/28/Hexo_spfk_LiveRe_GithubPages/">Hexo博客+spfk主题+LiveRe评论+Github pages</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2020/03/13/offer/Offer_12/">数值的整数次方</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/13/offer/Offer_11/">二进制中1的个数</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/13/offer/Offer_10/">矩形覆盖</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/13/offer/Offer_09/">变态跳台阶</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/13/offer/Offer_00/">剑指offer 汇总</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/12/offer/Offer_08/">跳台阶</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/12/offer/Offer_07/">斐波那契数列</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/11/offer/Offer_06/">旋转数组的最小数字</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/09/20191009_1/">SQL 性能优化梳理</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/08/offer/Offer_05/">用两个栈实现队列</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/29/20190929_1/">java8 λ（lambad）表达式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/27/20190927_1/">redis知识点</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/26/20190926_1/">zookeeper知识点</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/10/20190710_1/">springboot项目</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/17/20190517_1/">redis命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/15/20190515_1/">面试的东东</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/07/20190507_1/">前缀、中缀、后缀表达式(逆波兰表达式)</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/30/20190430_1/">Java7/8 中的 HashMap 和 ConcurrentHashMap 全解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/30/20190430_2/">常用数据结构</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/23/20190423_1/">MySQL5.7中Derived table变形记</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/23/20190423_2/">看到的题，记录一下</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/19/20190419_1/">MySQL索引底层实现原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/18/20190418_2/">mysql如何获取当前时间</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/18/20190418_1/">十大常见排序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/17/20190417_1/">利用activityMQ做处理，消息的顺序性和服务处理的时效性问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/15/20190415_3/">spring加载对象问题（坑）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/15/20190415_2/">java基础类型</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/15/20190415_1/">java子类继承加载顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/12/20190412_3/">java总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/12/20190412_2/">==和equals</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/12/20190412_1/">ArrayList删除节点（坑）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/11/20190411_1/">java类中缓存机制类</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/11/20190411_2/">java调用js方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/10/20190410_3/">dubbo 配置加载顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/10/20190410_2/">spring boot 配置加载顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/10/20190410_1/">dubbo的坑（持续更新）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/09/20190409_1/">mysql关键字执行顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/09/20190409_2/">linux CTRL+Z和CTRL+C区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/09/20190409_3/">spring容器外调用容器内的对象</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/27/20190327_1/">mysql利用find_in_set去查询in的集合</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/27/20190327_2/">hexo指令</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/11/20190311_1/">tcp-ip</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/11/20190311_2/">汇编语言第二版</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/11/20190311_3/">github上传限制</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/07/20190307_1/">数字大小写</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/05/20190305/">动态规划</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/10/20190110/">项目</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/15/questions/">试题</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/23/offer/Offer_04/">重建二叉树</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/23/offer/Offer_03/">从尾到头打印链表</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/22/offer/Offer_02/">替换空格</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/19/offer/Offer_01/">二维数组中的查找</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/11/GcAndFinalize/">System.gc()与Object.finalize()的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/10/TenGoodAdvice/">10条好建议</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/10/JavaObject/">java Object</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/10/for_foreach/">for与foreach用法的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/30/ReadJava/">读java源码的顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/28/Hexo_spfk_LiveRe_GithubPages/">Hexo博客+spfk主题+LiveRe评论+Github pages</a></li></ul>
     <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
     <script>
         $(".post-list").addClass("toc-article");
@@ -407,7 +407,7 @@ style="width:90%;margin:5% auto 0 auto;background: #fff;padding: 0 12px;border-r
     <div class="outer">
         <div id="footer-info">
             <div class="footer-left">
-                &copy; 2020 君不见
+                &copy; 2020 snmlm
             </div>
             <!-- <div class="footer-right">
                 <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/luuman/hexo-theme-spfk" target="_blank">spfk</a> by luuman
