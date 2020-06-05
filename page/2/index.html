@@ -132,7 +132,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/Books/" style="font-size: 12px;">Books</a> <a href="/tags/dubbo/" style="font-size: 12px;">dubbo</a> <a href="/tags/hexo/" style="font-size: 12px;">hexo</a> <a href="/tags/java/" style="font-size: 18px;">java</a> <a href="/tags/java8/" style="font-size: 10px;">java8</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/mysql/" style="font-size: 16px;">mysql</a> <a href="/tags/redis/" style="font-size: 12px;">redis</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/spring-boot/" style="font-size: 10px;">spring boot</a> <a href="/tags/springboot/" style="font-size: 10px;">springboot</a> <a href="/tags/zookeeper/" style="font-size: 10px;">zookeeper</a> <a href="/tags/嘿嘿嘿/" style="font-size: 10px;">嘿嘿嘿</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/日常/" style="font-size: 14px;">日常</a> <a href="/tags/架构/" style="font-size: 10px;">架构</a> <a href="/tags/算法/" style="font-size: 20px;">算法</a> <a href="/tags/解决方案/" style="font-size: 10px;">解决方案</a> <a href="/tags/试题/" style="font-size: 10px;">试题</a>
+                        <a href="/tags/Books/" style="font-size: 12px;">Books</a> <a href="/tags/dubbo/" style="font-size: 12px;">dubbo</a> <a href="/tags/hexo/" style="font-size: 12px;">hexo</a> <a href="/tags/java/" style="font-size: 18px;">java</a> <a href="/tags/java8/" style="font-size: 10px;">java8</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/mysql/" style="font-size: 16px;">mysql</a> <a href="/tags/redis/" style="font-size: 12px;">redis</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/spring-boot/" style="font-size: 12px;">spring boot</a> <a href="/tags/zookeeper/" style="font-size: 10px;">zookeeper</a> <a href="/tags/嘿嘿嘿/" style="font-size: 10px;">嘿嘿嘿</a> <a href="/tags/数据结构/" style="font-size: 12px;">数据结构</a> <a href="/tags/日常/" style="font-size: 14px;">日常</a> <a href="/tags/架构/" style="font-size: 10px;">架构</a> <a href="/tags/算法/" style="font-size: 20px;">算法</a> <a href="/tags/解决方案/" style="font-size: 10px;">解决方案</a> <a href="/tags/试题/" style="font-size: 10px;">试题</a>
                     </div>
                 </section>
                 
@@ -190,10 +190,164 @@
 </nav>
       <div class="body-wrap">
   
-    <article id="post-20190929_1" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-daily/20191009_1" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/09/29/20190929_1/" class="article-date">
+      <a href="/2019/10/09/daily/20191009_1/" class="article-date">
+      <time datetime="2019-10-08T16:00:00.000Z" itemprop="datePublished">2019-10-09</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/09/daily/20191009_1/">SQL 性能优化梳理</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <meta name="referrer" content="no-referrer">
+
+<h3 id="基本概念简述"><a href="#基本概念简述" class="headerlink" title="基本概念简述"></a>基本概念简述</h3><h4 id="逻辑架构"><a href="#逻辑架构" class="headerlink" title="逻辑架构"></a>逻辑架构</h4><ul>
+<li>第一层：客户端通过连接服务，将要执行的sql指令传输过来<ul>
+<li>客户端</li>
+</ul>
+</li>
+<li>第二层：服务器解析并优化sql，生成最终的执行计划并执行<ul>
+<li>缓存</li>
+<li>解析SQL</li>
+<li>预处理</li>
+<li>查询优化器</li>
+<li>生成执行计划</li>
+<li>执行</li>
+</ul>
+</li>
+<li>第三层：存储引擎，负责数据的储存和提取<ul>
+<li>存储引擎
+          
+      
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/知识点/">知识点</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a  href="/2019/10/09/daily/20191009_1/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-offer/Offer_05" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/10/08/offer/Offer_05/" class="article-date">
+      <time datetime="2019-10-08T02:33:11.156Z" itemprop="datePublished">2019-10-08</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/08/offer/Offer_05/">用两个栈实现队列</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <meta name="referrer" content="no-referrer">
+
+<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><ul>
+<li>用两个栈来实现一个队列，完成队列的Push和Pop操作。 队列中的元素为int类型。
+          
+      
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/剑指offer/">剑指offer</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a  href="/2019/10/08/offer/Offer_05/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-daily/20190929_1" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/09/29/daily/20190929_1/" class="article-date">
       <time datetime="2019-09-28T16:00:00.000Z" itemprop="datePublished">2019-09-29</time>
 </a>
     </div>
@@ -207,7 +361,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/29/20190929_1/">java8 λ（lambad）表达式</a>
+      <a class="article-title" href="/2019/09/29/daily/20190929_1/">java8 λ（lambad）表达式</a>
     </h1>
   
 
@@ -253,10 +407,10 @@
 
 
   
-    <article id="post-20190927_1" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-daily/20190927_1" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/09/27/20190927_1/" class="article-date">
+      <a href="/2019/09/27/daily/20190927_1/" class="article-date">
       <time datetime="2019-09-26T16:00:00.000Z" itemprop="datePublished">2019-09-27</time>
 </a>
     </div>
@@ -270,7 +424,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/27/20190927_1/">redis知识点</a>
+      <a class="article-title" href="/2019/09/27/daily/20190927_1/">redis知识点</a>
     </h1>
   
 
@@ -308,7 +462,7 @@
 
       
         <p class="article-more-link">
-          <a  href="/2019/09/27/20190927_1/#more">阅读全文 >></a>
+          <a  href="/2019/09/27/daily/20190927_1/#more">阅读全文 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -327,10 +481,10 @@
 
 
   
-    <article id="post-20190926_1" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-daily/20190926_1" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/09/26/20190926_1/" class="article-date">
+      <a href="/2019/09/26/daily/20190926_1/" class="article-date">
       <time datetime="2019-09-25T16:00:00.000Z" itemprop="datePublished">2019-09-26</time>
 </a>
     </div>
@@ -344,7 +498,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/26/20190926_1/">zookeeper知识点</a>
+      <a class="article-title" href="/2019/09/26/daily/20190926_1/">zookeeper知识点</a>
     </h1>
   
 
@@ -375,7 +529,7 @@
 
       
         <p class="article-more-link">
-          <a  href="/2019/09/26/20190926_1/#more">阅读全文 >></a>
+          <a  href="/2019/09/26/daily/20190926_1/#more">阅读全文 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -394,10 +548,10 @@
 
 
   
-    <article id="post-20190710_1" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-daily/20190710_1" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/07/10/20190710_1/" class="article-date">
+      <a href="/2019/07/10/daily/20190710_1/" class="article-date">
       <time datetime="2019-07-09T16:00:00.000Z" itemprop="datePublished">2019-07-10</time>
 </a>
     </div>
@@ -411,7 +565,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/10/20190710_1/">springboot项目</a>
+      <a class="article-title" href="/2019/07/10/daily/20190710_1/">springboot项目</a>
     </h1>
   
 
@@ -437,12 +591,12 @@
 
       
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/springboot/">springboot</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring-boot/">spring boot</a></li></ul>
     </div>
 
       
         <p class="article-more-link">
-          <a  href="/2019/07/10/20190710_1/#more">阅读全文 >></a>
+          <a  href="/2019/07/10/daily/20190710_1/#more">阅读全文 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -461,10 +615,10 @@
 
 
   
-    <article id="post-20190517_1" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-daily/20190517_1" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/05/17/20190517_1/" class="article-date">
+      <a href="/2019/05/17/daily/20190517_1/" class="article-date">
       <time datetime="2019-05-16T16:00:00.000Z" itemprop="datePublished">2019-05-17</time>
 </a>
     </div>
@@ -478,7 +632,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/17/20190517_1/">redis命令</a>
+      <a class="article-title" href="/2019/05/17/daily/20190517_1/">redis命令</a>
     </h1>
   
 
@@ -509,7 +663,7 @@
 
       
         <p class="article-more-link">
-          <a  href="/2019/05/17/20190517_1/#more">阅读全文 >></a>
+          <a  href="/2019/05/17/daily/20190517_1/#more">阅读全文 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -528,10 +682,10 @@
 
 
   
-    <article id="post-20190515_1" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-daily/20190515_1" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/05/15/20190515_1/" class="article-date">
+      <a href="/2019/05/15/daily/20190515_1/" class="article-date">
       <time datetime="2019-05-14T16:00:00.000Z" itemprop="datePublished">2019-05-15</time>
 </a>
     </div>
@@ -545,7 +699,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/15/20190515_1/">面试的东东</a>
+      <a class="article-title" href="/2019/05/15/daily/20190515_1/">面试的东东</a>
     </h1>
   
 
@@ -578,7 +732,7 @@
 
       
         <p class="article-more-link">
-          <a  href="/2019/05/15/20190515_1/#more">阅读全文 >></a>
+          <a  href="/2019/05/15/daily/20190515_1/#more">阅读全文 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -597,10 +751,10 @@
 
 
   
-    <article id="post-20190507_1" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-daily/20190507_1" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/05/07/20190507_1/" class="article-date">
+      <a href="/2019/05/07/daily/20190507_1/" class="article-date">
       <time datetime="2019-05-06T16:00:00.000Z" itemprop="datePublished">2019-05-07</time>
 </a>
     </div>
@@ -614,7 +768,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/07/20190507_1/">前缀、中缀、后缀表达式(逆波兰表达式)</a>
+      <a class="article-title" href="/2019/05/07/daily/20190507_1/">前缀、中缀、后缀表达式(逆波兰表达式)</a>
     </h1>
   
 
@@ -645,7 +799,7 @@
 
       
         <p class="article-more-link">
-          <a  href="/2019/05/07/20190507_1/#more">阅读全文 >></a>
+          <a  href="/2019/05/07/daily/20190507_1/#more">阅读全文 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -664,10 +818,10 @@
 
 
   
-    <article id="post-20190430_1" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-daily/20190430_1" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/04/30/20190430_1/" class="article-date">
+      <a href="/2019/04/30/daily/20190430_1/" class="article-date">
       <time datetime="2019-04-29T16:00:00.000Z" itemprop="datePublished">2019-04-30</time>
 </a>
     </div>
@@ -681,7 +835,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/30/20190430_1/">Java7/8 中的 HashMap 和 ConcurrentHashMap 全解析</a>
+      <a class="article-title" href="/2019/04/30/daily/20190430_1/">Java7/8 中的 HashMap 和 ConcurrentHashMap 全解析</a>
     </h1>
   
 
@@ -712,141 +866,7 @@
 
       
         <p class="article-more-link">
-          <a  href="/2019/04/30/20190430_1/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-20190430_2" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/04/30/20190430_2/" class="article-date">
-      <time datetime="2019-04-29T16:00:00.000Z" itemprop="datePublished">2019-04-30</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/30/20190430_2/">常用数据结构</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;首先给出Java集合框架的基本接口/类层次结构：
-          
-      
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/知识点/">知识点</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构/">数据结构</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a  href="/2019/04/30/20190430_2/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-20190423_1" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/04/23/20190423_1/" class="article-date">
-      <time datetime="2019-04-22T16:00:00.000Z" itemprop="datePublished">2019-04-23</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/23/20190423_1/">MySQL5.7中Derived table变形记</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h3 id="MySQL-Derived-table"><a href="#MySQL-Derived-table" class="headerlink" title="MySQL Derived table"></a>MySQL Derived table</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Derived table实际上是一种特殊的subquery，它位于SQL语句中FROM子句里面，可以看做是一个单独的表。MySQL5.7之前的处理都是对Derived table进行Materialize，生成一个临时表保存Derived table的结果，然后利用临时表来协助完成其他父查询的操作，比如JOIN等操作。MySQL5.7中对Derived table做了一个新特性。该特性允许将符合条件的Derived table中的子表与父查询的表合并进行直接JOIN。
-          
-      
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/知识点/">知识点</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a  href="/2019/04/23/20190423_1/#more">阅读全文 >></a>
+          <a  href="/2019/04/30/daily/20190430_1/#more">阅读全文 >></a>
         </p>
       
       <div class="clearfix"></div>

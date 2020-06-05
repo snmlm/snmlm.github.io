@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>java Object | snmlm</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="ObjectObject类，所有类的父类，也成超级类。在java.lang包下java.lang包包含着Java最基础和核心的类，在编译时会自动导入。">
+<meta name="keywords" content="java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java Object">
+<meta property="og:url" content="https://snmlm.github.io/2018/10/10/daily/JavaObject/index.html">
+<meta property="og:site_name" content="snmlm">
+<meta property="og:description" content="ObjectObject类，所有类的父类，也成超级类。在java.lang包下java.lang包包含着Java最基础和核心的类，在编译时会自动导入。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-03-28T06:51:24.864Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="java Object">
+<meta name="twitter:description" content="ObjectObject类，所有类的父类，也成超级类。在java.lang包下java.lang包包含着Java最基础和核心的类，在编译时会自动导入。">
+  
+    <link rel="alternative" href="/atom.xml" title="snmlm" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon-n.png">
+  
+  
+      <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          rootUrl: '/',
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col" style="background-size: cover; background-position: center center;">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/head.gif" class="js-avatar">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/" title="snmlm">snmlm</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">付出总会有回报~</p>
+        
+        
+            <form>
+                <!--<input type="text" class="st-default-search-input search" id="search" placeholder=" Search...">-->
+				<input type="text" class="st-default-search-input search" id="local-search-input" placeholder="搜索一下" autocomplete="off">
+            </form>
+			<div id="local-search-result"></div>
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/archives">文章</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl github" target="_blank" href="https://github.com/snmlm" title="github">github</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/Books/" style="font-size: 12px;">Books</a> <a href="/tags/dubbo/" style="font-size: 12px;">dubbo</a> <a href="/tags/hexo/" style="font-size: 12px;">hexo</a> <a href="/tags/java/" style="font-size: 18px;">java</a> <a href="/tags/java8/" style="font-size: 10px;">java8</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/mysql/" style="font-size: 16px;">mysql</a> <a href="/tags/redis/" style="font-size: 12px;">redis</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/spring-boot/" style="font-size: 12px;">spring boot</a> <a href="/tags/zookeeper/" style="font-size: 10px;">zookeeper</a> <a href="/tags/嘿嘿嘿/" style="font-size: 10px;">嘿嘿嘿</a> <a href="/tags/数据结构/" style="font-size: 12px;">数据结构</a> <a href="/tags/日常/" style="font-size: 14px;">日常</a> <a href="/tags/架构/" style="font-size: 10px;">架构</a> <a href="/tags/算法/" style="font-size: 20px;">算法</a> <a href="/tags/解决方案/" style="font-size: 10px;">解决方案</a> <a href="/tags/试题/" style="font-size: 10px;">试题</a>
+                    </div>
+                </section>
+                
+                
+                
+
+                
+                
+                <section class="switch-part switch-part3">
+                
+                    <div id="js-aboutme">snmlm</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="Me">snmlm</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/head.gif" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="Me">snmlm</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">付出总会有回报~</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/archives">文章</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="github" target="_blank" href="https://github.com/snmlm" title="github">github</a>
+                    
+                </div>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-daily/JavaObject" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/10/10/daily/JavaObject/" class="article-date">
+      <time datetime="2018-10-09T16:00:00.000Z" itemprop="datePublished">2018-10-10</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      java Object
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/源码/">源码</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+         <meta name="referrer" content="no-referrer">
+
+<h2 id="Object"><a href="#Object" class="headerlink" title="Object"></a>Object</h2><p>Object类，所有类的父类，也成超级类。<br>在java.lang包下<br>java.lang包包含着Java最基础和核心的类，在编译时会自动导入。<br><a id="more"></a><br>Object类没有定义属性，一共有13个方法</p>
+<h3 id="public-Object"><a href="#public-Object" class="headerlink" title="public Object();"></a>public Object();</h3><ul>
+<li>Java中规定：在类定义过程中，对于未定义构造函数的类，默认会有一个无参数的构造函数，作为所有类的基类，Object类自然要反映出此特性，在源码中，未给出Object类构造函数定义，但实际上，此构造函数是存在的。</li>
+</ul>
+<h3 id="private-static-native-void-registerNatives"><a href="#private-static-native-void-registerNatives" class="headerlink" title="private static native void registerNatives();"></a>private static native void registerNatives();</h3><ul>
+<li><code>registerNatives</code>函数前面有<code>native</code>关键字修饰，Java中，用<code>native</code>关键字修饰的函数表明该方法的实现并不是在Java中去完成，而是由C/C++去完成，并被编译成了.dll，由Java去调用。例如：对于<code>java.lang.Object.registerNatives</code>，对应的C函数命名为<code>Java_java_lang_Object_registerNatives</code>。</li>
+<li>也就是说<code>registerNatives</code>的方法在C/C++的dll中，jvm运行后，<code>registerNatives</code>的实体方法会映射到java中，并在java中使用，但是本方法是私有静态的，无法子类继承去实现调用，所以在这句代码后有一个静态代码块去调用：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">static &#123;</span><br><span class="line">        registerNatives();</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>为了加深对java本地方法的理解，在网上找到了该方法的C源码部分，如下：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">static JNINativeMethod methods[] = </span><br><span class="line">&#123;</span><br><span class="line">    &#123;&quot;hashCode&quot;,    &quot;()I&quot;,                    (void *)&amp;JVM_IHashCode&#125;,</span><br><span class="line">    &#123;&quot;wait&quot;,        &quot;(J)V&quot;,                   (void *)&amp;JVM_MonitorWait&#125;,</span><br><span class="line">    &#123;&quot;notify&quot;,      &quot;()V&quot;,                    (void *)&amp;JVM_MonitorNotify&#125;,</span><br><span class="line">    &#123;&quot;notifyAll&quot;,   &quot;()V&quot;,                    (void *)&amp;JVM_MonitorNotifyAll&#125;,</span><br><span class="line">    &#123;&quot;clone&quot;,       &quot;()Ljava/lang/Object;&quot;,   (void *)&amp;JVM_Clone&#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">JNIEXPORT void JNICALL</span><br><span class="line">Java_java_lang_Object_registerNatives(JNIEnv *env, jclass cls)</span><br><span class="line">&#123;</span><br><span class="line">    (*env)-&gt;RegisterNatives(env, cls,methods, sizeof(methods)/sizeof(methods[0]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>因为要用<code>registerNatives</code>去初始化其他方法，做对应的映射。这样理解起来会更容易。</li>
+</ul>
+<h3 id="protected-native-Object-clone-throws-CloneNotSupportedException"><a href="#protected-native-Object-clone-throws-CloneNotSupportedException" class="headerlink" title="protected native Object clone() throws CloneNotSupportedException;"></a>protected native Object clone() throws CloneNotSupportedException;</h3><ul>
+<li><code>clone</code>也是一个<code>native</code>方法，可以知道<code>clone</code>不是一个原生方法。</li>
+<li>Java术语表述为：<code>clone</code>函数返回的是一个引用，指向的是新的<code>clone</code>出来的对象，此对象与原对象分别占用不同的堆空间。</li>
+<li><code>clone</code>运用的时候存在问题，<code>object</code>的<code>clone()</code>方法直接是调用不了的，提示出<code>The method clone() from the type Object is not visible</code><br>（类型对象的方法克隆（）不可见），子类直接调用<code>clone</code>的话，虽然能调用，但是会报错<code>CloneNotSupportedException</code>，意为无法支持拷贝，子类必须继承<code>Cloneable</code>接口才行。</li>
+<li><code>Cloneable</code>接口是一个标记接口，接口内无任何方法，跟变量。</li>
+</ul>
+<blockquote>
+<p>拷贝有深拷贝和浅拷贝之分：<br>深拷贝是对象中的所有东西进行拷贝，拷贝对象内的非基本类型的属性，并不是指向同一引用，而是创建了新对象。<br>浅拷贝中的非基本类型的对象，指向的是同一引用。</p>
+</blockquote>
+<ul>
+<li>拷贝时需实现<code>Cloneable</code>接口，并重写<code>clone</code>方法，根据方法写的编写的功能，实现浅拷贝和深拷贝。</li>
+<li>由于native方法的效率一般来说都是远高于java的非<code>native</code>方法，这也解释了为什么要用<code>clone</code>方法，而不是先<code>new</code>一个对象，然后把对象进行赋值，虽然也算是实现了拷贝。</li>
+</ul>
+<h3 id="public-final-native-Class-lt-gt-getClass"><a href="#public-final-native-Class-lt-gt-getClass" class="headerlink" title="public final native Class&lt;?&gt; getClass();"></a>public final native Class&lt;?&gt; getClass();</h3><ul>
+<li><code>getClass()</code>也是一个native方法，返回的是此<code>Object</code>对象的类对象/运行时类对象<code>Class&lt;?&gt;</code>。效果与<code>Object.class</code>相同。</li>
+<li>首先解释下”类对象”的概念：在Java中，类是是对具有一组相同特征或行为的实例的抽象并进行描述，对象则是此类所描述的特征或行为的具体实例。作为概念层次的类，其本身也具有某些共同的特性，如都具有类名称、由类加载器去加载，都具有包，具有父类，属性和方法等。于是，Java中有专门定义了一个类，<code>Class</code>，去描述其他类所具有的这些特性，因此，从此角度去看，类本身也都是属于<code>Class</code>类的对象。为与经常意义上的对象相区分，在此称之为”类对象”。</li>
+</ul>
+<h3 id="public-boolean-equals-Object-obj"><a href="#public-boolean-equals-Object-obj" class="headerlink" title="public boolean equals(Object obj);"></a>public boolean equals(Object obj);</h3><ul>
+<li>在object中看来，<code>==</code>和<code>equals</code>没区别。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public boolean equals(Object obj)&#123;</span><br><span class="line">    return (this == obj);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>==</code>是比较引用或者是地址，<code>equals</code>是比较内容。比较片面，这个要看具体的比较规则，重写此方法。</li>
+</ul>
+<h3 id="public-native-int-hashCode"><a href="#public-native-int-hashCode" class="headerlink" title="public native int hashCode();"></a>public native int hashCode();</h3><ul>
+<li>即严格的数学逻辑表示为： 两个对象相等 &lt;=&gt;  <code>equals()</code>相等  =&gt; <code>hashCode()</code>相等。因此，重写<code>equlas()</code>方法必须重写<code>hashCode()</code>方法，以保证此逻辑严格成立，同时可以推理出：<code>hasCode()</code>不相等 =&gt; <code>equals()</code>不相等 &lt;=&gt; 两个对象不相等。</li>
+</ul>
+<blockquote>
+<p>其中<code>hesCode()</code>相等推不出<code>equals()</code>相等</p>
+</blockquote>
+<ul>
+<li>用于集合中遍历，不需要重头到尾遍历，减少遍历时间。</li>
+</ul>
+<h3 id="public-String-toString"><a href="#public-String-toString" class="headerlink" title="public String toString();"></a>public String toString();</h3><p>toString()方法相信大家都经常用到，即使没有显式调用，但当我们使用System.out.println(obj)时，其内部也是通过toString()来实现的。<br>getClass()返回对象的类对象，getClassName()以String形式返回类对象的名称（含包名）。Integer.toHexString(hashCode())则是以对象的哈希码为实参，以16进制无符号整数形式返回此哈希码的字符串表示形式。</p>
+<h3 id="public-final-native-void-notify"><a href="#public-final-native-void-notify" class="headerlink" title="public final native void notify();"></a>public final native void notify();</h3><ul>
+<li>随机选择一个在该对象上调用wait方法的线程，解除其阻塞状态。该方法只能在同步方法或同步块内部调用。如果当前线程不是锁的持有者，该方法抛出一个<code>IllegalMonitorStateException</code>异常。</li>
+</ul>
+<h3 id="public-final-native-void-notifyAll"><a href="#public-final-native-void-notifyAll" class="headerlink" title="public final native void notifyAll();"></a>public final native void notifyAll();</h3><ul>
+<li>解除所有那些在该对象上调用wait方法的线程的阻塞状态。该方法只能在同步方法或同步块内部调用。如果当前线程不是锁的持有者，该方法抛出一个<code>IllegalMonitorStateException</code>异常。</li>
+</ul>
+<h3 id="public-final-void-wait-throws-InterruptedException"><a href="#public-final-void-wait-throws-InterruptedException" class="headerlink" title="public final void wait() throws InterruptedException;"></a>public final void wait() throws InterruptedException;</h3><ul>
+<li>此方法调用<code>public final native void wait(long timeout) throws InterruptedException</code></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public final void wait() throws InterruptedException &#123;</span><br><span class="line">    wait(0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="public-final-native-void-wait-long-timeout-throws-InterruptedException"><a href="#public-final-native-void-wait-long-timeout-throws-InterruptedException" class="headerlink" title="public final native void wait(long timeout) throws InterruptedException;"></a>public final native void wait(long timeout) throws InterruptedException;</h3><ul>
+<li>等待时间为毫秒级。</li>
+</ul>
+<h3 id="public-final-void-wait-long-timeout-int-nanos-throws-InterruptedException"><a href="#public-final-void-wait-long-timeout-int-nanos-throws-InterruptedException" class="headerlink" title="public final void wait(long timeout,int nanos) throws InterruptedException;"></a>public final void wait(long timeout,int nanos) throws InterruptedException;</h3><ul>
+<li>等待时间为毫秒级，<code>nanos</code>为附加时间，如果附加时间不在0-999999之间或<code>timeout</code>小于0，都会抛出<code>InterruptedException</code>异常，最终的停止时间为<code>time</code>+1;</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public final void wait(long timeout, int nanos) throws InterruptedException &#123;</span><br><span class="line">    if (timeout &lt; 0) &#123;</span><br><span class="line">        throw new IllegalArgumentException(&quot;timeout value is negative&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    if (nanos &lt; 0 || nanos &gt; 999999) &#123;</span><br><span class="line">        throw new IllegalArgumentException(&quot;nanosecond timeout value out of range&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    if (nanos &gt; 0) &#123;</span><br><span class="line">        timeout++;</span><br><span class="line">    &#125;</span><br><span class="line">    wait(timeout);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="proteced-void-finalize"><a href="#proteced-void-finalize" class="headerlink" title="proteced void finalize();"></a>proteced void finalize();</h3><p>可以看一下<a href="/2018/10/11/GcAndFinalize">sysout.gc()和finalize的区别</a></p>
+<ul>
+<li>用于销毁或者说是回收资源</li>
+</ul>
+
+      
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2018/10/10/daily/JavaObject/">java Object</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 snmlm 的个人博客">snmlm</a></p>
+        <p><span>发布时间:</span>2018年10月10日 - 00时00分</p>
+        <p><span>最后更新:</span>2019年03月28日 - 14时51分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2018/10/10/daily/JavaObject/" title="java Object">https://snmlm.github.io/2018/10/10/daily/JavaObject/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://snmlm.github.io/2018/10/10/daily/JavaObject/　　作者: snmlm" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+    <a href="/2018/10/10/daily/TenGoodAdvice/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          10条好建议
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/10/10/daily/for_foreach/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">for与foreach用法的区别</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Object"><span class="toc-number">1.</span> <span class="toc-text">Object</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#public-Object"><span class="toc-number">1.1.</span> <span class="toc-text">public Object();</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#private-static-native-void-registerNatives"><span class="toc-number">1.2.</span> <span class="toc-text">private static native void registerNatives();</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#protected-native-Object-clone-throws-CloneNotSupportedException"><span class="toc-number">1.3.</span> <span class="toc-text">protected native Object clone() throws CloneNotSupportedException;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#public-final-native-Class-lt-gt-getClass"><span class="toc-number">1.4.</span> <span class="toc-text">public final native Class&lt;?&gt; getClass();</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#public-boolean-equals-Object-obj"><span class="toc-number">1.5.</span> <span class="toc-text">public boolean equals(Object obj);</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#public-native-int-hashCode"><span class="toc-number">1.6.</span> <span class="toc-text">public native int hashCode();</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#public-String-toString"><span class="toc-number">1.7.</span> <span class="toc-text">public String toString();</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#public-final-native-void-notify"><span class="toc-number">1.8.</span> <span class="toc-text">public final native void notify();</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#public-final-native-void-notifyAll"><span class="toc-number">1.9.</span> <span class="toc-text">public final native void notifyAll();</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#public-final-void-wait-throws-InterruptedException"><span class="toc-number">1.10.</span> <span class="toc-text">public final void wait() throws InterruptedException;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#public-final-native-void-wait-long-timeout-throws-InterruptedException"><span class="toc-number">1.11.</span> <span class="toc-text">public final native void wait(long timeout) throws InterruptedException;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#public-final-void-wait-long-timeout-int-nanos-throws-InterruptedException"><span class="toc-number">1.12.</span> <span class="toc-text">public final void wait(long timeout,int nanos) throws InterruptedException;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#proteced-void-finalize"><span class="toc-number">1.13.</span> <span class="toc-text">proteced void finalize();</span></a></li></ol></li></ol>
+</div>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+    }
+</script>
+
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+        <!-- ������City�氲װ���� -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zOTk3Ny8xNjUwNA==" 
+style="width:90%;margin:5% auto 0 auto;background: #fff;padding: 0 12px;border-radius: 5px;">
+<script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+</script>
+<noscript>Ϊ����ʹ�����������۹����뼤��JavaScript</noscript>
+</div>
+<!-- City�氲װ��������� -->
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2018/10/10/daily/TenGoodAdvice/" title="上一篇: 10条好建议">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/2018/10/10/daily/for_foreach/" title="下一篇: for与foreach用法的区别">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2020/05/25/technology/20200525_1/">红黑树</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/05/08/technology/20200508_1/">java基础类型</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/13/offer/Offer_12/">数值的整数次方</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/13/offer/Offer_11/">二进制中1的个数</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/13/offer/Offer_10/">矩形覆盖</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/13/offer/Offer_09/">变态跳台阶</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/13/offer/Offer_00/">剑指offer 汇总</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/12/offer/Offer_08/">跳台阶</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/12/offer/Offer_07/">斐波那契数列</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/11/offer/Offer_06/">旋转数组的最小数字</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/09/daily/20191009_1/">SQL 性能优化梳理</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/08/offer/Offer_05/">用两个栈实现队列</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/29/daily/20190929_1/">java8 λ（lambad）表达式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/27/daily/20190927_1/">redis知识点</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/26/daily/20190926_1/">zookeeper知识点</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/10/daily/20190710_1/">springboot项目</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/17/daily/20190517_1/">redis命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/15/daily/20190515_1/">面试的东东</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/07/daily/20190507_1/">前缀、中缀、后缀表达式(逆波兰表达式)</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/30/daily/20190430_1/">Java7/8 中的 HashMap 和 ConcurrentHashMap 全解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/30/daily/20190430_2/">常用数据结构</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/23/daily/20190423_2/">看到的题，记录一下</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/23/daily/20190423_1/">MySQL5.7中Derived table变形记</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/19/daily/20190419_1/">MySQL索引底层实现原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/18/daily/20190418_2/">mysql如何获取当前时间</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/18/daily/20190418_1/">十大常见排序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/17/daily/20190417_1/">利用activityMQ做处理，消息的顺序性和服务处理的时效性问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/15/daily/20190415_3/">spring加载对象问题（坑）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/15/daily/20190415_1/">java子类继承加载顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/12/daily/20190412_2/">==和equals</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/12/daily/20190412_1/">ArrayList删除节点（坑）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/12/daily/20190412_3/">java总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/11/daily/20190411_1/">java类中缓存机制类</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/11/daily/20190411_2/">java调用js方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/10/daily/20190410_3/">dubbo 配置加载顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/10/daily/20190410_1/">dubbo的坑（持续更新）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/10/daily/20190410_2/">spring boot 配置加载顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/09/daily/20190409_1/">mysql关键字执行顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/09/daily/20190409_2/">linux CTRL+Z和CTRL+C区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/09/daily/20190409_3/">spring容器外调用容器内的对象</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/27/daily/20190327_1/">mysql利用find_in_set去查询in的集合</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/27/daily/20190327_2/">hexo指令</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/11/daily/20190311_3/">github上传限制</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/11/daily/20190311_1/">tcp-ip</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/11/daily/20190311_2/">汇编语言第二版</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/07/daily/20190307_1/">数字大小写</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/05/daily/20190305/">动态规划</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/10/daily/20190110/">项目</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/15/daily/questions/">试题</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/23/offer/Offer_04/">重建二叉树</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/23/offer/Offer_03/">从尾到头打印链表</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/22/offer/Offer_02/">替换空格</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/19/offer/Offer_01/">二维数组中的查找</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/11/daily/GcAndFinalize/">System.gc()与Object.finalize()的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/10/daily/TenGoodAdvice/">10条好建议</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/10/daily/JavaObject/">java Object</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/10/daily/for_foreach/">for与foreach用法的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/30/daily/ReadJava/">读java源码的顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/28/daily/Hexo_spfk_LiveRe_GithubPages/">Hexo博客+spfk主题+LiveRe评论+Github pages</a></li></ul>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+            }
+        })
+    </script>
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2020 snmlm
+            </div>
+            <!-- <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/luuman/hexo-theme-spfk" target="_blank">spfk</a> by luuman
+            </div> -->
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 1;
+            var backgroundimg = "url(/background/bg-" + backgroundnum +".jpg)";
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+            <script type="text/javascript">
+                (function() {
+                    'use strict';
+                    function getMatchData(keyword, data) {
+                        var matchData = [];
+                        for(var i =0;i<data.length;i++){
+                            if(data[i].title.toLowerCase().indexOf(keyword)>=0) 
+                                matchData.push(data[i])
+                        }
+                        return matchData;
+                    }
+                    var $input = $('#local-search-input');
+                    var $resultContent = $('#local-search-result');
+                    $input.keyup(function(){
+                        $.ajax({
+                            url: '/search.json',
+                            dataType: "json",
+                            success: function( json ) {
+                                var str='<ul class=\"search-result-list\">';                
+                                var keyword = $input.val().trim().toLowerCase();
+                                $resultContent.innerHTML = "";
+                                if ($input.val().trim().length <= 0) {
+                                    $resultContent.empty();
+                                    $('#switch-area').show();
+                                    return;
+                                }
+                                var results = getMatchData(keyword, json);
+                                if(results.length === 0){
+                                    $resultContent.empty();
+                                    $('#switch-area').show();
+                                    return;
+                                } 
+                                for(var i =0; i<results.length; i++){
+                                    str += "<li><a href='"+ results[i].url +"' class='search-result-title'>"+ results[i].title +"</a></li>";
+                                }
+                                str += "</ul>";
+                                $resultContent.empty();
+                                $resultContent.append(str);
+                                $('#switch-area').hide();
+                            }
+                        });
+                    });
+                })();
+            </script>
+        
+  </div>
+</body>
+</html>
