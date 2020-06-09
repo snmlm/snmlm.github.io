@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>jsp和servlet有什么区别 | snmlm</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="基本概念简述什么是servletServlet其实就是一个遵循Servlet开发的java类。Servlet是由服务器调用的，运行在服务器端。">
+<meta name="keywords" content="servlet">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jsp和servlet有什么区别">
+<meta property="og:url" content="https://snmlm.github.io/2020/06/08/daily/20200608/index.html">
+<meta property="og:site_name" content="snmlm">
+<meta property="og:description" content="基本概念简述什么是servletServlet其实就是一个遵循Servlet开发的java类。Servlet是由服务器调用的，运行在服务器端。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-06-09T04:08:20.378Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="jsp和servlet有什么区别">
+<meta name="twitter:description" content="基本概念简述什么是servletServlet其实就是一个遵循Servlet开发的java类。Servlet是由服务器调用的，运行在服务器端。">
+  
+    <link rel="alternative" href="/atom.xml" title="snmlm" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon-n.png">
+  
+  
+      <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          rootUrl: '/',
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col" style="background-size: cover; background-position: center center;">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/head.gif" class="js-avatar">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/" title="snmlm">snmlm</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">付出总会有回报~</p>
+        
+        
+            <form>
+                <!--<input type="text" class="st-default-search-input search" id="search" placeholder=" Search...">-->
+				<input type="text" class="st-default-search-input search" id="local-search-input" placeholder="搜索一下" autocomplete="off">
+            </form>
+			<div id="local-search-result"></div>
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/archives">文章</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl github" target="_blank" href="https://github.com/snmlm" title="github">github</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/Books/" style="font-size: 12.5px;">Books</a> <a href="/tags/dubbo/" style="font-size: 12.5px;">dubbo</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 12.5px;">hexo</a> <a href="/tags/java/" style="font-size: 17.5px;">java</a> <a href="/tags/java8/" style="font-size: 10px;">java8</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/mysql/" style="font-size: 15px;">mysql</a> <a href="/tags/redis/" style="font-size: 12.5px;">redis</a> <a href="/tags/servlet/" style="font-size: 12.5px;">servlet</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/spring-boot/" style="font-size: 12.5px;">spring boot</a> <a href="/tags/zookeeper/" style="font-size: 10px;">zookeeper</a> <a href="/tags/嘿嘿嘿/" style="font-size: 10px;">嘿嘿嘿</a> <a href="/tags/数据结构/" style="font-size: 12.5px;">数据结构</a> <a href="/tags/日常/" style="font-size: 12.5px;">日常</a> <a href="/tags/架构/" style="font-size: 10px;">架构</a> <a href="/tags/算法/" style="font-size: 20px;">算法</a> <a href="/tags/解决方案/" style="font-size: 10px;">解决方案</a> <a href="/tags/试题/" style="font-size: 10px;">试题</a>
+                    </div>
+                </section>
+                
+                
+                
+
+                
+                
+                <section class="switch-part switch-part3">
+                
+                    <div id="js-aboutme">snmlm</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="Me">snmlm</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/head.gif" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="Me">snmlm</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">付出总会有回报~</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/archives">文章</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="github" target="_blank" href="https://github.com/snmlm" title="github">github</a>
+                    
+                </div>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-daily/20200608" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2020/06/08/daily/20200608/" class="article-date">
+      <time datetime="2020-06-08T03:43:43.175Z" itemprop="datePublished">2020-06-08</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      jsp和servlet有什么区别
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/知识点/">知识点</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/servlet/">servlet</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+         <meta name="referrer" content="no-referrer">
+
+<h3 id="基本概念简述"><a href="#基本概念简述" class="headerlink" title="基本概念简述"></a>基本概念简述</h3><h4 id="什么是servlet"><a href="#什么是servlet" class="headerlink" title="什么是servlet"></a>什么是servlet</h4><p>Servlet其实就是一个遵循Servlet开发的java类。Servlet是由服务器调用的，运行在服务器端。<br><a id="more"></a></p>
+<h4 id="为什么要用到Servlet"><a href="#为什么要用到Servlet" class="headerlink" title="为什么要用到Servlet"></a>为什么要用到Servlet</h4><p>我们编写java程序想要在网上实现 聊天、发帖、这样一些的交互功能，普通的java技术是非常难完成的。sun公司就提供了Servlet这种技术供我们使用。</p>
+<h4 id="什么是JSP"><a href="#什么是JSP" class="headerlink" title="什么是JSP"></a>什么是JSP</h4><p>JSP全名为Java Server Pages，java服务器页面。JSP是一种基于文本的程序，其特点就是HTML和Java代码共同存在！</p>
+<h4 id="为什么需要JSP"><a href="#为什么需要JSP" class="headerlink" title="为什么需要JSP"></a>为什么需要JSP</h4><p>JSP是为了简化Servlet的工作出现的替代品，Servlet输出HTML非常困难，JSP就是替代Servlet输出HTML的。</p>
+<h4 id="JSP的工作原理"><a href="#JSP的工作原理" class="headerlink" title="JSP的工作原理"></a>JSP的工作原理</h4><ul>
+<li>Tomcat访问任何的资源都是在访问Servlet。当然了，JSP也不例外！JSP本身就是一种Servlet。为什么我说JSP本身就是一种Servlet呢？其实JSP在第一次被访问的时候会被编译为HttpJspPage类（该类是HttpServlet的一个子类）</li>
+<li>刚才我简单使用了一下JSP，它被编译成了这么一个Servlet:</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line">package org.apache.jsp;</span><br><span class="line"></span><br><span class="line">import javax.servlet.*;</span><br><span class="line">import javax.servlet.http.*;</span><br><span class="line">import javax.servlet.jsp.*;</span><br><span class="line">import java.util.Date;</span><br><span class="line"></span><br><span class="line">public final class _1_jsp extends org.apache.jasper.runtime.HttpJspBase</span><br><span class="line">    implements org.apache.jasper.runtime.JspSourceDependent &#123;</span><br><span class="line"></span><br><span class="line">  private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();</span><br><span class="line"></span><br><span class="line">  private static java.util.List&lt;String&gt; _jspx_dependants;</span><br><span class="line"></span><br><span class="line">  private javax.el.ExpressionFactory _el_expressionfactory;</span><br><span class="line">  private org.apache.tomcat.InstanceManager _jsp_instancemanager;</span><br><span class="line"></span><br><span class="line">  public java.util.List&lt;String&gt; getDependants() &#123;</span><br><span class="line">    return _jspx_dependants;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  public void _jspInit() &#123;</span><br><span class="line">    _el_expressionfactory = _jspxFactory.getJspApplicationContext(getServletConfig().getServletContext()).getExpressionFactory();</span><br><span class="line">    _jsp_instancemanager = org.apache.jasper.runtime.InstanceManagerFactory.getInstanceManager(getServletConfig());</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  public void _jspDestroy() &#123;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  public void _jspService(final HttpServletRequest request, final HttpServletResponse response)</span><br><span class="line">        throws java.io.IOException, ServletException &#123;</span><br><span class="line"></span><br><span class="line">    final PageContext pageContext;</span><br><span class="line">    HttpSession session = null;</span><br><span class="line">    final ServletContext application;</span><br><span class="line">    final ServletConfig config;</span><br><span class="line">    JspWriter out = null;</span><br><span class="line">    final Object page = this;</span><br><span class="line">    JspWriter _jspx_out = null;</span><br><span class="line">    PageContext _jspx_page_context = null;</span><br><span class="line"></span><br><span class="line">    try &#123;</span><br><span class="line">      response.setContentType(&quot;text/html;charset=UTF-8&quot;);</span><br><span class="line">      pageContext = _jspxFactory.getPageContext(this, request, response,</span><br><span class="line">                  null, true, 8192, true);</span><br><span class="line">      _jspx_page_context = pageContext;</span><br><span class="line">      application = pageContext.getServletContext();</span><br><span class="line">      config = pageContext.getServletConfig();</span><br><span class="line">      session = pageContext.getSession();</span><br><span class="line">      out = pageContext.getOut();</span><br><span class="line">      _jspx_out = out;</span><br><span class="line">      out.write(&quot;\r\n&quot;);</span><br><span class="line">      out.write(&quot;\r\n&quot;);</span><br><span class="line">      out.write(&quot;&lt;html&gt;\r\n&quot;);</span><br><span class="line">      out.write(&quot;&lt;head&gt;\r\n&quot;);</span><br><span class="line">      out.write(&quot;    &lt;title&gt;简单使用JSP&lt;/title&gt;\r\n&quot;);</span><br><span class="line">      out.write(&quot;&lt;/head&gt;\r\n&quot;);</span><br><span class="line">      out.write(&quot;&lt;body&gt;\r\n&quot;);</span><br><span class="line">      String s = &quot;HelloWorda&quot;;</span><br><span class="line">      out.println(s);</span><br><span class="line">      out.write(&quot;\r\n&quot;);</span><br><span class="line">      out.write(&quot;&lt;/body&gt;\r\n&quot;);</span><br><span class="line">      out.write(&quot;&lt;/html&gt;\r\n&quot;);</span><br><span class="line">    &#125; catch (Throwable t) &#123;</span><br><span class="line">      if (!(t instanceof SkipPageException))&#123;</span><br><span class="line">        out = _jspx_out;</span><br><span class="line">        if (out != null &amp;&amp; out.getBufferSize() != 0)</span><br><span class="line">          try &#123; out.clearBuffer(); &#125; catch (java.io.IOException e) &#123;&#125;</span><br><span class="line">        if (_jspx_page_context != null) _jspx_page_context.handlePageException(t);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; finally &#123;</span><br><span class="line">      _jspxFactory.releasePageContext(_jspx_page_context);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>编译过程是这样子的：浏览器第一次请求1.jsp时，Tomcat会将1.jsp转化成1_jsp.java这么一个类，并将该文件编译成class文件。编译完毕后再运行class文件来响应浏览器的请求。</li>
+<li>以后访问1.jsp就不再重新编译jsp文件了，直接调用class文件来响应浏览器。当然了，如果Tomcat检测到JSP页面改动了的话，会重新编译的。</li>
+<li>既然JSP是一个Servlet，那JSP页面中的HTML排版标签是怎么样被发送到浏览器的？我们来看下上面1_jsp.java的源码就知道了。原来就是用write()出去的罢了。说到底，JSP就是封装了Servlet的java程序罢了。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">out.write(&quot;\r\n&quot;);</span><br><span class="line">out.write(&quot;\r\n&quot;);</span><br><span class="line">out.write(&quot;&lt;html&gt;\r\n&quot;);</span><br><span class="line">out.write(&quot;&lt;head&gt;\r\n&quot;);</span><br><span class="line">out.write(&quot;    &lt;title&gt;简单使用JSP&lt;/title&gt;\r\n&quot;);</span><br><span class="line">out.write(&quot;&lt;/head&gt;\r\n&quot;);</span><br><span class="line">out.write(&quot;&lt;body&gt;\r\n&quot;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>有人可能也会问：JSP页面的代码服务器是怎么执行的？再看回1_jsp.java文件，java代码就直接在类中的service()中。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String s = &quot;HelloWorda&quot;;</span><br><span class="line">out.println(s);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>JSP比Servlet更方便更简单的一个重要原因就是：内置了9个对象！内置对象有：out、session、response、request、config、page、application、pageContext、exception。</li>
+</ul>
+
+      
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2020/06/08/daily/20200608/">jsp和servlet有什么区别</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 snmlm 的个人博客">snmlm</a></p>
+        <p><span>发布时间:</span>2020年06月08日 - 11时43分</p>
+        <p><span>最后更新:</span>2020年06月09日 - 12时08分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2020/06/08/daily/20200608/" title="jsp和servlet有什么区别">https://snmlm.github.io/2020/06/08/daily/20200608/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://snmlm.github.io/2020/06/08/daily/20200608/　　作者: snmlm" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+    <a href="/2020/06/09/daily/20200609/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          servlet
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/05/25/daily/20200525/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">红黑树(未写完)</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#基本概念简述"><span class="toc-number">1.</span> <span class="toc-text">基本概念简述</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#什么是servlet"><span class="toc-number">1.1.</span> <span class="toc-text">什么是servlet</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#为什么要用到Servlet"><span class="toc-number">1.2.</span> <span class="toc-text">为什么要用到Servlet</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#什么是JSP"><span class="toc-number">1.3.</span> <span class="toc-text">什么是JSP</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#为什么需要JSP"><span class="toc-number">1.4.</span> <span class="toc-text">为什么需要JSP</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#JSP的工作原理"><span class="toc-number">1.5.</span> <span class="toc-text">JSP的工作原理</span></a></li></ol></li></ol>
+</div>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+    }
+</script>
+
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+        <!-- ������City�氲װ���� -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zOTk3Ny8xNjUwNA==" 
+style="width:90%;margin:5% auto 0 auto;background: #fff;padding: 0 12px;border-radius: 5px;">
+<script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+</script>
+<noscript>Ϊ����ʹ�����������۹����뼤��JavaScript</noscript>
+</div>
+<!-- City�氲װ��������� -->
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2020/06/09/daily/20200609/" title="上一篇: servlet">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/2020/05/25/daily/20200525/" title="下一篇: 红黑树(未写完)">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2020/06/09/daily/20200609/">servlet</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/06/08/daily/20200608/">jsp和servlet有什么区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/05/25/daily/20200525/">红黑树(未写完)</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/05/08/daily/20200508/">java基础类型</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/13/offer/Offer_12/">数值的整数次方</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/13/offer/Offer_11/">二进制中1的个数</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/13/offer/Offer_10/">矩形覆盖</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/13/offer/Offer_09/">变态跳台阶</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/13/offer/Offer_00/">剑指offer 汇总</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/12/offer/Offer_08/">跳台阶</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/12/offer/Offer_07/">斐波那契数列</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/11/offer/Offer_06/">旋转数组的最小数字</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/09/daily/20191009/">SQL 性能优化梳理</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/08/offer/Offer_05/">用两个栈实现队列</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/29/daily/20190929/">java8 λ（lambad）表达式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/27/daily/20190927/">redis知识点</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/26/daily/20190926/">zookeeper知识点</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/10/daily/20190710/">springboot项目</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/17/daily/20190517/">redis命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/15/daily/20190515/">面试的东东</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/07/daily/20190507/">前缀、中缀、后缀表达式(逆波兰表达式)</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/30/daily/20190502/">常用数据结构</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/30/daily/20190501/">Java7/8 中的 HashMap 和 ConcurrentHashMap 全解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/23/daily/20190427/">看到的题，记录一下</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/23/daily/20190426/">MySQL5.7中Derived table变形记</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/19/daily/20190425/">MySQL索引底层实现原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/18/daily/20190424/">mysql如何获取当前时间</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/18/daily/20190423/">十大常见排序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/17/daily/20190422/">利用activityMQ做处理，消息的顺序性和服务处理的时效性问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/15/daily/20190421/">spring加载对象问题（坑）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/15/daily/20190420/">java子类继承加载顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/12/daily/20190419/">java总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/12/daily/20190418/">==和equals</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/12/daily/20190417/">ArrayList删除节点（坑）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/11/daily/20190416/">java调用js方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/11/daily/20190415/">java类中缓存机制类</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/10/daily/20190414/">dubbo 配置加载顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/10/daily/20190413/">spring boot 配置加载顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/10/daily/20190412/">dubbo的坑（持续更新）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/09/daily/20190411/">spring容器外调用容器内的对象</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/09/daily/20190410/">linux CTRL+Z和CTRL+C区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/09/daily/20190409/">mysql关键字执行顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/28/daily/20190328/">hexo指令</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/28/daily/20190327/">mysql利用find_in_set去查询in的集合</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/11/daily/20190313/">github上传限制</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/11/daily/20190312/">汇编语言第二版</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/11/daily/20190311/">tcp-ip</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/07/daily/20190307/">数字大小写</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/05/daily/20190305/">动态规划</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/10/daily/20190110/">项目</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/15/daily/questions/">试题</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/23/offer/Offer_04/">重建二叉树</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/23/offer/Offer_03/">从尾到头打印链表</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/22/offer/Offer_02/">替换空格</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/19/offer/Offer_01/">二维数组中的查找</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/11/daily/GcAndFinalize/">System.gc()与Object.finalize()的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/10/daily/TenGoodAdvice/">10条好建议</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/10/daily/JavaObject/">java Object</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/10/daily/for_foreach/">for与foreach用法的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/30/daily/ReadJava/">读java源码的顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/28/daily/Hexo_spfk_LiveRe_GithubPages/">Hexo博客+spfk主题+LiveRe评论+Github pages</a></li></ul>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+            }
+        })
+    </script>
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2020 snmlm
+            </div>
+            <!-- <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/luuman/hexo-theme-spfk" target="_blank">spfk</a> by luuman
+            </div> -->
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 1;
+            var backgroundimg = "url(/background/bg-" + backgroundnum +".jpg)";
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+            <script type="text/javascript">
+                (function() {
+                    'use strict';
+                    function getMatchData(keyword, data) {
+                        var matchData = [];
+                        for(var i =0;i<data.length;i++){
+                            if(data[i].title.toLowerCase().indexOf(keyword)>=0) 
+                                matchData.push(data[i])
+                        }
+                        return matchData;
+                    }
+                    var $input = $('#local-search-input');
+                    var $resultContent = $('#local-search-result');
+                    $input.keyup(function(){
+                        $.ajax({
+                            url: '/search.json',
+                            dataType: "json",
+                            success: function( json ) {
+                                var str='<ul class=\"search-result-list\">';                
+                                var keyword = $input.val().trim().toLowerCase();
+                                $resultContent.innerHTML = "";
+                                if ($input.val().trim().length <= 0) {
+                                    $resultContent.empty();
+                                    $('#switch-area').show();
+                                    return;
+                                }
+                                var results = getMatchData(keyword, json);
+                                if(results.length === 0){
+                                    $resultContent.empty();
+                                    $('#switch-area').show();
+                                    return;
+                                } 
+                                for(var i =0; i<results.length; i++){
+                                    str += "<li><a href='"+ results[i].url +"' class='search-result-title'>"+ results[i].title +"</a></li>";
+                                }
+                                str += "</ul>";
+                                $resultContent.empty();
+                                $resultContent.append(str);
+                                $('#switch-area').hide();
+                            }
+                        });
+                    });
+                })();
+            </script>
+        
+  </div>
+</body>
+</html>
