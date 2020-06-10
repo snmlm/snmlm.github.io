@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>rest与rpc区别 | snmlm</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="OSI网络七层模型 第一层：应用层。定义了用于在网络中进行通信和传输数据的接口； 第二层：表示层。定义不同的系统中数据的传输格式，编码和解码规范等； 第三层：会话层。管理用户的会话，控制用户间逻辑连接的建立和中断； 第四层：传输层。管理着网络中的端到端的数据传输； 第五层：网络层。定义网络设备间如何传输数据； 第六层：链路层。将上面的网络层的数据包封装成数据帧，便于物理层传输； 第七层：物理层">
+<meta name="keywords" content="协议">
+<meta property="og:type" content="article">
+<meta property="og:title" content="rest与rpc区别">
+<meta property="og:url" content="https://snmlm.github.io/daily/20200612/index.html">
+<meta property="og:site_name" content="snmlm">
+<meta property="og:description" content="OSI网络七层模型 第一层：应用层。定义了用于在网络中进行通信和传输数据的接口； 第二层：表示层。定义不同的系统中数据的传输格式，编码和解码规范等； 第三层：会话层。管理用户的会话，控制用户间逻辑连接的建立和中断； 第四层：传输层。管理着网络中的端到端的数据传输； 第五层：网络层。定义网络设备间如何传输数据； 第六层：链路层。将上面的网络层的数据包封装成数据帧，便于物理层传输； 第七层：物理层">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-06-10T09:53:22.328Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="rest与rpc区别">
+<meta name="twitter:description" content="OSI网络七层模型 第一层：应用层。定义了用于在网络中进行通信和传输数据的接口； 第二层：表示层。定义不同的系统中数据的传输格式，编码和解码规范等； 第三层：会话层。管理用户的会话，控制用户间逻辑连接的建立和中断； 第四层：传输层。管理着网络中的端到端的数据传输； 第五层：网络层。定义网络设备间如何传输数据； 第六层：链路层。将上面的网络层的数据包封装成数据帧，便于物理层传输； 第七层：物理层">
+  
+    <link rel="alternative" href="/atom.xml" title="snmlm" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon-n.png">
+  
+  
+      <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          rootUrl: '/',
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col" style="background-size: cover; background-position: center center;">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/head.gif" class="js-avatar">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/" title="snmlm">snmlm</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">付出总会有回报~</p>
+        
+        
+            <form>
+                <!--<input type="text" class="st-default-search-input search" id="search" placeholder=" Search...">-->
+				<input type="text" class="st-default-search-input search" id="local-search-input" placeholder="搜索一下" autocomplete="off">
+            </form>
+			<div id="local-search-result"></div>
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/archives">文章</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl github" target="_blank" href="https://github.com/snmlm" title="github">github</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/Books/" style="font-size: 12px;">Books</a> <a href="/tags/dubbo/" style="font-size: 12px;">dubbo</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 12px;">hexo</a> <a href="/tags/java/" style="font-size: 18px;">java</a> <a href="/tags/java8/" style="font-size: 10px;">java8</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/mysql/" style="font-size: 16px;">mysql</a> <a href="/tags/redis/" style="font-size: 12px;">redis</a> <a href="/tags/servlet/" style="font-size: 12px;">servlet</a> <a href="/tags/spring/" style="font-size: 14px;">spring</a> <a href="/tags/spring-boot/" style="font-size: 12px;">spring boot</a> <a href="/tags/zookeeper/" style="font-size: 10px;">zookeeper</a> <a href="/tags/协议/" style="font-size: 10px;">协议</a> <a href="/tags/嘿嘿嘿/" style="font-size: 10px;">嘿嘿嘿</a> <a href="/tags/数据结构/" style="font-size: 12px;">数据结构</a> <a href="/tags/日常/" style="font-size: 12px;">日常</a> <a href="/tags/架构/" style="font-size: 10px;">架构</a> <a href="/tags/算法/" style="font-size: 20px;">算法</a> <a href="/tags/解决方案/" style="font-size: 10px;">解决方案</a> <a href="/tags/试题/" style="font-size: 10px;">试题</a>
+                    </div>
+                </section>
+                
+                
+                
+
+                
+                
+                <section class="switch-part switch-part3">
+                
+                    <div id="js-aboutme">snmlm</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="Me">snmlm</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/head.gif" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="Me">snmlm</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">付出总会有回报~</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/archives">文章</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="github" target="_blank" href="https://github.com/snmlm" title="github">github</a>
+                    
+                </div>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-daily/20200612" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/daily/20200612/" class="article-date">
+      <time datetime="2020-06-10T01:01:45.094Z" itemprop="datePublished">2020-06-10</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      rest与rpc区别
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/知识点/">知识点</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/协议/">协议</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p> <meta name="referrer" content="no-referrer"></p>
+<h4 id="OSI网络七层模型"><a href="#OSI网络七层模型" class="headerlink" title="OSI网络七层模型"></a>OSI网络七层模型</h4><ul>
+<li>第一层：应用层。定义了用于在网络中进行通信和传输数据的接口；</li>
+<li>第二层：表示层。定义不同的系统中数据的传输格式，编码和解码规范等；</li>
+<li>第三层：会话层。管理用户的会话，控制用户间逻辑连接的建立和中断；</li>
+<li>第四层：传输层。管理着网络中的端到端的数据传输；</li>
+<li>第五层：网络层。定义网络设备间如何传输数据；</li>
+<li>第六层：链路层。将上面的网络层的数据包封装成数据帧，便于物理层传输；</li>
+<li>第七层：物理层。这一层主要就是传输这些二进制数据<a id="more"></a></li>
+</ul>
+<p>实际应用过程中，五层协议结构里面是没有表示层和会话层的。应该说它们和应用层合并了。我们应该将重点放在应用层和传输层这两个层面，因为RPC主要是基于TCP/IP协议（传输层协议），HTTP主要是基于HTTP协议（应用层协议）。</p>
+<h4 id="什么是REST"><a href="#什么是REST" class="headerlink" title="什么是REST"></a>什么是REST</h4><p>Fielding将他对互联网软件的架构原则，定名为REST，即Representational State Transfer的缩写。<br>REST是一种架构风格，指的是一组架构约束条件和原则。满足这些约束条件和原则的应用程序或设计就是 RESTful。REST规范把所有内容都视为资源，网络上一切皆资源。REST并没有创造新的技术，组件或服务，只是使用Web的现有特征和能力。 </p>
+<h5 id="资源（Resources）"><a href="#资源（Resources）" class="headerlink" title="资源（Resources）"></a>资源（Resources）</h5><p>所谓”资源”，就是网络上的一个实体，或者说是网络上的一个具体信息。它可以是一段文本、一张图片、一首歌曲、一种服务，总之就是一个具体的实在。你可以用一个URI（统一资源定位符）指向它，每种资源对应一个特定的URI。要获取这个资源，访问它的URI就可以，因此URI就成了每一个资源的地址或独一无二的识别符。<br>REST的名称”表现层状态转化”中，省略了主语。”表现层”其实指的是”资源”（Resources）的”表现层”。</p>
+<h5 id="表现层（Representation）"><a href="#表现层（Representation）" class="headerlink" title="表现层（Representation）"></a>表现层（Representation）</h5><p>“资源”是一种信息实体，它可以有多种外在表现形式。我们把”资源”具体呈现出来的形式，叫做它的”表现层”（Representation）。<br>比如，文本可以用txt格式表现，也可以用HTML格式、XML格式、JSON格式表现，甚至可以采用二进制格式；图片可以用JPG格式表现，也可以用PNG格式表现。<br>URI只代表资源的实体，不代表它的形式。严格地说，有些网址最后的”.html”后缀名是不必要的，因为这个后缀名表示格式，属于”表现层”范畴，而URI应该只代表”资源”的位置。它的具体表现形式，应该在HTTP请求的头信息中用Accept和Content-Type字段指定，这两个字段才是对”表现层”的描述。</p>
+<h5 id="状态转化（State-Transfer）"><a href="#状态转化（State-Transfer）" class="headerlink" title="状态转化（State Transfer）"></a>状态转化（State Transfer）</h5><p>访问一个网站，就代表了客户端和服务器的一个互动过程。在这个过程中，势必涉及到数据和状态的变化。<br>互联网通信协议HTTP协议，是一个无状态协议。这意味着，所有的状态都保存在服务器端。因此，如果客户端想要操作服务器，必须通过某种手段，让服务器端发生”状态转化”（State Transfer）。<br>客户端用到的手段，只能是HTTP协议。具体来说，就是HTTP协议里面，四个表示操作方式的动词：GET、POST、PUT、DELETE。它们分别对应四种基本操作：GET用来获取资源，POST用来新建资源（也可以用于更新资源），PUT用来更新资源，DELETE用来删除资源。</p>
+<p>HTTP动词与REST风格CRUD对应关系：</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>CRUD</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>POST</td>
+<td>create/update/delete</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>read</td>
+</tr>
+<tr>
+<td>PUT</td>
+<td>update/create</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td>delete</td>
+</tr>
+</tbody>
+</table>
+<p>综合上面的解释，我们总结一下什么是RESTful架构：</p>
+<ul>
+<li>每一个URI代表一种资源；</li>
+<li>客户端和服务器之间，传递这种资源的某种表现层；</li>
+<li>客户端通过四个HTTP动词，对服务器端资源进行操作，实现”表现层状态转化”。<h4 id="RESTful-API"><a href="#RESTful-API" class="headerlink" title="RESTful API"></a>RESTful API</h4>必须有一种统一的机制，方便不同的前端设备与后端进行通信。这导致API构架的流行，甚至出现”API First”的设计思想。RESTful API是目前比较成熟的一套互联网应用程序的API设计理论。</li>
+</ul>
+<h4 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h4><p>REST本身并没有创造新的技术、组件或服务，而隐藏在RESTful背后的理念就是使用Web的现有特征和能力， 更好地使用现有Web标准中的一些准则和约束。虽然REST本身受Web技术的影响很深， 但是理论上REST架构风格并不是绑定在HTTP上，只不过目前HTTP是唯一与REST相关的实例。 所以上面描述的REST也是通过HTTP实现的REST。</p>
+<h4 id="rpc"><a href="#rpc" class="headerlink" title="rpc"></a>rpc</h4><p>RPC（Remote Procedure Call），即远程过程调用，是一个分布式系统间通信的必备技术。RPC 最核心要解决的问题就是在分布式系统间，如何执行另外一个地址空间上的函数、方法，就仿佛在本地调用一样。</p>
+<h5 id="传输（Transport）"><a href="#传输（Transport）" class="headerlink" title="传输（Transport）"></a>传输（Transport）</h5><p>TCP 协议是 RPC 的 基石，一般来说通信是建立在 TCP 协议之上的，而且 RPC 往往需要可靠的通信，因此不采用 UDP。<br>RPC 传输的 message 也就是 TCP body 中的数据，这个 message 也同样可以包含 header+body。body 也经常叫做 payload。<br>TCP 协议栈存在端口的概念，端口是进程获取数据的渠道。</p>
+<h5 id="I-O-模型（I-O-Model）"><a href="#I-O-模型（I-O-Model）" class="headerlink" title="I/O 模型（I/O Model）"></a>I/O 模型（I/O Model）</h5><p>做一个高性能 /scalable 的 RPC，需要能够满足：</p>
+<ul>
+<li>服务端尽可能多的处理并发请求</li>
+<li>同时尽可能短的处理完毕。</li>
+</ul>
+<p>Socket I/O 可以看做是二者之间的桥梁，如何更好地协调二者，去满足前面说的两点要求，有一些模式（pattern）是可以应用的。RPC 框架可选择的 I/O 模型严格意义上有 5 种，这里不讨论基于信号驱动的I/O（Signal Driven I/O）。它们分别是：</p>
+<ul>
+<li>传统的阻塞 I/O（Blocking I/O）BIO/IO</li>
+<li>非阻塞 I/O（Non-blocking I/O）NIO</li>
+<li>I/O 多路复用（I/O multiplexing）</li>
+<li>异步 I/O（Asynchronous I/O）AIO</li>
+</ul>
+<p>这里不细说每种I/O模型。这里举一个形象的例子，读者就可以领会这四种I/O的区别，就用银行办业务 这个生活的场景描述。</p>
+<h6 id="传统的阻塞-I-O模型"><a href="#传统的阻塞-I-O模型" class="headerlink" title="传统的阻塞 I/O模型"></a>传统的阻塞 I/O模型</h6><p>一个柜员服务所有客户，可见当客户填写单据的时候也就是发生网络I/O的时候，柜员(也就是宝贵的线程或者进程)就会被阻塞，白白浪费了 CPU 资源，无法服务后面的请求。<br>如果一个柜员不够，那么就并发处理，对应采用线程池或者多进程方案，一个客户对应一个柜员，这明显加大了并发度，在并发不高的情况下性能够用，但是仍然存在柜员被 I/O 阻塞的可能。</p>
+<h6 id="I-O-多路复用"><a href="#I-O-多路复用" class="headerlink" title="I/O 多路复用"></a>I/O 多路复用</h6><p>存在一个大堂经理，相当于代理，它来负责所有的客户，只有当客户写好单据后，才把客户分配一个柜员处理，可以想象柜员不用阻塞在 I/O 读写上，这样柜员效率会非常高，这也就是 I/O 多路复用的精髓。</p>
+<blockquote>
+<p>基于内核，建立在epoll或者kqueue上实现，I/O多路复用最大的优势是用户可以在一个线程内同时处理多个Socket的I/O请求。通过一个线程监听全部的TCP连接，有任何事件发生就通知用户态处理即可。</p>
+</blockquote>
+<h6 id="异步-I-O"><a href="#异步-I-O" class="headerlink" title="异步 I/O"></a>异步 I/O</h6><p>完全不存在大堂经理，银行有一个天然的“高级的分配机器”，柜员注册自己负责的业务类型，例如 I/O 可读，那么由这个“高级的机器”负责I/O读，当可读时候，通过回调机制，把客户已经填写完毕的单据主动交给柜员，回调其函数完成操作。</p>
+<blockquote>
+<p>这里重点说下同步 I/O 和异步I/O，理论上前三种模型都叫做同步I/O，同步是指用户线程发起I/O请求后需要等待或者轮询内核I/O完成后再继续，而异步是指用户线程发起I/O请求直接退出，当内核I/O操作完成后会通知用户线程来调用其回调函数。</p>
+</blockquote>
+<blockquote>
+<p>I/O 多路复用往往对应 Reactor 模式，异步 I/O 往往对应 Proactor。<br>Reactor 一般使用epoll+事件驱动的经典模式，通过分治的手段，把耗时的网络连接、安全认证、编码等工作交给专门的线程池或者进程去完成，然后再去调用真正的核心业务逻辑层，这在 <em>nix 系统中被广泛使用。<br>著名的 Redis、Nginx、Node.js 的 Socket I/O 都用的这个，而 Java 的 NIO 框架 Netty 也是，Spark 2.0 RPC 所依赖的同样采用了 Reactor 模式。<br>Proactor在</em>nix中没有很好的实现，但是在Windows上大放异彩（例如 IOCP 模型）。<br>说个具体的例子，Thrift 作为一个融合了 序列化+RPC 的框架，提供了很多种 Server 的构建选项。</p>
+</blockquote>
+<blockquote>
+<p>在Reactor中实现读：</p>
+<ul>
+<li>注册读就绪事件和相应的事件处理器</li>
+<li>事件分离器等待事件</li>
+<li>事件到来，激活分离器，分离器调用事件对应的处理器。</li>
+<li>事件处理器完成实际的读操作，处理读到的数据，注册新的事件，然后返还控制权。</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>在Proactor中实现读：</p>
+<ul>
+<li>处理器发起异步读操作（注意：操作系统必须支持异步IO）。在这种情况下，处理器无视IO就绪事件，它关注的是完成事件。</li>
+<li>事件分离器等待操作完成事件</li>
+<li>在分离器等待过程中，操作系统利用并行的内核线程执行实际的读操作，并将结果数据存入用户自定义缓冲区，最后通知事件分离器读操作完成。</li>
+<li>事件分离器呼唤处理器。</li>
+<li>事件处理器处理用户自定义缓冲区中的数据，然后启动一个新的异步操作，并将控制权返回事件分离器。</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>可以看出，两个模式的相同点，都是对某个IO事件的事件通知(即告诉某个模块，这个IO操作可以进行或已经完成)。在结构上，两者也有相同点：demultiplexor负责提交IO操作(异步)、查询设备是否可操作(同步)，然后当条件满足时，就回调handler；不同点在于，异步情况下(Proactor)，当回调handler时，表示IO操作已经完成；同步情况下(Reactor)，回调handler时，表示IO设备可以进行某个操作(can read or can write)。</p>
+</blockquote>
+<h5 id="Schema-和序列化（Schema-amp-Data-Serialization）"><a href="#Schema-和序列化（Schema-amp-Data-Serialization）" class="headerlink" title="Schema 和序列化（Schema &amp; Data Serialization）"></a>Schema 和序列化（Schema &amp; Data Serialization）</h5><p>序列化和反序列化，是做对象到二进制数据的转换。<br>程序是可以理解对象的，对象一般含有schema或者结构，基于这些语义来做特定的业务逻辑处理。<br>考察一个序列化框架一般会关注以下几点：</p>
+<ul>
+<li>Encoding format。是 human readable 还是 binary。</li>
+<li>Schema declaration。也叫作契约声明，基于 IDL，比如 Protocol Buffers/Thrift，还是自描述的，比如 JSON、XML。另外还需要看是否是强类型的。</li>
+<li>语言平台的中立性。比如 Java 的 Native Serialization 就只能自己玩，而 Protocol Buffers 可以跨各种语言和平台。</li>
+<li>新老契约的兼容性。比如 IDL 加了一个字段，老数据是否还可以反序列化成功。</li>
+<li>和压缩算法的契合度。跑benchmark和实际应用都会结合各种压缩算法，例如 gzip、snappy。</li>
+<li>性能。这是最重要的，序列化、反序列化的时间，序列化后数据的字节大小是考察重点。</li>
+</ul>
+<p>序列化方式非常多，常见的有 Protocol Buffers， Avro，Thrift，XML，JSON，MessagePack，Kyro，Hessian，Protostuff，Java Native Serialize，FST。</p>
+<h5 id="协议结构（Wire-Protocol）"><a href="#协议结构（Wire-Protocol）" class="headerlink" title="协议结构（Wire Protocol）"></a>协议结构（Wire Protocol）</h5><p>TCP 只是 binary stream 通道，是binary数据的可靠搬用工，它不懂 RPC 里面包装的是什么。而在一个通道上传输 message，势必涉及 message 的识别。<br>举个例子，正如下图中的例子，ABC+DEF+GHI 分 3 个 message，也就是分 3 个 Frame 发送出去，而接收端分四次收到 4 个 Frame。<br>Socket I/O 的工作完成得很好，可靠地传输过去，这是 TCP 协议保证的，但是接收到的是 4 个 Frame，不是原本发送的 3 个 message 对应的 3 个 Frame。<br>这种情况叫做发生了 TCP 粘包和半包 现象，AB、H、I 的情况叫做半包，CDEFG的情况叫做粘包。虽然顺序是对的，但是分组完全和之前对应不上。<br>这时候应用层如何做语义级别的 message 识别是个问题，只有做好了协议的结构，才能把一整个数据片段做序列化或者反序列化处理。<br>比如：memcache的换行符、http中的固定长度头。</p>
+<h5 id="可靠性（Reliability）"><a href="#可靠性（Reliability）" class="headerlink" title="可靠性（Reliability）"></a>可靠性（Reliability）</h5><p>RPC 框架不光要处理 Network I/O、序列化、协议栈。还有很多不确定性问题要处理，这里的不确定性就是由 网络的不可靠 带来的麻烦。<br>例如如何保持长连接心跳？网络闪断怎么办？重连、重传？连接超时？这些都非常的细碎和麻烦，所以说开发好一个稳定的 RPC 类库是一个非常系统和细心的工程。<br>但是好在工业界有一群人就致力于提供平台似的解决方案，例如 Java 中的 Netty，它是一个强大的异步、事件驱动的网络 I/O 库，使用 I/O 多路复用的模型，做好了上述的麻烦处理。<br>它是面向对象设计模式的集大成者，使用方只需要会使用 Netty 的各种类，进行扩展、组合、插拔，就可以完成一个高性能、可靠的 RPC 框架。<br>著名的 gRPC Java 版本、Twitter 的 Finagle 框架、阿里巴巴的 Dubbo、新浪微博的 Motan、Spark 2.0 RPC 的网络层（可以参考 kraps-rpc：<a href="https://github.com/neoremind/kraps-rpc）都采用了这个类库。" target="_blank" rel="noopener">https://github.com/neoremind/kraps-rpc）都采用了这个类库。</a></p>
+<h5 id="易用性（Ease-of-use）"><a href="#易用性（Ease-of-use）" class="headerlink" title="易用性（Ease of use）"></a>易用性（Ease of use）</h5><p>RPC 是需要让上层写业务逻辑来实现功能的，如何优雅地启停一个 server，注入 endpoint，客户端怎么连，重试调用，超时控制，同步异步调用，SDK 是否需要交换等等，都决定了基于 RPC 构建服务，甚至 SOA 的工程效率与生产力高低。这里不做展开，看各种 RPC 的文档就知道他们的易用性如何了。</p>
+<h5 id="工业界的-RPC-框架一览"><a href="#工业界的-RPC-框架一览" class="headerlink" title="工业界的 RPC 框架一览"></a>工业界的 RPC 框架一览</h5><p>国内</p>
+<ul>
+<li>Dubbo。来自阿里巴巴 <a href="http://dubbo.I/O/" target="_blank" rel="noopener">http://dubbo.I/O/</a></li>
+<li>Motan。新浪微博自用 <a href="https://github.com/weibocom/motan" target="_blank" rel="noopener">https://github.com/weibocom/motan</a></li>
+<li>Dubbox。当当基于dubbo的<a href="https://github.com/dangdangdotcom/dubbox" target="_blank" rel="noopener">https://github.com/dangdangdotcom/dubbox</a></li>
+<li>rpcx。基于 Golang 的 <a href="https://github.com/smallnest/rpcx" target="_blank" rel="noopener">https://github.com/smallnest/rpcx</a></li>
+<li>Navi &amp; Navi-pbrpc。作者开源的 <a href="https://github.com/neoremind/navi" target="_blank" rel="noopener">https://github.com/neoremind/navi</a> <a href="https://github.com/neoremind/navi-pbrpc" target="_blank" rel="noopener">https://github.com/neoremind/navi-pbrpc</a></li>
+</ul>
+<p>国外</p>
+<ul>
+<li>Thrift from facebook <a href="https://thrift.apache.org" target="_blank" rel="noopener">https://thrift.apache.org</a></li>
+<li>Avro from hadoop <a href="https://avro.apache.org" target="_blank" rel="noopener">https://avro.apache.org</a></li>
+<li>Finagle by twitter <a href="https://twitter.github.I/O/finagle" target="_blank" rel="noopener">https://twitter.github.I/O/finagle</a></li>
+<li>gRPC by Google <a href="http://www.grpc.I/O" target="_blank" rel="noopener">http://www.grpc.I/O</a> (Google inside use Stuppy)</li>
+<li>Hessian from cuacho <a href="http://hessian.caucho.com" target="_blank" rel="noopener">http://hessian.caucho.com</a></li>
+<li>Coral Service inside amazon (not open sourced)</li>
+</ul>
+<p>上述列出来的都是现在互联网企业常用的解决方案，暂时不考虑传统的 SOAP，XML-RPC 等。这些是有网络资料的，实际上很多公司内部都会针对自己的业务场景，以及和公司内的平台相融合（比如监控平台等），自研一套框架，但是殊途同归，都逃不掉刚刚上面所列举的 RPC 的要考虑的各个部分。</p>
+<h5 id="既然有-HTTP-请求，为什么还要用-RPC-调用"><a href="#既然有-HTTP-请求，为什么还要用-RPC-调用" class="headerlink" title="既然有 HTTP 请求，为什么还要用 RPC 调用"></a>既然有 HTTP 请求，为什么还要用 RPC 调用</h5><p>http好比普通话，rpc好比团伙内部黑话。讲普通话，好处就是谁都听得懂，谁都会讲。<br>讲黑话，好处是可以更精简、更加保密、更加可定制，坏处就是要求“说”黑话的那一方（client端）也要懂，而且一旦大家都说一种黑话了，换黑话就困难了。</p>
+<h4 id="言归正传"><a href="#言归正传" class="headerlink" title="言归正传"></a>言归正传</h4><p>这个问题其实是有理解误区的，首先 http 和 rpc 并不是一个并行概念。rpc是远端过程调用，其调用协议通常包含传输协议和编码协议。<br>传输协议包含: 如著名的 <a href="grpc / grpc.io">gRPC</a> 使用的 http2 协议，也有如dubbo一类的自定义报文的tcp协议。编码协议包含: 如基于文本编码的 xml json，也有二进制编码的 protobuf binpack 等。<br>因此问题应该是：为什么要使用自定义 tcp 协议的 rpc 做后端进程通信？<br>要解决这个问题就应该搞清楚 http 使用的 tcp 协议，和我们自定义的 tcp 协议在报文上的区别。首先要否认一点 http 协议相较于自定义tcp报文协议，增加的开销在于连接的建立与断开。<br>http协议是支持连接池复用的，也就是建立一定数量的连接不断开，并不会频繁的创建和销毁连接。另外要说的是http也可以使用protobuf这种二进制编码协议对内容进行编码，因此二者最大的区别还是在传输协议上。<br>通用定义的http1.1协议的tcp报文包含太多废信息，一个POST协议的格式大致如下:</p>
+<blockquote>
+<p>HTTP/1.0 200 OK<br>Content-Type: text/plain<br>Content-Length: 137582<br>Expires: Thu, 05 Dec 1997 16:00:00 GMT<br>Last-Modified: Wed, 5 August 1996 15:55:28 GMT<br>Server: Apache 0.84<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">&lt;body&gt;Hello World&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>即使编码协议也就是body是使用二进制编码协议，报文元数据也就是header头的键值对却用了文本编码，非常占字节数。如上图所使用的报文中有效字节数仅仅占约 30%，也就是70%的时间用于传输元数据废编码。当然实际情况下报文内容可能会比这个长，但是报头所占的比例也是非常可观的。<br>自定义tcp协议可以极大地简化传输头内容。<br>所谓的效率优势是针对http1.1协议来讲的，http2.0协议已经优化编码效率问题，像grpc这种rpc库使用的就是http2.0协议。这么来说吧http容器的性能测试单位通常是kqps，自定义tpc协议则通常是以10kqps到100kqps为基准简单来说成熟的rpc库相对http容器，<br>更多的是封装了“服务发现”，”错误重试”一类面向服务的高级特性。可以这么理解，rpc框架是面向服务的更高级的封装。如果把一个http server容器上封装一层服务发现和函数代理调用，那它就已经可以做一个rpc框架了。</p>
+
+      
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/daily/20200612/">rest与rpc区别</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 snmlm 的个人博客">snmlm</a></p>
+        <p><span>发布时间:</span>2020年06月10日 - 09时01分</p>
+        <p><span>最后更新:</span>2020年06月10日 - 17时53分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/daily/20200612/" title="rest与rpc区别">https://snmlm.github.io/daily/20200612/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://snmlm.github.io/daily/20200612/　　作者: snmlm" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+  
+    <a href="/daily/20200611/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">spring aop</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#OSI网络七层模型"><span class="toc-number">1.</span> <span class="toc-text">OSI网络七层模型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#什么是REST"><span class="toc-number">2.</span> <span class="toc-text">什么是REST</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#资源（Resources）"><span class="toc-number">2.1.</span> <span class="toc-text">资源（Resources）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#表现层（Representation）"><span class="toc-number">2.2.</span> <span class="toc-text">表现层（Representation）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#状态转化（State-Transfer）"><span class="toc-number">2.3.</span> <span class="toc-text">状态转化（State Transfer）</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#RESTful-API"><span class="toc-number">3.</span> <span class="toc-text">RESTful API</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HTTP"><span class="toc-number">4.</span> <span class="toc-text">HTTP</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#rpc"><span class="toc-number">5.</span> <span class="toc-text">rpc</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#传输（Transport）"><span class="toc-number">5.1.</span> <span class="toc-text">传输（Transport）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#I-O-模型（I-O-Model）"><span class="toc-number">5.2.</span> <span class="toc-text">I/O 模型（I/O Model）</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#传统的阻塞-I-O模型"><span class="toc-number">5.2.1.</span> <span class="toc-text">传统的阻塞 I/O模型</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#I-O-多路复用"><span class="toc-number">5.2.2.</span> <span class="toc-text">I/O 多路复用</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#异步-I-O"><span class="toc-number">5.2.3.</span> <span class="toc-text">异步 I/O</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Schema-和序列化（Schema-amp-Data-Serialization）"><span class="toc-number">5.3.</span> <span class="toc-text">Schema 和序列化（Schema &amp; Data Serialization）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#协议结构（Wire-Protocol）"><span class="toc-number">5.4.</span> <span class="toc-text">协议结构（Wire Protocol）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#可靠性（Reliability）"><span class="toc-number">5.5.</span> <span class="toc-text">可靠性（Reliability）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#易用性（Ease-of-use）"><span class="toc-number">5.6.</span> <span class="toc-text">易用性（Ease of use）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#工业界的-RPC-框架一览"><span class="toc-number">5.7.</span> <span class="toc-text">工业界的 RPC 框架一览</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#既然有-HTTP-请求，为什么还要用-RPC-调用"><span class="toc-number">5.8.</span> <span class="toc-text">既然有 HTTP 请求，为什么还要用 RPC 调用</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#言归正传"><span class="toc-number">6.</span> <span class="toc-text">言归正传</span></a></li></ol>
+</div>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+    }
+</script>
+
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+        <!-- ������City�氲װ���� -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zOTk3Ny8xNjUwNA==" 
+style="width:90%;margin:5% auto 0 auto;background: #fff;padding: 0 12px;border-radius: 5px;">
+<script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+</script>
+<noscript>Ϊ����ʹ�����������۹����뼤��JavaScript</noscript>
+</div>
+<!-- City�氲װ��������� -->
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/daily/20200611/" title="下一篇: spring aop">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/daily/20200612/">rest与rpc区别</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20200611/">spring aop</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20200610/">spring ioc</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20200609/">全面理解servlet</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20200608/">jsp和servlet有什么区别</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20200525/">红黑树(未写完)</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20200508/">java基础类型</a></li><li class="post-list-item"><a class="post-list-link" href="/offer/Offer_12/">数值的整数次方</a></li><li class="post-list-item"><a class="post-list-link" href="/offer/Offer_11/">二进制中1的个数</a></li><li class="post-list-item"><a class="post-list-link" href="/offer/Offer_10/">矩形覆盖</a></li><li class="post-list-item"><a class="post-list-link" href="/offer/Offer_09/">变态跳台阶</a></li><li class="post-list-item"><a class="post-list-link" href="/offer/Offer_00/">剑指offer 汇总</a></li><li class="post-list-item"><a class="post-list-link" href="/offer/Offer_08/">跳台阶</a></li><li class="post-list-item"><a class="post-list-link" href="/offer/Offer_07/">斐波那契数列</a></li><li class="post-list-item"><a class="post-list-link" href="/offer/Offer_06/">旋转数组的最小数字</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20191009/">SQL 性能优化梳理</a></li><li class="post-list-item"><a class="post-list-link" href="/offer/Offer_05/">用两个栈实现队列</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20190929/">java8 λ（lambad）表达式</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20190927/">redis知识点</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20190926/">zookeeper知识点</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20190710/">springboot项目</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20190517/">redis命令</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20190515/">面试的东东</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20190507/">前缀、中缀、后缀表达式(逆波兰表达式)</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20190502/">常用数据结构</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20190501/">Java7/8 中的 HashMap 和 ConcurrentHashMap 全解析</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20190427/">看到的题，记录一下</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20190426/">MySQL5.7中Derived table变形记</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20190425/">MySQL索引底层实现原理</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20190424/">mysql如何获取当前时间</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20190423/">十大常见排序</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20190422/">利用activityMQ做处理，消息的顺序性和服务处理的时效性问题</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20190421/">spring加载对象问题（坑）</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20190420/">java子类继承加载顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20190419/">java总结</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20190418/">==和equals</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20190417/">ArrayList删除节点（坑）</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20190416/">java调用js方法</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20190415/">java类中缓存机制类</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20190414/">dubbo 配置加载顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20190413/">spring boot 配置加载顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20190412/">dubbo的坑（持续更新）</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20190411/">spring容器外调用容器内的对象</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20190410/">linux CTRL+Z和CTRL+C区别</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20190409/">mysql关键字执行顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20190328/">hexo指令</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20190327/">mysql利用find_in_set去查询in的集合</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20190313/">github上传限制</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20190312/">汇编语言第二版</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20190311/">tcp-ip</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20190307/">数字大小写</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20190305/">动态规划</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20190110/">项目</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/questions/">试题</a></li><li class="post-list-item"><a class="post-list-link" href="/offer/Offer_04/">重建二叉树</a></li><li class="post-list-item"><a class="post-list-link" href="/offer/Offer_03/">从尾到头打印链表</a></li><li class="post-list-item"><a class="post-list-link" href="/offer/Offer_02/">替换空格</a></li><li class="post-list-item"><a class="post-list-link" href="/offer/Offer_01/">二维数组中的查找</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/GcAndFinalize/">System.gc()与Object.finalize()的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/JavaObject/">java Object</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/TenGoodAdvice/">10条好建议</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/for_foreach/">for与foreach用法的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/ReadJava/">读java源码的顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/Hexo_spfk_LiveRe_GithubPages/">Hexo博客+spfk主题+LiveRe评论+Github pages</a></li></ul>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+            }
+        })
+    </script>
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2020 snmlm
+            </div>
+            <!-- <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/luuman/hexo-theme-spfk" target="_blank">spfk</a> by luuman
+            </div> -->
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 1;
+            var backgroundimg = "url(/background/bg-" + backgroundnum +".jpg)";
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+            <script type="text/javascript">
+                (function() {
+                    'use strict';
+                    function getMatchData(keyword, data) {
+                        var matchData = [];
+                        for(var i =0;i<data.length;i++){
+                            if(data[i].title.toLowerCase().indexOf(keyword)>=0) 
+                                matchData.push(data[i])
+                        }
+                        return matchData;
+                    }
+                    var $input = $('#local-search-input');
+                    var $resultContent = $('#local-search-result');
+                    $input.keyup(function(){
+                        $.ajax({
+                            url: '/search.json',
+                            dataType: "json",
+                            success: function( json ) {
+                                var str='<ul class=\"search-result-list\">';                
+                                var keyword = $input.val().trim().toLowerCase();
+                                $resultContent.innerHTML = "";
+                                if ($input.val().trim().length <= 0) {
+                                    $resultContent.empty();
+                                    $('#switch-area').show();
+                                    return;
+                                }
+                                var results = getMatchData(keyword, json);
+                                if(results.length === 0){
+                                    $resultContent.empty();
+                                    $('#switch-area').show();
+                                    return;
+                                } 
+                                for(var i =0; i<results.length; i++){
+                                    str += "<li><a href='"+ results[i].url +"' class='search-result-title'>"+ results[i].title +"</a></li>";
+                                }
+                                str += "</ul>";
+                                $resultContent.empty();
+                                $resultContent.append(str);
+                                $('#switch-area').hide();
+                            }
+                        });
+                    });
+                })();
+            </script>
+        
+  </div>
+</body>
+</html>
