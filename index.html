@@ -132,7 +132,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/Books/" style="font-size: 12px;">Books</a> <a href="/tags/dubbo/" style="font-size: 12px;">dubbo</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 12px;">hexo</a> <a href="/tags/java/" style="font-size: 18px;">java</a> <a href="/tags/java8/" style="font-size: 10px;">java8</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/mysql/" style="font-size: 16px;">mysql</a> <a href="/tags/redis/" style="font-size: 12px;">redis</a> <a href="/tags/servlet/" style="font-size: 12px;">servlet</a> <a href="/tags/spring/" style="font-size: 14px;">spring</a> <a href="/tags/spring-boot/" style="font-size: 12px;">spring boot</a> <a href="/tags/zookeeper/" style="font-size: 10px;">zookeeper</a> <a href="/tags/协议/" style="font-size: 10px;">协议</a> <a href="/tags/嘿嘿嘿/" style="font-size: 10px;">嘿嘿嘿</a> <a href="/tags/数据结构/" style="font-size: 12px;">数据结构</a> <a href="/tags/方案/" style="font-size: 10px;">方案</a> <a href="/tags/日常/" style="font-size: 12px;">日常</a> <a href="/tags/架构/" style="font-size: 10px;">架构</a> <a href="/tags/算法/" style="font-size: 20px;">算法</a> <a href="/tags/解决方案/" style="font-size: 10px;">解决方案</a> <a href="/tags/试题/" style="font-size: 10px;">试题</a>
+                        <a href="/tags/Books/" style="font-size: 12.5px;">Books</a> <a href="/tags/dubbo/" style="font-size: 12.5px;">dubbo</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 12.5px;">hexo</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/java8/" style="font-size: 10px;">java8</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/mysql/" style="font-size: 17.5px;">mysql</a> <a href="/tags/redis/" style="font-size: 12.5px;">redis</a> <a href="/tags/servlet/" style="font-size: 15px;">servlet</a> <a href="/tags/spring/" style="font-size: 15px;">spring</a> <a href="/tags/spring-boot/" style="font-size: 12.5px;">spring boot</a> <a href="/tags/zookeeper/" style="font-size: 10px;">zookeeper</a> <a href="/tags/协议/" style="font-size: 10px;">协议</a> <a href="/tags/嘿嘿嘿/" style="font-size: 10px;">嘿嘿嘿</a> <a href="/tags/数据结构/" style="font-size: 12.5px;">数据结构</a> <a href="/tags/方案/" style="font-size: 10px;">方案</a> <a href="/tags/日常/" style="font-size: 12.5px;">日常</a> <a href="/tags/架构/" style="font-size: 10px;">架构</a> <a href="/tags/算法/" style="font-size: 20px;">算法</a> <a href="/tags/解决方案/" style="font-size: 10px;">解决方案</a> <a href="/tags/试题/" style="font-size: 10px;">试题</a>
                     </div>
                 </section>
                 
@@ -189,6 +189,208 @@
     </div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-daily/20200702" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/daily/20200702/" class="article-date">
+      <time datetime="2020-07-01T03:36:27.789Z" itemprop="datePublished">2020-07-01</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/daily/20200702/">return和finally执行问题</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p> <meta name="referrer" content="no-referrer"></p>
+<h4 id="执行顺序"><a href="#执行顺序" class="headerlink" title="执行顺序"></a>执行顺序</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">try &#123;</span><br><span class="line">    //代码A</span><br><span class="line">    retrun；</span><br><span class="line">&#125;finally &#123;</span><br><span class="line">    //代码B</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>finally中的代码是在retrun之后执行。</li>
+<li>retrun返回的时候，对象是返回的地址（finally中是可以改变对象的属性，并能影响返回值），基本类型是具体的数值（无论finally中如何操作，都不会影响返回值）。</li>
+</ul>
+
+      
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/知识点/">知识点</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-daily/20200701" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/daily/20200701/" class="article-date">
+      <time datetime="2020-07-01T03:32:23.749Z" itemprop="datePublished">2020-07-01</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/daily/20200701/">重写与重载</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p> <meta name="referrer" content="no-referrer"></p>
+<h4 id="重写满足条件"><a href="#重写满足条件" class="headerlink" title="重写满足条件"></a>重写满足条件</h4><ul>
+<li>重写方法不能缩小访问权限；</li>
+<li>参数列表必须与被重写方法相同（包括显示形式）；</li>
+<li>返回类型必须与被重写方法的相同或是其子类；</li>
+<li>重写方法不能抛出新的异常，或者超过了父类范围的异常，但是可以抛出更少、更有限的异常，或者不抛出异常。
+          
+      
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/知识点/">知识点</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a  href="/daily/20200701/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-daily/20200630" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/daily/20200630/" class="article-date">
+      <time datetime="2020-07-01T03:25:17.153Z" itemprop="datePublished">2020-07-01</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/daily/20200630/">mysql连接</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+         <meta name="referrer" content="no-referrer">
+      
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/知识点/">知识点</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/servlet/">servlet</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-daily/20200622" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -471,7 +673,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/daily/20200609/">全面理解servlet（未写完）</a>
+      <a class="article-title" href="/daily/20200609/">全面理解servlet</a>
     </h1>
   
 
@@ -481,7 +683,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p> <meta name="referrer" content="no-referrer"></p>
+              <p> <meta name="referrer" content="no-referrer"></p>
 <h4 id="Tomcat工作机制"><a href="#Tomcat工作机制" class="headerlink" title="Tomcat工作机制"></a>Tomcat工作机制</h4><p>访问的流程（省略连接）</p>
 <ul>
 <li>客户端发出http请求。</li>
@@ -490,112 +692,8 @@
 <li>创建好servlet之后，tomcat把http请求解析成request对象，并转发给对应的servlet进行处理。</li>
 <li>servlet处理完成之后，返回response对象，返回给tomcat。</li>
 <li>tomcat接收到response对象解析成http返回请求。</li>
-<li>再由tomcat发送给客户端。</li>
-</ul>
-<h4 id="什么是Servlet"><a href="#什么是Servlet" class="headerlink" title="什么是Servlet"></a>什么是Servlet</h4><p>Servlet（Server Applet），全称Java Servlet，未有中文译文。是用Java编写的服务器端程序。其主要功能在于交互式地浏览和修改数据，生成动态Web内容。狭义的Servlet是指Java语言实现的一个接口，广义的Servlet是指任何实现了这个Servlet接口的类，一般情况下，人们将Servlet理解为后者。<br>Servlet运行于支持Java的应用服务器中。从实现上讲，Servlet可以响应任何类型的请求，但绝大多数情况下Servlet只用来扩展基于HTTP协议的Web服务器。</p>
-<h4 id="Servlet-API-概览"><a href="#Servlet-API-概览" class="headerlink" title="Servlet API 概览"></a>Servlet API 概览</h4><p>Servlet API 包含以下4个Java包：</p>
-<ul>
-<li>javax.servlet   其中包含定义servlet和servlet容器之间契约的类和接口。</li>
-<li>javax.servlet.http   其中包含定义HTTP Servlet 和Servlet容器之间的关系。</li>
-<li>javax.servlet.annotation   其中包含标注servlet，Filter,Listener的标注。它还为被标注元件定义元数据。</li>
-<li>javax.servlet.descriptor，其中包含提供程序化登录Web应用程序的配置信息的类型。</li>
-</ul>
-<h4 id="Servlet的使用方式"><a href="#Servlet的使用方式" class="headerlink" title="Servlet的使用方式"></a>Servlet的使用方式</h4><p>Servlet技术的核心是Servlet，它是所有Servlet类必须直接或者间接实现的一个接口。在编写实现Servlet的Servlet类时，直接实现它。在扩展实现这个这个接口的类时，间接实现它。</p>
-<h4 id="Servlet-的工作原理"><a href="#Servlet-的工作原理" class="headerlink" title="Servlet 的工作原理"></a>Servlet 的工作原理</h4><p>Servlet接口定义了Servlet与servlet容器之间的契约。这个契约是：Servlet容器将Servlet类载入内存，并产生Servlet实例和调用它具体的方法。但是要注意的是，在一个应用程序中，每种Servlet类型只能有一个实例。</p>
-<blockquote>
-<p>servlet的单例和多例问题</p>
-<ol>
-<li>看是否实现了SingleThreadModel接口，实现之后可以实现多例，这个接口在servlet4.0时废弃了，官方不提倡使用。</li>
-<li>还要看servlet容器，一般容器都是单一实现。</li>
-<li>在xml配置的时候，servlet web是不允许配置同名，可以同名的话，可以配置多个。</li>
-</ol>
-</blockquote>
-<p>用户请求致使Servlet容器调用Servlet的Service（）方法，并传入一个ServletRequest对象和一个ServletResponse对象。ServletRequest对象和ServletResponse对象都是由Servlet容器（例如TomCat）封装好的，并不需要程序员去实现，程序员可以直接使用这两个对象。<br>ServletRequest中封装了当前的Http请求，因此，开发人员不必解析和操作原始的Http数据。ServletResponse表示当前用户的Http响应，程序员只需直接操作ServletResponse对象就能把响应轻松的发回给用户。<br>对于每一个应用程序，Servlet容器还会创建一个ServletContext对象。这个对象中封装了上下文（应用程序）的环境详情。每个应用程序只有一个ServletContext。每个Servlet对象也都有一个封装Servlet配置的ServletConfig对象。</p>
-<h4 id="Servlet接口"><a href="#Servlet接口" class="headerlink" title="Servlet接口"></a>Servlet接口</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public interface Servlet &#123;</span><br><span class="line">    public abstract void init(ServletConfig var1) throws ServletException;//初始化</span><br><span class="line">    public abstract ServletConfig getServletConfig();//获取ServletConfig</span><br><span class="line">    public abstract void service(ServletRequest var1, ServletResponse var2) throws ServletException, IOException;//运行是被调用的</span><br><span class="line">    public abstract String getServletInfo();//获取信息描述等</span><br><span class="line">    public abstract void destroy();//销毁</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="Servlet-的生命周期"><a href="#Servlet-的生命周期" class="headerlink" title="Servlet 的生命周期"></a>Servlet 的生命周期</h4><p>其中，init( ),service( ),destroy( )是Servlet生命周期的方法。代表了Servlet从“出生”到“工作”再到“死亡 ”的过程。Servlet容器（例如TomCat）会根据下面的规则来调用这三个方法：<br>1.init( ),当Servlet第一次被请求时，Servlet容器就会开始调用这个方法来初始化一个Servlet对象出来，但是这个方法在后续请求中不会在被Servlet容器调用，就像人只能“出生”一次一样。我们可以利用init（ ）方法来执行相应的初始化工作。调用这个方法时，Servlet容器会传入一个ServletConfig对象进来从而对Servlet对象进行初始化。<br>2.service( )方法，每当请求Servlet时，Servlet容器就会调用这个方法。就像人一样，需要不停的接受老板的指令并且“工作”。第一次请求时，Servlet容器会先调用init( )方法初始化一个Servlet对象出来，然后会调用它的service( )方法进行工作，但在后续的请求中，Servlet容器只会调用service方法了。<br>3.destory,当要销毁Servlet时，Servlet容器就会调用这个方法，就如人一样，到时期了就得死亡。在卸载应用程序或者关闭Servlet容器时，就会发生这种情况，一般在这个方法中会写一些清除代码。</p>
-<blockquote>
-<p>getServletInfo（），这个方法会返回Servlet的一段描述，可以返回一段字符串。<br>getServletConfig（），这个方法会返回由Servlet容器传给init（）方法的ServletConfig对象。</p>
-</blockquote>
-<h4 id="ServletRequset接口"><a href="#ServletRequset接口" class="headerlink" title="ServletRequset接口"></a>ServletRequset接口</h4><p>Servlet容器对于接受到的每一个Http请求，都会创建一个ServletRequest对象，并把这个对象传递给Servlet的Sevice( )方法。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public interface ServletRequest &#123;</span><br><span class="line">    public int getContentLength();//返回请求主体的字节数</span><br><span class="line">    public String getContentType();//返回主体的MIME类型</span><br><span class="line">    public String getParameter(String var1);//返回请求参数的值</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h4 id="ServletResponse接口"><a href="#ServletResponse接口" class="headerlink" title="ServletResponse接口"></a>ServletResponse接口</h4><p>javax.servlet.ServletResponse接口表示一个Servlet响应，在调用Servlet的Service( )方法前，Servlet容器会先创建一个ServletResponse对象，并把它作为第二个参数传给Service( )方法。ServletResponse隐藏了向浏览器发送响应的复杂过程。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">public interface ServletResponse &#123;</span><br><span class="line">    public String getCharacterEncoding();//获取字符集</span><br><span class="line">    public String getContentType();//获取解析类型</span><br><span class="line">    public ServletOutputStream getOutputStream() throws IOException;//获取输出字节流</span><br><span class="line">    public PrintWriter getWriter() throws IOException;//获取输出字符流，默认字符集为ISO-8859-1，中文会乱码</span><br><span class="line">    public void setCharacterEncoding(String var1);//设置字符集，优先级最高</span><br><span class="line">    public void setContentLength(int var1);//设置解析长度</span><br><span class="line">    public void setContentType(String var1);//设置解析类型，可以设置字符集，优先级比setCharacterEncoding低</span><br><span class="line">    public void setBufferSize(int var1);//设置缓存大小</span><br><span class="line">    public int getBufferSize();//获取缓存大小</span><br><span class="line">    public void flushBuffer() throws IOException;//刷新缓存</span><br><span class="line">    public void resetBuffer();//清空缓存，但是不清除头和状态码</span><br><span class="line">    public boolean isCommitted();//是否提交</span><br><span class="line">    public void reset();//清空缓存，全部清空</span><br><span class="line">    public void setLocale(Locale var1);//设置字符集，优先级比setContentType低</span><br><span class="line">    public Locale getLocale();//获取字符集</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<blockquote>
-<p>在向客户端发送响应时，大多数都是使用该对象向客户端发送HTML。还有一个方法也可以用来向浏览器发送数据，它就是getOutputStream，从名字就可以看出这是一个二进制流对象，因此这个方法是用来发送二进制数据的。</p>
-</blockquote>
-<h4 id="ServletConfig接口"><a href="#ServletConfig接口" class="headerlink" title="ServletConfig接口"></a>ServletConfig接口</h4><p>当Servlet容器初始化Servlet时，Servlet容器会给Servlet的init()方式传入一个ServletConfig对象。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public interface ServletConfig</span><br><span class="line">&#123;</span><br><span class="line">    public String getServletName();//获取servlet的名字</span><br><span class="line">    public Enumeration getInitParameterNames();//获取所有属性的名称</span><br><span class="line">    public ServletContext getServletContext();//获取servlet上下文</span><br><span class="line">    public String getInitParameter(String paramString);//根据名称获取属性</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h4 id="ServletContext对象"><a href="#ServletContext对象" class="headerlink" title="ServletContext对象"></a>ServletContext对象</h4><p>ServletContext对象表示Servlet应用程序。每个Web应用程序都只有一个ServletContext对象。在将一个应用程序同时部署到多个容器的分布式环境中，每台Java虚拟机上的Web应用都会有一个ServletContext对象。<br>ServletContext中存放所有有关共享数据和资源。所以只会有一个ServletContext。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">public interface ServletContext</span><br><span class="line">&#123;</span><br><span class="line">    public int getMajorVersion();//获取服务器支持的 Servlet API 最大版本号</span><br><span class="line">    public int getMinorVersion();//获取服务器支持的 Servlet API 最小版本号</span><br><span class="line">    public String getServerInfo();//获取server的信息</span><br><span class="line">    public String getServletContextName();//获取ServletContext的名字</span><br><span class="line">    public void log(String paramString);//输出日志</span><br><span class="line">    public void removeAttribute(String paramString);//删除属性</span><br><span class="line">    public Enumeration getAttributeNames();//获取属性名</span><br><span class="line">    public Enumeration getInitParameterNames();//获取初始化参数</span><br><span class="line">    public Enumeration getServletNames();//获取所有servlet名</span><br><span class="line">    public Enumeration getServlets();//获取所有servlet对象</span><br><span class="line">    public InputStream getResourceAsStream(String paramString);//获取资源转换成数据流</span><br><span class="line">    public Object getAttribute(String paramString);//获取属性</span><br><span class="line">    public void setAttribute(String paramString, Object paramObject);//设置属性</span><br><span class="line">    public void log(Exception paramException, String paramString);//输出日志，带异常</span><br><span class="line">    public String getInitParameter(String paramString);//获取特定初始化参数</span><br><span class="line">    public String getMimeType(String paramString);//获取媒体类型</span><br><span class="line">    public String getRealPath(String paramString);//获取真实路径</span><br><span class="line">    public void log(String paramString, Throwable paramThrowable);//输出日志，带异常</span><br><span class="line">    public URL getResource(String paramString)throws MalformedURLException;//获取资源，返回url</span><br><span class="line">    public Set getResourcePaths(String paramString);//获取资源，返回set</span><br><span class="line">    public RequestDispatcher getNamedDispatcher(String paramString);//获取RequestDispatcher，用于servlet通</span><br><span class="line">    public RequestDispatcher getRequestDispatcher(String paramString);//获取RequestDispatcher，用于servlet通</span><br><span class="line">    public Servlet getServlet(String paramString)throws ServletException;//获取servlet</span><br><span class="line">    public ServletContext getContext(String paramString);//获取上下文</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h4 id="GenericServlet抽象类"><a href="#GenericServlet抽象类" class="headerlink" title="GenericServlet抽象类"></a>GenericServlet抽象类</h4><p>前面我们编写Servlet一直是通过实现Servlet接口来编写的，但是，使用这种方法，则必须要实现Servlet接口中定义的所有的方法，即使有一些方法中没有任何东西也要去实现，并且还需要自己手动的维护ServletConfig这个对象的引用。因此，这样去实现Servlet是比较麻烦的。<br>所以出现了GenericServlet抽象类，只需关注业务，不需要关心servlet的初始问题。</p>
-<pre><code>package javax.servlet;
-
-import java.io.IOException;
-import java.io.Serializable;
-import java.util.Enumeration;
-
-public abstract class GenericServlet implements Servlet, ServletConfig, Serializable {
-    private transient ServletConfig config;
-
-    //构造
-    public GenericServlet() {
-    }
-
-    //销毁
-    public void destroy() {
-    }
-
-    //初始化
-    public void init() throws ServletException {
-    }
-
-    //获取Servlet信息
-    public String getServletInfo() {
-        return &quot;&quot;;
-    }
-
-    //获取Servlet名称
-    public String getServletName() {
-        return this.config.getServletName();
-    }
-
-    //输出日志
-    public void log(String msg) {
-        this.getServletContext().log(this.getServletName() + &quot;: &quot; + msg);
-    }
-
-    //获取初始化参数
-    public Enumeration getInitParameterNames() {
-        return this.getServletConfig().getInitParameterNames();
-    }
-
-    //获取Servlet配置
-    public ServletConfig getServletConfig() {
-        return this.config;
-    }
-
-    //有参初始化
-    public void init(ServletConfig config) throws ServletException {
-        this.config = config;
-        this.init();
-    }
-
-    //获取上下文
-    public ServletContext getServletContext() {
-        return this.getServletConfig().getServletContext();
-    }
-
-    //获取特定初始化参数
-    public String getInitParameter(String name) {
-        return this.getServletConfig().getInitParameter(name);
-    }
-
-    //输入日志，带异常
-    public void log(String message, Throwable t) {
-        this.getServletContext().log(this.getServletName() + &quot;: &quot; + message, t);
-    }
-
-    //执行服务
-    public abstract void service(ServletRequest var1, ServletResponse var2) throws ServletException, IOException;
-}
-</code></pre><p>这里的无参初始化，只需要关注ServletConfig之外的初始化操作即可，不需要自己维护ServletConfig;<br>然而，虽然GenricServlet是对Servlet一个很好的加强，但是也不经常用，因为他不像HttpServlet那么高级。HttpServlet才是主角，在现实的应用程序中被广泛使用。那么我们接下来就看看传说中的HttpServlet到底厉害在哪里吧。</p>
-
+<li>再由tomcat发送给客户端。
+          
       
       
     </div>
@@ -613,6 +711,10 @@ public abstract class GenericServlet implements Servlet, ServletConfig, Serializ
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/servlet/">servlet</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a  href="/daily/20200609/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -754,214 +856,6 @@ public abstract class GenericServlet implements Servlet, ServletConfig, Serializ
       
         <p class="article-more-link">
           <a  href="/daily/20200525/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-daily/20200508" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/daily/20200508/" class="article-date">
-      <time datetime="2020-05-08T05:01:16.082Z" itemprop="datePublished">2020-05-08</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/daily/20200508/">java基础类型</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h3 id="java基础类型"><a href="#java基础类型" class="headerlink" title="java基础类型"></a>java基础类型</h3><h4 id="bit-普及"><a href="#bit-普及" class="headerlink" title="bit 普及"></a>bit 普及</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;是二进制数的一位包含的信息或2个选项中特别指定1个的需要信息量称为一比特，是表示信息的最小单位，只有两种状态：0和1。这两个值也可以被解释为逻辑值(真/假、yes/no)、代数符号(+/-)、激活状态(on/off)或任何其他两值属性。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1byte = 8bit<br>
-          
-      
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/知识点/">知识点</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a  href="/daily/20200508/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-offer/Offer_12" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/offer/Offer_12/" class="article-date">
-      <time datetime="2020-03-13T08:52:51.286Z" itemprop="datePublished">2020-03-13</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/offer/Offer_12/">数值的整数次方</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <meta name="referrer" content="no-referrer">
-
-<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><ul>
-<li>给定一个double类型的浮点数base和int类型的整数exponent。求base的exponent次方。</li>
-<li>保证base和exponent不同时为0。
-          
-      
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/剑指offer/">剑指offer</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a  href="/offer/Offer_12/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-offer/Offer_11" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/offer/Offer_11/" class="article-date">
-      <time datetime="2020-03-13T08:50:36.612Z" itemprop="datePublished">2020-03-13</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/offer/Offer_11/">二进制中1的个数</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <meta name="referrer" content="no-referrer">
-
-<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><ul>
-<li>输入一个整数，输出该数二进制表示中1的个数。其中负数用补码表示。
-          
-      
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/剑指offer/">剑指offer</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a  href="/offer/Offer_11/#more">阅读全文 >></a>
         </p>
       
       <div class="clearfix"></div>
