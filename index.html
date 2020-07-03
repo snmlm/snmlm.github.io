@@ -420,6 +420,7 @@
       
           
         <p> <meta name="referrer" content="no-referrer"><br>redis<br>lpush + lpop = stack 先进后出的栈<br>lpush + rpop = queue 先进先出的队列<br>lpush + ltrim = capped collection 有限集合<br>lpush + brpop = message queue 消息队列</p>
+<p>高并发(多用户同事请求，一个账号只能请求一次（账号上锁？）)-&gt;分布式锁(redis的setnx)-&gt;原子操作减库存</p>
 
       
       
