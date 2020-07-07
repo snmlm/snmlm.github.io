@@ -5,15 +5,18 @@
   
   <title>spring ioc（未写完） | snmlm</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="spring">
+  <meta name="description" content="IOCIoC 全称为 Inversion of Control，翻译为 “控制反转”，它还有一个别名为 DI（Dependency Injection）,即依赖注入。">
+<meta name="keywords" content="spring">
 <meta property="og:type" content="article">
 <meta property="og:title" content="spring ioc（未写完）">
 <meta property="og:url" content="https://snmlm.github.io/daily/20200610/index.html">
 <meta property="og:site_name" content="snmlm">
+<meta property="og:description" content="IOCIoC 全称为 Inversion of Control，翻译为 “控制反转”，它还有一个别名为 DI（Dependency Injection）,即依赖注入。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-06-22T02:23:33.478Z">
+<meta property="og:updated_time" content="2020-07-07T11:17:01.680Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="spring ioc（未写完）">
+<meta name="twitter:description" content="IOCIoC 全称为 Inversion of Control，翻译为 “控制反转”，它还有一个别名为 DI（Dependency Injection）,即依赖注入。">
   
     <link rel="alternative" href="/atom.xml" title="snmlm" type="application/atom+xml">
   
@@ -229,7 +232,17 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-         <meta name="referrer" content="no-referrer">
+        <p> <meta name="referrer" content="no-referrer"></p>
+<h4 id="IOC"><a href="#IOC" class="headerlink" title="IOC"></a>IOC</h4><p>IoC 全称为 Inversion of Control，翻译为 “控制反转”，它还有一个别名为 DI（Dependency Injection）,即依赖注入。<a id="more"></a></p>
+<blockquote>
+<p>所谓 IoC ，就是由 Spring IOC 容器来负责对象的生命周期和对象之间的关系<br>在没有spring的时候，需要某个对象，一般都是已new的方式去创建，这个过程复杂而又繁琐，每个环节都要自己去把控，自己管理整个对象的生命周期，而且对象与对象之间都是耦合在一起的。<br>其实可以思考一下，对象真的需要自己去创建和管理吗，只要用的时候可以拿到即可，无需过问他是怎么来的，还有怎么没的。就比如去餐馆吃饭，点餐之后，饭自然而然就送来了，不需要自己动手去做一顿饭，然后自己吃（难道吃都可以不自己吃了？）。<br>IoC简单点说，就是别人为你服务，需要什么东西，就让别人（IOC Service Provider）送过来。<br>何为控制反转，由原来的主动获取（创建）对象转为被动接受（注入）对象。<br>还是比如去饭馆吃饭，吃什么样的饭，这是另外一说。</p>
+<ul>
+<li>可能你有菜单，电话预定，一到饭馆就吃上了。</li>
+<li>多数情况是到饭馆，看着饭馆的菜单，进行点菜。</li>
+<li>还有就是，到饭馆看着满墙的菜单，不知道吃啥，于是就叫服务员给你推荐什么好吃，什么能吃。<br>所以，IOC Service Provider 为被注入对象提供被依赖对象也有如下几种方式：构造方法注入、stter方法注入、接口注入。</li>
+</ul>
+</blockquote>
+<h4 id="构造器注入"><a href="#构造器注入" class="headerlink" title="构造器注入"></a>构造器注入</h4><p>构造器注入，顾名思义就是被注入的对象通过在其构造方法中声明依赖对象的参数列表，让外部知道它需要哪些依赖对象。</p>
 
       
       
@@ -242,7 +255,7 @@
         <p><span>本文标题:</span><a href="/daily/20200610/">spring ioc（未写完）</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 snmlm 的个人博客">snmlm</a></p>
         <p><span>发布时间:</span>2020年06月10日 - 08时58分</p>
-        <p><span>最后更新:</span>2020年06月22日 - 10时23分</p>
+        <p><span>最后更新:</span>2020年07月07日 - 19时17分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/daily/20200610/" title="spring ioc（未写完）">https://snmlm.github.io/daily/20200610/</a>
             <span class="copy-path" data-clipboard-text="原文: https://snmlm.github.io/daily/20200610/　　作者: snmlm" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -280,7 +293,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    
+    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#IOC"><span class="toc-number">1.</span> <span class="toc-text">IOC</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#构造器注入"><span class="toc-number">2.</span> <span class="toc-text">构造器注入</span></a></li></ol>
 </div>
 <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 
