@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>redis 分布式锁 | snmlm</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="常见的分布式锁实现方式 数据库乐观锁； 基于Redis的分布式锁； 基于ZooKeeper的分布式锁。">
+<meta name="keywords" content="spring">
+<meta property="og:type" content="article">
+<meta property="og:title" content="redis 分布式锁">
+<meta property="og:url" content="https://snmlm.github.io/daily/20200730/index.html">
+<meta property="og:site_name" content="snmlm">
+<meta property="og:description" content="常见的分布式锁实现方式 数据库乐观锁； 基于Redis的分布式锁； 基于ZooKeeper的分布式锁。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://raw.githubusercontent.com/snmlm/resources/master/picture/8.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/snmlm/resources/master/picture/9.png">
+<meta property="og:updated_time" content="2020-08-04T08:30:33.708Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="redis 分布式锁">
+<meta name="twitter:description" content="常见的分布式锁实现方式 数据库乐观锁； 基于Redis的分布式锁； 基于ZooKeeper的分布式锁。">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/snmlm/resources/master/picture/8.png">
+  
+    <link rel="alternative" href="/atom.xml" title="snmlm" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon-n.png">
+  
+  
+      <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          rootUrl: '/',
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col" style="background-size: cover; background-position: center center;">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/head.gif" class="js-avatar">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/" title="snmlm">snmlm</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">付出总会有回报~</p>
+        
+        
+            <form>
+                <!--<input type="text" class="st-default-search-input search" id="search" placeholder=" Search...">-->
+				<input type="text" class="st-default-search-input search" id="local-search-input" placeholder="搜索一下" autocomplete="off">
+            </form>
+			<div id="local-search-result"></div>
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/archives">文章</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl github" target="_blank" href="https://github.com/snmlm" title="github">github</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/Books/" style="font-size: 12.5px;">Books</a> <a href="/tags/dubbo/" style="font-size: 12.5px;">dubbo</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 12.5px;">hexo</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/java8/" style="font-size: 10px;">java8</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/mysql/" style="font-size: 17.5px;">mysql</a> <a href="/tags/redis/" style="font-size: 12.5px;">redis</a> <a href="/tags/servlet/" style="font-size: 12.5px;">servlet</a> <a href="/tags/spring/" style="font-size: 15px;">spring</a> <a href="/tags/spring-boot/" style="font-size: 12.5px;">spring boot</a> <a href="/tags/zookeeper/" style="font-size: 10px;">zookeeper</a> <a href="/tags/协议/" style="font-size: 10px;">协议</a> <a href="/tags/嘿嘿嘿/" style="font-size: 10px;">嘿嘿嘿</a> <a href="/tags/工作日志/" style="font-size: 12.5px;">工作日志</a> <a href="/tags/数据结构/" style="font-size: 12.5px;">数据结构</a> <a href="/tags/方案/" style="font-size: 10px;">方案</a> <a href="/tags/日常/" style="font-size: 12.5px;">日常</a> <a href="/tags/架构/" style="font-size: 10px;">架构</a> <a href="/tags/算法/" style="font-size: 20px;">算法</a> <a href="/tags/解决方案/" style="font-size: 10px;">解决方案</a> <a href="/tags/试题/" style="font-size: 10px;">试题</a>
+                    </div>
+                </section>
+                
+                
+                
+
+                
+                
+                <section class="switch-part switch-part3">
+                
+                    <div id="js-aboutme">snmlm</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="Me">snmlm</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/head.gif" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="Me">snmlm</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">付出总会有回报~</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/archives">文章</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="github" target="_blank" href="https://github.com/snmlm" title="github">github</a>
+                    
+                </div>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-daily/20200730" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/daily/20200730/" class="article-date">
+      <time datetime="2020-07-30T01:51:16.211Z" itemprop="datePublished">2020-07-30</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      redis 分布式锁
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring/">spring</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p> <meta name="referrer" content="no-referrer"></p>
+<h4 id="常见的分布式锁实现方式"><a href="#常见的分布式锁实现方式" class="headerlink" title="常见的分布式锁实现方式"></a>常见的分布式锁实现方式</h4><ul>
+<li>数据库乐观锁；</li>
+<li>基于Redis的分布式锁；</li>
+<li>基于ZooKeeper的分布式锁。<a id="more"></a></li>
+</ul>
+<h5 id="redis-分布式锁满足条件"><a href="#redis-分布式锁满足条件" class="headerlink" title="redis 分布式锁满足条件"></a>redis 分布式锁满足条件</h5><ul>
+<li>互斥性。在任意时刻，只有一个客户端能持有锁</li>
+<li>不发生死锁。即使有一个客户端在持有锁的期间崩溃而没有主动解锁，也能保证后续其他客户端能加锁。</li>
+<li>具有容错性。只要大部分的Redis节点正常运行，客户端就可以加锁和解锁。</li>
+<li>解铃还须系铃人。加锁和解锁必须是同一个客户端，客户端自己不能把别人加的锁给解了。</li>
+</ul>
+<h4 id="加锁"><a href="#加锁" class="headerlink" title="加锁"></a>加锁</h4><blockquote>
+<p>setnx是SET if Not eXists的缩写，当key不存在的情况下设置key和value，返回1，当key存在时，不做任何操作，返回0。可以用锁的争抢，设置key，意为获得锁。<br>expire是对已存在的key设置过期时间，到达过期时间后，自动删除。这个命令有更新时间的含义，已有过期时间，新指令会替代旧指令的时间，并重新计时。重新设置key，也会重新计时。<br>但是分布式锁的实现话，不要用setnx+expire两次命令实现，需要保证原子性。所以用一条指令去实现加锁，set key value px milliseconds nx。</p>
+<ul>
+<li>set中加入nx参数，实现效果与setnx是一样的，满足了互斥性。</li>
+<li>设置过期时间，是为了防止死锁，持有锁的线程异常崩溃，无法正常的释放锁。</li>
+<li>这里还有考虑内存淘汰策略。极限情况下，丢锁了。。。</li>
+</ul>
+</blockquote>
+<h4 id="内存淘汰策略"><a href="#内存淘汰策略" class="headerlink" title="内存淘汰策略"></a>内存淘汰策略</h4><p>redis在内存空间不足的时候，为了保证命中率，就会选择一定的数据淘汰策略。</p>
+<ul>
+<li>volatile-lru：从已设置过期时间的数据集中挑选最近最少使用的数据淘汰。</li>
+<li>volatile-ttl：从已设置过期时间的数据集中挑选将要过期的数据淘汰。</li>
+<li>volatile-random：从已设置过期时间的数据集中任意选择数据淘汰。</li>
+<li>volatile-lfu：从已设置过期时间的数据集挑选使用频率最低的数据淘汰。</li>
+<li>allkeys-lru：从数据集中挑选最近最少使用的数据淘汰</li>
+<li>allkeys-lfu：从数据集中挑选使用频率最低的数据淘汰。</li>
+<li>allkeys-random：从数据集（server.db[i].dict）中任意选择数据淘汰</li>
+<li>no-enviction（驱逐）：禁止驱逐数据，这也是默认策略。意思是当内存不足以容纳新入数据时，新写入操作就会报错，请求可以继续进行，线上任务也不能持续进行，采用no-enviction策略可以保证数据不被丢失。</li>
+</ul>
+<h4 id="解锁"><a href="#解锁" class="headerlink" title="解锁"></a>解锁</h4><p>先获取key里的值，进行判断，看是否是自己加的锁。一致后删除。<br>eval执行lua脚本可以保证原子性。整个流程有多次操作（获取，比较，删除（获取+删除））。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if redis.call(&quot;get&quot;,KEYS[1]) == ARGV[1] then</span><br><span class="line">    return redis.call(&quot;del&quot;,KEYS[1])</span><br><span class="line">else</span><br><span class="line">    return 0</span><br><span class="line">end</span><br></pre></td></tr></table></figure></p>
+<h4 id="存在问题"><a href="#存在问题" class="headerlink" title="存在问题"></a>存在问题</h4><p>redis存在宕机的危险，如果存储锁的节点宕机了，锁可能会丢失（redis做master-slave，通常是异步，slave切换到maste的时候，maste的数据不一定完全到slave,中间还有服务不能用的时间）。导致多个客户端持有锁。</p>
+<h4 id="redlock算法"><a href="#redlock算法" class="headerlink" title="redlock算法"></a>redlock算法</h4><p>针对redis集群，避免以上问题。（集群大多数都崩了？那就有点惨）<br>假设有5个redis master-slave，那么就尝试在大多数节点上建立一个锁，比如 5 个节点就要求是 3 个节点 n / 2 + 1。<br>客户端计算建立好锁的时间，如果建立锁的时间小于超时时间，就算建立成功了；<br>要是锁建立失败了，那么就依次之前建立过的锁删除；<br>只要别人建立了一把分布式锁，你就得不断轮询去尝试获取锁。</p>
+<h4 id="redisson"><a href="#redisson" class="headerlink" title="redisson"></a>redisson</h4><p>Redisson是一个在Redis的基础上实现的Java驻内存数据网格（In-Memory Data Grid）。它不仅提供了一系列的分布式的Java常用对象，还实现了可重入锁（Reentrant Lock）、公平锁（Fair Lock、联锁（MultiLock）、 红锁（RedLock）、 读写锁（ReadWriteLock）等，还提供了许多分布式服务。<br>Redisson提供了使用Redis的最简单和最便捷的方法。Redisson的宗旨是促进使用者对Redis的关注分离（Separation of Concern），从而让使用者能够将精力更集中地放在处理业务逻辑上。</p>
+<h4 id="Redisson-分布式重入锁用法"><a href="#Redisson-分布式重入锁用法" class="headerlink" title="Redisson 分布式重入锁用法"></a>Redisson 分布式重入锁用法</h4><p>Redisson 支持单点模式、主从模式、哨兵模式、集群模式，这里以单点模式为例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">// 1.构造redisson实现分布式锁必要的Config</span><br><span class="line">Config config = new Config();</span><br><span class="line">config.useSingleServer().setAddress(&quot;redis://127.0.0.1:5379&quot;).setPassword(&quot;123456&quot;).setDatabase(0);</span><br><span class="line">// 2.构造RedissonClient</span><br><span class="line">RedissonClient redissonClient = Redisson.create(config);</span><br><span class="line">// 3.获取锁对象实例（无法保证是按线程的顺序获取到）</span><br><span class="line">RLock rLock = redissonClient.getLock(lockKey);</span><br><span class="line">try &#123;</span><br><span class="line">    /**</span><br><span class="line">     * 4.尝试获取锁</span><br><span class="line">     * waitTimeout 尝试获取锁的最大等待时间，超过这个值，则认为获取锁失败</span><br><span class="line">     * leaseTime   锁的持有时间,超过这个时间锁会自动失效（值应设置为大于业务处理的时间，确保在锁有效期内业务能处理完）</span><br><span class="line">     */</span><br><span class="line">    boolean res = rLock.tryLock((long)waitTimeout, (long)leaseTime, TimeUnit.SECONDS);</span><br><span class="line">    if (res) &#123;</span><br><span class="line">        //成功获得锁，在这里处理业务</span><br><span class="line">    &#125;</span><br><span class="line">&#125; catch (Exception e) &#123;</span><br><span class="line">    throw new RuntimeException(&quot;aquire lock fail&quot;);</span><br><span class="line">&#125;finally&#123;</span><br><span class="line">    //无论如何, 最后都要解锁</span><br><span class="line">    rLock.unlock();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>加锁流程图<br><img src="https://raw.githubusercontent.com/snmlm/resources/master/picture/8.png" alt=""><br>解锁流程图<br><img src="https://raw.githubusercontent.com/snmlm/resources/master/picture/9.png" alt=""><br>我们可以看到，RedissonLock是可重入的，并且考虑了失败重试，可以设置锁的最大等待时间， 在实现上也做了一些优化，减少了无效的锁申请，提升了资源的利用率。<br>需要特别注意的是，RedissonLock 同样没有解决 节点挂掉的时候，存在丢失锁的风险的问题。而现实情况是有一些场景无法容忍的，所以 Redisson 提供了实现了redlock算法的 RedissonRedLock，RedissonRedLock 真正解决了单点失败的问题，代价是需要额外的为 RedissonRedLock 搭建Redis环境。<br>所以，如果业务场景可以容忍这种小概率的错误，则推荐使用 RedissonLock， 如果无法容忍，则推荐使用 RedissonRedLock。</p>
+
+      
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/daily/20200730/">redis 分布式锁</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 snmlm 的个人博客">snmlm</a></p>
+        <p><span>发布时间:</span>2020年07月30日 - 09时51分</p>
+        <p><span>最后更新:</span>2020年08月04日 - 16时30分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/daily/20200730/" title="redis 分布式锁">https://snmlm.github.io/daily/20200730/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://snmlm.github.io/daily/20200730/　　作者: snmlm" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+    <a href="/workLog/202008/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          工作日志202008
+        
+      </div>
+    </a>
+  
+  
+    <a href="/workLog/202007/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">工作日志202007</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#常见的分布式锁实现方式"><span class="toc-number">1.</span> <span class="toc-text">常见的分布式锁实现方式</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#redis-分布式锁满足条件"><span class="toc-number">1.1.</span> <span class="toc-text">redis 分布式锁满足条件</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#加锁"><span class="toc-number">2.</span> <span class="toc-text">加锁</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#内存淘汰策略"><span class="toc-number">3.</span> <span class="toc-text">内存淘汰策略</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#解锁"><span class="toc-number">4.</span> <span class="toc-text">解锁</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#存在问题"><span class="toc-number">5.</span> <span class="toc-text">存在问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#redlock算法"><span class="toc-number">6.</span> <span class="toc-text">redlock算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#redisson"><span class="toc-number">7.</span> <span class="toc-text">redisson</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Redisson-分布式重入锁用法"><span class="toc-number">8.</span> <span class="toc-text">Redisson 分布式重入锁用法</span></a></li></ol>
+</div>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+    }
+</script>
+
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+        <!-- ������City�氲װ���� -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zOTk3Ny8xNjUwNA==" 
+style="width:90%;margin:5% auto 0 auto;background: #fff;padding: 0 12px;border-radius: 5px;">
+<script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+</script>
+<noscript>Ϊ����ʹ�����������۹����뼤��JavaScript</noscript>
+</div>
+<!-- City�氲װ��������� -->
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/workLog/202008/" title="上一篇: 工作日志202008">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/workLog/202007/" title="下一篇: 工作日志202007">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/workLog/202008/">工作日志202008</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20200730/">redis 分布式锁</a></li><li class="post-list-item"><a class="post-list-link" href="/workLog/202007/">工作日志202007</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20200710/">spring 启动（未写完）</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20200702/">return和finally执行问题</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20200701/">重写与重载</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20200630/">mysql连接</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20200622/">秒杀方案（未写完）</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20200612/">rest与rpc区别</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20200611/">spring aop（未写完）</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20200610/">spring ioc（未写完）</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20200609/">全面理解servlet</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20200608/">jsp和servlet有什么区别</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20200525/">红黑树(未写完)</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20200508/">java基础类型</a></li><li class="post-list-item"><a class="post-list-link" href="/offer/Offer_12/">数值的整数次方</a></li><li class="post-list-item"><a class="post-list-link" href="/offer/Offer_11/">二进制中1的个数</a></li><li class="post-list-item"><a class="post-list-link" href="/offer/Offer_10/">矩形覆盖</a></li><li class="post-list-item"><a class="post-list-link" href="/offer/Offer_09/">变态跳台阶</a></li><li class="post-list-item"><a class="post-list-link" href="/offer/Offer_00/">剑指offer 汇总</a></li><li class="post-list-item"><a class="post-list-link" href="/offer/Offer_08/">跳台阶</a></li><li class="post-list-item"><a class="post-list-link" href="/offer/Offer_07/">斐波那契数列</a></li><li class="post-list-item"><a class="post-list-link" href="/offer/Offer_06/">旋转数组的最小数字</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20191009/">SQL 性能优化梳理</a></li><li class="post-list-item"><a class="post-list-link" href="/offer/Offer_05/">用两个栈实现队列</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20190929/">java8 λ（lambad）表达式</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20190927/">redis知识点</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20190926/">zookeeper知识点</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20190710/">springboot项目</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20190517/">redis命令</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20190515/">面试的东东</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20190507/">前缀、中缀、后缀表达式(逆波兰表达式)</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20190502/">常用数据结构</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20190501/">Java7/8 中的 HashMap 和 ConcurrentHashMap 全解析</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20190427/">看到的题，记录一下</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20190426/">MySQL5.7中Derived table变形记</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20190425/">MySQL索引底层实现原理</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20190424/">mysql如何获取当前时间</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20190423/">十大常见排序</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20190422/">利用activityMQ做处理，消息的顺序性和服务处理的时效性问题</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20190421/">spring加载对象问题（坑）</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20190420/">java子类继承加载顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20190419/">java总结</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20190418/">==和equals</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20190417/">ArrayList删除节点（坑）</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20190416/">java调用js方法</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20190415/">java类中缓存机制类</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20190414/">dubbo 配置加载顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20190413/">spring boot 配置加载顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20190412/">dubbo的坑（持续更新）</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20190411/">spring容器外调用容器内的对象</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20190410/">linux CTRL+Z和CTRL+C区别</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20190409/">mysql关键字执行顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20190328/">hexo指令</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20190327/">mysql利用find_in_set去查询in的集合</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20190313/">github上传限制</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20190312/">汇编语言第二版</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20190311/">tcp-ip</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20190307/">数字大小写</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20190305/">动态规划</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/20190110/">项目</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/questions/">试题</a></li><li class="post-list-item"><a class="post-list-link" href="/offer/Offer_04/">重建二叉树</a></li><li class="post-list-item"><a class="post-list-link" href="/offer/Offer_03/">从尾到头打印链表</a></li><li class="post-list-item"><a class="post-list-link" href="/offer/Offer_02/">替换空格</a></li><li class="post-list-item"><a class="post-list-link" href="/offer/Offer_01/">二维数组中的查找</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/GcAndFinalize/">System.gc()与Object.finalize()的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/TenGoodAdvice/">10条好建议</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/for_foreach/">for与foreach用法的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/JavaObject/">java Object</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/ReadJava/">读java源码的顺序</a></li><li class="post-list-item"><a class="post-list-link" href="/daily/Hexo_spfk_LiveRe_GithubPages/">Hexo博客+spfk主题+LiveRe评论+Github pages</a></li></ul>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+            }
+        })
+    </script>
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2020 snmlm
+            </div>
+            <!-- <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/luuman/hexo-theme-spfk" target="_blank">spfk</a> by luuman
+            </div> -->
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 1;
+            var backgroundimg = "url(/background/bg-" + backgroundnum +".jpg)";
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+            <script type="text/javascript">
+                (function() {
+                    'use strict';
+                    function getMatchData(keyword, data) {
+                        var matchData = [];
+                        for(var i =0;i<data.length;i++){
+                            if(data[i].title.toLowerCase().indexOf(keyword)>=0) 
+                                matchData.push(data[i])
+                        }
+                        return matchData;
+                    }
+                    var $input = $('#local-search-input');
+                    var $resultContent = $('#local-search-result');
+                    $input.keyup(function(){
+                        $.ajax({
+                            url: '/search.json',
+                            dataType: "json",
+                            success: function( json ) {
+                                var str='<ul class=\"search-result-list\">';                
+                                var keyword = $input.val().trim().toLowerCase();
+                                $resultContent.innerHTML = "";
+                                if ($input.val().trim().length <= 0) {
+                                    $resultContent.empty();
+                                    $('#switch-area').show();
+                                    return;
+                                }
+                                var results = getMatchData(keyword, json);
+                                if(results.length === 0){
+                                    $resultContent.empty();
+                                    $('#switch-area').show();
+                                    return;
+                                } 
+                                for(var i =0; i<results.length; i++){
+                                    str += "<li><a href='"+ results[i].url +"' class='search-result-title'>"+ results[i].title +"</a></li>";
+                                }
+                                str += "</ul>";
+                                $resultContent.empty();
+                                $resultContent.append(str);
+                                $('#switch-area').hide();
+                            }
+                        });
+                    });
+                })();
+            </script>
+        
+  </div>
+</body>
+</html>
