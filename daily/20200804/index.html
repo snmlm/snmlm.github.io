@@ -3,20 +3,17 @@
 <head>
   <meta charset="utf-8">
   
-  <title>从尾到头打印链表 | snmlm</title>
+  <title>Redis 架构模式 | snmlm</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="题目描述 输入一个链表，按链表值从尾到头的顺序返回一个ArrayList。">
-<meta name="keywords" content="算法">
+  <meta name="keywords" content="redis">
 <meta property="og:type" content="article">
-<meta property="og:title" content="从尾到头打印链表">
-<meta property="og:url" content="https://snmlm.github.io/offer/Offer_03/index.html">
+<meta property="og:title" content="Redis 架构模式">
+<meta property="og:url" content="https://snmlm.github.io/daily/20200804/index.html">
 <meta property="og:site_name" content="snmlm">
-<meta property="og:description" content="题目描述 输入一个链表，按链表值从尾到头的顺序返回一个ArrayList。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-03-13T08:07:27.306Z">
+<meta property="og:updated_time" content="2020-08-04T08:55:33.033Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="从尾到头打印链表">
-<meta name="twitter:description" content="题目描述 输入一个链表，按链表值从尾到头的顺序返回一个ArrayList。">
+<meta name="twitter:title" content="Redis 架构模式">
   
     <link rel="alternative" href="/atom.xml" title="snmlm" type="application/atom+xml">
   
@@ -190,11 +187,11 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-offer/Offer_03" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-daily/20200804" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/offer/Offer_03/" class="article-date">
-      <time datetime="2018-10-23T01:55:34.994Z" itemprop="datePublished">2018-10-23</time>
+      <a href="/daily/20200804/" class="article-date">
+      <time datetime="2020-08-04T08:54:38.675Z" itemprop="datePublished">2020-08-04</time>
 </a>
     </div>
   
@@ -207,7 +204,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      从尾到头打印链表
+      Redis 架构模式
     </h1>
   
 
@@ -215,14 +212,10 @@
       
       <div class="article-info article-info-post">
         
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/剑指offer/">剑指offer</a>
-    </div>
-
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/">redis</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -232,17 +225,18 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-         <meta name="referrer" content="no-referrer">
+        <p> <meta name="referrer" content="no-referrer"><a id="more"></a></p>
+<h4 id="单机版"><a href="#单机版" class="headerlink" title="单机版"></a>单机版</h4><p>特点：简单<br>问题：<br>1、内存容量有限 2、处理能力有限 3、无法高可用。</p>
+<h4 id="主从复制"><a href="#主从复制" class="headerlink" title="主从复制"></a>主从复制</h4><p>Redis 的复制（replication）功能允许用户根据一个 Redis 服务器来创建任意多个该服务器的复制品，其中被复制的服务器为主服务器（master），而通过复制创建出来的服务器复制品则为从服务器（slave）。 只要主从服务器之间的网络连接正常，主从服务器两者会具有相同的数据，主服务器就会一直将发生在自己身上的数据更新同步 给从服务器，从而一直保证主从服务器的数据相同。</p>
+<p>特点：<br>1、master/slave 角色<br>2、master/slave 数据相同<br>3、降低 master 读压力在转交从库</p>
+<p>问题：<br>无法保证高可用<br>没有解决 master 写的压力</p>
+<h4 id="哨兵"><a href="#哨兵" class="headerlink" title="哨兵"></a>哨兵</h4><p>Redis sentinel 是一个分布式系统中监控 redis 主从服务器，并在主服务器下线时自动进行故障转移。其中三个特性：<br>1、监控（Monitoring）：Sentinel 会不断地检查你的主服务器和从服务器是否运作正常。<br>2、提醒（Notification）：当被监控的某个 Redis 服务器出现问题时， Sentinel 可以通过 API 向管理员或者其他应用程序发送通知。<br>3、自动故障迁移（Automatic failover）：当一个主服务器不能正常工作时， Sentinel 会开始一次自动故障迁移操作。</p>
+<p>特点：<br>1、保证高可用<br>2、监控各个节点<br>3、自动故障迁移<br>缺点：主从模式，切换需要时间丢数据<br>没有解决 master 写的压力</p>
+<h4 id="集群（proxy-型）"><a href="#集群（proxy-型）" class="headerlink" title="集群（proxy 型）"></a>集群（proxy 型）</h4><p>Twemproxy 是一个 Twitter 开源的一个 redis 和 memcache 快速/轻量级代理服务器； Twemproxy 是一个快速的单线程代理程序，支持 Memcached ASCII 协议和 redis 协议。<br>特点：<br>1、多种 hash 算法：MD5、CRC16、CRC32、CRC32a、hsieh、murmur、Jenkins<br>2、支持失败节点自动删除<br>3、后端 Sharding 分片逻辑对业务透明，业务方的读写方式和操作单个 Redis 一致<br>缺点：增加了新的 proxy，需要维护其高可用。<br>failover 逻辑需要自己实现，其本身不能支持故障的自动转移可扩展性差，进行扩缩容都需要手动干预</p>
+<h4 id="集群（直连型）："><a href="#集群（直连型）：" class="headerlink" title="集群（直连型）："></a>集群（直连型）：</h4><p>从redis 3.0之后版本支持redis-cluster集群，Redis-Cluster采用无中心结构，每个节点保存数据和整个集群状态,每个节点都和其他所有节点连接。</p>
+<p>特点：<br>1、无中心架构（不存在哪个节点影响性能瓶颈），少了 proxy 层。<br>2、数据按照 slot 存储分布在多个节点，节点间数据共享，可动态调整数据分布。<br>3、可扩展性，可线性扩展到 1000 个节点，节点可动态添加或删除。<br>4、高可用性，部分节点不可用时，集群仍可用。通过增加 Slave 做备份数据副本<br>5、实现故障自动 failover，节点之间通过 gossip 协议交换状态信息，用投票机制完成 Slave到 Master 的角色提升。</p>
+<p>缺点：<br>1、资源隔离性较差，容易出现相互影响的情况。<br>2、数据通过异步复制,不保证数据的强一致性</p>
 
-<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><ul>
-<li>输入一个链表，按链表值从尾到头的顺序返回一个ArrayList。<a id="more"></a></li>
-<li>思路：</li>
-<li>正常思路：利用递归，循环到最后，进行插入</li>
-<li>C++ vector的特性，可以插入特定位置</li>
-<li>java arraylist有Collections工具类，可以直接插入，然后反转</li>
-</ul>
-<h3 id="C-11"><a href="#C-11" class="headerlink" title="C++ 11"></a>C++ 11</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">*  struct ListNode &#123;</span><br><span class="line">*        int val;</span><br><span class="line">*        struct ListNode *next;</span><br><span class="line">*        ListNode(int x) :</span><br><span class="line">*              val(x), next(NULL) &#123;</span><br><span class="line">*        &#125;</span><br><span class="line">*  &#125;;</span><br><span class="line">*/</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;int&gt; printListFromTailToHead(ListNode* head) &#123;</span><br><span class="line">        vector&lt;int&gt; vr;</span><br><span class="line">        if (head != NULL)&#123;</span><br><span class="line">            vr.insert(vr.begin(), head-&gt;val);</span><br><span class="line">			while (head-&gt;next != NULL)&#123;</span><br><span class="line">                head = head-&gt;next;</span><br><span class="line">				vr.insert(vr.begin(), head-&gt;val);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">        return vr;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="Java-1-8"><a href="#Java-1-8" class="headerlink" title="Java 1.8"></a>Java 1.8</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">*    public class ListNode &#123;</span><br><span class="line">*        int val;</span><br><span class="line">*        ListNode next = null;</span><br><span class="line">*</span><br><span class="line">*        ListNode(int val) &#123;</span><br><span class="line">*            this.val = val;</span><br><span class="line">*        &#125;</span><br><span class="line">*    &#125;</span><br><span class="line">*</span><br><span class="line">*/</span><br><span class="line">import java.util.ArrayList;</span><br><span class="line">public class Solution &#123;</span><br><span class="line">    ArrayList&lt;Integer&gt; list = new ArrayList&lt;&gt;();</span><br><span class="line">    public ArrayList&lt;Integer&gt; printListFromTailToHead(ListNode listNode) &#123;</span><br><span class="line">        if(listNode != null)&#123;</span><br><span class="line">            if(listNode.next!=null)&#123;</span><br><span class="line">                list = printListFromTailToHead(listNode.next);</span><br><span class="line">            &#125;</span><br><span class="line">            list.add(listNode.val);</span><br><span class="line">        &#125;</span><br><span class="line">        return list;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
       
     </div>
@@ -251,13 +245,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/offer/Offer_03/">从尾到头打印链表</a></p>
+        <p><span>本文标题:</span><a href="/daily/20200804/">Redis 架构模式</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 snmlm 的个人博客">snmlm</a></p>
-        <p><span>发布时间:</span>2018年10月23日 - 09时55分</p>
-        <p><span>最后更新:</span>2020年03月13日 - 16时07分</p>
+        <p><span>发布时间:</span>2020年08月04日 - 16时54分</p>
+        <p><span>最后更新:</span>2020年08月04日 - 16时55分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/offer/Offer_03/" title="从尾到头打印链表">https://snmlm.github.io/offer/Offer_03/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://snmlm.github.io/offer/Offer_03/　　作者: snmlm" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/daily/20200804/" title="Redis 架构模式">https://snmlm.github.io/daily/20200804/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://snmlm.github.io/daily/20200804/　　作者: snmlm" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -270,18 +264,9 @@
 
 <nav id="article-nav">
   
-    <a href="/offer/Offer_04/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          重建二叉树
-        
-      </div>
-    </a>
   
-  
-    <a href="/offer/Offer_02/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">替换空格</div>
+    <a href="/workLog/202008/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">工作日志202008</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -292,7 +277,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目描述"><span class="toc-number">1.</span> <span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#C-11"><span class="toc-number">2.</span> <span class="toc-text">C++ 11</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-1-8"><span class="toc-number">3.</span> <span class="toc-text">Java 1.8</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#单机版"><span class="toc-number">1.</span> <span class="toc-text">单机版</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#主从复制"><span class="toc-number">2.</span> <span class="toc-text">主从复制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#哨兵"><span class="toc-number">3.</span> <span class="toc-text">哨兵</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#集群（proxy-型）"><span class="toc-number">4.</span> <span class="toc-text">集群（proxy 型）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#集群（直连型）："><span class="toc-number">5.</span> <span class="toc-text">集群（直连型）：</span></a></li></ol>
 </div>
 <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 
@@ -363,13 +348,11 @@ style="width:90%;margin:5% auto 0 auto;background: #fff;padding: 0 12px;border-r
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/offer/Offer_04/" title="上一篇: 重建二叉树">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a href="/offer/Offer_02/" title="下一篇: 替换空格">
+            <a href="/workLog/202008/" title="下一篇: 工作日志202008">
                 <i class="fa fa-angle-right"></i>
             </a>
         
