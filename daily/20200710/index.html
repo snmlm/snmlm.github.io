@@ -5,18 +5,18 @@
   
   <title>spring 启动（未写完） | snmlm</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="IOC容器的创建方式java创建IOC容器ApplicationContext context = new ClassPathXmlApplicationContext(xml路径);">
+  <meta name="description" content="IOC容器的创建方式java创建IOC容器12345ApplicationContext context = new ClassPathXmlApplicationContext(xml路径);```&amp;lt;!-- more --&amp;gt;##### web容器创建IOC容器web服务器（tomcat/weblogic）启动会加载web.xml（启动ContextLoaderListener监听">
 <meta name="keywords" content="spring">
 <meta property="og:type" content="article">
 <meta property="og:title" content="spring 启动（未写完）">
 <meta property="og:url" content="https://snmlm.github.io/daily/20200710/index.html">
 <meta property="og:site_name" content="snmlm">
-<meta property="og:description" content="IOC容器的创建方式java创建IOC容器ApplicationContext context = new ClassPathXmlApplicationContext(xml路径);">
+<meta property="og:description" content="IOC容器的创建方式java创建IOC容器12345ApplicationContext context = new ClassPathXmlApplicationContext(xml路径);```&amp;lt;!-- more --&amp;gt;##### web容器创建IOC容器web服务器（tomcat/weblogic）启动会加载web.xml（启动ContextLoaderListener监听">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-07-15T06:36:28.316Z">
+<meta property="og:updated_time" content="2020-08-06T09:13:53.059Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="spring 启动（未写完）">
-<meta name="twitter:description" content="IOC容器的创建方式java创建IOC容器ApplicationContext context = new ClassPathXmlApplicationContext(xml路径);">
+<meta name="twitter:description" content="IOC容器的创建方式java创建IOC容器12345ApplicationContext context = new ClassPathXmlApplicationContext(xml路径);```&amp;lt;!-- more --&amp;gt;##### web容器创建IOC容器web服务器（tomcat/weblogic）启动会加载web.xml（启动ContextLoaderListener监听">
   
     <link rel="alternative" href="/atom.xml" title="snmlm" type="application/atom+xml">
   
@@ -229,8 +229,34 @@
       
           
         <p> <meta name="referrer" content="no-referrer"></p>
-<h4 id="IOC容器的创建方式"><a href="#IOC容器的创建方式" class="headerlink" title="IOC容器的创建方式"></a>IOC容器的创建方式</h4><h5 id="java创建IOC容器"><a href="#java创建IOC容器" class="headerlink" title="java创建IOC容器"></a>java创建IOC容器</h5><p><code>ApplicationContext context = new ClassPathXmlApplicationContext(xml路径);</code><a id="more"></a></p>
-<h5 id="web容器创建IOC容器"><a href="#web容器创建IOC容器" class="headerlink" title="web容器创建IOC容器"></a>web容器创建IOC容器</h5><p>web服务器（tomcat/weblogic）启动会加载web.xml（启动ContextLoaderListener监听器）</p>
+<h4 id="IOC容器的创建方式"><a href="#IOC容器的创建方式" class="headerlink" title="IOC容器的创建方式"></a>IOC容器的创建方式</h4><h5 id="java创建IOC容器"><a href="#java创建IOC容器" class="headerlink" title="java创建IOC容器"></a>java创建IOC容器</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ApplicationContext context = new ClassPathXmlApplicationContext(xml路径);</span><br><span class="line">```&lt;!-- more --&gt;</span><br><span class="line">##### web容器创建IOC容器</span><br><span class="line">web服务器（tomcat/weblogic）启动会加载web.xml（启动ContextLoaderListener监听器）</span><br><span class="line">因为web服务器启动，实际上就是创建servlet容器，而ContextLoaderListener实现ServletContextListener接口，这个接口是监听servlet容器的创建和销毁。</span><br></pre></td></tr></table></figure>
+<p><context-param><br>        <param-name>contextConfigLocation</param-name><br>        <param-value>/WEB-INF/spring/application_context.xml</param-value><br></context-param></p>
+<p><listener><br>        <listener-class><br>            org.springframework.web.context.ContextLoaderListener<br>        </listener-class><br> </listener><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ServletContextListener的contextInitialized是servlet容器创建是调用的方法。并传入ServletContextEvent，这个对象对ServletContext初始化。ServletContext是最上层的上下文。</span><br></pre></td></tr></table></figure></p>
+<p>public void contextInitialized(ServletContextEvent event) {<br>        initWebApplicationContext(event.getServletContext());<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">在ContextLoaderListener的父类中，有initWebApplicationContext，很明显，ApplicationContext是由ServletContext转化/封装来的。</span><br><span class="line">来看一下initWebApplicationContext里的内容是什么。</span><br></pre></td></tr></table></figure></p>
+<p>public WebApplicationContext initWebApplicationContext(ServletContext servletContext){<br>    if (servletContext.getAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE) != null) {<br>        throw new IllegalStateException(“Cannot initialize context because there is already a root application context present - “ +”check whether you have multiple ContextLoader* definitions in your web.xml!”);<br>    }<br>    Log logger = LogFactory.getLog(ContextLoader.class);<br>    servletContext.log(“Initializing Spring root WebApplicationContext”);<br>    if (logger.isInfoEnabled()) {<br>        logger.info(“Root WebApplicationContext: initialization started”);<br>    }<br>    long startTime = System.currentTimeMillis();<br>    try {<br>        // Store context in local instance variable, to guarantee that<br>        // it is available on ServletContext shutdown.<br>        if (this.context == null) {<br>            this.context = createWebApplicationContext(servletContext);<br>        }<br>        if (this.context instanceof ConfigurableWebApplicationContext) {<br>            ConfigurableWebApplicationContext cwac = (ConfigurableWebApplicationContext) this.context;<br>            if (!cwac.isActive()) {<br>                // The context has not yet been refreshed -&gt; provide services such as<br>                // setting the parent context, setting the application context id, etc<br>                if (cwac.getParent() == null) {<br>                    // The context instance was injected without an explicit parent -&gt;<br>                    // determine parent for root web application context, if any.<br>                    ApplicationContext parent = loadParentContext(servletContext);<br>                    cwac.setParent(parent);<br>                }<br>                configureAndRefreshWebApplicationContext(cwac, servletContext);<br>            }<br>        }<br>        servletContext.setAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE, this.context);<br>        ClassLoader ccl = Thread.currentThread().getContextClassLoader();<br>        if (ccl == ContextLoader.class.getClassLoader()) {<br>            currentContext = this.context;<br>        }<br>        else if (ccl != null) {<br>            currentContextPerThread.put(ccl, this.context);<br>        }</p>
+<pre><code>    if (logger.isDebugEnabled()) {
+        logger.debug(&quot;Published root WebApplicationContext as ServletContext attribute with name [&quot; +WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE + &quot;]&quot;);
+    }
+    if (logger.isInfoEnabled()) {
+        long elapsedTime = System.currentTimeMillis() - startTime;
+        logger.info(&quot;Root WebApplicationContext: initialization completed in &quot; + elapsedTime + &quot; ms&quot;);
+    }
+
+    return this.context;
+}
+catch (RuntimeException ex) {
+    logger.error(&quot;Context initialization failed&quot;, ex);
+    servletContext.setAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE, ex);
+    throw ex;
+}
+catch (Error err) {
+    logger.error(&quot;Context initialization failed&quot;, err);
+    servletContext.setAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE, err);
+    throw err;
+}
+</code></pre><p>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">代码里异常处理比较多，去掉异常处理，这个方法主要做了三件事：</span><br><span class="line">1. 创建WebApplicationContext。</span><br><span class="line">2. 加载对应的spring配置文件中的Bean。</span><br><span class="line">3. 将WebApplicationContext放入ServletContext（Java Web的全局变量）中。</span><br></pre></td></tr></table></figure></p>
+<p>protected WebApplicationContext createWebApplicationContext(ServletContext sc){<br>    Class contextClass = determineContextClass(sc);<br>    if (!(ConfigurableWebApplicationContext.class.isAssignableFrom(contextClass))) {<br>        throw new ApplicationContextException(“Custom context class [“ + contextClass.getName() + “] is not of type [“ + ConfigurableWebApplicationContext.class.getName() + “]”);<br>    }<br>    return ((ConfigurableWebApplicationContext)BeanUtils.instantiateClass(contextClass));<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">上述代码中createWebApplicationContext(servletContext)方法即是完成创建WebApplicationContext工作，也就是说这个方法创建了上下文对象，支持用户自定义上下文对象，但必须继承ConfigurableWebApplicationContext，而Spring MVC默认使用ConfigurableWebApplicationContext作为ApplicationContext（它仅仅是一个接口）的实现。</span><br></pre></td></tr></table></figure></p>
+<p>protected void configureAndRefreshWebApplicationContext(ConfigurableWebApplicationContext wac, ServletContext sc){<br>    if (ObjectUtils.identityToString(wac).equals(wac.getId())){<br>        String idParam = sc.getInitParameter(“contextId”);<br>        if (idParam != null) {<br>            wac.setId(idParam);<br>        }<br>        else if ((sc.getMajorVersion() == 2) &amp;&amp; (sc.getMinorVersion() &lt; 5)){<br>            wac.setId(ConfigurableWebApplicationContext.APPLICATION_CONTEXT_ID_PREFIX + ObjectUtils.getDisplayString(sc.getServletContextName()));<br>        }else{<br>            wac.setId(ConfigurableWebApplicationContext.APPLICATION_CONTEXT_ID_PREFIX + ObjectUtils.getDisplayString(sc.getContextPath()));<br>        }<br>    }<br>    wac.setServletContext(sc);<br>    String configLocationParam = sc.getInitParameter(“contextConfigLocation”);<br>    if (configLocationParam != null) {<br>        wac.setConfigLocation(configLocationParam);<br>    }<br>    ConfigurableEnvironment env = wac.getEnvironment();<br>    if (env instanceof ConfigurableWebEnvironment) {<br>        ((ConfigurableWebEnvironment)env).initPropertySources(sc, null);<br>    }<br>    customizeContext(sc, wac);<br>    wac.refresh();<br>}<br><code>`</code><br>再往下走，有一个方法configureAndRefreshWebApplicationContext就是用来加载spring配置文件中的Bean实例的。这个方法于封装ApplicationContext数据并且初始化所有相关Bean对象。它会从web.xml中读取名为 contextConfigLocation的配置，这就是spring xml数据源设置，然后放到ApplicationContext中，最后调用传说中的refresh方法执行所有Java对象的创建。<br>最后完成ApplicationContext创建之后就是将其放入ServletContext中，注意它存储的key值常量。</p>
 
       
       
@@ -243,7 +269,7 @@
         <p><span>本文标题:</span><a href="/daily/20200710/">spring 启动（未写完）</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 snmlm 的个人博客">snmlm</a></p>
         <p><span>发布时间:</span>2020年07月10日 - 11时22分</p>
-        <p><span>最后更新:</span>2020年07月15日 - 14时36分</p>
+        <p><span>最后更新:</span>2020年08月06日 - 17时13分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/daily/20200710/" title="spring 启动（未写完）">https://snmlm.github.io/daily/20200710/</a>
             <span class="copy-path" data-clipboard-text="原文: https://snmlm.github.io/daily/20200710/　　作者: snmlm" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -281,7 +307,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#IOC容器的创建方式"><span class="toc-number">1.</span> <span class="toc-text">IOC容器的创建方式</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#java创建IOC容器"><span class="toc-number">1.1.</span> <span class="toc-text">java创建IOC容器</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#web容器创建IOC容器"><span class="toc-number">1.2.</span> <span class="toc-text">web容器创建IOC容器</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#IOC容器的创建方式"><span class="toc-number">1.</span> <span class="toc-text">IOC容器的创建方式</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#java创建IOC容器"><span class="toc-number">1.1.</span> <span class="toc-text">java创建IOC容器</span></a></li></ol></li></ol>
 </div>
 <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 
