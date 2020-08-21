@@ -3,20 +3,17 @@
 <head>
   <meta charset="utf-8">
   
-  <title>斐波那契数列 | snmlm</title>
+  <title>String、StringBuffer、StringBulider | snmlm</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="题目描述 大家都知道斐波那契数列，现在要求输入一个整数n，请你输出斐波那契数列的第n项（从0开始，第0项为0）。 n&amp;lt;=39">
-<meta name="keywords" content="算法">
+  <meta name="keywords" content="汇总">
 <meta property="og:type" content="article">
-<meta property="og:title" content="斐波那契数列">
-<meta property="og:url" content="https://snmlm.github.io/offer/Offer_07/index.html">
+<meta property="og:title" content="String、StringBuffer、StringBulider">
+<meta property="og:url" content="https://snmlm.github.io/daily/20200817/index.html">
 <meta property="og:site_name" content="snmlm">
-<meta property="og:description" content="题目描述 大家都知道斐波那契数列，现在要求输入一个整数n，请你输出斐波那契数列的第n项（从0开始，第0项为0）。 n&amp;lt;=39">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-03-13T08:08:12.106Z">
+<meta property="og:updated_time" content="2020-08-17T06:17:07.088Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="斐波那契数列">
-<meta name="twitter:description" content="题目描述 大家都知道斐波那契数列，现在要求输入一个整数n，请你输出斐波那契数列的第n项（从0开始，第0项为0）。 n&amp;lt;=39">
+<meta name="twitter:title" content="String、StringBuffer、StringBulider">
   
     <link rel="alternative" href="/atom.xml" title="snmlm" type="application/atom+xml">
   
@@ -190,11 +187,11 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-offer/Offer_07" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-daily/20200817" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/offer/Offer_07/" class="article-date">
-      <time datetime="2019-10-12T01:33:28.556Z" itemprop="datePublished">2019-10-12</time>
+      <a href="/daily/20200817/" class="article-date">
+      <time datetime="2020-08-17T06:06:51.821Z" itemprop="datePublished">2020-08-17</time>
 </a>
     </div>
   
@@ -207,7 +204,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      斐波那契数列
+      String、StringBuffer、StringBulider
     </h1>
   
 
@@ -215,14 +212,10 @@
       
       <div class="article-info article-info-post">
         
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/剑指offer/">剑指offer</a>
-    </div>
-
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/汇总/">汇总</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -232,19 +225,10 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-         <meta name="referrer" content="no-referrer">
+        <p> <meta name="referrer" content="no-referrer"><a id="more"></a></p>
+<h3 id="String"><a href="#String" class="headerlink" title="String"></a>String</h3><p>是常量字符串（final类，值不变，改变的是指向的内存地址）<br>缺点：频繁拼接字符串非常耗内存</p>
+<h3 id="StringBulider，StringBuffer"><a href="#StringBulider，StringBuffer" class="headerlink" title="StringBulider，StringBuffer"></a>StringBulider，StringBuffer</h3><p>值是可以改变的，长度可变，底层已数组形式实现。<br>同时实现Serializable，证明可序列化。<br>同时实现CharSequence，证明是有序字符集合。可以替代string<br>StringBuffer 与 StringBuilder 中的方法和功能完全是等价的，只是StringBuffer中的方法大都采用了 synchronized 关键字进行修饰，因此是线程安全的，而 StringBuilder 没有这个修饰，可以被认为是线程不安全的。<br>由于完全等价，所以都继承AbstractStringBuilder。<br>无参初始化，长度为16，有参初始化是参数长度+16。<br>扩容时是对象当前长度*2+2<br>每次append的时候，最下层执行的System.arraycopy这个方法进行数组的添加。<br>StringBuffer 始于 JDK 1.0<br>StringBuilder 始于 JDK 1.5<br>从 JDK 1.5 开始，带有字符串变量的连接操作（+），JVM 内部采用的是 StringBuilder 来实现的，而之前这个操作是采用 StringBuffer 实现的。如果是直接的字符串的拼接，会直接指向拼接后的字符串常量。</p>
 
-<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><ul>
-<li>大家都知道斐波那契数列，现在要求输入一个整数n，请你输出斐波那契数列的第n项（从0开始，第0项为0）。</li>
-<li>n&lt;=39<a id="more"></a>
-</li>
-</ul>
-<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><pre><code>纯粹的斐波那契数列，0,1,1,2,3,5,8....
-n=0时，an=-1;
-n=1时，an=a1=0;
-n=2时，an=a2=1;
-n&gt;2时，an=an-2+an-1;
-</code></pre><h3 id="Java-1-8"><a href="#Java-1-8" class="headerlink" title="Java 1.8"></a>Java 1.8</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">    public int Fibonacci(int n) &#123;</span><br><span class="line">        int a = 0;</span><br><span class="line">        int b = 1;</span><br><span class="line">        int c = 0;</span><br><span class="line">        if(n == 0)&#123;</span><br><span class="line">            return a;</span><br><span class="line">        &#125;else if(n == 1)&#123;</span><br><span class="line">            return b;</span><br><span class="line">        &#125;else if(n &gt; 1)&#123;</span><br><span class="line">            for (int i = 2; i &lt;= n; i++) &#123;</span><br><span class="line">                c = a + b;</span><br><span class="line">                a = b;</span><br><span class="line">                b = c;</span><br><span class="line">            &#125;</span><br><span class="line">            return c;</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            return -1;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
       
     </div>
@@ -253,13 +237,13 @@ n&gt;2时，an=an-2+an-1;
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/offer/Offer_07/">斐波那契数列</a></p>
+        <p><span>本文标题:</span><a href="/daily/20200817/">String、StringBuffer、StringBulider</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 snmlm 的个人博客">snmlm</a></p>
-        <p><span>发布时间:</span>2019年10月12日 - 09时33分</p>
-        <p><span>最后更新:</span>2020年03月13日 - 16时08分</p>
+        <p><span>发布时间:</span>2020年08月17日 - 14时06分</p>
+        <p><span>最后更新:</span>2020年08月17日 - 14时17分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/offer/Offer_07/" title="斐波那契数列">https://snmlm.github.io/offer/Offer_07/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://snmlm.github.io/offer/Offer_07/　　作者: snmlm" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/daily/20200817/" title="String、StringBuffer、StringBulider">https://snmlm.github.io/daily/20200817/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://snmlm.github.io/daily/20200817/　　作者: snmlm" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -272,18 +256,9 @@ n&gt;2时，an=an-2+an-1;
 
 <nav id="article-nav">
   
-    <a href="/offer/Offer_08/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          跳台阶
-        
-      </div>
-    </a>
   
-  
-    <a href="/offer/Offer_06/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">旋转数组的最小数字</div>
+    <a href="/HZ/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">汇总</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -294,7 +269,7 @@ n&gt;2时，an=an-2+an-1;
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目描述"><span class="toc-number">1.</span> <span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#思路"><span class="toc-number">2.</span> <span class="toc-text">思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-1-8"><span class="toc-number">3.</span> <span class="toc-text">Java 1.8</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#String"><span class="toc-number">1.</span> <span class="toc-text">String</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#StringBulider，StringBuffer"><span class="toc-number">2.</span> <span class="toc-text">StringBulider，StringBuffer</span></a></li></ol>
 </div>
 <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 
@@ -365,13 +340,11 @@ style="width:90%;margin:5% auto 0 auto;background: #fff;padding: 0 12px;border-r
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/offer/Offer_08/" title="上一篇: 跳台阶">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a href="/offer/Offer_06/" title="下一篇: 旋转数组的最小数字">
+            <a href="/HZ/" title="下一篇: 汇总">
                 <i class="fa fa-angle-right"></i>
             </a>
         

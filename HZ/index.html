@@ -3,20 +3,17 @@
 <head>
   <meta charset="utf-8">
   
-  <title>斐波那契数列 | snmlm</title>
+  <title>汇总 | snmlm</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="题目描述 大家都知道斐波那契数列，现在要求输入一个整数n，请你输出斐波那契数列的第n项（从0开始，第0项为0）。 n&amp;lt;=39">
-<meta name="keywords" content="算法">
+  <meta name="keywords" content="汇总">
 <meta property="og:type" content="article">
-<meta property="og:title" content="斐波那契数列">
-<meta property="og:url" content="https://snmlm.github.io/offer/Offer_07/index.html">
+<meta property="og:title" content="汇总">
+<meta property="og:url" content="https://snmlm.github.io/HZ/index.html">
 <meta property="og:site_name" content="snmlm">
-<meta property="og:description" content="题目描述 大家都知道斐波那契数列，现在要求输入一个整数n，请你输出斐波那契数列的第n项（从0开始，第0项为0）。 n&amp;lt;=39">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-03-13T08:08:12.106Z">
+<meta property="og:updated_time" content="2020-08-17T08:35:41.860Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="斐波那契数列">
-<meta name="twitter:description" content="题目描述 大家都知道斐波那契数列，现在要求输入一个整数n，请你输出斐波那契数列的第n项（从0开始，第0项为0）。 n&amp;lt;=39">
+<meta name="twitter:title" content="汇总">
   
     <link rel="alternative" href="/atom.xml" title="snmlm" type="application/atom+xml">
   
@@ -190,11 +187,11 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-offer/Offer_07" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-HZ" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/offer/Offer_07/" class="article-date">
-      <time datetime="2019-10-12T01:33:28.556Z" itemprop="datePublished">2019-10-12</time>
+      <a href="/HZ/" class="article-date">
+      <time datetime="2020-08-17T03:25:50.902Z" itemprop="datePublished">2020-08-17</time>
 </a>
     </div>
   
@@ -207,7 +204,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      斐波那契数列
+      汇总
     </h1>
   
 
@@ -215,14 +212,10 @@
       
       <div class="article-info article-info-post">
         
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/剑指offer/">剑指offer</a>
-    </div>
-
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/汇总/">汇总</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -232,19 +225,28 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-         <meta name="referrer" content="no-referrer">
-
-<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><ul>
-<li>大家都知道斐波那契数列，现在要求输入一个整数n，请你输出斐波那契数列的第n项（从0开始，第0项为0）。</li>
-<li>n&lt;=39<a id="more"></a>
-</li>
-</ul>
-<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><pre><code>纯粹的斐波那契数列，0,1,1,2,3,5,8....
-n=0时，an=-1;
-n=1时，an=a1=0;
-n=2时，an=a2=1;
-n&gt;2时，an=an-2+an-1;
-</code></pre><h3 id="Java-1-8"><a href="#Java-1-8" class="headerlink" title="Java 1.8"></a>Java 1.8</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">    public int Fibonacci(int n) &#123;</span><br><span class="line">        int a = 0;</span><br><span class="line">        int b = 1;</span><br><span class="line">        int c = 0;</span><br><span class="line">        if(n == 0)&#123;</span><br><span class="line">            return a;</span><br><span class="line">        &#125;else if(n == 1)&#123;</span><br><span class="line">            return b;</span><br><span class="line">        &#125;else if(n &gt; 1)&#123;</span><br><span class="line">            for (int i = 2; i &lt;= n; i++) &#123;</span><br><span class="line">                c = a + b;</span><br><span class="line">                a = b;</span><br><span class="line">                b = c;</span><br><span class="line">            &#125;</span><br><span class="line">            return c;</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            return -1;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <p> <meta name="referrer" content="no-referrer"><a id="more"></a></p>
+<h2 id="java"><a href="#java" class="headerlink" title="java"></a>java</h2><h3 id="基础类型"><a href="#基础类型" class="headerlink" title="基础类型"></a>基础类型</h3><a href="/daily/20200508/" title="java基础类型">java基础类型</a>
+<p>byte（1），short（2），char（2），int（4），long（8），float（4），double（8），从左向右自动转换，从右向左强制转换会精度损失，要加0.5 四舍五入</p>
+<h3 id="枚举enum"><a href="#枚举enum" class="headerlink" title="枚举enum"></a>枚举enum</h3><p>单例模式的一种</p>
+<h3 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h3><p>1、<a href="/daily/20200817/" title="String">String</a><br>2、数组<br>3、自定义对象<br>&nbsp;&nbsp;&nbsp;&nbsp;a、runnable class（）主类（运行类）含有main方法，可以直接执行<br>&nbsp;&nbsp;&nbsp;&nbsp;b、java bean（） （不含有main方法，构造方法，set get 方法）<br>&nbsp;&nbsp;&nbsp;&nbsp;c、POJO对象（简单的java对象，只含有set get方法）</p>
+<h3 id="强引用-软引用-弱引用-虚引用"><a href="#强引用-软引用-弱引用-虚引用" class="headerlink" title="强引用,软引用,弱引用,虚引用"></a>强引用,软引用,弱引用,虚引用</h3><h3 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h3><p>1、封装（维护性）：隐藏成员变量和方法，隐藏共能实现的具体细节<br>2、继承（可扩展性）：子类继承父类的变量或者方法，也可以定义自己的 <a href="/daily/20200701/" title="重写与重载">重写与重载</a><br>3、多态（灵活性）：父类的引用指向子类的实力（上转型对象）</p>
+<h3 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h3><p>1、位运算符<br>&nbsp;&nbsp;&nbsp;&nbsp;位运算在java速度是最快的<br>2、运算符优先级，<a href="/daily/20190507/" title="前缀、中缀、后缀表达式(逆波兰表达式)">前缀、中缀、后缀表达式(逆波兰表达式)</a></p>
+<h3 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h3><p>1、for<br>2、foreach<br>3、do while<br>4、while<br>5、递归<br>&nbsp;&nbsp;&nbsp;&nbsp;a、构造方法不能递归、<br>&nbsp;&nbsp;&nbsp;&nbsp;b、必须有出口，if判断，否则死循环（肯定内存溢出）<br>&nbsp;&nbsp;&nbsp;&nbsp;c、次数不易过多，否则会出现内存溢出<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;递归解决问题的思想：（大-&gt;小）,将大问题拆成小问题<br>6、goto(无用，字段保留)</p>
+<h3 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h3><p>1、transient（在对象序列化的时候，如果某个属性不想被序列化就是该关键字修饰）<br>2、abstract：<br>&nbsp;&nbsp;&nbsp;&nbsp;a、修饰类（被他修饰的类为抽象类）<br>&nbsp;&nbsp;&nbsp;&nbsp;b、修饰方法（权限：public protected，抽象方法不能有方法体）<br>3、final：<br>&nbsp;&nbsp;&nbsp;&nbsp;a、修饰类：不能有子类<br>&nbsp;&nbsp;&nbsp;&nbsp;b、修饰方法：不能被重写 （不能修饰抽象方法）<br>&nbsp;&nbsp;&nbsp;&nbsp;c、修饰变量：常量（要赋初始值）<br>&nbsp;&nbsp;&nbsp;&nbsp;d、finally <a href="/daily/20200702/" title="return和finally执行问题">return和finally执行问题</a><br>&nbsp;&nbsp;&nbsp;&nbsp;e、finalize() <a href="/daily/GcAndFinalize/" title="System.gc()与Object.finalize()的区别">System.gc()与Object.finalize()的区别</a><br>4、implements：实现接口<br>5、static：<br>&nbsp;&nbsp;&nbsp;&nbsp;a、修饰类：（内部类）<br>&nbsp;&nbsp;&nbsp;&nbsp;b、静态变量是属于类的，对象共享<br>&nbsp;&nbsp;&nbsp;&nbsp;c、修饰方法：静态方法只能调用的静态的东西<br>6、instanceof：<br>&nbsp;&nbsp;&nbsp;&nbsp;a instanceof A：判断对象a是不是类A及其子类创建的实力</p>
+<h3 id="对象的序列化和反序列化"><a href="#对象的序列化和反序列化" class="headerlink" title="对象的序列化和反序列化"></a>对象的序列化和反序列化</h3><p>1、序列化：将对象以二进制的形式存储到硬盘中<br>2、反序列化：将以二进制形式的对象读取到内存中<br>要求：被序列化的对象必须要实现Serializable（标记接口）接口<br>transient标记不被序列化的字段，SerializableID没有的话，反序列化会失败</p>
+<h3 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h3><p>1、泛型类<br>2、泛型接口<br>3、泛型方法<br>4、泛型引用<br>&nbsp;&nbsp;&nbsp;&nbsp;a、extends<br>&nbsp;&nbsp;&nbsp;&nbsp;b、supper</p>
+<h3 id="Collection-lt-E-gt"><a href="#Collection-lt-E-gt" class="headerlink" title="Collection&lt;E&gt;"></a>Collection&lt;E&gt;</h3><p>1、List<br>&nbsp;&nbsp;&nbsp;&nbsp;a、ArrayList：实现了RandomAccess接口，for循环比foreach快，数组实现，无参构造，初始0，add的时候才会初始为10，阀值是当前上限，扩充为x+(x&gt;&gt;1)，约为1.5倍，有参构造跟0比较，大于0，初始填值，小于0，报错IllegalArgumentException，remove的时候注意数据移动，倒叙删除，迭代器，转Set，<a href="/daily/20190417/" title="ArrayList删除节点（坑）">ArrayList删除节点（坑）</a><br>&nbsp;&nbsp;&nbsp;&nbsp;b、Linkedlist：双向链表实现<br>2、Set<br>&nbsp;&nbsp;&nbsp;&nbsp;a、HashSet：对象必须重写hashCode方法，对象必须重写equals方法，链表实现<br>&nbsp;&nbsp;&nbsp;&nbsp;b、TreeSet：对象必须实现Comparable接口的子类型，二叉树实现<br>3、Queue<br>&nbsp;&nbsp;&nbsp;&nbsp;没有实现的阻塞接口的LinkedList：实现了java.util.Queue接口和java.util.AbstractQueue接口</p>
+<h3 id="Map-lt-K-V-gt"><a href="#Map-lt-K-V-gt" class="headerlink" title="Map&lt;K,V&gt;"></a>Map&lt;K,V&gt;</h3><p>1、HashMap<br>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/daily/20190501/" title="Java7/8 中的 HashMap 和 ConcurrentHashMap 全解析">Java7/8 中的 HashMap 和 ConcurrentHashMap 全解析</a><br>2、TreeMap<br>&nbsp;&nbsp;&nbsp;&nbsp;自带红黑树（R-B tree）</p>
+<h3 id="工具类"><a href="#工具类" class="headerlink" title="工具类"></a>工具类</h3><p>1、Arrays<br>&nbsp;&nbsp;&nbsp;&nbsp;对数组的工具类<br>2、Collections（实现Collection的集合）<br>&nbsp;&nbsp;&nbsp;&nbsp;a、binarySearch-折半查找<br>&nbsp;&nbsp;&nbsp;&nbsp;b、sort-排序，集合实现Comparable接口，默认ascll码比较。可重写Comparator<br>&nbsp;&nbsp;&nbsp;&nbsp;c、copy-浅拷贝<br>&nbsp;&nbsp;&nbsp;&nbsp;d、emptyXXX()-得到空容器<br>&nbsp;&nbsp;&nbsp;&nbsp;e、max/min-获取最大/小元素，集合实现Comparable接口，默认ascll码比较。可重写Comparator<br>&nbsp;&nbsp;&nbsp;&nbsp;f、replaceAll-新值替换旧值<br>&nbsp;&nbsp;&nbsp;&nbsp;g、reverse-反转，集合实现Comparable接口，默认ascll码比较。可重写Comparator<br>&nbsp;&nbsp;&nbsp;&nbsp;h、shuffle-随机乱序，实现用Random，伪随机，真随机可以参考时间<br>&nbsp;&nbsp;&nbsp;&nbsp;i、syncronizedXXX-将线程不安全集合变成线程安全集合，装潢模式，创建一个syncronizedXXX新对象，内容指向原数据，所有方法添加syncronized关键字。常用于arraylist<br>&nbsp;&nbsp;&nbsp;&nbsp;j、unmodifiableXXX-将可以修改的容器变成不可变容器，不变模式，创建一个unmodifiableXXX新对象，内容指向原数据，新对象所有修改数据的方法直接返回异常UnsupportedOperationException。常用于arraylist</p>
+<h3 id="其他容器"><a href="#其他容器" class="headerlink" title="其他容器"></a>其他容器</h3><p>1、Vector<br>&nbsp;&nbsp;&nbsp;&nbsp;Stack以Vector实现<br>2、Dictonary<br>&nbsp;&nbsp;&nbsp;&nbsp;已被map替代，过时接口。使用时必须静态使用<br>3、BitSet<br>&nbsp;&nbsp;&nbsp;&nbsp;long数组实现。不能存重复数据，按位处理。</p>
+<h3 id="类加载"><a href="#类加载" class="headerlink" title="类加载"></a>类加载</h3><p>1、类加载器（ClassLoader）<br>&nbsp;&nbsp;&nbsp;&nbsp;a、加载：通过一个类的全限定名获取该类的二进制流，将该二进制流中的静态存储结构转化为方法去运行时数据结构，在内存中生成该类的 Class 对象，作为该类的数据访问入口<br>&nbsp;&nbsp;&nbsp;&nbsp;b、加载<br>&nbsp;&nbsp;&nbsp;&nbsp;c、连接-验证：文件格式验证：验证字节流是否符合 Class 文件的规范，元数据验证:对字节码描述的信息进行语义分析，字节码验证：是整个验证过程中最复杂的一个阶段，通过验证数据流和控制流的分析，确定程序语义是否正确，主要针对方法体的验证，符号引用验证：这个动作在后面的解析过程中发生，主要是为了确保解析动作能正确执行<br>&nbsp;&nbsp;&nbsp;&nbsp;d、连接-准备：准备阶段是为类的静态变量分配内存并将其初始化为默认值，这些内存都将在方法区中进行分配。准备阶段不分配类中的实例变量的内存，实例变量将会在对象实例化时随着对象一起分配在<br>&nbsp;&nbsp;&nbsp;&nbsp;e、连接-解析：该阶段主要完成符号引用到直接引用的转换动作。解析动作并不一定在初始化动作完成之前，也有可能在初始化之后<br>&nbsp;&nbsp;&nbsp;&nbsp;f、初始化：初始化时类加载的最后一步，前面的类加载过程，除了在加载阶段用户应用程序可以通过自定义类加载器参与之外，其余动作完全由虚拟机主导和控制。到了初始化阶段，才真正开始执行类中定义的Java<br>&nbsp;&nbsp;&nbsp;&nbsp;g、使用<br>&nbsp;&nbsp;&nbsp;&nbsp;h、卸载：停止之后，自动卸载。<br>2、PDM（父亲委托机制）<br>&nbsp;&nbsp;&nbsp;&nbsp;a、根加载器<br>&nbsp;&nbsp;&nbsp;&nbsp;b、扩展加载器<br>&nbsp;&nbsp;&nbsp;&nbsp;c、系统加载器<br>3、获取Class对象方式<br>&nbsp;&nbsp;&nbsp;&nbsp;a、类.class<br>&nbsp;&nbsp;&nbsp;&nbsp;b、对象.getClass()<br>&nbsp;&nbsp;&nbsp;&nbsp;c、Class.forName(“类的完全限定名”)</p>
+<h3 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h3><p>1、Class类操作<br>&nbsp;&nbsp;&nbsp;&nbsp;a、asSubclass(Class<u>clazz)-把传递的类的对象转换成代表其子类的对象<br>&nbsp;&nbsp;&nbsp;&nbsp;b、Cast-把对象转换成代表类或是接口的对象<br>&nbsp;&nbsp;&nbsp;&nbsp;c、getClassLoader()-获得类的加载器<br>&nbsp;&nbsp;&nbsp;&nbsp;d、getClasses()-返回一个数组，数组中包含该类中所有公共类和接口类的对象<br>&nbsp;&nbsp;&nbsp;&nbsp;e、getDeclaredClasses()-返回一个数组，数组中包含该类中所有类和接口类的对象<br>&nbsp;&nbsp;&nbsp;&nbsp;f、getName()-获得类的完整路径名字<br>&nbsp;&nbsp;&nbsp;&nbsp;g、getPackage()-获得类的包<br>&nbsp;&nbsp;&nbsp;&nbsp;h、getSimpleName()-获得类的名字<br>&nbsp;&nbsp;&nbsp;&nbsp;i、getSuperclass()-获得当前类继承的父类的名字<br>&nbsp;&nbsp;&nbsp;&nbsp;j、getInterfaces()-获得当前类实现的类或是接口<br>&nbsp;&nbsp;&nbsp;&nbsp;k、forName(String className)-根据类名返回类的对象<br>&nbsp;&nbsp;&nbsp;&nbsp;l、newInstance()-创建类的实例<br>2、Constructor类<br>&nbsp;&nbsp;&nbsp;&nbsp;newInstance(Object…args)<br>3、Field类<br>&nbsp;&nbsp;&nbsp;&nbsp;set(Object obj，Object value)<br>4、Method类<br>&nbsp;&nbsp;&nbsp;&nbsp;invoke(Object obj，Object…args)</u></p>
+<h3 id="XML"><a href="#XML" class="headerlink" title="XML"></a>XML</h3><p>1、解析方式<br>&nbsp;&nbsp;&nbsp;&nbsp;a、SAX<br>&nbsp;&nbsp;&nbsp;&nbsp;b、DOM<br>&nbsp;&nbsp;&nbsp;&nbsp;c、St<br>2、dom4j</p>
+<h3 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h3><p>1、实现Throwable<br>&nbsp;&nbsp;&nbsp;&nbsp;a、Error<br>&nbsp;&nbsp;&nbsp;&nbsp;b、Exception<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1、检查异常<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2、RuntimeException<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3、自定义异常，继承Exception或其子类</p>
+<h3 id="I-O"><a href="#I-O" class="headerlink" title="I/O"></a>I/O</h3><p>1、两种设计模式<br>2、字节流<br>3、字符流<br>4、BIO（blocking I/O）-同步并堵塞<br>5、NIO（no-blocking I/O）同步非堵塞<br>6、AIO（NIO2）（Asynchronous I/O）异步非堵塞</p>
+<h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><h3 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h3><a href="/daily/20190423/" title="十大常见排序">十大常见排序</a>
+<h1 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h1><h1 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h1>
       
       
     </div>
@@ -253,13 +255,13 @@ n&gt;2时，an=an-2+an-1;
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/offer/Offer_07/">斐波那契数列</a></p>
+        <p><span>本文标题:</span><a href="/HZ/">汇总</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 snmlm 的个人博客">snmlm</a></p>
-        <p><span>发布时间:</span>2019年10月12日 - 09时33分</p>
-        <p><span>最后更新:</span>2020年03月13日 - 16时08分</p>
+        <p><span>发布时间:</span>2020年08月17日 - 11时25分</p>
+        <p><span>最后更新:</span>2020年08月17日 - 16时35分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/offer/Offer_07/" title="斐波那契数列">https://snmlm.github.io/offer/Offer_07/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://snmlm.github.io/offer/Offer_07/　　作者: snmlm" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/HZ/" title="汇总">https://snmlm.github.io/HZ/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://snmlm.github.io/HZ/　　作者: snmlm" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -272,18 +274,18 @@ n&gt;2时，an=an-2+an-1;
 
 <nav id="article-nav">
   
-    <a href="/offer/Offer_08/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/daily/20200817/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          跳台阶
+          String、StringBuffer、StringBulider
         
       </div>
     </a>
   
   
-    <a href="/offer/Offer_06/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">旋转数组的最小数字</div>
+    <a href="/daily/20200804/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Redis 架构模式</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -294,7 +296,7 @@ n&gt;2时，an=an-2+an-1;
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目描述"><span class="toc-number">1.</span> <span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#思路"><span class="toc-number">2.</span> <span class="toc-text">思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-1-8"><span class="toc-number">3.</span> <span class="toc-text">Java 1.8</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#java"><span class="toc-number">1.</span> <span class="toc-text">java</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基础类型"><span class="toc-number">1.1.</span> <span class="toc-text">基础类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#枚举enum"><span class="toc-number">1.2.</span> <span class="toc-text">枚举enum</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#引用类型"><span class="toc-number">1.3.</span> <span class="toc-text">引用类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#强引用-软引用-弱引用-虚引用"><span class="toc-number">1.4.</span> <span class="toc-text">强引用,软引用,弱引用,虚引用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#面向对象"><span class="toc-number">1.5.</span> <span class="toc-text">面向对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#运算符"><span class="toc-number">1.6.</span> <span class="toc-text">运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#循环"><span class="toc-number">1.7.</span> <span class="toc-text">循环</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关键字"><span class="toc-number">1.8.</span> <span class="toc-text">关键字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对象的序列化和反序列化"><span class="toc-number">1.9.</span> <span class="toc-text">对象的序列化和反序列化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#泛型"><span class="toc-number">1.10.</span> <span class="toc-text">泛型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Collection-lt-E-gt"><span class="toc-number">1.11.</span> <span class="toc-text">Collection&lt;E&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Map-lt-K-V-gt"><span class="toc-number">1.12.</span> <span class="toc-text">Map&lt;K,V&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#工具类"><span class="toc-number">1.13.</span> <span class="toc-text">工具类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他容器"><span class="toc-number">1.14.</span> <span class="toc-text">其他容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#类加载"><span class="toc-number">1.15.</span> <span class="toc-text">类加载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#反射"><span class="toc-number">1.16.</span> <span class="toc-text">反射</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#XML"><span class="toc-number">1.17.</span> <span class="toc-text">XML</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#异常"><span class="toc-number">1.18.</span> <span class="toc-text">异常</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#I-O"><span class="toc-number">1.19.</span> <span class="toc-text">I/O</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据结构"><span class="toc-number">2.</span> <span class="toc-text">数据结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#排序"><span class="toc-number">2.1.</span> <span class="toc-text">排序</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#数据库"><span class="toc-number"></span> <span class="toc-text">数据库</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#框架"><span class="toc-number"></span> <span class="toc-text">框架</span></a>
 </div>
 <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 
@@ -365,13 +367,13 @@ style="width:90%;margin:5% auto 0 auto;background: #fff;padding: 0 12px;border-r
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/offer/Offer_08/" title="上一篇: 跳台阶">
+            <a href="/daily/20200817/" title="上一篇: String、StringBuffer、StringBulider">
                 <i class="fa fa-angle-left"></i>
             </a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a href="/offer/Offer_06/" title="下一篇: 旋转数组的最小数字">
+            <a href="/daily/20200804/" title="下一篇: Redis 架构模式">
                 <i class="fa fa-angle-right"></i>
             </a>
         
