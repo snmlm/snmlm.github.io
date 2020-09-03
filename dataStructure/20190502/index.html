@@ -1,0 +1,471 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="snmlm">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.0.0">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://snmlm.github.io">
+    <!--SEO-->
+
+    <meta name="keywords" content="数据结构" />
+
+
+    <meta name="description" content="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;首先给出Java集合框架的基本接口/类层次结构：
+1234567891011121314151617181920212223java.util.Collection [I]    +--java.u..." />
+
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+
+<title>常用数据结构 | snmlm</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="snmlm" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon-n.png">
+
+    
+
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7.css">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+
+
+
+    
+
+
+
+
+
+    
+
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <nav class="navbar navbar-default" style="background-color:#fff;border:0;margin-bottom:0"
+                     role="navigation">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse"
+                                data-target="#navbar-collapse-1">
+                            <span class="sr-only">切</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="logo" href="/">
+                            <img src="/head.gif"/>
+                        </a>
+                    </div>
+
+                    <div class="collapse navbar-collapse" style="border:0;" id="navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            
+                                
+                                    <li>
+                                        <a href="/about" target="_blank">
+                                            <i class="fa fa-user"></i>
+                                            关于我
+                                        </a>
+                                    </li>
+                                
+                            
+                                
+                                    <li>
+                                        <a href="/archives" target="_blank">
+                                            <i class="fa fa-archive"></i>
+                                            归档
+                                        </a>
+                                    </li>
+                                
+                            
+                        </ul>
+                        
+                            <form id="search-form" class="navbar-form navbar-right">
+                                <div class="form-group input-group">
+                                    <input type="text" id="local-search-input" class="form-control"
+                                           placeholder="搜我..."/>
+                                    <span class="input-group-btn">
+                                        <a class="btn btn-default">
+                                            <i class="fa fa-search"></i>
+                                        </a>
+                                    </span>
+                                </div>
+                                <div id="local-search-result" class="local-search-result-cls"></div>
+                            </form>
+                        
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</nav>
+
+    <a href="http://github.com/snmlm" target="_blank">
+        <img style="position: absolute; width:100px; top: 0; left: 0; border: 0;"
+             src="/img/fork-me.png"
+             alt="Fork me on GitHub">
+    </a>
+
+
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    
+
+<p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="常用数据结构">
+            
+                常用数据结构
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/%E7%9F%A5%E8%AF%86%E7%82%B9/">知识点</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-none-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2020/09/03</span>
+        </span>
+        
+            <span class="fa-wrap">
+                <i class="fa fa-eye"></i>
+                <span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        
+    <div class="toc-article">
+        <strong>
+            目录
+        </strong>
+        <div class="toc-content">
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-text">常用数据结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E7%BB%84"><span class="toc-text">数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%93%BE%E8%A1%A8"><span class="toc-text">链表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%98%9F%E5%88%97"><span class="toc-text">队列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%88"><span class="toc-text">栈</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9B%86%E5%90%88"><span class="toc-text">集合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%A3%E5%88%97%E8%A1%A8"><span class="toc-text">散列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%91"><span class="toc-text">树</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="toc-text">二叉树</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%BB%A1%E4%BA%8C%E5%8F%89%E6%A0%91%E3%80%81%E5%AE%8C%E5%85%A8%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="toc-text">满二叉树、完全二叉树</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E5%8F%89%E6%9F%A5%E6%89%BE%E6%A0%91"><span class="toc-text">二叉查找树</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="toc-text">平衡二叉树</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A0%86"><span class="toc-text">堆</span></a></li></ol>
+        </div>
+    </div>
+
+
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;首先给出Java集合框架的基本接口/类层次结构：<a id="more"></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">java.util.Collection [I]</span><br><span class="line">    +--java.util.List [I]</span><br><span class="line">       +--java.util.ArrayList [C]    </span><br><span class="line">       +--java.util.LinkedList [C]  </span><br><span class="line">       +--java.util.Vector [C]    &#x2F;&#x2F;线程安全</span><br><span class="line">          +--java.util.Stack [C]  &#x2F;&#x2F;线程安全</span><br><span class="line">    +--java.util.Set [I]                   </span><br><span class="line">       +--java.util.HashSet [C]      </span><br><span class="line">       +--java.util.SortedSet [I]    </span><br><span class="line">          +--java.util.TreeSet [C]    </span><br><span class="line">    +--Java.util.Queue[I]</span><br><span class="line">        +--java.util.Deque[I]   </span><br><span class="line">        +--java.util.PriorityQueue[C]  </span><br><span class="line">java.util.Map [I]</span><br><span class="line">    +--java.util.SortedMap [I]</span><br><span class="line">       +--java.util.TreeMap [C]</span><br><span class="line">    +--java.util.Hashtable [C]   &#x2F;&#x2F;线程安全</span><br><span class="line">    +--java.util.HashMap [C]</span><br><span class="line">    +--java.util.LinkedHashMap [C]</span><br><span class="line">    +--java.util.WeakHashMap [C]</span><br><span class="line"></span><br><span class="line">[I]：接口</span><br><span class="line">[C]：类</span><br></pre></td></tr></table></figure>
+<h3 id="常用数据结构"><a href="#常用数据结构" class="headerlink" title="常用数据结构"></a>常用数据结构</h3><p><img src="https://raw.githubusercontent.com/snmlm/resources/master/picture/qrYRX93.jpg"></p>
+<h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数组是相同数据类型的元素按一定顺序排列的集合，是一块连续的内存空间。数组的优点是：get和set操作时间上都是O(1)的；缺点是：add和remove操作时间上都是O(N)的。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Java中，Array就是数组，此外，ArrayList使用了数组Array作为其实现基础,它和一般的Array相比，最大的好处是，我们在添加元素时不必考虑越界，元素超出数组容量时，它会自动扩张保证容量。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Vector和ArrayList相比，主要差别就在于多了一个线程安全性，但是效率比较低下。如今java.util.concurrent包提供了许多线程安全的集合类（比如 LinkedBlockingQueue），所以不必再使用Vector了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">int[] ints &#x3D; new int[10];</span><br><span class="line">ints[0] &#x3D; 5;&#x2F;&#x2F;set</span><br><span class="line">int a &#x3D; ints[2];&#x2F;&#x2F;get</span><br><span class="line">int len &#x3D; ints.length;&#x2F;&#x2F;数组长度</span><br></pre></td></tr></table></figure>
+<h3 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;链表是一种非连续、非顺序的结构，数据元素的逻辑顺序是通过链表中的指针链接次序实现的，链表由一系列结点组成。链表的优点是：add和remove操作时间上都是O(1)的；缺点是：get和set操作时间上都是O(N)的，而且需要额外的空间存储指向其他数据地址的项。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;查找操作对于未排序的数组和链表时间上都是O(N)。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Java中，LinkedList 使用链表作为其基础实现。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">LinkedList&lt;String&gt; linkedList &#x3D; new LinkedList&lt;&gt;();</span><br><span class="line">linkedList.add(&quot;addd&quot;);&#x2F;&#x2F;add</span><br><span class="line">linkedList.set(0,&quot;s&quot;);&#x2F;&#x2F;set，必须先保证 linkedList中已经有第0个元素</span><br><span class="line">String s &#x3D;  linkedList.get(0);&#x2F;&#x2F;get</span><br><span class="line">linkedList.contains(&quot;s&quot;);&#x2F;&#x2F;查找</span><br><span class="line">linkedList.remove(&quot;s&quot;);&#x2F;&#x2F;删除</span><br></pre></td></tr></table></figure>
+
+<h3 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;队列是一种特殊的线性表，特殊之处在于它只允许在表的前端进行删除操作，而在表的后端进行插入操作，亦即所谓的先进先出（FIFO）。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Java中，LinkedList实现了Deque，可以做为双向队列（自然也可以用作单向队列）。另外PriorityQueue实现了带优先级的队列，亦即队列的每一个元素都有优先级，且元素按照优先级排序。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Deque&lt;Integer&gt; integerDeque &#x3D; new LinkedList&lt;&gt;();</span><br><span class="line">&#x2F;&#x2F; 尾部入队，区别在于如果失败了</span><br><span class="line">&#x2F;&#x2F; add方法会抛出一个IllegalStateException异常，而offer方法返回false</span><br><span class="line">integerDeque.offer(122);</span><br><span class="line">integerDeque.add(122);</span><br><span class="line">&#x2F;&#x2F; 头部出队,区别在于如果失败了</span><br><span class="line">&#x2F;&#x2F; remove方法抛出一个NoSuchElementException异常，而poll方法返回false</span><br><span class="line">int head &#x3D; integerDeque.poll();&#x2F;&#x2F;返回第一个元素，并在队列中删除</span><br><span class="line">head &#x3D; integerDeque.remove();&#x2F;&#x2F;返回第一个元素，并在队列中删除</span><br><span class="line">&#x2F;&#x2F; 头部出队，区别在于如果失败了</span><br><span class="line">&#x2F;&#x2F; element方法抛出一个NoSuchElementException异常，而peek方法返回null。</span><br><span class="line">head &#x3D; integerDeque.peek();&#x2F;&#x2F;返回第一个元素，不删除</span><br><span class="line">head &#x3D; integerDeque.element();&#x2F;&#x2F;返回第一个元素，不删除</span><br></pre></td></tr></table></figure>
+<h3 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;栈（stack）又名堆栈，它是一种运算受限的线性表。其限制是仅允许在表的一端进行插入和删除运算。这一端被称为栈顶，相对地，把另一端称为栈底。它体现了后进先出（LIFO）的特点。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Java中，Stack实现了这种特性，但是Stack也继承了Vector，所以具有线程安全线和效率低下两个特性，最新的JDK8中，推荐用Deque来实现栈，比如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Deque&lt;Integer&gt; stack &#x3D; new ArrayDeque&lt;Integer&gt;();</span><br><span class="line">stack.push(12);&#x2F;&#x2F;尾部入栈</span><br><span class="line">stack.push(16);&#x2F;&#x2F;尾部入栈</span><br><span class="line">int tail &#x3D; stack.pop();&#x2F;&#x2F;尾部出栈，并删除该元素</span><br><span class="line">tail &#x3D; stack.peek();&#x2F;&#x2F;尾部出栈，不删除该元素</span><br></pre></td></tr></table></figure>
+<h3 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;集合是指具有某种特定性质的具体的或抽象的对象汇总成的集体，这些对象称为该集合的元素，其主要特性是元素不可重复。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在Java中，HashSet 体现了这种数据结构，而HashSet是在MashMap的基础上构建的。LinkedHashSet继承了HashSet，使用HashCode确定在集合中的位置，使用链表的方式确定位置，所以有顺序。TreeSet实现了SortedSet 接口，是排好序的集合（在TreeMap 基础之上构建），因此查找操作比普通的Hashset要快（log(N)）；插入操作要慢（log（N））,因为要维护有序。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">HashSet&lt;Integer&gt; integerHashSet &#x3D; new HashSet&lt;&gt;();</span><br><span class="line">integerHashSet.add(12121);&#x2F;&#x2F;添加</span><br><span class="line">integerHashSet.contains(121);&#x2F;&#x2F;是否包含</span><br><span class="line">integerHashSet.size();&#x2F;&#x2F;集合大小</span><br><span class="line">integerHashSet.isEmpty();&#x2F;&#x2F;是否为空</span><br></pre></td></tr></table></figure>
+<h3 id="散列表"><a href="#散列表" class="headerlink" title="散列表"></a>散列表</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;散列表也叫哈希表，是根据关键键值(Keyvalue)进行访问的数据结构，它通过把关键码值映射到表中一个位置来访问记录，以加快查找的速度，这个映射函数叫做散列函数。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Java中HashMap实现了散列表，而Hashtable比它多了一个线程安全性，但是由于使用了全局锁导致其性能较低，所以现在一般用ConcurrentHashMap来实现线程安全的HashMap（类似的，以上的数据结构在最新的java.util.concurrent的包中几乎都有对应的高性能的线程安全的类）。TreeMap实现SortMap接口，能够把它保存的记录按照键排序。LinkedHashMap保留了元素插入的顺序。WeakHashMap是一种改进的HashMap，它对key实行“弱引用”，如果一个key不再被外部所引用，那么该key可以被GC回收，而不需要我们手动删除。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">HashSet&lt;Integer&gt; integerHashSet &#x3D; new HashSet&lt;&gt;();</span><br><span class="line">integerHashSet.add(12121);&#x2F;&#x2F;添加</span><br><span class="line">integerHashSet.contains(121);&#x2F;&#x2F;是否包含</span><br><span class="line">integerHashSet.size();&#x2F;&#x2F;集合大小</span><br><span class="line">integerHashSet.isEmpty();&#x2F;&#x2F;是否为空</span><br></pre></td></tr></table></figure>
+<h3 id="树"><a href="#树" class="headerlink" title="树"></a>树</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;树（tree）是包含n（n&gt;0）个节点的有穷集合，其中：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;每个元素称为节点（node）<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;有一个特定的节点被称为根节点或树根（root）<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;除根节点之外的其余数据元素被分为m（m≥0）个互不相交的结合T1，T2，……Tm-1，其中每一个集合Ti（1&lt;=i&lt;=m）本身也是一棵树，被称作原树的子树（subtree）<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;树这种数据结构在计算机世界中有广泛的应用，比如操作系统中用到了红黑树，数据库用到了B+树，编译器中的语法树，内存管理用到了堆（本质上也是树），信息论中的哈夫曼编码等等等等，在Java中TreeSet和TreeMap用到了树来排序（二分查找提高检索速度），不过一般都需要程序员自己去定义一个树的类，并实现相关性质，而没有现成的API。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;下面用Java来实现各种常见的树:</p>
+<h4 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;二叉树是一种基础而且重要的数据结构，其每个结点至多只有二棵子树，二叉树有左右子树之分，第i层至多有2^(i-1)个结点（i从1开始）；深度为k的二叉树至多有2^(k)-1)个结点，对任何一棵二叉树，如果其终端结点数为n0，度为2的结点数为n2，则n0=n2+1。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;二叉树的性质：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在非空二叉树中，第i层的结点总数不超过2^(i-1), i&gt;=1;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;深度为h的二叉树最多有2^h-1个结点(h&gt;=1)，最少有h个结点;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;对于任意一棵二叉树，如果其叶结点数为N0，而度数为2的结点总数为N2，则N0=N2+1;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;具有n个结点的完全二叉树的深度为log2(n+1);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;有N个结点的完全二叉树各结点如果用顺序方式存储，则结点之间有如下关系： 若I为结点编号则 如果I&gt;1，则其父结点的编号为I/2； 如果2I&lt;=N，则其左儿子（即左子树的根结点）的编号为2I；若2I&gt;N，则无左儿子； 如果2I+1&lt;=N，则其右儿子的结点编号为2I+1；若2I+1&gt;N，则无右儿子。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;给定N个节点，能构成h(N)种不同的二叉树，其中h(N)为卡特兰数的第N项，h(n)=C(2*n, n)/(n+1)。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;设有i个枝点，I为所有枝点的道路长度总和，J为叶的道路长度总和J=I+2i。</p>
+<h4 id="满二叉树、完全二叉树"><a href="#满二叉树、完全二叉树" class="headerlink" title="满二叉树、完全二叉树"></a>满二叉树、完全二叉树</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;满二叉树：除最后一层无任何子节点外，每一层上的所有结点都有两个子结点；<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;完全二叉树：若设二叉树的深度为h，除第 h 层外，其它各层 (1～(h-1)层) 的结点数都达到最大个数，第h层所有的结点都连续集中在最左边，这就是完全二叉树；<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;满二叉树是完全二叉树的一个特例。</p>
+<h4 id="二叉查找树"><a href="#二叉查找树" class="headerlink" title="二叉查找树"></a>二叉查找树</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;二叉查找树，又称为是二叉排序树（Binary Sort Tree）或二叉搜索树。二叉排序树或者是一棵空树，或者是具有下列性质的二叉树：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;若左子树不空，则左子树上所有结点的值均小于它的根结点的值；<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;若右子树不空，则右子树上所有结点的值均大于或等于它的根结点的值；<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;左、右子树也分别为二叉排序树；<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;没有键值相等的节点。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;二叉查找树的性质：对二叉查找树进行中序遍历，即可得到有序的数列。 二叉查找树的时间复杂度：它和二分查找一样，插入和查找的时间复杂度均为O(logn)，但是在最坏的情况下仍然会有O(n)的时间复杂度。原因在于插入和删除元素的时候，树没有保持平衡。我们追求的是在最坏的情况下仍然有较好的时间复杂度，这就是平衡二叉树设计的初衷。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;二叉查找树可以这样表示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">public class BST&lt;Key extends Comparable&lt;Key&gt;, Value&gt; &#123;</span><br><span class="line"> </span><br><span class="line">    private Node root;             &#x2F;&#x2F; 根节点</span><br><span class="line"> </span><br><span class="line">    private class Node &#123;</span><br><span class="line">        private Key key;           &#x2F;&#x2F; 排序的间</span><br><span class="line">        private Value val;         &#x2F;&#x2F; 相应的值</span><br><span class="line">        private Node left, right;  &#x2F;&#x2F; 左子树，右子树</span><br><span class="line">        private int size;          &#x2F;&#x2F; 以该节点为根的树包含节点数量</span><br><span class="line"> </span><br><span class="line">        public Node(Key key, Value val, int size) &#123;</span><br><span class="line">            this.key &#x3D; key;</span><br><span class="line">            this.val &#x3D; val;</span><br><span class="line">            this.size &#x3D; size;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    public BST() &#123;&#125;</span><br><span class="line"> </span><br><span class="line">    public int size() &#123;&#x2F;&#x2F;获得该二叉树节点数量</span><br><span class="line">        return size(root);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    private int size(Node x) &#123;获得以该节点为根的树包含节点数量</span><br><span class="line">        if (x &#x3D;&#x3D; null) return 0;</span><br><span class="line">        else return x.size;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;查找：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public Value get(Key key) &#123;</span><br><span class="line">    return get(root, key);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">private Value get(Node x, Key key) &#123;&#x2F;&#x2F;在以x节点为根的树中查找key</span><br><span class="line">    if (x &#x3D;&#x3D; null) return null;</span><br><span class="line">    int cmp &#x3D; key.compareTo(x.key);</span><br><span class="line">    if(cmp &lt; 0) </span><br><span class="line">        return get(x.left, key);&#x2F;&#x2F;递归左子树查找</span><br><span class="line">    else if (cmp &gt; 0) </span><br><span class="line">        return get(x.right, key);&#x2F;&#x2F;递归右子树查找</span><br><span class="line">    else              </span><br><span class="line">        return x.val;&#x2F;&#x2F;找到了</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;插入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">public void put(Key key, Value val) &#123;</span><br><span class="line">    root &#x3D; put(root, key, val);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">private Node put(Node x, Key key, Value val) &#123;在以x节点为根的树中查找key，val</span><br><span class="line">    if (x &#x3D;&#x3D; null) </span><br><span class="line">        return new Node(key, val, 1);</span><br><span class="line">    int cmp &#x3D; key.compareTo(x.key);</span><br><span class="line">    if(cmp &lt; 0) </span><br><span class="line">        x.left  &#x3D; put(x.left,  key, val);&#x2F;&#x2F;递归左子树插入</span><br><span class="line">    else if (cmp &gt; 0) </span><br><span class="line">        x.right &#x3D; put(x.right, key, val);&#x2F;&#x2F;递归右子树插入</span><br><span class="line">    else              </span><br><span class="line">        x.val   &#x3D; val;</span><br><span class="line">    x.size &#x3D; 1 + size(x.left) + size(x.right);</span><br><span class="line">    return x;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;删除：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">public Key min() &#123;</span><br><span class="line">    return min(root).key;</span><br><span class="line">&#125; </span><br><span class="line"> </span><br><span class="line">private Node min(Node x) &#123; </span><br><span class="line">    if (x.left &#x3D;&#x3D; null) </span><br><span class="line">        return x; </span><br><span class="line">    else                </span><br><span class="line">        return min(x.left); </span><br><span class="line"> </span><br><span class="line">&#125; </span><br><span class="line"> </span><br><span class="line">public void deleteMin() &#123;</span><br><span class="line">    root &#x3D; deleteMin(root);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">private Node deleteMin(Node x) &#123;&#x2F;&#x2F;删除以x为根节点的子树最小值</span><br><span class="line">    if (x.left &#x3D;&#x3D; null) </span><br><span class="line">        return x.right;</span><br><span class="line">    x.left &#x3D; deleteMin(x.left);</span><br><span class="line">    x.size &#x3D; size(x.left) + size(x.right) + 1;</span><br><span class="line">    return x;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">public void delete(Key key) &#123;</span><br><span class="line">     root &#x3D; delete(root, key);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">private Node delete(Node x, Key key) &#123;</span><br><span class="line">    if (x &#x3D;&#x3D; null) </span><br><span class="line">        return null;</span><br><span class="line"> </span><br><span class="line">    int cmp &#x3D; key.compareTo(x.key);</span><br><span class="line">    if(cmp &lt; 0) </span><br><span class="line">        x.left  &#x3D; delete(x.left,  key);&#x2F;&#x2F;递归删除左子树</span><br><span class="line">    else if (cmp &gt; 0) </span><br><span class="line">        x.right &#x3D; delete(x.right, key);&#x2F;&#x2F;递归删除右子树</span><br><span class="line">    else &#123; &#x2F;&#x2F;该节点就是所要删除的节点</span><br><span class="line">        if (x.right &#x3D;&#x3D; null) </span><br><span class="line">            return x.left;&#x2F;&#x2F;没有右子树，把左子树挂在原节点父节点上</span><br><span class="line">        if (x.left  &#x3D;&#x3D; null) </span><br><span class="line">            return x.right;&#x2F;&#x2F;没有左子树，，把右子树挂在原节点父节点上</span><br><span class="line">        Node t &#x3D; x;&#x2F;&#x2F;用右子树中最小的节点来替代被删除的节点，仍然保证树的有序性</span><br><span class="line">        x &#x3D; min(t.right);</span><br><span class="line">        x.right &#x3D; deleteMin(t.right);</span><br><span class="line">        x.left &#x3D; t.left;</span><br><span class="line">    &#125; </span><br><span class="line"> </span><br><span class="line">    x.size &#x3D; size(x.left) + size(x.right) + 1;</span><br><span class="line">    return x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="平衡二叉树"><a href="#平衡二叉树" class="headerlink" title="平衡二叉树"></a>平衡二叉树</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;平衡二叉树又被称为AVL树，具有以下性质：它是一棵空树或它的左右两个子树的高度差的绝对值不超过1，并且左右两个子树都是一棵平衡二叉树。它的出现就是解决二叉查找树不平衡导致查找效率退化为线性的问题，因为在删除和插入之时会维护树的平衡，使得查找时间保持在O(logn)，比二叉查找树更稳定。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ALLTree 的 Node 由 BST 的 Node 加上 private int height; 节点高度属性即可，这是为了便于判断树是否平衡。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;维护树的平衡关键就在于旋转。对于一个平衡的节点，由于任意节点最多有两个儿子，因此高度不平衡时，此节点的两颗子树的高度差2，容易看出，这种不平衡出现在下面四种情况：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6节点的左子树3节点高度比右子树7节点大2，左子树3节点的左子树1节点高度大于右子树4节点，这种情况成为左左。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6节点的左子树2节点高度比右子树7节点大2，左子树2节点的左子树1节点高度小于右子树4节点，这种情况成为左右。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2节点的左子树1节点高度比右子树5节点小2，右子树5节点的左子树3节点高度大于右子树6节点，这种情况成为右左。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2节点的左子树1节点高度比右子树4节点小2，右子树4节点的左子树3节点高度小于右子树6节点，这种情况成为右右。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;从图2中可以可以看出，1和4两种情况是对称的，这两种情况的旋转算法是一致的，只需要经过一次旋转就可以达到目标，我们称之为单旋转。2和3两种情况也是对称的，这两种情况的旋转算法也是一致的，需要进行两次旋转，我们称之为双旋转。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;单旋转是针对于左左和右右这两种情况，这两种情况是对称的，只要解决了左左这种情况，右右就很好办了。图3是左左情况的解决方案，节点k2不满足平衡特性，因为它的左子树k1比右子树Z深2层，而且k1子树中，更深的一层的是k1的左子树X子树，所以属于左左情况。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;为使树恢复平衡，我们把k1变成这棵树的根节点，因为k2大于k1，把k2置于k1的右子树上，而原本在k1右子树的Y大于k1，小于k2，就把Y置于k2的左子树上，这样既满足了二叉查找树的性质，又满足了平衡二叉树的性质。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这样的操作只需要一部分指针改变，结果我们得到另外一颗二叉查找树，它是一棵AVL树，因为X向上一移动了一层，Y还停留在原来的层面上，Z向下移动了一层。整棵树的新高度和之前没有在左子树上插入的高度相同，插入操作使得X高度长高了。因此，由于这颗子树高度没有变化，所以通往根节点的路径就不需要继续旋转了。 代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">private int height(Node t)&#123;  </span><br><span class="line">    return t &#x3D;&#x3D; null ? -1 : t.height;  </span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">&#x2F;&#x2F;左左情况单旋转  </span><br><span class="line">private Node rotateWithLeftChild(Node k2)&#123;  </span><br><span class="line">    Node k1 &#x3D; k2.left;  </span><br><span class="line">    k2.left &#x3D; k1.right;       </span><br><span class="line">    k1.right &#x3D; k2;        </span><br><span class="line">    k1.size &#x3D; k2.size;</span><br><span class="line">    k2.size &#x3D; size(k2.right)+size(k2.left)+1;</span><br><span class="line">    k2.height &#x3D; Math.max(height(k2.left), height(k2.right)) + 1;  </span><br><span class="line">    k1.height &#x3D; Math.max(height(k1.left), k2.height) + 1;         </span><br><span class="line">    return k1;      &#x2F;&#x2F;返回新的根  </span><br><span class="line">&#125;     </span><br><span class="line"> </span><br><span class="line">&#x2F;&#x2F;右右情况单旋转  </span><br><span class="line">private Node rotateWithRightChild(Node k2)&#123;  </span><br><span class="line">    Node k1 &#x3D; k2.right;  </span><br><span class="line">    k2.right &#x3D; k1.left;  </span><br><span class="line">    k1.left &#x3D; k2;  </span><br><span class="line">    k1.size &#x3D; k2.size;</span><br><span class="line">    k2.size &#x3D; size(k2.right)+size(k2.left)+1;       </span><br><span class="line">    k2.height &#x3D; Math.max(height(k2.left), height(k2.right)) + 1;  </span><br><span class="line">    k1.height &#x3D; Math.max(height(k1.right), k2.height) + 1;        </span><br><span class="line">    return k1;      &#x2F;&#x2F;返回新的根   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;双旋转是针对于左右和右左这两种情况，单旋转不能使它达到一个平衡状态，要经过两次旋转。同样的，这样两种情况也是对称的，只要解决了左右这种情况，右左就很好办了。图4是左右情况的解决方案，节点k3不满足平衡特性，因为它的左子树k1比右子树Z深2层，而且k1子树中，更深的一层的是k1的右子树k2子树，所以属于左右情况。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;为使树恢复平衡，我们需要进行两步，第一步，把k1作为根，进行一次右右旋转，旋转之后就变成了左左情况，所以第二步再进行一次左左旋转，最后得到了一棵以k2为根的平衡二叉树树。 代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;左右情况  </span><br><span class="line">private Node doubleWithLeftChild(Node k3)&#123;        </span><br><span class="line">    try&#123;  </span><br><span class="line">        k3.left &#x3D; rotateWithRightChild(k3.left);  </span><br><span class="line">    &#125;catch(NullPointerException e)&#123;  </span><br><span class="line">        System.out.println(&quot;k.left.right为：&quot;+k3.left.right);  </span><br><span class="line">        throw e;  </span><br><span class="line">    &#125;  </span><br><span class="line">    return rotateWithLeftChild(k3);       </span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">&#x2F;&#x2F;右左情况  </span><br><span class="line">private Node doubleWithRightChild(Node k3)&#123;  </span><br><span class="line">    try&#123;  </span><br><span class="line">        k3.right &#x3D; rotateWithLeftChild(k3.right);  </span><br><span class="line">    &#125;catch(NullPointerException e)&#123;  </span><br><span class="line">        System.out.println(&quot;k.right.left为：&quot;+k3.right.left);  </span><br><span class="line">        throw e;  </span><br><span class="line">    &#125;         </span><br><span class="line">    return rotateWithRightChild(k3);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AVL查找操作与BST相同，AVL的删除与插入操作在BST基础之上需要检查是否平衡，如果不平衡就要使用旋转操作来维持平衡：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">private Node balance(Node x) &#123;</span><br><span class="line">    if (balanceFactor(x) &lt; -1) &#123;&#x2F;&#x2F;右边高</span><br><span class="line">        if (balanceFactor(x.right) &gt; 0) &#123;&#x2F;&#x2F;右左</span><br><span class="line">            x.right &#x3D; rotateWithLeftChild(x.right);</span><br><span class="line">        &#125;</span><br><span class="line">        x &#x3D; rotateWithRightChild(x);</span><br><span class="line">    &#125;</span><br><span class="line">    else if (balanceFactor(x) &gt; 1) &#123;&#x2F;&#x2F;左边高</span><br><span class="line">        if (balanceFactor(x.left) &lt; 0) &#123;&#x2F;&#x2F;左右</span><br><span class="line">            x.left &#x3D; rotateWithRightChild(x.left);</span><br><span class="line">        &#125;</span><br><span class="line">        x &#x3D; rotateWithLeftChild(x);</span><br><span class="line">    &#125;</span><br><span class="line">    return x;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">private int balanceFactor(Node x) &#123;</span><br><span class="line">    return height(x.left) - height(x.right);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;堆是一颗完全二叉树，在这棵树中，所有父节点都满足大于等于其子节点的堆叫大根堆，所有父节点都满足小于等于其子节点的堆叫小根堆。堆虽然是一颗树，但是通常存放在一个数组中，父节点和孩子节点的父子关系通过数组下标来确定。如下面的小根堆及存储它的数组：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;值：7,8,9,12,13,11<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数组索引：0,1,2,3,4,5<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;通过一个节点在数组中的索引怎么计算出它的父节点及左右孩子节点的索引：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public int left(int i) &#123;</span><br><span class="line">     return (i + 1) * 2 - 1;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">public int right(int i) &#123;</span><br><span class="line">    return (i + 1) * 2;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">public int parent(int i) &#123;</span><br><span class="line">    &#x2F;&#x2F; i为根结点</span><br><span class="line">    if (i &#x3D;&#x3D; 0) &#123;</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line">    return (i - 1) &#x2F; 2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;维护大根堆的性质：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">public void heapify(T[] a, int i, int heapLength) &#123;</span><br><span class="line">    int l &#x3D; left(i);</span><br><span class="line">    int r &#x3D; right(i);</span><br><span class="line">    int largest &#x3D; -1;</span><br><span class="line">    &#x2F;&#x2F;寻找根节点及其左右子节点，三个元素中的最大值</span><br><span class="line">    if (l &lt; heapLength &amp;&amp; a[i].compareTo(a[l]) &lt; 0) &#123;</span><br><span class="line">        largest &#x3D; l;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        largest &#x3D; i;</span><br><span class="line">    &#125;</span><br><span class="line">    if (r &lt; heapLength &amp;&amp; a[largest].compareTo(a[r]) &lt; 0) &#123;</span><br><span class="line">        largest &#x3D; r;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    &#x2F;&#x2F; 如果i处元素不是最大的，就把i处的元素与最大处元素交换，使得i处元素变为最大的</span><br><span class="line">    if (i !&#x3D; largest) &#123;</span><br><span class="line">        T temp &#x3D; a[i];</span><br><span class="line">        a[i] &#x3D; a[largest];</span><br><span class="line">        a[largest] &#x3D; temp;</span><br><span class="line">        &#x2F;&#x2F; 交换元素后，以a[i]为根的树可能不在满足大根堆性质，于是递归调用该方法</span><br><span class="line">        heapify(a, largest, heapLength);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;构造堆：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public void buildHeap(T[] a, int heapLength) &#123;</span><br><span class="line">    &#x2F;&#x2F;从后往前看lengthParent处的元素是第一个有子节点的元素，所以从它开始，进行堆得维护</span><br><span class="line">    int lengthParent &#x3D; parent(heapLength - 1);</span><br><span class="line">    for(int i &#x3D; lengthParent; i &gt;&#x3D; 0; i--)&#123;</span><br><span class="line">        heapify(a, i, heapLength);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;堆的用途：堆排序，优先级队列。此外由于调整代价较小，也适合实时类型的排序与变更。</p>
+
+        <h2>相关文章</h2><ul><li><a href="/dataStructure/20200525/">红黑树(未写完)</a></li></ul>
+    </div>
+    
+    <div class="post-footer">
+        <div class="col-sm-10">
+            <div>
+                <b>本文链接</b>：<a href="/dataStructure/20190502/" target="_blank">常用数据结构</a>
+            </div>
+            <div>
+                
+                    转载声明：本博客由snmlm创作，采用 <a href="https://creativecommons.org/licenses/by-nc-nd/3.0/" target="_blank"> CC BY 3.0 CN </a> 许可协议。可自由转载、引用，但需署名作者且注明文章出处。
+                
+            </div>
+            <div>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a target="_blank" href="/dataStructure/20200525/" class="pre-post btn btn-default"
+           title='红黑树(未写完)'>
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">红黑树(未写完)</span>
+        </a>
+    
+    
+        <a target="_blank" href="/database/redis/20200804/" class="next-post btn btn-default"
+           title='Redis 架构模式'>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">Redis 架构模式</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+   <p>评论系统未开启，无法评论！</p>
+
+    </div>
+
+
+
+
+
+
+                </main>
+                
+    <aside class="col-md-4 sidebar">
+        
+        <div class="widget about-me">
+    <div class="row">
+        <div class="col-md-5">
+            <img src="/head.gif" alt="snmlm" class="img-responsive center-block">
+        </div>
+        <div class="col-md-7">
+            <a class="series-a" href="javascript:void(0)">个人博客</a>
+            <ul>
+                <li><b>• 喝奶补钙</b></li>
+                <li><b>• 管住嘴，迈开腿</b></li>
+                <li><b>• 日常更新</b></li>
+            </ul>
+        </div>
+    </div>
+    <hr class="divider-hr">
+    <div class="content social">
+        
+            <a href="//github.com/snmlm" rel="external nofollow" title="GitHub" target="_blank">
+                <i class="github fa fa-github"></i>
+            </a>
+        
+            <a href="//gitee.com/snmlm" rel="external nofollow" title="Gitee" target="_blank">
+                <i class="git fa fa-git"></i>
+            </a>
+        
+            <a href="mailto:913813112@qq.com" rel="external nofollow" title="邮箱" target="_blank">
+                <i class="envelope-o fa fa-envelope-o"></i>
+            </a>
+        
+            <a href="/atom.xml" rel="external nofollow" title="RSS" target="_blank">
+                <i class="feed fa fa-feed"></i>
+            </a>
+        
+    </div>
+</div>
+
+
+
+
+        
+        
+    <div class="widget">
+        <h3 class="title">分类</h3>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Assembly-Language-Second-Edition/"><i class="fa" aria-hidden="true">Assembly-Language-Second-Edition</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/"><i class="fa" aria-hidden="true">hexo</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/"><i class="fa" aria-hidden="true">java</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tcp-ip/"><i class="fa" aria-hidden="true">tcp-ip</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%91%E6%8C%87offer/"><i class="fa" aria-hidden="true">剑指offer</i></a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/"><i class="fa" aria-hidden="true">工具</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"><i class="fa" aria-hidden="true">开发工具</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%80%BB%E7%BB%93/"><i class="fa" aria-hidden="true">总结</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%97%A5%E5%B8%B8/"><i class="fa" aria-hidden="true">日常</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%89%E7%82%B9%E4%B8%9C%E8%A5%BF/"><i class="fa" aria-hidden="true">有点东西</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9E%B6%E6%9E%84/"><i class="fa" aria-hidden="true">架构</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%BA%90%E7%A0%81/"><i class="fa" aria-hidden="true">源码</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link current" href="/categories/%E7%9F%A5%E8%AF%86%E7%82%B9/"><i class="fa" aria-hidden="true">知识点</i></a><span class="category-list-count">41</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/"><i class="fa" aria-hidden="true">算法</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BB%8F%E9%AA%8C/"><i class="fa" aria-hidden="true">经验</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%95%E9%A2%98/"><i class="fa" aria-hidden="true">试题</i></a><span class="category-list-count">1</span></li></ul>
+    </div>
+
+
+        
+        
+  <div class="widget">
+    <h3 class="title">标签</h3>
+    <div class="content tag-cloud">
+        
+            <canvas width="300" height="300" id="tag-cloud-3d">
+                <a href="/tags/Books/" style="font-size: 11.67px;">Books</a> <a href="/tags/dubbo/" style="font-size: 11.67px;">dubbo</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 11.67px;">hexo</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/java8/" style="font-size: 10px;">java8</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/mysql/" style="font-size: 16.67px;">mysql</a> <a href="/tags/redis/" style="font-size: 15px;">redis</a> <a href="/tags/servlet/" style="font-size: 11.67px;">servlet</a> <a href="/tags/spring/" style="font-size: 15px;">spring</a> <a href="/tags/spring-boot/" style="font-size: 11.67px;">spring boot</a> <a href="/tags/zookeeper/" style="font-size: 10px;">zookeeper</a> <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 10px;">动态规划</a> <a href="/tags/%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">协议</a> <a href="/tags/%E5%98%BF%E5%98%BF%E5%98%BF/" style="font-size: 10px;">嘿嘿嘿</a> <a href="/tags/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97/" style="font-size: 13.33px;">工作日志</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 11.67px;">数据结构</a> <a href="/tags/%E6%96%B9%E6%A1%88/" style="font-size: 10px;">方案</a> <a href="/tags/%E6%97%A5%E5%B8%B8/" style="font-size: 11.67px;">日常</a> <a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 10px;">架构</a> <a href="/tags/%E6%B1%87%E6%80%BB/" style="font-size: 11.67px;">汇总</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 18.33px;">算法</a> <a href="/tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" style="font-size: 10px;">解决方案</a> <a href="/tags/%E8%AF%95%E9%A2%98/" style="font-size: 10px;">试题</a>
+            </canvas>
+        
+    </div>
+  </div>
+
+
+        
+    </aside>
+
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+        访问量:
+        <strong id="busuanzi_value_site_pv">
+            <i class="fa fa-spinner fa-spin"></i>
+        </strong>
+        &nbsp; | &nbsp;
+        访客数:
+        <strong id="busuanzi_value_site_uv">
+            <i class="fa fa-spinner fa-spin"></i>
+        </strong>
+    
+</div>
+
+            </div>
+            <!-- <div class="col-sm-12">
+                <span>Copyright &copy; 2018
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/itmuch/hexo-theme-snmlm.git" class="copyright-links" target="_blank" rel="nofollow">SNMLM</a>
+                </span>
+            </div> -->
+        </div>
+    </div>
+</div>
+
+
+<script src="/js/jquery.min.js"></script>
+
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<script src="/js/bootstrap-hover-dropdown.min.js"></script>
+
+
+	
+<script src="/js/search.js?rev=@@hash.js"></script>
+
+
+
+
+    
+<script src="/assets/tagcanvas.min.js?rev=2.9.js"></script>
+
+    <script>
+        var tagOption = {
+            textColour: '#29afec', // 字体颜色
+            outlineMethod: 'block', // 选中模式
+            outlineColour: '#FFDAB9', // 选中模式的颜色
+            interval: 30 || 30, // 动画帧之间的时间间隔，值越大，转动幅度越大
+            textHeight: 13,
+            outlineRadius: 3,
+            freezeActive: true || '', // 选中的标签是否继续滚动
+            frontSelect: true || '', // 不选标签云后部的标签
+            initial: [0.1, -0.1],
+            depth: 0.5,
+            decel: 0.95,
+            maxSpeed: 0.03,
+            reverse: true || '', // 是否反向触发
+            fadeIn: 500, // 进入动画时间
+            wheelZoom: false || '' // 是否启用鼠标滚轮
+        }
+        TagCanvas.Start('tag-cloud-3d','',tagOption);
+    </script>
+
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,589 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="snmlm">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.0.0">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://snmlm.github.io">
+    <!--SEO-->
+
+    <meta name="keywords" content="mysql" />
+
+
+    <meta name="description" content=" 
+
+基本概念简述逻辑架构
+第一层：客户端通过连接服务，将要执行的sql指令传输过来
+客户端
+
+
+第二层：服务器解析并优化sql，生成最终的执行计划并执行
+缓存
+解析SQL
+预处理
+查询优化器
+生成执行计划
+执行
+
+
+第三层：存储引擎，负责数据的储存和提取
+存储引擎
+
+
+
+锁数据库通过锁机制来..." />
+
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+
+<title>SQL 性能优化梳理 | snmlm</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="snmlm" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon-n.png">
+
+    
+
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7.css">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+
+
+
+    
+
+
+
+
+
+    
+
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <nav class="navbar navbar-default" style="background-color:#fff;border:0;margin-bottom:0"
+                     role="navigation">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse"
+                                data-target="#navbar-collapse-1">
+                            <span class="sr-only">切</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="logo" href="/">
+                            <img src="/head.gif"/>
+                        </a>
+                    </div>
+
+                    <div class="collapse navbar-collapse" style="border:0;" id="navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            
+                                
+                                    <li>
+                                        <a href="/about" target="_blank">
+                                            <i class="fa fa-user"></i>
+                                            关于我
+                                        </a>
+                                    </li>
+                                
+                            
+                                
+                                    <li>
+                                        <a href="/archives" target="_blank">
+                                            <i class="fa fa-archive"></i>
+                                            归档
+                                        </a>
+                                    </li>
+                                
+                            
+                        </ul>
+                        
+                            <form id="search-form" class="navbar-form navbar-right">
+                                <div class="form-group input-group">
+                                    <input type="text" id="local-search-input" class="form-control"
+                                           placeholder="搜我..."/>
+                                    <span class="input-group-btn">
+                                        <a class="btn btn-default">
+                                            <i class="fa fa-search"></i>
+                                        </a>
+                                    </span>
+                                </div>
+                                <div id="local-search-result" class="local-search-result-cls"></div>
+                            </form>
+                        
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</nav>
+
+    <a href="http://github.com/snmlm" target="_blank">
+        <img style="position: absolute; width:100px; top: 0; left: 0; border: 0;"
+             src="/img/fork-me.png"
+             alt="Fork me on GitHub">
+    </a>
+
+
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    
+
+<p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="SQL 性能优化梳理">
+            
+                SQL 性能优化梳理
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/%E7%9F%A5%E8%AF%86%E7%82%B9/">知识点</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-none-link" href="/tags/mysql/" rel="tag">mysql</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2020/09/03</span>
+        </span>
+        
+            <span class="fa-wrap">
+                <i class="fa fa-eye"></i>
+                <span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        
+    <div class="toc-article">
+        <strong>
+            目录
+        </strong>
+        <div class="toc-content">
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E7%AE%80%E8%BF%B0"><span class="toc-text">基本概念简述</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%BB%E8%BE%91%E6%9E%B6%E6%9E%84"><span class="toc-text">逻辑架构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%94%81"><span class="toc-text">锁</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8B%E5%8A%A1"><span class="toc-text">事务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E"><span class="toc-text">存储引擎</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%97%B6%E4%BC%98%E5%8C%96"><span class="toc-text">创建时优化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Schema%E5%92%8C%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%BC%98%E5%8C%96"><span class="toc-text">Schema和数据类型优化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95"><span class="toc-text">索引</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E6%97%B6%E4%BC%98%E5%8C%96"><span class="toc-text">查询时优化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E8%B4%A8%E9%87%8F%E7%9A%84%E4%B8%89%E4%B8%AA%E9%87%8D%E8%A6%81%E6%8C%87%E6%A0%87"><span class="toc-text">查询质量的三个重要指标</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E4%BC%98%E5%8C%96%E7%82%B9"><span class="toc-text">查询优化点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96"><span class="toc-text">其他</span></a></li></ol>
+        </div>
+    </div>
+
+
+         <meta name="referrer" content="no-referrer" />
+
+<h3 id="基本概念简述"><a href="#基本概念简述" class="headerlink" title="基本概念简述"></a>基本概念简述</h3><h4 id="逻辑架构"><a href="#逻辑架构" class="headerlink" title="逻辑架构"></a>逻辑架构</h4><ul>
+<li>第一层：客户端通过连接服务，将要执行的sql指令传输过来<ul>
+<li>客户端</li>
+</ul>
+</li>
+<li>第二层：服务器解析并优化sql，生成最终的执行计划并执行<ul>
+<li>缓存</li>
+<li>解析SQL</li>
+<li>预处理</li>
+<li>查询优化器</li>
+<li>生成执行计划</li>
+<li>执行</li>
+</ul>
+</li>
+<li>第三层：存储引擎，负责数据的储存和提取<ul>
+<li>存储引擎<a id="more"></a></li>
+</ul>
+</li>
+</ul>
+<h4 id="锁"><a href="#锁" class="headerlink" title="锁"></a>锁</h4><p>数据库通过锁机制来解决并发场景-共享锁（读锁）和排他锁（写锁）。读锁是不阻塞的，多个客户端可以在同一时刻读取同一个资源。写锁是排他的，并且会阻塞其他的读锁和写锁。简单提下乐观锁和悲观锁。</p>
+<ul>
+<li>乐观锁，通常用于数据竞争不激烈的场景，多读少写，通过版本号和时间戳实现。</li>
+<li>悲观锁，通常用于数据竞争激烈的场景，每次操作都会锁定数据。</li>
+</ul>
+<p>要锁定数据需要一定的锁策略来配合。</p>
+<ul>
+<li>表锁，锁定整张表，开销最小，但是会加剧锁竞争。</li>
+<li>行锁，锁定行级别，开销最大，但是可以最大程度的支持并发。</li>
+</ul>
+<p>但是MySql的存储引擎的真实实现不是简单的行级锁，一般都是实现了多版本并发控制（MVCC）。MVCC是行级锁的变种，多数情况下避免了加锁操作，开销更低。MVCC是通过保存数据的某个时间点快照实现的。所有操作都有事务，只是不加transaction，是默认自动提交，加了transaction，手动提交，容易操作。</p>
+<h4 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h4><p>事务保证一组原子性的操作，要么全部成功，要么全部失败。一旦失败，回滚之前的所有操作。MySql采用自动提交，如果不是显式的开启一个事务，则每个查询都作为一个事务。</p>
+<p>隔离级别控制了一个事务中的修改，哪些在事务内和事务间是可见的。四种常见的隔离级别：</p>
+<ul>
+<li>未提交读（Read UnCommitted），事务中的修改，即使没提交对其他事务也是可见的。事务可能读取未提交的数据，造成脏读。</li>
+<li>提交读（Read Committed），一个事务开始时，只能看见已提交的事务所做的修改。事务未提交之前，所做的修改对其他事务是不可见的。也叫不可重复读，同一个事务多次读取同样记录可能不同。</li>
+<li>可重复读（RepeatTable Read），同一个事务中多次读取同样的记录结果时结果相同。</li>
+<li>可串行化（Serializable），最高隔离级别，强制事务串行执行。</li>
+</ul>
+<h4 id="存储引擎"><a href="#存储引擎" class="headerlink" title="存储引擎"></a>存储引擎</h4><p>InnoDB引擎，最重要，使用最广泛的存储引擎。被用来设计处理大量短期事务，具有高性能和自动崩溃恢复的特性。<br>MyISAM引擎，不支持事务和行级锁，崩溃后无法安全恢复。</p>
+<h3 id="创建时优化"><a href="#创建时优化" class="headerlink" title="创建时优化"></a>创建时优化</h3><h4 id="Schema和数据类型优化"><a href="#Schema和数据类型优化" class="headerlink" title="Schema和数据类型优化"></a>Schema和数据类型优化</h4><p><strong>整数</strong><br>TinyInt,SmallInt,MediumInt,Int,BigInt 使用的存储8,16,24,32,64位存储空间。使用Unsigned表示不允许负数，可以使正数的上线提高一倍。<br><strong>实数</strong></p>
+<ul>
+<li>Float,Double , 支持近似的浮点运算。</li>
+<li>Decimal，用于存储精确的小数。</li>
+</ul>
+<p><strong>字符串</strong></p>
+<ul>
+<li>VarChar，存储变长的字符串。需要1或2个额外的字节记录字符串的长度。</li>
+<li>Char，定长，适合存储固定长度的字符串，如MD5值。</li>
+<li>Blob，Text 为了存储很大的数据而设计的。分别采用二进制和字符的方式。</li>
+</ul>
+<p><strong>时间类型</strong></p>
+<ul>
+<li>DateTime，保存大范围的值，占8个字节。</li>
+<li>TimeStamp，推荐，与UNIX时间戳相同，占4个字节。</li>
+</ul>
+<p><strong>优化建议点</strong></p>
+<ul>
+<li>尽量使用对应的数据类型。比如，不要用字符串类型保存时间，用整型保存IP。</li>
+<li>选择更小的数据类型。能用TinyInt不用Int。</li>
+<li>标识列（identifier column），建议使用整型，不推荐字符串类型，占用更多空间，而且计算速度比整型慢。</li>
+<li>不推荐ORM系统自动生成的Schema，通常具有不注重数据类型，使用很大的VarChar类型，索引利用不合理等问题。</li>
+<li>真实场景混用范式和反范式。冗余高查询效率高，插入更新效率低；冗余低插入更新效率高，查询效率低。</li>
+<li>创建完全的独立的汇总表\缓存表，定时生成数据，用于用户耗时时间长的操作。对于精确度要求高的汇总操作，可以采用 历史结果+最新记录的结果 来达到快速查询的目的。</li>
+<li>数据迁移，表升级的过程中可以使用影子表的方式，通过修改原表的表名，达到保存历史数据，同时不影响新表使用的目的。</li>
+</ul>
+<h4 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h4><p>索引包含一个或多个列的值。MySql只能高效的利用索引的最左前缀列。索引的优势：</p>
+<ul>
+<li>减少查询扫描的数据量</li>
+<li>避免排序和零时表</li>
+<li>将随机IO变为顺序IO （顺序IO的效率高于随机IO）</li>
+</ul>
+<p><strong>B-Tree</strong><br>使用最多的索引类型。采用B-Tree数据结构来存储数据（每个叶子节点都包含指向下一个叶子节点的指针，从而方便叶子节点的遍历）。B-Tree索引适用于全键值，键值范围，键前缀查找，支持排序。<br>B-Tree索引限制：</p>
+<ul>
+<li>如果不是按照索引的最左列开始查询，则无法使用索引。</li>
+<li>不能跳过索引中的列。如果使用第一列和第三列索引，则只能使用第一列索引。</li>
+<li>如果查询中有个范围查询，则其右边的所有列都无法使用索引优化查询。</li>
+</ul>
+<p><strong>哈希索引</strong><br>只有精确匹配索引的所有列，查询才有效。存储引擎会对所有的索引列计算一个哈希码，哈希索引将所有的哈希码存储在索引中，并保存指向每个数据行的指针。<br>哈希索引限制：</p>
+<ul>
+<li>无法用于排序</li>
+<li>不支持部分匹配</li>
+<li>只支持等值查询如=，IN（），不支持 &lt; &gt;</li>
+</ul>
+<p>优化建议点<br>注意每种索引的适用范围和适用限制。</p>
+<ul>
+<li>索引的列如果是表达式的一部分或者是函数的参数，则失效。</li>
+<li>针对特别长的字符串，可以使用前缀索引，根据索引的选择性选择合适的前缀长度。</li>
+<li>使用多列索引的时候，可以通过 AND 和 OR 语法连接。</li>
+<li>重复索引没必要，如（A，B）和（A）重复。</li>
+<li>索引在where条件查询和group by语法查询的时候特别有效。</li>
+<li>将范围查询放在条件查询的最后，防止范围查询导致的右边索引失效的问题。</li>
+<li>索引最好不要选择过长的字符串，而且索引列也不宜为null。</li>
+</ul>
+<h3 id="查询时优化"><a href="#查询时优化" class="headerlink" title="查询时优化"></a>查询时优化</h3><h4 id="查询质量的三个重要指标"><a href="#查询质量的三个重要指标" class="headerlink" title="查询质量的三个重要指标"></a>查询质量的三个重要指标</h4><ul>
+<li>响应时间 （服务时间，排队时间）</li>
+<li><strong>扫描的行</strong></li>
+<li><strong>返回的行</strong> 占内存</li>
+</ul>
+<h4 id="查询优化点"><a href="#查询优化点" class="headerlink" title="查询优化点"></a>查询优化点</h4><ul>
+<li>避免查询无关的列，如使用Select * 返回所有的列。</li>
+<li>避免查询无关的行</li>
+<li>切分查询。将一个对服务器压力较大的任务，分解到一个较长的时间中，并分多次执行。如要删除一万条数据，可以分10次执行，每次执行完成后暂停一段时间，再继续执行。过程中可以释放服务器资源给其他任务。</li>
+<li>分解关联查询。将多表关联查询的一次查询，分解成对单表的多次查询。可以减少锁竞争，查询本身的查询效率也比较高。因为MySql的连接和断开都是轻量级的操作，不会由于查询拆分为多次，造成效率问题。</li>
+<li>注意count的操作只能统计不为null的列，所以统计总的行数使用count（*）。</li>
+<li>group by 按照标识列分组效率高，分组结果不宜出行分组列之外的列。</li>
+<li>关联查询延迟关联，可以根据查询条件先缩小各自要查询的范围，再关联。</li>
+<li>Limit分页优化。可以根据索引覆盖扫描，再根据索引列关联自身查询其他列。</li>
+<li>Union查询默认去重，如果不是业务必须，建议使用效率更高的Union All</li>
+</ul>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><ul>
+<li>条件中的字段类型和表结构类型不一致，mysql会自动加转换函数，导致索引作为函数中的参数失效。</li>
+<li>like查询前面部分未输入，以%开头无法命中索引。</li>
+<li>补充2个5.7版本的新特性：<ul>
+<li>generated column，就是数据库中这一列由其他列计算而得</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE triangle (sidea DOUBLE, sideb DOUBLE, area DOUBLE AS (sidea * sideb &#x2F; 2));</span><br><span class="line">insert into triangle(sidea, sideb) values(3, 4);</span><br><span class="line">select * from triangle; </span><br><span class="line"></span><br><span class="line">+-------+-------+------+</span><br><span class="line">| sidea | sideb | area |</span><br><span class="line">+-------+-------+------+</span><br><span class="line">|   3      |   4      |  6     |</span><br><span class="line">+-------+-------+------+</span><br></pre></td></tr></table></figure>
+<ul>
+<li>支持JSON格式数据，并提供相关内置函数<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE json_test (name JSON);</span><br><span class="line">INSERT INTO json_test VALUES(&#39;&#123;&quot;name1&quot;: &quot;value1&quot;, &quot;name2&quot;: &quot;value2&quot;&#125;&#39;);</span><br><span class="line">SELECT * FROM json_test WHERE JSON_CONTAINS(name, &#39;$.name1&#39;);</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+<ul>
+<li>explain<ul>
+<li>select_type，有几种值：simple（表示简单的select，没有union和子查询），primary（有子查询，最外面的select查询就是primary），union（union中的第二个或随后的select查询，不依赖外部查询结果），dependent union（union中的第二个或随后的select查询，依赖外部查询结果）</li>
+<li>type，有几种值：system（表仅有一行（=系统表），这是const连接类型的一个特例），const（常量查询）, ref(非唯一索引访问，只有普通索引)，eq_ref（使用唯一索引或组件查询），all（全表查询），index（根据索引查询全表），range（范围查询）</li>
+<li>possible_keys: 表中可能帮助查询的索引</li>
+<li>key，选择使用的索引</li>
+<li>key_len，使用的索引长度</li>
+<li>rows，扫描的行数，越大越不好</li>
+<li>extra，有几种值：Only index（信息从索引中检索出，比扫描表快），where used（使用where限制），Using filesort （可能在内存或磁盘排序），Using temporary（对查询结果排序时使用临时表）</li>
+</ul>
+</li>
+</ul>
+
+        <h2>相关文章</h2><ul><li><a href="/database/mysql/20190327/">mysql利用find_in_set去查询in的集合</a></li><li><a href="/database/mysql/20190409/">mysql关键字执行顺序</a></li><li><a href="/database/mysql/20190424/">mysql如何获取当前时间</a></li><li><a href="/database/mysql/20190426/">MySQL5.7中Derived table变形记</a></li><li><a href="/database/mysql/20200630/">mysql连接（未写完）</a></li></ul>
+    </div>
+    
+    <div class="post-footer">
+        <div class="col-sm-10">
+            <div>
+                <b>本文链接</b>：<a href="/database/20191009/" target="_blank">SQL 性能优化梳理</a>
+            </div>
+            <div>
+                
+                    转载声明：本博客由snmlm创作，采用 <a href="https://creativecommons.org/licenses/by-nc-nd/3.0/" target="_blank"> CC BY 3.0 CN </a> 许可协议。可自由转载、引用，但需署名作者且注明文章出处。
+                
+            </div>
+            <div>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a target="_blank" href="/database/mysql/20190327/" class="pre-post btn btn-default"
+           title='mysql利用find_in_set去查询in的集合'>
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">mysql利用find_in_set去查询in的集合</span>
+        </a>
+    
+    
+        <a target="_blank" href="/daily/20190515/" class="next-post btn btn-default"
+           title='面试的东东'>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">面试的东东</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+   <p>评论系统未开启，无法评论！</p>
+
+    </div>
+
+
+
+
+
+
+                </main>
+                
+    <aside class="col-md-4 sidebar">
+        
+        <div class="widget about-me">
+    <div class="row">
+        <div class="col-md-5">
+            <img src="/head.gif" alt="snmlm" class="img-responsive center-block">
+        </div>
+        <div class="col-md-7">
+            <a class="series-a" href="javascript:void(0)">个人博客</a>
+            <ul>
+                <li><b>• 喝奶补钙</b></li>
+                <li><b>• 管住嘴，迈开腿</b></li>
+                <li><b>• 日常更新</b></li>
+            </ul>
+        </div>
+    </div>
+    <hr class="divider-hr">
+    <div class="content social">
+        
+            <a href="//github.com/snmlm" rel="external nofollow" title="GitHub" target="_blank">
+                <i class="github fa fa-github"></i>
+            </a>
+        
+            <a href="//gitee.com/snmlm" rel="external nofollow" title="Gitee" target="_blank">
+                <i class="git fa fa-git"></i>
+            </a>
+        
+            <a href="mailto:913813112@qq.com" rel="external nofollow" title="邮箱" target="_blank">
+                <i class="envelope-o fa fa-envelope-o"></i>
+            </a>
+        
+            <a href="/atom.xml" rel="external nofollow" title="RSS" target="_blank">
+                <i class="feed fa fa-feed"></i>
+            </a>
+        
+    </div>
+</div>
+
+
+
+
+        
+        
+    <div class="widget">
+        <h3 class="title">分类</h3>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Assembly-Language-Second-Edition/"><i class="fa" aria-hidden="true">Assembly-Language-Second-Edition</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/"><i class="fa" aria-hidden="true">hexo</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/"><i class="fa" aria-hidden="true">java</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tcp-ip/"><i class="fa" aria-hidden="true">tcp-ip</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%91%E6%8C%87offer/"><i class="fa" aria-hidden="true">剑指offer</i></a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/"><i class="fa" aria-hidden="true">工具</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"><i class="fa" aria-hidden="true">开发工具</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%80%BB%E7%BB%93/"><i class="fa" aria-hidden="true">总结</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%97%A5%E5%B8%B8/"><i class="fa" aria-hidden="true">日常</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%89%E7%82%B9%E4%B8%9C%E8%A5%BF/"><i class="fa" aria-hidden="true">有点东西</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9E%B6%E6%9E%84/"><i class="fa" aria-hidden="true">架构</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%BA%90%E7%A0%81/"><i class="fa" aria-hidden="true">源码</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link current" href="/categories/%E7%9F%A5%E8%AF%86%E7%82%B9/"><i class="fa" aria-hidden="true">知识点</i></a><span class="category-list-count">41</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/"><i class="fa" aria-hidden="true">算法</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BB%8F%E9%AA%8C/"><i class="fa" aria-hidden="true">经验</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%95%E9%A2%98/"><i class="fa" aria-hidden="true">试题</i></a><span class="category-list-count">1</span></li></ul>
+    </div>
+
+
+        
+        
+  <div class="widget">
+    <h3 class="title">标签</h3>
+    <div class="content tag-cloud">
+        
+            <canvas width="300" height="300" id="tag-cloud-3d">
+                <a href="/tags/Books/" style="font-size: 11.67px;">Books</a> <a href="/tags/dubbo/" style="font-size: 11.67px;">dubbo</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 11.67px;">hexo</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/java8/" style="font-size: 10px;">java8</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/mysql/" style="font-size: 16.67px;">mysql</a> <a href="/tags/redis/" style="font-size: 15px;">redis</a> <a href="/tags/servlet/" style="font-size: 11.67px;">servlet</a> <a href="/tags/spring/" style="font-size: 15px;">spring</a> <a href="/tags/spring-boot/" style="font-size: 11.67px;">spring boot</a> <a href="/tags/zookeeper/" style="font-size: 10px;">zookeeper</a> <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 10px;">动态规划</a> <a href="/tags/%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">协议</a> <a href="/tags/%E5%98%BF%E5%98%BF%E5%98%BF/" style="font-size: 10px;">嘿嘿嘿</a> <a href="/tags/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97/" style="font-size: 13.33px;">工作日志</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 11.67px;">数据结构</a> <a href="/tags/%E6%96%B9%E6%A1%88/" style="font-size: 10px;">方案</a> <a href="/tags/%E6%97%A5%E5%B8%B8/" style="font-size: 11.67px;">日常</a> <a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 10px;">架构</a> <a href="/tags/%E6%B1%87%E6%80%BB/" style="font-size: 11.67px;">汇总</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 18.33px;">算法</a> <a href="/tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" style="font-size: 10px;">解决方案</a> <a href="/tags/%E8%AF%95%E9%A2%98/" style="font-size: 10px;">试题</a>
+            </canvas>
+        
+    </div>
+  </div>
+
+
+        
+    </aside>
+
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+        访问量:
+        <strong id="busuanzi_value_site_pv">
+            <i class="fa fa-spinner fa-spin"></i>
+        </strong>
+        &nbsp; | &nbsp;
+        访客数:
+        <strong id="busuanzi_value_site_uv">
+            <i class="fa fa-spinner fa-spin"></i>
+        </strong>
+    
+</div>
+
+            </div>
+            <!-- <div class="col-sm-12">
+                <span>Copyright &copy; 2018
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/itmuch/hexo-theme-snmlm.git" class="copyright-links" target="_blank" rel="nofollow">SNMLM</a>
+                </span>
+            </div> -->
+        </div>
+    </div>
+</div>
+
+
+<script src="/js/jquery.min.js"></script>
+
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<script src="/js/bootstrap-hover-dropdown.min.js"></script>
+
+
+	
+<script src="/js/search.js?rev=@@hash.js"></script>
+
+
+
+
+    
+<script src="/assets/tagcanvas.min.js?rev=2.9.js"></script>
+
+    <script>
+        var tagOption = {
+            textColour: '#29afec', // 字体颜色
+            outlineMethod: 'block', // 选中模式
+            outlineColour: '#FFDAB9', // 选中模式的颜色
+            interval: 30 || 30, // 动画帧之间的时间间隔，值越大，转动幅度越大
+            textHeight: 13,
+            outlineRadius: 3,
+            freezeActive: true || '', // 选中的标签是否继续滚动
+            frontSelect: true || '', // 不选标签云后部的标签
+            initial: [0.1, -0.1],
+            depth: 0.5,
+            decel: 0.95,
+            maxSpeed: 0.03,
+            reverse: true || '', // 是否反向触发
+            fadeIn: 500, // 进入动画时间
+            wheelZoom: false || '' // 是否启用鼠标滚轮
+        }
+        TagCanvas.Start('tag-cloud-3d','',tagOption);
+    </script>
+
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,448 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="snmlm">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.0.0">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://snmlm.github.io">
+    <!--SEO-->
+
+    <meta name="keywords" content="mysql" />
+
+
+    <meta name="description" content="MySQL Derived table&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Derived table实际上是一种特殊的subquery，它位于SQL语句中FROM子句里面，可以看做是一个单独的表。MySQL5.7之前的处理都是对Der..." />
+
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+
+<title>MySQL5.7中Derived table变形记 | snmlm</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="snmlm" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon-n.png">
+
+    
+
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7.css">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+
+
+
+    
+
+
+
+
+
+    
+
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <nav class="navbar navbar-default" style="background-color:#fff;border:0;margin-bottom:0"
+                     role="navigation">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse"
+                                data-target="#navbar-collapse-1">
+                            <span class="sr-only">切</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="logo" href="/">
+                            <img src="/head.gif"/>
+                        </a>
+                    </div>
+
+                    <div class="collapse navbar-collapse" style="border:0;" id="navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            
+                                
+                                    <li>
+                                        <a href="/about" target="_blank">
+                                            <i class="fa fa-user"></i>
+                                            关于我
+                                        </a>
+                                    </li>
+                                
+                            
+                                
+                                    <li>
+                                        <a href="/archives" target="_blank">
+                                            <i class="fa fa-archive"></i>
+                                            归档
+                                        </a>
+                                    </li>
+                                
+                            
+                        </ul>
+                        
+                            <form id="search-form" class="navbar-form navbar-right">
+                                <div class="form-group input-group">
+                                    <input type="text" id="local-search-input" class="form-control"
+                                           placeholder="搜我..."/>
+                                    <span class="input-group-btn">
+                                        <a class="btn btn-default">
+                                            <i class="fa fa-search"></i>
+                                        </a>
+                                    </span>
+                                </div>
+                                <div id="local-search-result" class="local-search-result-cls"></div>
+                            </form>
+                        
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</nav>
+
+    <a href="http://github.com/snmlm" target="_blank">
+        <img style="position: absolute; width:100px; top: 0; left: 0; border: 0;"
+             src="/img/fork-me.png"
+             alt="Fork me on GitHub">
+    </a>
+
+
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    
+
+<p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="MySQL5.7中Derived table变形记">
+            
+                MySQL5.7中Derived table变形记
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/%E7%9F%A5%E8%AF%86%E7%82%B9/">知识点</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-none-link" href="/tags/mysql/" rel="tag">mysql</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2020/09/03</span>
+        </span>
+        
+            <span class="fa-wrap">
+                <i class="fa fa-eye"></i>
+                <span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        
+    <div class="toc-article">
+        <strong>
+            目录
+        </strong>
+        <div class="toc-content">
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#MySQL-Derived-table"><span class="toc-text">MySQL Derived table</span></a></li></ol>
+        </div>
+    </div>
+
+
+        <h3 id="MySQL-Derived-table"><a href="#MySQL-Derived-table" class="headerlink" title="MySQL Derived table"></a>MySQL Derived table</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Derived table实际上是一种特殊的subquery，它位于SQL语句中FROM子句里面，可以看做是一个单独的表。MySQL5.7之前的处理都是对Derived table进行Materialize，生成一个临时表保存Derived table的结果，然后利用临时表来协助完成其他父查询的操作，比如JOIN等操作。MySQL5.7中对Derived table做了一个新特性。该特性允许将符合条件的Derived table中的子表与父查询的表合并进行直接JOIN。<a id="more"></a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;下面我们看一下DBT-3中的一条被新特性优化过的执行计划：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">SELECT t2.o_clerk, t1.price - t2.o_totalprice</span><br><span class="line">FROM</span><br><span class="line">    (SELECT l_orderkey, SUM( l_extendedprice * (1 - l_discount)) price</span><br><span class="line">     FROM lineitem GROUP by l_orderkey) t1</span><br><span class="line">JOIN</span><br><span class="line">    (SELECT o_clerk, o_orderkey, o_totalprice</span><br><span class="line">     FROM orders </span><br><span class="line">     WHERE o_orderdate BETWEEN &#39;1995-01-01&#39; AND &#39;1995-12-31&#39;) t2</span><br><span class="line">ON t1.l_orderkey &#x3D; t2.o_orderkey WHERE t1.price &gt; t2.o_totalprice;</span><br></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MySQL5.6执行计划如下图所示（下图通过WorkBench的Visual Explain直观的对执行计划进行了展示）：<br><img src="https://raw.githubusercontent.com/snmlm/resources/master/picture/iEU4flk.png"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;对应的explain输出结果为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ID SELECT_TYPE	  TABLE	    TYPE	POSSIBLE_KEYS	KEY	    KEY_LEN	REF	            ROWS	    EXTRA</span><br><span class="line">1	PRIMARY  	&lt;derived3&gt;	ALL  	NULL	        NULL	NULL	NULL	        4812318	    NULL</span><br><span class="line">1	PRIMARY	    &lt;derived2&gt;	ref	   &lt;auto_key0&gt;	 &lt;auto_key0&gt;   4	t2.o_orderkey	599860	    Using where; Using index</span><br><span class="line">3	DERIVED       orders	ALL	   i_o_orderdate	NULL	NULL	NULL	        15000000    Using where</span><br><span class="line">2	DERIVED	      lineitem	index	PRIMARY, i_l_shipdate, …	PRIMARY	8	NULL	 59986052	NULL   </span><br></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;可以看到orders已经从Derived table的子表里面merge到了父查询中，尽而简化了执行计划，同时也提高了执行效率。看一下MySQL5.6与MySQL5.7对于上面的DBT-3中的这条Query执行性能的对比图：<br><img src="https://raw.githubusercontent.com/snmlm/resources/master/picture/RWDjMQi.png"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Merge Derived table有两种方式进行控制。第一种，通过开关optimizer_switch=’derived_merge=on|off’来进行控制。第二种，在CREATE VIEW的时候指定ALGORITHM=MERGE | TEMPTABLE， 默认是MERGE方式。如果指定是TEMPTABLE，将不会对VIEW进行Merge Derived table操作。只要Derived table里不包含如下条件就可以利用该特性进行优化：</p>
+<ul>
+<li>UNION clause</li>
+<li>GROUP BY</li>
+<li>DISTINCT</li>
+<li>Aggregation</li>
+<li>LIMIT or OFFSET</li>
+<li>Derived table里面包含用户变量的设置。</li>
+</ul>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;那么Merge Derived table在MySQL中是如何实现的呢？下面我们分析一下源码。<br>对于Derived table的merge过程是在MySQL的resolve阶段完成的，这意味着对于Merge操作是永久性的，经过resolve阶段之后就不会再对Derived table进行其他的变换。执行的简单流程如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">SELECT_LEX::prepare</span><br><span class="line"></span><br><span class="line">       |</span><br><span class="line"></span><br><span class="line">TABLE_LIST::resolve_derived &#x2F;&#x2F; 这里首先递归对每个Derived table自身进行变换，经过变换后的Derived table开始考虑和最外层的父查询进行Merge</span><br><span class="line"></span><br><span class="line">       |</span><br><span class="line"></span><br><span class="line">SELECT_LEX::merge_derived &#x2F;&#x2F; 将Derived table与父查询进行Merge</span><br></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;下面我们重点研究一下merge_derived这个函数实现过程：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br></pre></td><td class="code"><pre><span class="line">bool SELECT_LEX::merge_derived(THD *thd, TABLE_LIST *derived_table)</span><br><span class="line">&#123;   </span><br><span class="line">  DBUG_ENTER(&quot;SELECT_LEX::merge_derived&quot;);</span><br><span class="line">  </span><br><span class="line">  &#x2F;&#x2F; 这里首先会判断是不是Derived table（这里view看做是带有名字的Derived table),同时也会看该Derived table是否已经被合并过了</span><br><span class="line">  if (!derived_table-&gt;is_view_or_derived() || derived_table-&gt;is_merged())</span><br><span class="line">    DBUG_RETURN(false);</span><br><span class="line"></span><br><span class="line">  SELECT_LEX_UNIT *const derived_unit&#x3D; derived_table-&gt;derived_unit();</span><br><span class="line">  </span><br><span class="line">  &#x2F;&#x2F; A derived table must be prepared before we can merge it</span><br><span class="line">  DBUG_ASSERT(derived_unit-&gt;is_prepared());</span><br><span class="line"></span><br><span class="line">  LEX *const lex&#x3D; parent_lex;</span><br><span class="line">  </span><br><span class="line">  &#x2F;&#x2F; Check whether the outer query allows merged views</span><br><span class="line">  if ((master_unit() &#x3D;&#x3D; lex-&gt;unit &amp;&amp; &#x2F;&#x2F; 只会在父查询进行merge Derived table操作。</span><br><span class="line"> 	   &#x2F;&#x2F; 这里会查看当前命令是否需要进行merge操作，比如CREATE VIEW，SHOW CREATE VIEW等。如果需要再继续</span><br><span class="line">       !lex-&gt;can_use_merged()) ||  </span><br><span class="line">      lex-&gt;can_not_use_merged()) </span><br><span class="line">    DBUG_RETURN(false);</span><br><span class="line"></span><br><span class="line"> &#x2F;&#x2F; 查看当前的Derived table是否满足merge条件</span><br><span class="line">  if (!derived_unit-&gt;is_mergeable() ||</span><br><span class="line">      derived_table-&gt;algorithm &#x3D;&#x3D; VIEW_ALGORITHM_TEMPTABLE ||</span><br><span class="line">      (!thd-&gt;optimizer_switch_flag(OPTIMIZER_SWITCH_DERIVED_MERGE) &amp;&amp;</span><br><span class="line">       derived_table-&gt;algorithm !&#x3D; VIEW_ALGORITHM_MERGE))</span><br><span class="line">    DBUG_RETURN(false);</span><br><span class="line"></span><br><span class="line">  SELECT_LEX *const derived_select&#x3D; derived_unit-&gt;first_select();</span><br><span class="line">  &#x2F;*</span><br><span class="line">	当前不会对包含 STRAIGHT_JOIN，且Derived table中包含semi-join的query进行merge操作。</span><br><span class="line">	这是因为MySQL为了保证正确性，必须先做semi-join之后才可以与其他表继续做JOIN。</span><br><span class="line">	例如：select straight_join * from tt , (select * from tt where a in (select a from t1)) 	as ttt;</span><br><span class="line">  *&#x2F;</span><br><span class="line">  if ((active_options() &amp; SELECT_STRAIGHT_JOIN) &amp;&amp; derived_select-&gt;has_sj_nests)</span><br><span class="line">    DBUG_RETURN(false);</span><br><span class="line"></span><br><span class="line">	...</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 利用Nested_join结构来辅助处理OUTER-JOIN的情况。如果Derived table是OUTER-JOIN的内表，需要将Derived table中的每个表设置为JOIN的时候可以为空。具体请参考propagate_nullability。</span><br><span class="line">  if (!(derived_table-&gt;nested_join&#x3D;</span><br><span class="line">       (NESTED_JOIN *) thd-&gt;mem_calloc(sizeof(NESTED_JOIN))))</span><br><span class="line">    DBUG_RETURN(true);        &#x2F;* purecov: inspected *&#x2F;</span><br><span class="line">  &#x2F;&#x2F; 这里确保NESTED_JOIN结构是空的，在构造函数处理比较合适</span><br><span class="line">  derived_table-&gt;nested_join-&gt;join_list.empty();</span><br><span class="line">  &#x2F;&#x2F; 该函数会将所有Derived table中的表merge到NESTED_JOIN结构体中</span><br><span class="line">  if (derived_table-&gt;merge_underlying_tables(derived_select))</span><br><span class="line">    DBUG_RETURN(true);       &#x2F;* purecov: inspected *&#x2F;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 接下来需要将Derived table中的所有表连接到父查询的table_list列表中，进而将Derived table从父查询中剔除。</span><br><span class="line">  for (TABLE_LIST **tl&#x3D; &amp;leaf_tables; *tl; tl&#x3D; &amp;(*tl)-&gt;next_leaf)</span><br><span class="line">  &#123;</span><br><span class="line">    if (*tl &#x3D;&#x3D; derived_table)</span><br><span class="line">    &#123;</span><br><span class="line">      for (TABLE_LIST *leaf&#x3D; derived_select-&gt;leaf_tables; leaf;</span><br><span class="line">           leaf&#x3D; leaf-&gt;next_leaf)</span><br><span class="line">      &#123;</span><br><span class="line">        if (leaf-&gt;next_leaf &#x3D;&#x3D; NULL)</span><br><span class="line">        &#123;</span><br><span class="line">          leaf-&gt;next_leaf&#x3D; (*tl)-&gt;next_leaf;</span><br><span class="line">          break;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      *tl&#x3D; derived_select-&gt;leaf_tables;</span><br><span class="line">      break;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  &#x2F;&#x2F; 下面会对父查询的所有相关数据结构进行重新计算，进而包含所有从Derived table merge之后的表的相关信息。</span><br><span class="line">  leaf_table_count+&#x3D; (derived_select-&gt;leaf_table_count - 1);</span><br><span class="line">  derived_table_count+&#x3D; derived_select-&gt;derived_table_count;</span><br><span class="line">  materialized_derived_table_count+&#x3D;</span><br><span class="line">    derived_select-&gt;materialized_derived_table_count;</span><br><span class="line">  has_sj_nests|&#x3D; derived_select-&gt;has_sj_nests;</span><br><span class="line">  partitioned_table_count+&#x3D; derived_select-&gt;partitioned_table_count;</span><br><span class="line">  cond_count+&#x3D; derived_select-&gt;cond_count;</span><br><span class="line">  between_count+&#x3D; derived_select-&gt;between_count;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; Propagate schema table indication:</span><br><span class="line">  &#x2F;&#x2F; @todo: Add to BASE options instead</span><br><span class="line">  if (derived_select-&gt;active_options() &amp; OPTION_SCHEMA_TABLE)</span><br><span class="line">    add_base_options(OPTION_SCHEMA_TABLE);</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; Propagate nullability for derived tables within outer joins:</span><br><span class="line">  if (derived_table-&gt;is_inner_table_of_outer_join())</span><br><span class="line">    propagate_nullability(&amp;derived_table-&gt;nested_join-&gt;join_list, true);</span><br><span class="line"></span><br><span class="line">  select_n_having_items+&#x3D; derived_select-&gt;select_n_having_items;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 将Derived table的where条件合并到父查询</span><br><span class="line">  if (derived_table-&gt;merge_where(thd))</span><br><span class="line">    DBUG_RETURN(true);        &#x2F;* purecov: inspected *&#x2F;</span><br><span class="line">  &#x2F;&#x2F; 将Derived table的结构从父查询中删除</span><br><span class="line">  derived_unit-&gt;exclude_level();</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 这里用来禁止对Derived table的继续访问</span><br><span class="line">  derived_table-&gt;set_derived_unit((SELECT_LEX_UNIT *)1);</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 建立对Derived table需要获取的列的引用。在后续函数中会对引用列进行相关处理，请参考函数setup_natural_join_row_types函数</span><br><span class="line">  if (derived_table-&gt;create_field_translation(thd))  </span><br><span class="line">    DBUG_RETURN(true); </span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 将Derived table中的列或者表的重命名合并到父查询</span><br><span class="line">  merge_contexts(derived_select);</span><br><span class="line">  repoint_contexts_of_join_nests(derived_select-&gt;top_join_list);</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 因为已经把Derived table中包含的表merge到了父查询，所以需要对TABLE_LIST中的表所在的位置进行重新定位。</span><br><span class="line">  remap_tables(thd);</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 将Derived table合并到父查询之后，需要重新修改原来Derived table中所有对Derived table中所有列的引用，</span><br><span class="line">  fix_tables_after_pullout(this, derived_select, derived_table, table_adjust);</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 如果Derived table中包含ORDER By语句，处理原则和正常SubQuery的处理方式类似：</span><br><span class="line">  &#x2F;&#x2F;  1. 如果Derived table只包含一个表</span><br><span class="line">  &#x2F;&#x2F;  2. 并且Derived table不包含聚集函数</span><br><span class="line">  &#x2F;&#x2F; 满足上述两个条件之后，Derived table将会保留ORDER BY。其他情况subquery中的ORDER BY将会被忽略掉，这也是MySQL5.7区别于MySQL5.6的一点。</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F;  当Derived table保留了Order by，是否能合并到父查询，需要满足如下条件：</span><br><span class="line">  &#x2F;&#x2F; 	1. 父查询允许做Derived table中的ORDER BY。下面几种情况不允许做ORDER BY</span><br><span class="line">  &#x2F;&#x2F; 		a) 如果父查询包含有自己的ORDER BY</span><br><span class="line">  &#x2F;&#x2F; 		b) 如果父查询包含GROUP BY</span><br><span class="line">  &#x2F;&#x2F;         c) 如果父查询包含未被优化掉的DISTINCT</span><br><span class="line">  &#x2F;&#x2F; 	2. 父查询不能是UNION操作，因为UNION默认会做DISTINCT操作</span><br><span class="line">  &#x2F;&#x2F;     3. 为了简化操作，只有当父查询只包含Derived table的时候（即FROM子句里面只有Derived table一个表）才可以保留ORDER BY。这里有相当大的改进空间可以尽量的来按照Derived table定义的ORDER BY操作来进行父查询的操作。比如有两个表以上，如果父查询没有ORDER BY的要求，也可以按照Derived table来对结果进行排序。</span><br><span class="line">  if (derived_select-&gt;is_ordered())</span><br><span class="line">  &#123;</span><br><span class="line">    if ((lex-&gt;sql_command &#x3D;&#x3D; SQLCOM_SELECT ||</span><br><span class="line">         lex-&gt;sql_command &#x3D;&#x3D; SQLCOM_UPDATE ||</span><br><span class="line">         lex-&gt;sql_command &#x3D;&#x3D; SQLCOM_DELETE) &amp;&amp;</span><br><span class="line">        !(master_unit()-&gt;is_union() ||</span><br><span class="line">          is_grouped() ||</span><br><span class="line">          is_distinct() ||</span><br><span class="line">          is_ordered() ||</span><br><span class="line">          get_table_list()-&gt;next_local !&#x3D; NULL))</span><br><span class="line">      order_list.push_back(&amp;derived_select-&gt;order_list);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 对于Derived table中包含的full-text functions需要添加到父查询的查询列表中。</span><br><span class="line">  if (derived_select-&gt;ftfunc_list-&gt;elements &amp;&amp;</span><br><span class="line">      add_ftfunc_list(derived_select-&gt;ftfunc_list))</span><br><span class="line">    DBUG_RETURN(true);        &#x2F;* purecov: inspected *&#x2F;</span><br><span class="line"></span><br><span class="line">  DBUG_RETURN(false);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;综上所述，本篇文章简要的分析了MySQL Merge Derived table的作用以及实现方式。Merge Derived table的引入可以有效的提升Subquery query的执行效率，更重要的是为以后应对复杂查询提供了新的优化手段。</p>
+
+        <h2>相关文章</h2><ul><li><a href="/database/20191009/">SQL 性能优化梳理</a></li><li><a href="/database/mysql/20190327/">mysql利用find_in_set去查询in的集合</a></li><li><a href="/database/mysql/20190409/">mysql关键字执行顺序</a></li><li><a href="/database/mysql/20190424/">mysql如何获取当前时间</a></li><li><a href="/database/mysql/20200630/">mysql连接（未写完）</a></li></ul>
+    </div>
+    
+    <div class="post-footer">
+        <div class="col-sm-10">
+            <div>
+                <b>本文链接</b>：<a href="/database/mysql/20190426/" target="_blank">MySQL5.7中Derived table变形记</a>
+            </div>
+            <div>
+                
+                    转载声明：本博客由snmlm创作，采用 <a href="https://creativecommons.org/licenses/by-nc-nd/3.0/" target="_blank"> CC BY 3.0 CN </a> 许可协议。可自由转载、引用，但需署名作者且注明文章出处。
+                
+            </div>
+            <div>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a target="_blank" href="/database/mysql/20200630/" class="pre-post btn btn-default"
+           title='mysql连接（未写完）'>
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">mysql连接（未写完）</span>
+        </a>
+    
+    
+        <a target="_blank" href="/database/mysql/20190425/" class="next-post btn btn-default"
+           title='MySQL索引底层实现原理'>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">MySQL索引底层实现原理</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+   <p>评论系统未开启，无法评论！</p>
+
+    </div>
+
+
+
+
+
+
+                </main>
+                
+    <aside class="col-md-4 sidebar">
+        
+        <div class="widget about-me">
+    <div class="row">
+        <div class="col-md-5">
+            <img src="/head.gif" alt="snmlm" class="img-responsive center-block">
+        </div>
+        <div class="col-md-7">
+            <a class="series-a" href="javascript:void(0)">个人博客</a>
+            <ul>
+                <li><b>• 喝奶补钙</b></li>
+                <li><b>• 管住嘴，迈开腿</b></li>
+                <li><b>• 日常更新</b></li>
+            </ul>
+        </div>
+    </div>
+    <hr class="divider-hr">
+    <div class="content social">
+        
+            <a href="//github.com/snmlm" rel="external nofollow" title="GitHub" target="_blank">
+                <i class="github fa fa-github"></i>
+            </a>
+        
+            <a href="//gitee.com/snmlm" rel="external nofollow" title="Gitee" target="_blank">
+                <i class="git fa fa-git"></i>
+            </a>
+        
+            <a href="mailto:913813112@qq.com" rel="external nofollow" title="邮箱" target="_blank">
+                <i class="envelope-o fa fa-envelope-o"></i>
+            </a>
+        
+            <a href="/atom.xml" rel="external nofollow" title="RSS" target="_blank">
+                <i class="feed fa fa-feed"></i>
+            </a>
+        
+    </div>
+</div>
+
+
+
+
+        
+        
+    <div class="widget">
+        <h3 class="title">分类</h3>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Assembly-Language-Second-Edition/"><i class="fa" aria-hidden="true">Assembly-Language-Second-Edition</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/"><i class="fa" aria-hidden="true">hexo</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/"><i class="fa" aria-hidden="true">java</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tcp-ip/"><i class="fa" aria-hidden="true">tcp-ip</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%91%E6%8C%87offer/"><i class="fa" aria-hidden="true">剑指offer</i></a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/"><i class="fa" aria-hidden="true">工具</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"><i class="fa" aria-hidden="true">开发工具</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%80%BB%E7%BB%93/"><i class="fa" aria-hidden="true">总结</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%97%A5%E5%B8%B8/"><i class="fa" aria-hidden="true">日常</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%89%E7%82%B9%E4%B8%9C%E8%A5%BF/"><i class="fa" aria-hidden="true">有点东西</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9E%B6%E6%9E%84/"><i class="fa" aria-hidden="true">架构</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%BA%90%E7%A0%81/"><i class="fa" aria-hidden="true">源码</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link current" href="/categories/%E7%9F%A5%E8%AF%86%E7%82%B9/"><i class="fa" aria-hidden="true">知识点</i></a><span class="category-list-count">41</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/"><i class="fa" aria-hidden="true">算法</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BB%8F%E9%AA%8C/"><i class="fa" aria-hidden="true">经验</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%95%E9%A2%98/"><i class="fa" aria-hidden="true">试题</i></a><span class="category-list-count">1</span></li></ul>
+    </div>
+
+
+        
+        
+  <div class="widget">
+    <h3 class="title">标签</h3>
+    <div class="content tag-cloud">
+        
+            <canvas width="300" height="300" id="tag-cloud-3d">
+                <a href="/tags/Books/" style="font-size: 11.67px;">Books</a> <a href="/tags/dubbo/" style="font-size: 11.67px;">dubbo</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 11.67px;">hexo</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/java8/" style="font-size: 10px;">java8</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/mysql/" style="font-size: 16.67px;">mysql</a> <a href="/tags/redis/" style="font-size: 15px;">redis</a> <a href="/tags/servlet/" style="font-size: 11.67px;">servlet</a> <a href="/tags/spring/" style="font-size: 15px;">spring</a> <a href="/tags/spring-boot/" style="font-size: 11.67px;">spring boot</a> <a href="/tags/zookeeper/" style="font-size: 10px;">zookeeper</a> <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 10px;">动态规划</a> <a href="/tags/%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">协议</a> <a href="/tags/%E5%98%BF%E5%98%BF%E5%98%BF/" style="font-size: 10px;">嘿嘿嘿</a> <a href="/tags/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97/" style="font-size: 13.33px;">工作日志</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 11.67px;">数据结构</a> <a href="/tags/%E6%96%B9%E6%A1%88/" style="font-size: 10px;">方案</a> <a href="/tags/%E6%97%A5%E5%B8%B8/" style="font-size: 11.67px;">日常</a> <a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 10px;">架构</a> <a href="/tags/%E6%B1%87%E6%80%BB/" style="font-size: 11.67px;">汇总</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 18.33px;">算法</a> <a href="/tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" style="font-size: 10px;">解决方案</a> <a href="/tags/%E8%AF%95%E9%A2%98/" style="font-size: 10px;">试题</a>
+            </canvas>
+        
+    </div>
+  </div>
+
+
+        
+    </aside>
+
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+        访问量:
+        <strong id="busuanzi_value_site_pv">
+            <i class="fa fa-spinner fa-spin"></i>
+        </strong>
+        &nbsp; | &nbsp;
+        访客数:
+        <strong id="busuanzi_value_site_uv">
+            <i class="fa fa-spinner fa-spin"></i>
+        </strong>
+    
+</div>
+
+            </div>
+            <!-- <div class="col-sm-12">
+                <span>Copyright &copy; 2018
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/itmuch/hexo-theme-snmlm.git" class="copyright-links" target="_blank" rel="nofollow">SNMLM</a>
+                </span>
+            </div> -->
+        </div>
+    </div>
+</div>
+
+
+<script src="/js/jquery.min.js"></script>
+
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<script src="/js/bootstrap-hover-dropdown.min.js"></script>
+
+
+	
+<script src="/js/search.js?rev=@@hash.js"></script>
+
+
+
+
+    
+<script src="/assets/tagcanvas.min.js?rev=2.9.js"></script>
+
+    <script>
+        var tagOption = {
+            textColour: '#29afec', // 字体颜色
+            outlineMethod: 'block', // 选中模式
+            outlineColour: '#FFDAB9', // 选中模式的颜色
+            interval: 30 || 30, // 动画帧之间的时间间隔，值越大，转动幅度越大
+            textHeight: 13,
+            outlineRadius: 3,
+            freezeActive: true || '', // 选中的标签是否继续滚动
+            frontSelect: true || '', // 不选标签云后部的标签
+            initial: [0.1, -0.1],
+            depth: 0.5,
+            decel: 0.95,
+            maxSpeed: 0.03,
+            reverse: true || '', // 是否反向触发
+            fadeIn: 500, // 进入动画时间
+            wheelZoom: false || '' // 是否启用鼠标滚轮
+        }
+        TagCanvas.Start('tag-cloud-3d','',tagOption);
+    </script>
+
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+
+
+</body>
+</html>

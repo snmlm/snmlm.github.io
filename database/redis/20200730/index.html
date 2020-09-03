@@ -1,0 +1,478 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="snmlm">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.0.0">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://snmlm.github.io">
+    <!--SEO-->
+
+    <meta name="keywords" content="redis" />
+
+
+    <meta name="description" content=" 
+#### 常见的分布式锁实现方式
+* 数据库乐观锁；
+* 基于Redis的分布式锁；
+* 基于ZooKeeper的分布式锁。
+
+redis 分布式锁满足条件
+互斥性。在任意时刻，只有一个客户端能持有锁
+不发生死锁。即使有一个客户端在持有锁的期间崩溃而没有主动解锁，也能保证后续其他客户端能加..." />
+
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+
+<title>redis 分布式锁 | snmlm</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="snmlm" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon-n.png">
+
+    
+
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7.css">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+
+
+
+    
+
+
+
+
+
+    
+
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <nav class="navbar navbar-default" style="background-color:#fff;border:0;margin-bottom:0"
+                     role="navigation">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse"
+                                data-target="#navbar-collapse-1">
+                            <span class="sr-only">切</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="logo" href="/">
+                            <img src="/head.gif"/>
+                        </a>
+                    </div>
+
+                    <div class="collapse navbar-collapse" style="border:0;" id="navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            
+                                
+                                    <li>
+                                        <a href="/about" target="_blank">
+                                            <i class="fa fa-user"></i>
+                                            关于我
+                                        </a>
+                                    </li>
+                                
+                            
+                                
+                                    <li>
+                                        <a href="/archives" target="_blank">
+                                            <i class="fa fa-archive"></i>
+                                            归档
+                                        </a>
+                                    </li>
+                                
+                            
+                        </ul>
+                        
+                            <form id="search-form" class="navbar-form navbar-right">
+                                <div class="form-group input-group">
+                                    <input type="text" id="local-search-input" class="form-control"
+                                           placeholder="搜我..."/>
+                                    <span class="input-group-btn">
+                                        <a class="btn btn-default">
+                                            <i class="fa fa-search"></i>
+                                        </a>
+                                    </span>
+                                </div>
+                                <div id="local-search-result" class="local-search-result-cls"></div>
+                            </form>
+                        
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</nav>
+
+    <a href="http://github.com/snmlm" target="_blank">
+        <img style="position: absolute; width:100px; top: 0; left: 0; border: 0;"
+             src="/img/fork-me.png"
+             alt="Fork me on GitHub">
+    </a>
+
+
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    
+
+<p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="redis 分布式锁">
+            
+                redis 分布式锁
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-none-link" href="/tags/redis/" rel="tag">redis</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2020/09/03</span>
+        </span>
+        
+            <span class="fa-wrap">
+                <i class="fa fa-eye"></i>
+                <span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        
+    <div class="toc-article">
+        <strong>
+            目录
+        </strong>
+        <div class="toc-content">
+            <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#redis-%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E6%BB%A1%E8%B6%B3%E6%9D%A1%E4%BB%B6"><span class="toc-text">redis 分布式锁满足条件</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8A%A0%E9%94%81"><span class="toc-text">加锁</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E6%B7%98%E6%B1%B0%E7%AD%96%E7%95%A5"><span class="toc-text">内存淘汰策略</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%A3%E9%94%81"><span class="toc-text">解锁</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%98%E5%9C%A8%E9%97%AE%E9%A2%98"><span class="toc-text">存在问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#redlock%E7%AE%97%E6%B3%95"><span class="toc-text">redlock算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#redisson"><span class="toc-text">redisson</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Redisson-%E5%88%86%E5%B8%83%E5%BC%8F%E9%87%8D%E5%85%A5%E9%94%81%E7%94%A8%E6%B3%95"><span class="toc-text">Redisson 分布式重入锁用法</span></a>
+        </div>
+    </div>
+
+
+         <meta name="referrer" content="no-referrer" />
+#### 常见的分布式锁实现方式
+* 数据库乐观锁；
+* 基于Redis的分布式锁；
+* 基于ZooKeeper的分布式锁。<a id="more"></a>
+
+<h5 id="redis-分布式锁满足条件"><a href="#redis-分布式锁满足条件" class="headerlink" title="redis 分布式锁满足条件"></a>redis 分布式锁满足条件</h5><ul>
+<li>互斥性。在任意时刻，只有一个客户端能持有锁</li>
+<li>不发生死锁。即使有一个客户端在持有锁的期间崩溃而没有主动解锁，也能保证后续其他客户端能加锁。</li>
+<li>具有容错性。只要大部分的Redis节点正常运行，客户端就可以加锁和解锁。</li>
+<li>解铃还须系铃人。加锁和解锁必须是同一个客户端，客户端自己不能把别人加的锁给解了。</li>
+</ul>
+<h4 id="加锁"><a href="#加锁" class="headerlink" title="加锁"></a>加锁</h4><blockquote>
+<p>setnx是SET if Not eXists的缩写，当key不存在的情况下设置key和value，返回1，当key存在时，不做任何操作，返回0。可以用锁的争抢，设置key，意为获得锁。<br>expire是对已存在的key设置过期时间，到达过期时间后，自动删除。这个命令有更新时间的含义，已有过期时间，新指令会替代旧指令的时间，并重新计时。重新设置key，也会重新计时。<br>但是分布式锁的实现话，不要用setnx+expire两次命令实现，需要保证原子性。所以用一条指令去实现加锁，set key value px milliseconds nx。</p>
+</blockquote>
+<ul>
+<li>set中加入nx参数，实现效果与setnx是一样的，满足了互斥性。</li>
+<li>设置过期时间，是为了防止死锁，持有锁的线程异常崩溃，无法正常的释放锁。</li>
+<li>这里还有考虑内存淘汰策略。极限情况下，丢锁了。。。</li>
+</ul>
+<h4 id="内存淘汰策略"><a href="#内存淘汰策略" class="headerlink" title="内存淘汰策略"></a>内存淘汰策略</h4><p>redis在内存空间不足的时候，为了保证命中率，就会选择一定的数据淘汰策略。</p>
+<ul>
+<li>volatile-lru：从已设置过期时间的数据集中挑选最近最少使用的数据淘汰。</li>
+<li>volatile-ttl：从已设置过期时间的数据集中挑选将要过期的数据淘汰。</li>
+<li>volatile-random：从已设置过期时间的数据集中任意选择数据淘汰。</li>
+<li>volatile-lfu：从已设置过期时间的数据集挑选使用频率最低的数据淘汰。</li>
+<li>allkeys-lru：从数据集中挑选最近最少使用的数据淘汰</li>
+<li>allkeys-lfu：从数据集中挑选使用频率最低的数据淘汰。</li>
+<li>allkeys-random：从数据集（server.db[i].dict）中任意选择数据淘汰</li>
+<li>no-enviction（驱逐）：禁止驱逐数据，这也是默认策略。意思是当内存不足以容纳新入数据时，新写入操作就会报错，请求可以继续进行，线上任务也不能持续进行，采用no-enviction策略可以保证数据不被丢失。</li>
+</ul>
+<h4 id="解锁"><a href="#解锁" class="headerlink" title="解锁"></a>解锁</h4><p>先获取key里的值，进行判断，看是否是自己加的锁。一致后删除。<br>eval执行lua脚本可以保证原子性。整个流程有多次操作（获取，比较，删除（获取+删除））。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if redis.call(&quot;get&quot;,KEYS[1]) &#x3D;&#x3D; ARGV[1] then</span><br><span class="line">    return redis.call(&quot;del&quot;,KEYS[1])</span><br><span class="line">else</span><br><span class="line">    return 0</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<h4 id="存在问题"><a href="#存在问题" class="headerlink" title="存在问题"></a>存在问题</h4><p>redis存在宕机的危险，如果存储锁的节点宕机了，锁可能会丢失（除了主从复制的集群，都不能保证集群下数据的强一致性，单机挂了就没了，虽然有持久化，但是也不能保证数据完全不丢失）。导致多个客户端持有锁。</p>
+<h4 id="redlock算法"><a href="#redlock算法" class="headerlink" title="redlock算法"></a>redlock算法</h4><p>假设有5个redis master-slave，那么就尝试在大多数节点上建立一个锁，比如 5 个节点就要求是 3 个节点 n / 2 + 1。<br>客户端计算建立好锁的时间，如果建立锁的时间小于超时时间，就算建立成功了；<br>要是锁建立失败了，那么就依次之前建立过的锁删除；<br>只要别人建立了一把分布式锁，你就得不断轮询去尝试获取锁。</p>
+<h4 id="redisson"><a href="#redisson" class="headerlink" title="redisson"></a>redisson</h4><p>Redisson是一个在Redis的基础上实现的Java驻内存数据网格（In-Memory Data Grid）。它不仅提供了一系列的分布式的Java常用对象，还实现了可重入锁（Reentrant Lock）、公平锁（Fair Lock、联锁（MultiLock）、 红锁（RedLock）、 读写锁（ReadWriteLock）等，还提供了许多分布式服务。<br>Redisson提供了使用Redis的最简单和最便捷的方法。Redisson的宗旨是促进使用者对Redis的关注分离（Separation of Concern），从而让使用者能够将精力更集中地放在处理业务逻辑上。</p>
+<h4 id="Redisson-分布式重入锁用法"><a href="#Redisson-分布式重入锁用法" class="headerlink" title="Redisson 分布式重入锁用法"></a>Redisson 分布式重入锁用法</h4><p>Redisson 支持单点模式、主从模式、哨兵模式、集群模式，这里以单点模式为例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 1.构造redisson实现分布式锁必要的Config</span><br><span class="line">Config config &#x3D; new Config();</span><br><span class="line">config.useSingleServer().setAddress(&quot;redis:&#x2F;&#x2F;127.0.0.1:5379&quot;).setPassword(&quot;123456&quot;).setDatabase(0);</span><br><span class="line">&#x2F;&#x2F; 2.构造RedissonClient</span><br><span class="line">RedissonClient redissonClient &#x3D; Redisson.create(config);</span><br><span class="line">&#x2F;&#x2F; 3.获取锁对象实例（无法保证是按线程的顺序获取到）</span><br><span class="line">RLock rLock &#x3D; redissonClient.getLock(lockKey);</span><br><span class="line">try &#123;</span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 4.尝试获取锁</span><br><span class="line">     * waitTimeout 尝试获取锁的最大等待时间，超过这个值，则认为获取锁失败</span><br><span class="line">     * leaseTime   锁的持有时间,超过这个时间锁会自动失效（值应设置为大于业务处理的时间，确保在锁有效期内业务能处理完）</span><br><span class="line">     *&#x2F;</span><br><span class="line">    boolean res &#x3D; rLock.tryLock((long)waitTimeout, (long)leaseTime, TimeUnit.SECONDS);</span><br><span class="line">    if (res) &#123;</span><br><span class="line">        &#x2F;&#x2F;成功获得锁，在这里处理业务</span><br><span class="line">    &#125;</span><br><span class="line">&#125; catch (Exception e) &#123;</span><br><span class="line">    throw new RuntimeException(&quot;aquire lock fail&quot;);</span><br><span class="line">&#125;finally&#123;</span><br><span class="line">    &#x2F;&#x2F;无论如何, 最后都要解锁</span><br><span class="line">    rLock.unlock();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>加锁流程图<br><img src="https://raw.githubusercontent.com/snmlm/resources/master/picture/8.png"><br>解锁流程图<br><img src="https://raw.githubusercontent.com/snmlm/resources/master/picture/9.png"><br>我们可以看到，RedissonLock是可重入的，并且考虑了失败重试，可以设置锁的最大等待时间， 在实现上也做了一些优化，减少了无效的锁申请，提升了资源的利用率。<br>需要特别注意的是，RedissonLock 同样没有解决 节点挂掉的时候，存在丢失锁的风险的问题。而现实情况是有一些场景无法容忍的，所以 Redisson 提供了实现了redlock算法的 RedissonRedLock，RedissonRedLock 真正解决了单点失败的问题，代价是需要额外的为 RedissonRedLock 搭建Redis环境。<br>所以，如果业务场景可以容忍这种小概率的错误，则推荐使用 RedissonLock， 如果无法容忍，则推荐使用 RedissonRedLock。</p>
+
+        <h2>相关文章</h2><ul><li><a href="/database/redis/20190517/">redis命令</a></li><li><a href="/database/redis/20190927/">redis知识点</a></li><li><a href="/database/redis/20200804/">Redis 架构模式</a></li></ul>
+    </div>
+    
+    <div class="post-footer">
+        <div class="col-sm-10">
+            <div>
+                <b>本文链接</b>：<a href="/database/redis/20200730/" target="_blank">redis 分布式锁</a>
+            </div>
+            <div>
+                
+                    转载声明：本博客由snmlm创作，采用 <a href="https://creativecommons.org/licenses/by-nc-nd/3.0/" target="_blank"> CC BY 3.0 CN </a> 许可协议。可自由转载、引用，但需署名作者且注明文章出处。
+                
+            </div>
+            <div>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a target="_blank" href="/database/redis/20200804/" class="pre-post btn btn-default"
+           title='Redis 架构模式'>
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">Redis 架构模式</span>
+        </a>
+    
+    
+        <a target="_blank" href="/database/redis/20190927/" class="next-post btn btn-default"
+           title='redis知识点'>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">redis知识点</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+   <p>评论系统未开启，无法评论！</p>
+
+    </div>
+
+
+
+
+
+
+                </main>
+                
+    <aside class="col-md-4 sidebar">
+        
+        <div class="widget about-me">
+    <div class="row">
+        <div class="col-md-5">
+            <img src="/head.gif" alt="snmlm" class="img-responsive center-block">
+        </div>
+        <div class="col-md-7">
+            <a class="series-a" href="javascript:void(0)">个人博客</a>
+            <ul>
+                <li><b>• 喝奶补钙</b></li>
+                <li><b>• 管住嘴，迈开腿</b></li>
+                <li><b>• 日常更新</b></li>
+            </ul>
+        </div>
+    </div>
+    <hr class="divider-hr">
+    <div class="content social">
+        
+            <a href="//github.com/snmlm" rel="external nofollow" title="GitHub" target="_blank">
+                <i class="github fa fa-github"></i>
+            </a>
+        
+            <a href="//gitee.com/snmlm" rel="external nofollow" title="Gitee" target="_blank">
+                <i class="git fa fa-git"></i>
+            </a>
+        
+            <a href="mailto:913813112@qq.com" rel="external nofollow" title="邮箱" target="_blank">
+                <i class="envelope-o fa fa-envelope-o"></i>
+            </a>
+        
+            <a href="/atom.xml" rel="external nofollow" title="RSS" target="_blank">
+                <i class="feed fa fa-feed"></i>
+            </a>
+        
+    </div>
+</div>
+
+
+
+
+        
+        
+    <div class="widget">
+        <h3 class="title">分类</h3>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Assembly-Language-Second-Edition/"><i class="fa" aria-hidden="true">Assembly-Language-Second-Edition</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/"><i class="fa" aria-hidden="true">hexo</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/"><i class="fa" aria-hidden="true">java</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tcp-ip/"><i class="fa" aria-hidden="true">tcp-ip</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%91%E6%8C%87offer/"><i class="fa" aria-hidden="true">剑指offer</i></a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/"><i class="fa" aria-hidden="true">工具</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"><i class="fa" aria-hidden="true">开发工具</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%80%BB%E7%BB%93/"><i class="fa" aria-hidden="true">总结</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%97%A5%E5%B8%B8/"><i class="fa" aria-hidden="true">日常</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%89%E7%82%B9%E4%B8%9C%E8%A5%BF/"><i class="fa" aria-hidden="true">有点东西</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9E%B6%E6%9E%84/"><i class="fa" aria-hidden="true">架构</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%BA%90%E7%A0%81/"><i class="fa" aria-hidden="true">源码</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%9F%A5%E8%AF%86%E7%82%B9/"><i class="fa" aria-hidden="true">知识点</i></a><span class="category-list-count">41</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/"><i class="fa" aria-hidden="true">算法</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BB%8F%E9%AA%8C/"><i class="fa" aria-hidden="true">经验</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%95%E9%A2%98/"><i class="fa" aria-hidden="true">试题</i></a><span class="category-list-count">1</span></li></ul>
+    </div>
+
+
+        
+        
+  <div class="widget">
+    <h3 class="title">标签</h3>
+    <div class="content tag-cloud">
+        
+            <canvas width="300" height="300" id="tag-cloud-3d">
+                <a href="/tags/Books/" style="font-size: 11.67px;">Books</a> <a href="/tags/dubbo/" style="font-size: 11.67px;">dubbo</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 11.67px;">hexo</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/java8/" style="font-size: 10px;">java8</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/mysql/" style="font-size: 16.67px;">mysql</a> <a href="/tags/redis/" style="font-size: 15px;">redis</a> <a href="/tags/servlet/" style="font-size: 11.67px;">servlet</a> <a href="/tags/spring/" style="font-size: 15px;">spring</a> <a href="/tags/spring-boot/" style="font-size: 11.67px;">spring boot</a> <a href="/tags/zookeeper/" style="font-size: 10px;">zookeeper</a> <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 10px;">动态规划</a> <a href="/tags/%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">协议</a> <a href="/tags/%E5%98%BF%E5%98%BF%E5%98%BF/" style="font-size: 10px;">嘿嘿嘿</a> <a href="/tags/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97/" style="font-size: 13.33px;">工作日志</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 11.67px;">数据结构</a> <a href="/tags/%E6%96%B9%E6%A1%88/" style="font-size: 10px;">方案</a> <a href="/tags/%E6%97%A5%E5%B8%B8/" style="font-size: 11.67px;">日常</a> <a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 10px;">架构</a> <a href="/tags/%E6%B1%87%E6%80%BB/" style="font-size: 11.67px;">汇总</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 18.33px;">算法</a> <a href="/tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" style="font-size: 10px;">解决方案</a> <a href="/tags/%E8%AF%95%E9%A2%98/" style="font-size: 10px;">试题</a>
+            </canvas>
+        
+    </div>
+  </div>
+
+
+        
+    </aside>
+
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+        访问量:
+        <strong id="busuanzi_value_site_pv">
+            <i class="fa fa-spinner fa-spin"></i>
+        </strong>
+        &nbsp; | &nbsp;
+        访客数:
+        <strong id="busuanzi_value_site_uv">
+            <i class="fa fa-spinner fa-spin"></i>
+        </strong>
+    
+</div>
+
+            </div>
+            <!-- <div class="col-sm-12">
+                <span>Copyright &copy; 2018
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/itmuch/hexo-theme-snmlm.git" class="copyright-links" target="_blank" rel="nofollow">SNMLM</a>
+                </span>
+            </div> -->
+        </div>
+    </div>
+</div>
+
+
+<script src="/js/jquery.min.js"></script>
+
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<script src="/js/bootstrap-hover-dropdown.min.js"></script>
+
+
+	
+<script src="/js/search.js?rev=@@hash.js"></script>
+
+
+
+
+    
+<script src="/assets/tagcanvas.min.js?rev=2.9.js"></script>
+
+    <script>
+        var tagOption = {
+            textColour: '#29afec', // 字体颜色
+            outlineMethod: 'block', // 选中模式
+            outlineColour: '#FFDAB9', // 选中模式的颜色
+            interval: 30 || 30, // 动画帧之间的时间间隔，值越大，转动幅度越大
+            textHeight: 13,
+            outlineRadius: 3,
+            freezeActive: true || '', // 选中的标签是否继续滚动
+            frontSelect: true || '', // 不选标签云后部的标签
+            initial: [0.1, -0.1],
+            depth: 0.5,
+            decel: 0.95,
+            maxSpeed: 0.03,
+            reverse: true || '', // 是否反向触发
+            fadeIn: 500, // 进入动画时间
+            wheelZoom: false || '' // 是否启用鼠标滚轮
+        }
+        TagCanvas.Start('tag-cloud-3d','',tagOption);
+    </script>
+
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+
+
+</body>
+</html>

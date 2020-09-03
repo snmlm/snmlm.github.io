@@ -1,0 +1,457 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="snmlm">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.0.0">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://snmlm.github.io">
+    <!--SEO-->
+
+    <meta name="keywords" content="linux" />
+
+
+    <meta name="description" content=" 
+### Linux CTRL+Z和CTRL+C区别
+#### ctrl+c
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;( kill foreground process ) 发送 SIGINT 信号给前台进程组中的所有进程，强制终止程序..." />
+
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+
+<title>linux CTRL+Z和CTRL+C区别 | snmlm</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="snmlm" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon-n.png">
+
+    
+
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7.css">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+
+
+
+    
+
+
+
+
+
+    
+
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <nav class="navbar navbar-default" style="background-color:#fff;border:0;margin-bottom:0"
+                     role="navigation">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse"
+                                data-target="#navbar-collapse-1">
+                            <span class="sr-only">切</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="logo" href="/">
+                            <img src="/head.gif"/>
+                        </a>
+                    </div>
+
+                    <div class="collapse navbar-collapse" style="border:0;" id="navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            
+                                
+                                    <li>
+                                        <a href="/about" target="_blank">
+                                            <i class="fa fa-user"></i>
+                                            关于我
+                                        </a>
+                                    </li>
+                                
+                            
+                                
+                                    <li>
+                                        <a href="/archives" target="_blank">
+                                            <i class="fa fa-archive"></i>
+                                            归档
+                                        </a>
+                                    </li>
+                                
+                            
+                        </ul>
+                        
+                            <form id="search-form" class="navbar-form navbar-right">
+                                <div class="form-group input-group">
+                                    <input type="text" id="local-search-input" class="form-control"
+                                           placeholder="搜我..."/>
+                                    <span class="input-group-btn">
+                                        <a class="btn btn-default">
+                                            <i class="fa fa-search"></i>
+                                        </a>
+                                    </span>
+                                </div>
+                                <div id="local-search-result" class="local-search-result-cls"></div>
+                            </form>
+                        
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</nav>
+
+    <a href="http://github.com/snmlm" target="_blank">
+        <img style="position: absolute; width:100px; top: 0; left: 0; border: 0;"
+             src="/img/fork-me.png"
+             alt="Fork me on GitHub">
+    </a>
+
+
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    
+
+<p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="linux CTRL+Z和CTRL+C区别">
+            
+                linux CTRL+Z和CTRL+C区别
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/%E7%9F%A5%E8%AF%86%E7%82%B9/">知识点</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-none-link" href="/tags/linux/" rel="tag">linux</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2020/09/03</span>
+        </span>
+        
+            <span class="fa-wrap">
+                <i class="fa fa-eye"></i>
+                <span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        
+    <div class="toc-article">
+        <strong>
+            目录
+        </strong>
+        <div class="toc-content">
+            <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#ctrl-d"><span class="toc-text">ctrl+d:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ctrl"><span class="toc-text">ctrl+&#x2F;</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ctrl-s"><span class="toc-text">ctrl+s</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ctrl-q"><span class="toc-text">ctrl+q</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ctrl-l"><span class="toc-text">ctrl+l</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E9%85%8D%E7%BD%AE"><span class="toc-text">查看配置</span></a></li></ol>
+        </div>
+    </div>
+
+
+         <meta name="referrer" content="no-referrer" />
+### Linux CTRL+Z和CTRL+C区别
+#### ctrl+c
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;( kill foreground process ) 发送 SIGINT 信号给前台进程组中的所有进程，强制终止程序的执行；
+<a id="more"></a>
+#### ctrl+z
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;( suspend foreground process ) 发送 SIGTSTP 信号给前台进程组中的所有进程，常用于挂起一个进程，而并非结束进程，用户可以使用使用fg/bg操作恢复执行前台或后台的进程。fg命令在前台恢复执行被挂起的进程，此时可以使用ctrl+z再次挂起该进程，bg命令在后台恢复执行被挂起的进程，而此时将无法使用ctrl+z再次挂起该进程；
+
+<ul>
+<li>CTRL+Z停止进程并放入后台</li>
+<li>jobs 显示当前暂停的进程</li>
+<li>bg %N 使第N个任务在后台运行（%前有空格）</li>
+<li>fg %N 使第N个任务在前台运行</li>
+<li>默认bg，fg不带%N时表示对最后一个进程操作！</li>
+</ul>
+<blockquote>
+<p>一个比较常用的功能：<br>正在使用vi编辑一个文件时，需要执行shell命令查询一些需要的信息，可以使用ctrl-z挂起vi，等执行完shell命令后再使用fg恢复vi继续编辑你的文件（当然，也可以在vi中使用！command方式执行shell命令，但是没有该方法方便）。</p>
+</blockquote>
+<h4 id="ctrl-d"><a href="#ctrl-d" class="headerlink" title="ctrl+d:"></a>ctrl+d:</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;( Terminate input, or exit shell ) 一个特殊的二进制值，表示 EOF，作用相当于在终端中输入exit后回车；</p>
+<h4 id="ctrl"><a href="#ctrl" class="headerlink" title="ctrl+/"></a>ctrl+/</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;发送 SIGQUIT 信号给前台进程组中的所有进程，终止前台进程并生成 core 文件</p>
+<h4 id="ctrl-s"><a href="#ctrl-s" class="headerlink" title="ctrl+s"></a>ctrl+s</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;中断控制台输出</p>
+<h4 id="ctrl-q"><a href="#ctrl-q" class="headerlink" title="ctrl+q"></a>ctrl+q</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;恢复控制台输出</p>
+<h4 id="ctrl-l"><a href="#ctrl-l" class="headerlink" title="ctrl+l"></a>ctrl+l</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;清屏</p>
+<h4 id="查看配置"><a href="#查看配置" class="headerlink" title="查看配置"></a>查看配置</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;其实，控制字符都是可以通过stty命令更改的，可在终端中输入命令”stty -a”查看终端配置</p>
+
+        
+    </div>
+    
+    <div class="post-footer">
+        <div class="col-sm-10">
+            <div>
+                <b>本文链接</b>：<a href="/liunx/20190410/" target="_blank">linux CTRL+Z和CTRL+C区别</a>
+            </div>
+            <div>
+                
+                    转载声明：本博客由snmlm创作，采用 <a href="https://creativecommons.org/licenses/by-nc-nd/3.0/" target="_blank"> CC BY 3.0 CN </a> 许可协议。可自由转载、引用，但需署名作者且注明文章出处。
+                
+            </div>
+            <div>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a target="_blank" href="/network/20190311/" class="pre-post btn btn-default"
+           title='tcp-ip'>
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">tcp-ip</span>
+        </a>
+    
+    
+        <a target="_blank" href="/java/zookeeper/20190926/" class="next-post btn btn-default"
+           title='zookeeper知识点'>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">zookeeper知识点</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+   <p>评论系统未开启，无法评论！</p>
+
+    </div>
+
+
+
+
+
+
+                </main>
+                
+    <aside class="col-md-4 sidebar">
+        
+        <div class="widget about-me">
+    <div class="row">
+        <div class="col-md-5">
+            <img src="/head.gif" alt="snmlm" class="img-responsive center-block">
+        </div>
+        <div class="col-md-7">
+            <a class="series-a" href="javascript:void(0)">个人博客</a>
+            <ul>
+                <li><b>• 喝奶补钙</b></li>
+                <li><b>• 管住嘴，迈开腿</b></li>
+                <li><b>• 日常更新</b></li>
+            </ul>
+        </div>
+    </div>
+    <hr class="divider-hr">
+    <div class="content social">
+        
+            <a href="//github.com/snmlm" rel="external nofollow" title="GitHub" target="_blank">
+                <i class="github fa fa-github"></i>
+            </a>
+        
+            <a href="//gitee.com/snmlm" rel="external nofollow" title="Gitee" target="_blank">
+                <i class="git fa fa-git"></i>
+            </a>
+        
+            <a href="mailto:913813112@qq.com" rel="external nofollow" title="邮箱" target="_blank">
+                <i class="envelope-o fa fa-envelope-o"></i>
+            </a>
+        
+            <a href="/atom.xml" rel="external nofollow" title="RSS" target="_blank">
+                <i class="feed fa fa-feed"></i>
+            </a>
+        
+    </div>
+</div>
+
+
+
+
+        
+        
+    <div class="widget">
+        <h3 class="title">分类</h3>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Assembly-Language-Second-Edition/"><i class="fa" aria-hidden="true">Assembly-Language-Second-Edition</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/"><i class="fa" aria-hidden="true">hexo</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/"><i class="fa" aria-hidden="true">java</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tcp-ip/"><i class="fa" aria-hidden="true">tcp-ip</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%91%E6%8C%87offer/"><i class="fa" aria-hidden="true">剑指offer</i></a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/"><i class="fa" aria-hidden="true">工具</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"><i class="fa" aria-hidden="true">开发工具</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%80%BB%E7%BB%93/"><i class="fa" aria-hidden="true">总结</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%97%A5%E5%B8%B8/"><i class="fa" aria-hidden="true">日常</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%89%E7%82%B9%E4%B8%9C%E8%A5%BF/"><i class="fa" aria-hidden="true">有点东西</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9E%B6%E6%9E%84/"><i class="fa" aria-hidden="true">架构</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%BA%90%E7%A0%81/"><i class="fa" aria-hidden="true">源码</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link current" href="/categories/%E7%9F%A5%E8%AF%86%E7%82%B9/"><i class="fa" aria-hidden="true">知识点</i></a><span class="category-list-count">41</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/"><i class="fa" aria-hidden="true">算法</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BB%8F%E9%AA%8C/"><i class="fa" aria-hidden="true">经验</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%95%E9%A2%98/"><i class="fa" aria-hidden="true">试题</i></a><span class="category-list-count">1</span></li></ul>
+    </div>
+
+
+        
+        
+  <div class="widget">
+    <h3 class="title">标签</h3>
+    <div class="content tag-cloud">
+        
+            <canvas width="300" height="300" id="tag-cloud-3d">
+                <a href="/tags/Books/" style="font-size: 11.67px;">Books</a> <a href="/tags/dubbo/" style="font-size: 11.67px;">dubbo</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 11.67px;">hexo</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/java8/" style="font-size: 10px;">java8</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/mysql/" style="font-size: 16.67px;">mysql</a> <a href="/tags/redis/" style="font-size: 15px;">redis</a> <a href="/tags/servlet/" style="font-size: 11.67px;">servlet</a> <a href="/tags/spring/" style="font-size: 15px;">spring</a> <a href="/tags/spring-boot/" style="font-size: 11.67px;">spring boot</a> <a href="/tags/zookeeper/" style="font-size: 10px;">zookeeper</a> <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 10px;">动态规划</a> <a href="/tags/%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">协议</a> <a href="/tags/%E5%98%BF%E5%98%BF%E5%98%BF/" style="font-size: 10px;">嘿嘿嘿</a> <a href="/tags/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97/" style="font-size: 13.33px;">工作日志</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 11.67px;">数据结构</a> <a href="/tags/%E6%96%B9%E6%A1%88/" style="font-size: 10px;">方案</a> <a href="/tags/%E6%97%A5%E5%B8%B8/" style="font-size: 11.67px;">日常</a> <a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 10px;">架构</a> <a href="/tags/%E6%B1%87%E6%80%BB/" style="font-size: 11.67px;">汇总</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 18.33px;">算法</a> <a href="/tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" style="font-size: 10px;">解决方案</a> <a href="/tags/%E8%AF%95%E9%A2%98/" style="font-size: 10px;">试题</a>
+            </canvas>
+        
+    </div>
+  </div>
+
+
+        
+    </aside>
+
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+        访问量:
+        <strong id="busuanzi_value_site_pv">
+            <i class="fa fa-spinner fa-spin"></i>
+        </strong>
+        &nbsp; | &nbsp;
+        访客数:
+        <strong id="busuanzi_value_site_uv">
+            <i class="fa fa-spinner fa-spin"></i>
+        </strong>
+    
+</div>
+
+            </div>
+            <!-- <div class="col-sm-12">
+                <span>Copyright &copy; 2018
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/itmuch/hexo-theme-snmlm.git" class="copyright-links" target="_blank" rel="nofollow">SNMLM</a>
+                </span>
+            </div> -->
+        </div>
+    </div>
+</div>
+
+
+<script src="/js/jquery.min.js"></script>
+
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<script src="/js/bootstrap-hover-dropdown.min.js"></script>
+
+
+	
+<script src="/js/search.js?rev=@@hash.js"></script>
+
+
+
+
+    
+<script src="/assets/tagcanvas.min.js?rev=2.9.js"></script>
+
+    <script>
+        var tagOption = {
+            textColour: '#29afec', // 字体颜色
+            outlineMethod: 'block', // 选中模式
+            outlineColour: '#FFDAB9', // 选中模式的颜色
+            interval: 30 || 30, // 动画帧之间的时间间隔，值越大，转动幅度越大
+            textHeight: 13,
+            outlineRadius: 3,
+            freezeActive: true || '', // 选中的标签是否继续滚动
+            frontSelect: true || '', // 不选标签云后部的标签
+            initial: [0.1, -0.1],
+            depth: 0.5,
+            decel: 0.95,
+            maxSpeed: 0.03,
+            reverse: true || '', // 是否反向触发
+            fadeIn: 500, // 进入动画时间
+            wheelZoom: false || '' // 是否启用鼠标滚轮
+        }
+        TagCanvas.Start('tag-cloud-3d','',tagOption);
+    </script>
+
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+
+
+</body>
+</html>

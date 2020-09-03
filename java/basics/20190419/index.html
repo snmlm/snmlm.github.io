@@ -1,0 +1,470 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="snmlm">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.0.0">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://snmlm.github.io">
+    <!--SEO-->
+
+    <meta name="keywords" content="java" />
+
+
+    <meta name="description" content="基本数据类型&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Post not found: 20190415_2
+
+
+引用类型数组排序&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Post not..." />
+
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+
+<title>java总结 | snmlm</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="snmlm" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon-n.png">
+
+    
+
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7.css">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+
+
+
+    
+
+
+
+
+
+    
+
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <nav class="navbar navbar-default" style="background-color:#fff;border:0;margin-bottom:0"
+                     role="navigation">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse"
+                                data-target="#navbar-collapse-1">
+                            <span class="sr-only">切</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="logo" href="/">
+                            <img src="/head.gif"/>
+                        </a>
+                    </div>
+
+                    <div class="collapse navbar-collapse" style="border:0;" id="navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            
+                                
+                                    <li>
+                                        <a href="/about" target="_blank">
+                                            <i class="fa fa-user"></i>
+                                            关于我
+                                        </a>
+                                    </li>
+                                
+                            
+                                
+                                    <li>
+                                        <a href="/archives" target="_blank">
+                                            <i class="fa fa-archive"></i>
+                                            归档
+                                        </a>
+                                    </li>
+                                
+                            
+                        </ul>
+                        
+                            <form id="search-form" class="navbar-form navbar-right">
+                                <div class="form-group input-group">
+                                    <input type="text" id="local-search-input" class="form-control"
+                                           placeholder="搜我..."/>
+                                    <span class="input-group-btn">
+                                        <a class="btn btn-default">
+                                            <i class="fa fa-search"></i>
+                                        </a>
+                                    </span>
+                                </div>
+                                <div id="local-search-result" class="local-search-result-cls"></div>
+                            </form>
+                        
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</nav>
+
+    <a href="http://github.com/snmlm" target="_blank">
+        <img style="position: absolute; width:100px; top: 0; left: 0; border: 0;"
+             src="/img/fork-me.png"
+             alt="Fork me on GitHub">
+    </a>
+
+
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    
+
+<p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="java总结">
+            
+                java总结
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/%E6%80%BB%E7%BB%93/">总结</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-none-link" href="/tags/java/" rel="tag">java</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2020/09/03</span>
+        </span>
+        
+            <span class="fa-wrap">
+                <i class="fa fa-eye"></i>
+                <span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        
+    <div class="toc-article">
+        <strong>
+            目录
+        </strong>
+        <div class="toc-content">
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-text">基本数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B"><span class="toc-text">引用类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E7%BB%84"><span class="toc-text">数组</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%8E%92%E5%BA%8F"><span class="toc-text">排序</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-text">字符串</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E5%88%9B%E5%BB%BA%E7%9A%84%E5%AF%B9%E8%B1%A1"><span class="toc-text">自定义创建的对象</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%86%85%E9%83%A8%E7%B1%BB"><span class="toc-text">内部类</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%9D%97"><span class="toc-text">代码块</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%87%8D%E8%BD%BD"><span class="toc-text">重载</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%87%8D%E5%86%99"><span class="toc-text">重写</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BB%A7%E6%89%BF%EF%BC%88%E5%8A%A0%E8%BD%BD%E9%A1%BA%E5%BA%8F%EF%BC%89"><span class="toc-text">继承（加载顺序）</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9B%86%E5%90%88"><span class="toc-text">集合</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#List"><span class="toc-text">List</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#ArrayList"><span class="toc-text">ArrayList</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#LinkedList"><span class="toc-text">LinkedList</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Set"><span class="toc-text">Set</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#HashSet"><span class="toc-text">HashSet</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#TreeSet"><span class="toc-text">TreeSet</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%BE-Map"><span class="toc-text">图 Map</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#HashMap"><span class="toc-text">HashMap</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#LinkedHashMap"><span class="toc-text">LinkedHashMap</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3"><span class="toc-text">接口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E5%AF%B9%E5%BA%94%E7%9A%84%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B"><span class="toc-text">基本类型对应的引用类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%BA%E5%BC%95%E7%94%A8-%E8%BD%AF%E5%BC%95%E7%94%A8-%E5%BC%B1%E5%BC%95%E7%94%A8-%E8%99%9A%E5%BC%95%E7%94%A8"><span class="toc-text">强引用,软引用,弱引用,虚引用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE%E6%9D%83%E9%99%90%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="toc-text">访问权限修饰符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java%E4%B8%AD%E5%AF%B9%E8%B1%A1%E5%88%86%E7%B1%BB"><span class="toc-text">java中对象分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1"><span class="toc-text">面向对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java%E4%B8%AD%E7%9A%84%E4%B8%A4%E5%A4%A7%E6%9C%BA%E5%88%B6%EF%BC%9A%EF%BC%88%E8%B7%A8%E5%B9%B3%E5%8F%B0%EF%BC%89"><span class="toc-text">java中的两大机制：（跨平台）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%82%E5%B8%B8"><span class="toc-text">异常</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BE%AA%E7%8E%AF"><span class="toc-text">循环</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B"><span class="toc-text">线程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="toc-text">设计模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96"><span class="toc-text">对象的序列化和反序列化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#XML%E6%A0%BC%E5%BC%8F%EF%BC%8Cjson%E6%A0%BC%E5%BC%8F"><span class="toc-text">XML格式，json格式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#XML"><span class="toc-text">XML</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#json"><span class="toc-text">json</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B"><span class="toc-text">网络编程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-text">关键字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%9B%E5%9E%8B"><span class="toc-text">泛型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IO"><span class="toc-text">IO</span></a></li></ol>
+        </div>
+    </div>
+
+
+        <h3 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">Post not found: 20190415_2</a></p>
+<a id="more"></a>
+
+<h3 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h3><h4 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h4><h5 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">Post not found: 20190418_1</a></p>
+<ul>
+<li>二分法查找</li>
+<li>Arrays（工具类   sort（二分法排序））</li>
+</ul>
+<h4 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h4><h4 id="自定义创建的对象"><a href="#自定义创建的对象" class="headerlink" title="自定义创建的对象"></a>自定义创建的对象</h4><h5 id="内部类"><a href="#内部类" class="headerlink" title="内部类"></a>内部类</h5><h5 id="代码块"><a href="#代码块" class="headerlink" title="代码块"></a>代码块</h5><ul>
+<li>静态代码块（类相同的代码）</li>
+<li>构造代码块（对象相同的代码）</li>
+<li>局部代码块（）</li>
+</ul>
+<h5 id="重载"><a href="#重载" class="headerlink" title="重载"></a>重载</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;方法名相同，形参列表不同。</p>
+<h5 id="重写"><a href="#重写" class="headerlink" title="重写"></a>重写</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;子类继承覆盖。</p>
+<h5 id="继承（加载顺序）"><a href="#继承（加载顺序）" class="headerlink" title="继承（加载顺序）"></a>继承（加载顺序）</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">Post not found: 20190415_1</a></p>
+<h4 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;map不是集合 Collection的接口下的都是集合，map不是子类</p>
+<h5 id="List"><a href="#List" class="headerlink" title="List"></a>List</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;有序能重复</p>
+<h6 id="ArrayList"><a href="#ArrayList" class="headerlink" title="ArrayList"></a>ArrayList</h6><h6 id="LinkedList"><a href="#LinkedList" class="headerlink" title="LinkedList"></a>LinkedList</h6><h5 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;无序不能重复</p>
+<h6 id="HashSet"><a href="#HashSet" class="headerlink" title="HashSet"></a>HashSet</h6><h6 id="TreeSet"><a href="#TreeSet" class="headerlink" title="TreeSet"></a>TreeSet</h6><p>比较器接口</p>
+<h4 id="图-Map"><a href="#图-Map" class="headerlink" title="图 Map"></a>图 Map</h4><h5 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h5><h5 id="LinkedHashMap"><a href="#LinkedHashMap" class="headerlink" title="LinkedHashMap"></a>LinkedHashMap</h5><h4 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h4><p>接口和抽象类</p>
+<h4 id="基本类型对应的引用类型"><a href="#基本类型对应的引用类型" class="headerlink" title="基本类型对应的引用类型"></a>基本类型对应的引用类型</h4><p>1&gt; byte       ——    Byte<br>2&gt; short      ——   Short<br>3&gt; int          ——    Integer<br>4&gt; long       ——    Long<br>5&gt; char       ——    Character<br>6&gt; float       ——    Float<br>7&gt; double   ——    Double<br>8&gt; boolean ——    Boolean<br> 想搞清楚各种基本数据类型占用的字节数，首先要有一些基本知识，例：计算机最小的存储单位是 位(bit)，而一个字节等于8位即（1byte = 8bit)</p>
+<h4 id="强引用-软引用-弱引用-虚引用"><a href="#强引用-软引用-弱引用-虚引用" class="headerlink" title="强引用,软引用,弱引用,虚引用"></a>强引用,软引用,弱引用,虚引用</h4><h3 id="访问权限修饰符"><a href="#访问权限修饰符" class="headerlink" title="访问权限修饰符"></a>访问权限修饰符</h3><p>public private（本包本类） protected（本包不本类 自类能用）<br>默认不属于权限修饰符 不能继承</p>
+<h3 id="java中对象分类"><a href="#java中对象分类" class="headerlink" title="java中对象分类"></a>java中对象分类</h3><p>a.runnable class（）主类（运行类）含有main方法，可以直接执行<br>b.java bean（） （不含有main方法，构造方法，set get 方法）<br>c.POJO对象（简单的java对象，只含有set get方法）</p>
+<h3 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h3><p>a.封装（维护性）：隐藏成员变量和方法，隐藏共能实现的具体细节<br>b.继承（可扩展性）：子类继承父类的变量或者方法，也可以定义自己的<br>c.多态（灵活性）：父类的引用指向子类的实力（上转型对象）</p>
+<h3 id="java中的两大机制：（跨平台）"><a href="#java中的两大机制：（跨平台）" class="headerlink" title="java中的两大机制：（跨平台）"></a>java中的两大机制：（跨平台）</h3><p>a.JVM java虚拟机<br>b.GC 垃圾回收</p>
+<h3 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h3><p>程序中出现的不正常的情况（会阻止程序的继续运行）（子类不能抛出比父类更多的异常，可以抛出父类的子异常）<br>1.编译异常（概率发生高的定义为编译异常）Exception直接子类<br>2.运行异常（概率发生低的定义为运行异常）继承RuntimeException</p>
+<h3 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h3><p>1.for<br>2.foreach<br>3.do while<br>4.while<br>5.递归<br>    1.构造方法不能递归、<br>    2.必须有出口，if判断，否则死循环（肯定内存溢出）<br>    3.次数不易过多，否则会出现内存溢出<br>    递归解决问题的思想：（大-&gt;小）<br>    将大问题拆成小问题<br>6.if go(java中go无用，字段保留)</p>
+<h3 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h3><p>线程与进程<br>start（）方法和run（）方法的区别？<br>    run方法只是一个普通的方法（还是单线程）<br>    start方法启动多线程，其次自动调用run方法<br>Thread，Runnable，callable<br>使用ExecutorService、Callable、Future实现有返回结果的线程</p>
+<h3 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h3><p>23种<br>3类：<br>a.创建型<br>b.模板型<br>c.功能型<br>单例，工厂，装饰，代理等。</p>
+<h3 id="对象的序列化和反序列化"><a href="#对象的序列化和反序列化" class="headerlink" title="对象的序列化和反序列化"></a>对象的序列化和反序列化</h3><p>a.序列化：将对象以二进制的形式存储到硬盘中<br>b.反序列化：将以二进制形式的对象读取到内存中<br>要求：被序列化的对象必须要实现Serializable（标记接口）接口<br>不被序列化的字段处理，SerializableID问题</p>
+<h3 id="XML格式，json格式"><a href="#XML格式，json格式" class="headerlink" title="XML格式，json格式"></a>XML格式，json格式</h3><h4 id="XML"><a href="#XML" class="headerlink" title="XML"></a>XML</h4><p>读取，格式化等<br>DOM<br>SAX<br>JDOM<br>DOM4J</p>
+<h4 id="json"><a href="#json" class="headerlink" title="json"></a>json</h4><p>读取，格式化等<br>jsonobject<br>gson<br>fastjson<br>等</p>
+<h3 id="网络编程"><a href="#网络编程" class="headerlink" title="网络编程"></a>网络编程</h3><p>在日本东京大学申请ip地址<br>UDP 不用连接<br>TCP 三次握手<br>一个好的通讯软件（io流技术，多线程，udp tcp技术）</p>
+<h3 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h3><p>1.transient（在对象序列化的时候，如果某个属性不想被序列化就是该关键字修饰）<br>2.abstract：<br>a.修饰类（被他修饰的类为抽象类）<br>b.修饰方法（权限：public protected，抽象方法不能有方法体）<br>3.final：<br>a.修饰类：不能有子类<br>b.修饰方法：不能被重写 （不能修饰抽象方法）<br>c.修饰变量：常量（要赋初始值）<br>4.implements：实现接口<br>5.static：<br>a.修饰类：（内部类）<br>b.静态变量是属于类的，对象共享<br>c.修饰方法：静态方法只能调用的静态的东西<br>6.instanceof：<br>eg：a instanceof A：判断对象a是不是类A及其子类创建的实力<br>final finally，顺道finalize()</p>
+<h3 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h3><p>1、泛型类<br>2、泛型接口<br>3、泛型方法<br>4、泛型引用</p>
+<h3 id="IO"><a href="#IO" class="headerlink" title="IO"></a>IO</h3><p>IO(BIO) 同步堵塞<br>NIO 同步非堵塞<br>AIO 异步（非）堵塞</p>
+
+        <h2>相关文章</h2><ul><li><a href="/tools/20190307/">数字大小写</a></li><li><a href="/java/basics/20190415/">java类中缓存机制类</a></li><li><a href="/java/basics/20190416/">java调用js方法</a></li><li><a href="/java/basics/20190418/">==和equals</a></li><li><a href="/java/basics/20190417/">ArrayList删除节点（坑）</a></li></ul>
+    </div>
+    
+    <div class="post-footer">
+        <div class="col-sm-10">
+            <div>
+                <b>本文链接</b>：<a href="/java/basics/20190419/" target="_blank">java总结</a>
+            </div>
+            <div>
+                
+                    转载声明：本博客由snmlm创作，采用 <a href="https://creativecommons.org/licenses/by-nc-nd/3.0/" target="_blank"> CC BY 3.0 CN </a> 许可协议。可自由转载、引用，但需署名作者且注明文章出处。
+                
+            </div>
+            <div>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a target="_blank" href="/java/basics/20190420/" class="pre-post btn btn-default"
+           title='java子类继承加载顺序'>
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">java子类继承加载顺序</span>
+        </a>
+    
+    
+        <a target="_blank" href="/java/basics/20190418/" class="next-post btn btn-default"
+           title='==和equals'>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">==和equals</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+   <p>评论系统未开启，无法评论！</p>
+
+    </div>
+
+
+
+
+
+
+                </main>
+                
+    <aside class="col-md-4 sidebar">
+        
+        <div class="widget about-me">
+    <div class="row">
+        <div class="col-md-5">
+            <img src="/head.gif" alt="snmlm" class="img-responsive center-block">
+        </div>
+        <div class="col-md-7">
+            <a class="series-a" href="javascript:void(0)">个人博客</a>
+            <ul>
+                <li><b>• 喝奶补钙</b></li>
+                <li><b>• 管住嘴，迈开腿</b></li>
+                <li><b>• 日常更新</b></li>
+            </ul>
+        </div>
+    </div>
+    <hr class="divider-hr">
+    <div class="content social">
+        
+            <a href="//github.com/snmlm" rel="external nofollow" title="GitHub" target="_blank">
+                <i class="github fa fa-github"></i>
+            </a>
+        
+            <a href="//gitee.com/snmlm" rel="external nofollow" title="Gitee" target="_blank">
+                <i class="git fa fa-git"></i>
+            </a>
+        
+            <a href="mailto:913813112@qq.com" rel="external nofollow" title="邮箱" target="_blank">
+                <i class="envelope-o fa fa-envelope-o"></i>
+            </a>
+        
+            <a href="/atom.xml" rel="external nofollow" title="RSS" target="_blank">
+                <i class="feed fa fa-feed"></i>
+            </a>
+        
+    </div>
+</div>
+
+
+
+
+        
+        
+    <div class="widget">
+        <h3 class="title">分类</h3>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Assembly-Language-Second-Edition/"><i class="fa" aria-hidden="true">Assembly-Language-Second-Edition</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/"><i class="fa" aria-hidden="true">hexo</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/"><i class="fa" aria-hidden="true">java</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tcp-ip/"><i class="fa" aria-hidden="true">tcp-ip</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%91%E6%8C%87offer/"><i class="fa" aria-hidden="true">剑指offer</i></a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/"><i class="fa" aria-hidden="true">工具</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"><i class="fa" aria-hidden="true">开发工具</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link current" href="/categories/%E6%80%BB%E7%BB%93/"><i class="fa" aria-hidden="true">总结</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%97%A5%E5%B8%B8/"><i class="fa" aria-hidden="true">日常</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%89%E7%82%B9%E4%B8%9C%E8%A5%BF/"><i class="fa" aria-hidden="true">有点东西</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9E%B6%E6%9E%84/"><i class="fa" aria-hidden="true">架构</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%BA%90%E7%A0%81/"><i class="fa" aria-hidden="true">源码</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%9F%A5%E8%AF%86%E7%82%B9/"><i class="fa" aria-hidden="true">知识点</i></a><span class="category-list-count">41</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/"><i class="fa" aria-hidden="true">算法</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BB%8F%E9%AA%8C/"><i class="fa" aria-hidden="true">经验</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%95%E9%A2%98/"><i class="fa" aria-hidden="true">试题</i></a><span class="category-list-count">1</span></li></ul>
+    </div>
+
+
+        
+        
+  <div class="widget">
+    <h3 class="title">标签</h3>
+    <div class="content tag-cloud">
+        
+            <canvas width="300" height="300" id="tag-cloud-3d">
+                <a href="/tags/Books/" style="font-size: 11.67px;">Books</a> <a href="/tags/dubbo/" style="font-size: 11.67px;">dubbo</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 11.67px;">hexo</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/java8/" style="font-size: 10px;">java8</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/mysql/" style="font-size: 16.67px;">mysql</a> <a href="/tags/redis/" style="font-size: 15px;">redis</a> <a href="/tags/servlet/" style="font-size: 11.67px;">servlet</a> <a href="/tags/spring/" style="font-size: 15px;">spring</a> <a href="/tags/spring-boot/" style="font-size: 11.67px;">spring boot</a> <a href="/tags/zookeeper/" style="font-size: 10px;">zookeeper</a> <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 10px;">动态规划</a> <a href="/tags/%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">协议</a> <a href="/tags/%E5%98%BF%E5%98%BF%E5%98%BF/" style="font-size: 10px;">嘿嘿嘿</a> <a href="/tags/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97/" style="font-size: 13.33px;">工作日志</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 11.67px;">数据结构</a> <a href="/tags/%E6%96%B9%E6%A1%88/" style="font-size: 10px;">方案</a> <a href="/tags/%E6%97%A5%E5%B8%B8/" style="font-size: 11.67px;">日常</a> <a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 10px;">架构</a> <a href="/tags/%E6%B1%87%E6%80%BB/" style="font-size: 11.67px;">汇总</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 18.33px;">算法</a> <a href="/tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" style="font-size: 10px;">解决方案</a> <a href="/tags/%E8%AF%95%E9%A2%98/" style="font-size: 10px;">试题</a>
+            </canvas>
+        
+    </div>
+  </div>
+
+
+        
+    </aside>
+
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+        访问量:
+        <strong id="busuanzi_value_site_pv">
+            <i class="fa fa-spinner fa-spin"></i>
+        </strong>
+        &nbsp; | &nbsp;
+        访客数:
+        <strong id="busuanzi_value_site_uv">
+            <i class="fa fa-spinner fa-spin"></i>
+        </strong>
+    
+</div>
+
+            </div>
+            <!-- <div class="col-sm-12">
+                <span>Copyright &copy; 2018
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/itmuch/hexo-theme-snmlm.git" class="copyright-links" target="_blank" rel="nofollow">SNMLM</a>
+                </span>
+            </div> -->
+        </div>
+    </div>
+</div>
+
+
+<script src="/js/jquery.min.js"></script>
+
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<script src="/js/bootstrap-hover-dropdown.min.js"></script>
+
+
+	
+<script src="/js/search.js?rev=@@hash.js"></script>
+
+
+
+
+    
+<script src="/assets/tagcanvas.min.js?rev=2.9.js"></script>
+
+    <script>
+        var tagOption = {
+            textColour: '#29afec', // 字体颜色
+            outlineMethod: 'block', // 选中模式
+            outlineColour: '#FFDAB9', // 选中模式的颜色
+            interval: 30 || 30, // 动画帧之间的时间间隔，值越大，转动幅度越大
+            textHeight: 13,
+            outlineRadius: 3,
+            freezeActive: true || '', // 选中的标签是否继续滚动
+            frontSelect: true || '', // 不选标签云后部的标签
+            initial: [0.1, -0.1],
+            depth: 0.5,
+            decel: 0.95,
+            maxSpeed: 0.03,
+            reverse: true || '', // 是否反向触发
+            fadeIn: 500, // 进入动画时间
+            wheelZoom: false || '' // 是否启用鼠标滚轮
+        }
+        TagCanvas.Start('tag-cloud-3d','',tagOption);
+    </script>
+
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+
+
+</body>
+</html>

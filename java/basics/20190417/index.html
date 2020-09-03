@@ -1,0 +1,454 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="snmlm">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.0.0">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://snmlm.github.io">
+    <!--SEO-->
+
+    <meta name="keywords" content="java" />
+
+
+    <meta name="description" content="ArrayList删除节点&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ArrayList的remove方法，进行删除的时候，数组的长度不变，但被删除的节点之后的数据会前移，看源码可知。
+
+123456789101112131415161718..." />
+
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+
+<title>ArrayList删除节点（坑） | snmlm</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="snmlm" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon-n.png">
+
+    
+
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7.css">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+
+
+
+    
+
+
+
+
+
+    
+
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <nav class="navbar navbar-default" style="background-color:#fff;border:0;margin-bottom:0"
+                     role="navigation">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse"
+                                data-target="#navbar-collapse-1">
+                            <span class="sr-only">切</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="logo" href="/">
+                            <img src="/head.gif"/>
+                        </a>
+                    </div>
+
+                    <div class="collapse navbar-collapse" style="border:0;" id="navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            
+                                
+                                    <li>
+                                        <a href="/about" target="_blank">
+                                            <i class="fa fa-user"></i>
+                                            关于我
+                                        </a>
+                                    </li>
+                                
+                            
+                                
+                                    <li>
+                                        <a href="/archives" target="_blank">
+                                            <i class="fa fa-archive"></i>
+                                            归档
+                                        </a>
+                                    </li>
+                                
+                            
+                        </ul>
+                        
+                            <form id="search-form" class="navbar-form navbar-right">
+                                <div class="form-group input-group">
+                                    <input type="text" id="local-search-input" class="form-control"
+                                           placeholder="搜我..."/>
+                                    <span class="input-group-btn">
+                                        <a class="btn btn-default">
+                                            <i class="fa fa-search"></i>
+                                        </a>
+                                    </span>
+                                </div>
+                                <div id="local-search-result" class="local-search-result-cls"></div>
+                            </form>
+                        
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</nav>
+
+    <a href="http://github.com/snmlm" target="_blank">
+        <img style="position: absolute; width:100px; top: 0; left: 0; border: 0;"
+             src="/img/fork-me.png"
+             alt="Fork me on GitHub">
+    </a>
+
+
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    
+
+<p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="ArrayList删除节点（坑）">
+            
+                ArrayList删除节点（坑）
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/%E7%9F%A5%E8%AF%86%E7%82%B9/">知识点</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-none-link" href="/tags/java/" rel="tag">java</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2020/09/03</span>
+        </span>
+        
+            <span class="fa-wrap">
+                <i class="fa fa-eye"></i>
+                <span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        
+    <div class="toc-article">
+        <strong>
+            目录
+        </strong>
+        <div class="toc-content">
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#ArrayList%E5%88%A0%E9%99%A4%E8%8A%82%E7%82%B9"><span class="toc-text">ArrayList删除节点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Iterator-%E5%92%8C-ListIterator-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">Iterator 和 ListIterator 的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8-for-each-%E6%97%B6%E8%B0%83%E7%94%A8-List-%E7%9A%84-remove-%E6%96%B9%E6%B3%95%E5%85%83%E7%B4%A0%E4%BC%9A%E6%8A%9B%E5%87%BA-ConcurrentModificationException-%E5%BC%82%E5%B8%B8"><span class="toc-text">为什么使用 for-each 时调用 List 的 remove 方法元素会抛出 ConcurrentModificationException 异常</span></a></li></ol>
+        </div>
+    </div>
+
+
+        <h3 id="ArrayList删除节点"><a href="#ArrayList删除节点" class="headerlink" title="ArrayList删除节点"></a>ArrayList删除节点</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ArrayList的remove方法，进行删除的时候，数组的长度不变，但被删除的节点之后的数据会前移，看源码可知。</p>
+<a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">public E remove(int index) &#123;</span><br><span class="line">      &#x2F;&#x2F; 先检查下标索引是是否越界</span><br><span class="line">      rangeCheck(index);</span><br><span class="line">      &#x2F;&#x2F; ArrayList的修改次数加1</span><br><span class="line">      modCount++;</span><br><span class="line">      &#x2F;&#x2F; 获取索引对应的元素值</span><br><span class="line">      E oldValue &#x3D; elementData(index);</span><br><span class="line">      &#x2F;&#x2F; 获取删除元素后，需要移动的元素的个数</span><br><span class="line">      int numMoved &#x3D; size - index - 1;</span><br><span class="line">      if (numMoved &gt; 0)</span><br><span class="line">          &#x2F;&#x2F; 将元素进行移动拷贝</span><br><span class="line">          System.arraycopy(elementData, index+1, elementData, index,</span><br><span class="line">                             numMoved);</span><br><span class="line">      &#x2F;&#x2F; 最后将多出的位置设置为空，这样说明是没有引用的对象了</span><br><span class="line">      elementData[--size] &#x3D; null; &#x2F;&#x2F; Let gc do its work</span><br><span class="line">      &#x2F;&#x2F; 返回删除的旧值</span><br><span class="line">      return oldValue;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">    public boolean remove(Object o) &#123;</span><br><span class="line">        if (o &#x3D;&#x3D; null) &#123;</span><br><span class="line">            for (int index &#x3D; 0; index &lt; size; index++)</span><br><span class="line">                if (elementData[index] &#x3D;&#x3D; null) &#123;</span><br><span class="line">                    fastRemove(index);</span><br><span class="line">                    return true;</span><br><span class="line">                &#125;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            for (int index &#x3D; 0; index &lt; size; index++)</span><br><span class="line">                if (o.equals(elementData[index])) &#123;</span><br><span class="line">                    fastRemove(index);</span><br><span class="line">                    return true;</span><br><span class="line">                &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private void fastRemove(int index) &#123;</span><br><span class="line">        modCount++;</span><br><span class="line">        int numMoved &#x3D; size - index - 1;</span><br><span class="line">        if (numMoved &gt; 0)</span><br><span class="line">            System.arraycopy(elementData, index+1, elementData, index,</span><br><span class="line">                             numMoved);</span><br><span class="line">        elementData[--size] &#x3D; null; &#x2F;&#x2F; clear to let GC do its work</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果这样操作就会有问题：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">ArrayList&lt;String&gt; list &#x3D; new ArrayList&lt;String&gt;();</span><br><span class="line">list.add(&quot;java&quot;);</span><br><span class="line">list.add(&quot;android&quot;);</span><br><span class="line">list.add(&quot;android&quot;);</span><br><span class="line">list.add(&quot;c&quot;);</span><br><span class="line">list.add(&quot;c++&quot;);</span><br><span class="line">list.add(&quot;c&quot;);</span><br><span class="line"></span><br><span class="line">public void remove1(ArrayList&lt;String&gt; list) &#123;</span><br><span class="line">    for (inti&#x3D;0; i&lt;list.size(); i++) &#123;</span><br><span class="line">        String s &#x3D; list.get(i);</span><br><span class="line">        if (s.equals(&quot;android&quot;)) &#123;</span><br><span class="line">            list.remove(s);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public void remove2(ArrayList&lt;String&gt; list) &#123;</span><br><span class="line">    for (Strings: list) &#123;</span><br><span class="line">        if (s.equals(&quot;android&quot;)) &#123;</span><br><span class="line">            list.remove(s);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;remove1 方法执行后第二个 “android” 字符串没有被删掉。看源码可知最终删除会执行 System.arraycopy 方法而导致删除元素时涉及到数组元素的移动，所以在遍历第一个字符串 “android” 时因为符合删除条件，所以将该元素从数组中删除，并且将后一个元素移动（也就是第二个字符串 “android”）至当前位置，导致下一次循环遍历时后一个字符串 “android” 并没有被遍历到，所以无法删除，同时由于每删除一次 size 也减一，所以其实每次都会向前移位，也会导致越来越多的元素无法被遍历获取。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;remove2 方法运行会报 for-each 著名的并发修改异常 java.util.ConcurrentModificationException，因为迭代器内部会维护一些索引位置数据，要求在迭代过程中容器不能发生结构性变化（添加、插入、删除，修改数据不算），否则这些索引位置数据就失效了。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;那么如何正确的删除节点。该造上面两个方法即可</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;从尾部循环</span><br><span class="line">public void remove1(ArrayList&lt;String&gt; list) &#123;</span><br><span class="line">    for(int i&#x3D;list.size()-1; i&gt;&#x3D;0; i--) &#123;</span><br><span class="line">        String s &#x3D; list.get(i);</span><br><span class="line">        if (s.equals(&quot;android&quot;)) &#123;</span><br><span class="line">            list.remove(s);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;利用迭代器</span><br><span class="line">public static void remove2(ArrayList&lt;String&gt; list) &#123;</span><br><span class="line">    Iterator&lt;String&gt; iterator &#x3D; list.iterator();</span><br><span class="line">    while(iterator.hasNext())&#123;</span><br><span class="line">        if (iterator.next().equals(&quot;android&quot;)) &#123;</span><br><span class="line">            iterator.remove();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Iterator-和-ListIterator-的区别"><a href="#Iterator-和-ListIterator-的区别" class="headerlink" title="Iterator 和 ListIterator 的区别"></a>Iterator 和 ListIterator 的区别</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;区别主要如下：</p>
+<ul>
+<li>ListIterator 有 add() 方法，可以向 List 中添加对象，而 Iterator 不能。</li>
+<li>ListIterator 和 Iterator 都有 hasNext() 和 next() 方法，可以实现顺序向后遍历，但是 ListIterator 有 hasPrevious() 和 previous() 方法，可以实现逆向（顺序向前）遍历，Iterator 就不可以。</li>
+<li>ListIterator 可以定位当前的索引位置，通过 nextIndex() 和 previousIndex() 可以实现，Iterator 没有此功能。</li>
+<li>都可实现删除对象，但是 ListIterator 可以实现对象的修改，通过 set() 方法可以实现，Iterator 仅能遍历，不能修改。</li>
+<li>ListIterator 是 Iterator 的子接口。<blockquote>
+<p>注意：容器类提供的迭代器都会在迭代中间进行结构性变化检测，如果容器发生了结构性变化，就会抛出 ConcurrentModificationException，所以不能在迭代中间直接调用容器类提供的 add、remove 方法，如需添加和删除，应调用迭代器的相关方法。</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="为什么使用-for-each-时调用-List-的-remove-方法元素会抛出-ConcurrentModificationException-异常"><a href="#为什么使用-for-each-时调用-List-的-remove-方法元素会抛出-ConcurrentModificationException-异常" class="headerlink" title="为什么使用 for-each 时调用 List 的 remove 方法元素会抛出 ConcurrentModificationException 异常"></a>为什么使用 for-each 时调用 List 的 remove 方法元素会抛出 ConcurrentModificationException 异常</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;首先Java 提供了一个 Iterable 接口返回一个迭代器，常用的 Collection<E>、List<E>、Set<E> 等都实现了这个接口，该接口的 iterator() 方法返回一个标准的 Iterator 实现，实现 Iterable 接口允许对象成为 for-each 语句的目标来遍历底层集合序列，因此使用 for-each 方式遍历列表在编译后实质是迭代器的形式实现。之所以会出现 ConcurrentModificationException 异常我们需要去看下最常见的 ArrayList 中 iterator() 方法的实现（别的集合 iterator 类似），如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">    private class Itr implements Iterator&lt;E&gt; &#123;</span><br><span class="line">    protected int limit &#x3D; ArrayList.this.size;  &#x2F;&#x2F;集合列表的个数尺寸</span><br><span class="line">    int cursor;       &#x2F;&#x2F;下一个元素的索引位置</span><br><span class="line">    int lastRet &#x3D; -1; &#x2F;&#x2F;上一个元素的索引位置</span><br><span class="line">    int expectedModCount &#x3D; modCount;</span><br><span class="line"></span><br><span class="line">    public boolean hasNext() &#123;</span><br><span class="line">        return cursor &lt; limit;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @SuppressWarnings(&quot;unchecked&quot;)</span><br><span class="line">    public E next() &#123;</span><br><span class="line">        &#x2F;&#x2F;modCount用于记录ArrayList集合的修改次数，初始化为0，</span><br><span class="line">        &#x2F;&#x2F;每当集合被修改一次（结构上面的修改，内部update不算），</span><br><span class="line">        &#x2F;&#x2F;如add、remove等方法，modCount + 1，所以如果modCount不变，</span><br><span class="line">        &#x2F;&#x2F;则表示集合内容没有被修改。</span><br><span class="line">        if (modCount !&#x3D; expectedModCount)</span><br><span class="line">            throw new ConcurrentModificationException();</span><br><span class="line">        int i &#x3D; cursor;</span><br><span class="line">        &#x2F;&#x2F;如果下一个元素的索引位置超过了集合长度抛出异常</span><br><span class="line">        if (i &gt;&#x3D; limit)</span><br><span class="line">            throw new NoSuchElementException();</span><br><span class="line">        Object[] elementData &#x3D; ArrayList.this.elementData;</span><br><span class="line">        if (i &gt;&#x3D; elementData.length)</span><br><span class="line">            throw new ConcurrentModificationException();</span><br><span class="line">        &#x2F;&#x2F;调用一次cursor加一次</span><br><span class="line">        cursor &#x3D; i + 1;</span><br><span class="line">        &#x2F;&#x2F;返回当前一个元素</span><br><span class="line">        return (E) elementData[lastRet &#x3D; i];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void remove() &#123;</span><br><span class="line">        &#x2F;&#x2F;lastRet每次在remove成功后都需要在next()中重新赋值，</span><br><span class="line">        &#x2F;&#x2F;否则调用一次后再调用为-1异常，因此使用迭代器的remove方法</span><br><span class="line">        &#x2F;&#x2F;前必须先调用next()方法。</span><br><span class="line">        if (lastRet &lt; 0)</span><br><span class="line">            throw new IllegalStateException();</span><br><span class="line">        if (modCount !&#x3D; expectedModCount)</span><br><span class="line">            throw new ConcurrentModificationException();</span><br><span class="line">        try &#123;</span><br><span class="line">            ArrayList.this.remove(lastRet);</span><br><span class="line">            cursor &#x3D; lastRet;</span><br><span class="line">            lastRet &#x3D; -1;</span><br><span class="line">            expectedModCount &#x3D; modCount;</span><br><span class="line">            limit--;</span><br><span class="line">        &#125; catch (IndexOutOfBoundsException ex) &#123;</span><br><span class="line">            throw new ConcurrentModificationException();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    ......</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;通过上面的源码发现迭代操作中都有判断 modCount!=expectedModCount 的操作，在 ArrayList 中 modCount 是当前集合的版本号，每次修改（增、删）集合都会加 1，expectedModCount 是当前迭代器的版本号，在迭代器实例化时初始化为 modCount，所以当调用 ArrayList.add() 或 ArrayList.remove() 时只是更新了 modCount 的状态，而迭代器中的 expectedModCount 未修改，因此才会导致再次调用 Iterator.next() 方法时抛出 ConcurrentModificationException 异常。而使用 Iterator.remove() 方法没有问题是因为 Iterator 的 remove() 方法中有同步 expectedModCount 值，所以当下次再调用 next() 时检查不会抛出异常。这其实是一种快速失败机制，机制的规则就是当多个线程对 Collection 进行操作时若其中某一个线程通过 Iterator 遍历集合时该集合的内容被其他线程所改变，则抛出 ConcurrentModificationException 异常。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;因此在使用 Iterator 遍历操作集合时应该保证在遍历集合的过程中不会对集合产生结构上的修改，如果在遍历过程中需要修改集合元素则一定要使用迭代器提供的修改方法而不是集合自身的修改方法，此外 for-each 循环遍历的实质是迭代器，使用迭代器的 remove() 方法前必须先调用迭代器的 next() 方法且不允许调用一次 next() 方法后调用多次 remove() 方法。</p>
+
+        <h2>相关文章</h2><ul><li><a href="/tools/20190307/">数字大小写</a></li><li><a href="/java/basics/20190415/">java类中缓存机制类</a></li><li><a href="/java/basics/20190416/">java调用js方法</a></li><li><a href="/java/basics/20190418/">==和equals</a></li><li><a href="/java/basics/20190419/">java总结</a></li></ul>
+    </div>
+    
+    <div class="post-footer">
+        <div class="col-sm-10">
+            <div>
+                <b>本文链接</b>：<a href="/java/basics/20190417/" target="_blank">ArrayList删除节点（坑）</a>
+            </div>
+            <div>
+                
+                    转载声明：本博客由snmlm创作，采用 <a href="https://creativecommons.org/licenses/by-nc-nd/3.0/" target="_blank"> CC BY 3.0 CN </a> 许可协议。可自由转载、引用，但需署名作者且注明文章出处。
+                
+            </div>
+            <div>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a target="_blank" href="/java/basics/20190418/" class="pre-post btn btn-default"
+           title='==和equals'>
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">==和equals</span>
+        </a>
+    
+    
+        <a target="_blank" href="/java/basics/20190416/" class="next-post btn btn-default"
+           title='java调用js方法'>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">java调用js方法</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+   <p>评论系统未开启，无法评论！</p>
+
+    </div>
+
+
+
+
+
+
+                </main>
+                
+    <aside class="col-md-4 sidebar">
+        
+        <div class="widget about-me">
+    <div class="row">
+        <div class="col-md-5">
+            <img src="/head.gif" alt="snmlm" class="img-responsive center-block">
+        </div>
+        <div class="col-md-7">
+            <a class="series-a" href="javascript:void(0)">个人博客</a>
+            <ul>
+                <li><b>• 喝奶补钙</b></li>
+                <li><b>• 管住嘴，迈开腿</b></li>
+                <li><b>• 日常更新</b></li>
+            </ul>
+        </div>
+    </div>
+    <hr class="divider-hr">
+    <div class="content social">
+        
+            <a href="//github.com/snmlm" rel="external nofollow" title="GitHub" target="_blank">
+                <i class="github fa fa-github"></i>
+            </a>
+        
+            <a href="//gitee.com/snmlm" rel="external nofollow" title="Gitee" target="_blank">
+                <i class="git fa fa-git"></i>
+            </a>
+        
+            <a href="mailto:913813112@qq.com" rel="external nofollow" title="邮箱" target="_blank">
+                <i class="envelope-o fa fa-envelope-o"></i>
+            </a>
+        
+            <a href="/atom.xml" rel="external nofollow" title="RSS" target="_blank">
+                <i class="feed fa fa-feed"></i>
+            </a>
+        
+    </div>
+</div>
+
+
+
+
+        
+        
+    <div class="widget">
+        <h3 class="title">分类</h3>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Assembly-Language-Second-Edition/"><i class="fa" aria-hidden="true">Assembly-Language-Second-Edition</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/"><i class="fa" aria-hidden="true">hexo</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/"><i class="fa" aria-hidden="true">java</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tcp-ip/"><i class="fa" aria-hidden="true">tcp-ip</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%91%E6%8C%87offer/"><i class="fa" aria-hidden="true">剑指offer</i></a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/"><i class="fa" aria-hidden="true">工具</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"><i class="fa" aria-hidden="true">开发工具</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%80%BB%E7%BB%93/"><i class="fa" aria-hidden="true">总结</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%97%A5%E5%B8%B8/"><i class="fa" aria-hidden="true">日常</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%89%E7%82%B9%E4%B8%9C%E8%A5%BF/"><i class="fa" aria-hidden="true">有点东西</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9E%B6%E6%9E%84/"><i class="fa" aria-hidden="true">架构</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%BA%90%E7%A0%81/"><i class="fa" aria-hidden="true">源码</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link current" href="/categories/%E7%9F%A5%E8%AF%86%E7%82%B9/"><i class="fa" aria-hidden="true">知识点</i></a><span class="category-list-count">41</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/"><i class="fa" aria-hidden="true">算法</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BB%8F%E9%AA%8C/"><i class="fa" aria-hidden="true">经验</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%95%E9%A2%98/"><i class="fa" aria-hidden="true">试题</i></a><span class="category-list-count">1</span></li></ul>
+    </div>
+
+
+        
+        
+  <div class="widget">
+    <h3 class="title">标签</h3>
+    <div class="content tag-cloud">
+        
+            <canvas width="300" height="300" id="tag-cloud-3d">
+                <a href="/tags/Books/" style="font-size: 11.67px;">Books</a> <a href="/tags/dubbo/" style="font-size: 11.67px;">dubbo</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 11.67px;">hexo</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/java8/" style="font-size: 10px;">java8</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/mysql/" style="font-size: 16.67px;">mysql</a> <a href="/tags/redis/" style="font-size: 15px;">redis</a> <a href="/tags/servlet/" style="font-size: 11.67px;">servlet</a> <a href="/tags/spring/" style="font-size: 15px;">spring</a> <a href="/tags/spring-boot/" style="font-size: 11.67px;">spring boot</a> <a href="/tags/zookeeper/" style="font-size: 10px;">zookeeper</a> <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 10px;">动态规划</a> <a href="/tags/%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">协议</a> <a href="/tags/%E5%98%BF%E5%98%BF%E5%98%BF/" style="font-size: 10px;">嘿嘿嘿</a> <a href="/tags/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97/" style="font-size: 13.33px;">工作日志</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 11.67px;">数据结构</a> <a href="/tags/%E6%96%B9%E6%A1%88/" style="font-size: 10px;">方案</a> <a href="/tags/%E6%97%A5%E5%B8%B8/" style="font-size: 11.67px;">日常</a> <a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 10px;">架构</a> <a href="/tags/%E6%B1%87%E6%80%BB/" style="font-size: 11.67px;">汇总</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 18.33px;">算法</a> <a href="/tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" style="font-size: 10px;">解决方案</a> <a href="/tags/%E8%AF%95%E9%A2%98/" style="font-size: 10px;">试题</a>
+            </canvas>
+        
+    </div>
+  </div>
+
+
+        
+    </aside>
+
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+        访问量:
+        <strong id="busuanzi_value_site_pv">
+            <i class="fa fa-spinner fa-spin"></i>
+        </strong>
+        &nbsp; | &nbsp;
+        访客数:
+        <strong id="busuanzi_value_site_uv">
+            <i class="fa fa-spinner fa-spin"></i>
+        </strong>
+    
+</div>
+
+            </div>
+            <!-- <div class="col-sm-12">
+                <span>Copyright &copy; 2018
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/itmuch/hexo-theme-snmlm.git" class="copyright-links" target="_blank" rel="nofollow">SNMLM</a>
+                </span>
+            </div> -->
+        </div>
+    </div>
+</div>
+
+
+<script src="/js/jquery.min.js"></script>
+
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<script src="/js/bootstrap-hover-dropdown.min.js"></script>
+
+
+	
+<script src="/js/search.js?rev=@@hash.js"></script>
+
+
+
+
+    
+<script src="/assets/tagcanvas.min.js?rev=2.9.js"></script>
+
+    <script>
+        var tagOption = {
+            textColour: '#29afec', // 字体颜色
+            outlineMethod: 'block', // 选中模式
+            outlineColour: '#FFDAB9', // 选中模式的颜色
+            interval: 30 || 30, // 动画帧之间的时间间隔，值越大，转动幅度越大
+            textHeight: 13,
+            outlineRadius: 3,
+            freezeActive: true || '', // 选中的标签是否继续滚动
+            frontSelect: true || '', // 不选标签云后部的标签
+            initial: [0.1, -0.1],
+            depth: 0.5,
+            decel: 0.95,
+            maxSpeed: 0.03,
+            reverse: true || '', // 是否反向触发
+            fadeIn: 500, // 进入动画时间
+            wheelZoom: false || '' // 是否启用鼠标滚轮
+        }
+        TagCanvas.Start('tag-cloud-3d','',tagOption);
+    </script>
+
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+
+
+</body>
+</html>
