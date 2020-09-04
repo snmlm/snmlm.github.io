@@ -1,230 +1,77 @@
-<!DOCTYPE HTML>
-<html lang="zh-CN">
-<head>
-    <!--Setting-->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
-    <meta http-equiv="Cache-Control" content="no-siteapp">
-    <meta http-equiv="Cache-Control" content="no-transform">
-    <meta name="renderer" content="webkit|ie-comp|ie-stand">
-    <meta name="apple-mobile-web-app-capable" content="snmlm">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="format-detection" content="telephone=no,email=no,adress=no">
-    <meta name="browsermode" content="application">
-    <meta name="screen-orientation" content="portrait">
-    <meta name="theme-version" content="1.0.0">
-    <meta name="root" content="/">
-    <link rel="dns-prefetch" href="https://snmlm.github.io">
-    <!--SEO-->
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>读java源码的顺序 | snmlm</title><meta name="description" content="标题为包名，后面序号为优先级1-4，优先级递减 java.lang Object 1 String 1 AbstractStringBuilder 1 StringBuffer 1 StringBuilder 1 Boolean 2 Byte 2 Double 2 Float 2 Integer 2 Long 2 Short 2 Thread 2 ThreadLocal 2 Enum 3 Thro"><meta name="keywords" content="java,源码"><meta name="author" content="snmlm"><meta name="copyright" content="snmlm"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://snmlm.github.io/java/basics/20200831/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta property="og:type" content="article"><meta property="og:title" content="读java源码的顺序"><meta property="og:url" content="https://snmlm.github.io/java/basics/20200831/"><meta property="og:site_name" content="snmlm"><meta property="og:description" content="标题为包名，后面序号为优先级1-4，优先级递减 java.lang Object 1 String 1 AbstractStringBuilder 1 StringBuffer 1 StringBuilder 1 Boolean 2 Byte 2 Double 2 Float 2 Integer 2 Long 2 Short 2 Thread 2 ThreadLocal 2 Enum 3 Thro"><meta property="og:image" content="https://snmlm.github.io/img/head.gif"><meta property="article:published_time" content="2018-08-30T16:00:00.000Z"><meta property="article:modified_time" content="2020-09-04T03:28:08.806Z"><meta name="twitter:card" content="summary"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  hexoversion: '5.1.1',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime: '天',
+  date_suffix: {"one_hour":"刚刚","hours":"小时前","day":"天前"},
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: {"bookmark":{"message_prev":"按","message_next":"键将本页加入书签"},"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  baiduPush: false,
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
 
-    <meta name="keywords" content="java" />
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+      const now = new Date()
+      const expiryDay = ttl * 86400000
+      const item = {
+        value: value,
+        expiry: now.getTime() + expiryDay,
+      }
+      localStorage.setItem(key, JSON.stringify(item))
+    },
+  
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
 
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
 
-    <meta name="description" content=" 
-
-
-标题为包名，后面序号为优先级1-4，优先级递减
-java.lang
-Object 1
-String 1
-AbstractStringBuilder 1
-StringBuffer 1
-StringBuilder 1
-Boolean 2
-Byte 2
-Double 2
-Float 2
-In..." />
-
-
-
-<meta name="robots" content="all" />
-<meta name="google" content="all" />
-<meta name="googlebot" content="all" />
-<meta name="verify" content="all" />
-    <!--Title-->
-
-
-<title>读java源码的顺序 | snmlm</title>
-
-
-    <link rel="alternate" href="/atom.xml" title="snmlm" type="application/atom+xml">
-
-
-    <link rel="icon" href="/favicon-n.png">
-
-    
-
-
-
-
-<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7.css">
-<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0.css">
-<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
-
-
-
-
-
-    
-
-
-
-
-
-    
-
-<meta name="generator" content="Hexo 5.1.1"></head>
-
-
-<!--[if lte IE 8]>
-<style>
-    html{ font-size: 1em }
-</style>
-<![endif]-->
-<!--[if lte IE 9]>
-<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
-<![endif]-->
-
-<body>
-    
-    <nav class="main-navigation">
-    <div class="container">
-        <div class="row clearfix">
-            <div class="col-md-12 column">
-                <nav class="navbar navbar-default" style="background-color:#fff;border:0;margin-bottom:0"
-                     role="navigation">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse"
-                                data-target="#navbar-collapse-1">
-                            <span class="sr-only">切</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="logo" href="/">
-                            <img src="/head.gif"/>
-                        </a>
-                    </div>
-
-                    <div class="collapse navbar-collapse" style="border:0;" id="navbar-collapse-1">
-                        <ul class="nav navbar-nav">
-                            
-                                
-                                    <li>
-                                        <a href="/about" target="_blank">
-                                            <i class="fa fa-user"></i>
-                                            关于我
-                                        </a>
-                                    </li>
-                                
-                            
-                                
-                                    <li>
-                                        <a href="/archives" target="_blank">
-                                            <i class="fa fa-archive"></i>
-                                            归档
-                                        </a>
-                                    </li>
-                                
-                            
-                        </ul>
-                        
-                            <form id="search-form" class="navbar-form navbar-right">
-                                <div class="form-group input-group">
-                                    <input type="text" id="local-search-input" class="form-control"
-                                           placeholder="搜我..."/>
-                                    <span class="input-group-btn">
-                                        <a class="btn btn-default">
-                                            <i class="fa fa-search"></i>
-                                        </a>
-                                    </span>
-                                </div>
-                                <div id="local-search-result" class="local-search-result-cls"></div>
-                            </form>
-                        
-                    </div>
-                </nav>
-            </div>
-        </div>
-    </div>
-</nav>
-
-    <a href="http://github.com/snmlm" target="_blank">
-        <img style="position: absolute; width:100px; top: 0; left: 0; border: 0;"
-             src="/img/fork-me.png"
-             alt="Fork me on GitHub">
-    </a>
-
-
-    <section class="content-wrap">
-        <div class="container">
-            <div class="row">
-                <main class="col-md-8 main-content m-post">
-                    
-
-<p id="process"></p>
-<article class="post">
-    <div class="post-head">
-        <h1 id="读java源码的顺序">
-            
-                读java源码的顺序
-            
-        </h1>
-        <div class="post-meta">
-    
-        <span class="categories-meta fa-wrap">
-            <i class="fa fa-folder-open-o"></i>
-            <a class="category-link" href="/categories/%E7%9F%A5%E8%AF%86%E7%82%B9/">知识点</a>
-        </span>
-    
-
-    
-        <span class="fa-wrap">
-            <i class="fa fa-tags"></i>
-            <span class="tags-meta">
-                
-                    <a class="tag-none-link" href="/tags/java/" rel="tag">java</a>
-                
-            </span>
-        </span>
-    
-
-    
-        
-        <span class="fa-wrap">
-            <i class="fa fa-clock-o"></i>
-            <span class="date-meta">2018/09/30</span>
-        </span>
-        
-            <span class="fa-wrap">
-                <i class="fa fa-eye"></i>
-                <span id="busuanzi_value_page_pv"></span>
-            </span>
-        
-    
-</div>
-        
-        
-    </div>
-    
-    <div class="post-body post-content">
-        
-    <div class="toc-article">
-        <strong>
-            目录
-        </strong>
-        <div class="toc-content">
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#java-lang"><span class="toc-text">java.lang</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java-util"><span class="toc-text">java.util</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java-util-concurrent"><span class="toc-text">java.util.concurrent</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java-util-concurrent-atomic"><span class="toc-text">java.util.concurrent.atomic</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java-lang-reflect"><span class="toc-text">java.lang.reflect</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java-lang-annotation"><span class="toc-text">java.lang.annotation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java-util-concurrent-locks"><span class="toc-text">java.util.concurrent.locks</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java-io"><span class="toc-text">java.io</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java-nio"><span class="toc-text">java.nio</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java-sql"><span class="toc-text">java.sql</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java-net"><span class="toc-text">java.net</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0%E7%AE%80%E7%89%88"><span class="toc-text">阅读笔记简版</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Object"><span class="toc-text">Object</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#String"><span class="toc-text">String</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AbstractStringBuilder"><span class="toc-text">AbstractStringBuilder</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#StringBuffer"><span class="toc-text">StringBuffer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ArrayList"><span class="toc-text">ArrayList</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LinkedList"><span class="toc-text">LinkedList</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HashMap"><span class="toc-text">HashMap</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hashtable"><span class="toc-text">Hashtable</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HashSet%EF%BC%9A%E5%A7%94%E6%89%98%E7%BB%99HashMap%EF%BC%8C%E5%85%B6Value%E6%98%AF%E5%90%8C%E4%B8%80%E4%B8%AA%E9%BB%98%E8%AE%A4%E5%AF%B9%E8%B1%A1"><span class="toc-text">HashSet：委托给HashMap，其Value是同一个默认对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LinkedHashMap%E7%BB%A7%E6%89%BFHashMap"><span class="toc-text">LinkedHashMap继承HashMap</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LinkedHashSet%E7%BB%A7%E6%89%BFHashSet%EF%BC%9A%E4%B8%8D%E7%9F%A5%E9%81%93%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E7%9A%84%E9%A1%BA%E5%BA%8F%EF%BC%9F"><span class="toc-text">LinkedHashSet继承HashSet：不知道如何实现的顺序？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AbstractMap%E7%BB%B4%E6%8A%A4EntrySet%EF%BC%8CAbstractSet%E7%BB%B4%E6%8A%A4Iterator%EF%BC%8CAbstractList%E7%BB%B4%E6%8A%A4Iterator"><span class="toc-text">AbstractMap维护EntrySet，AbstractSet维护Iterator，AbstractList维护Iterator</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ConcurrentHashMap"><span class="toc-text">ConcurrentHashMap</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TreeMap"><span class="toc-text">TreeMap</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TreeSet%EF%BC%9A%E5%A7%94%E6%89%98TreeMap%E5%AE%9E%E7%8E%B0"><span class="toc-text">TreeSet：委托TreeMap实现</span></a></li></ol>
-        </div>
-    </div>
-
-
-         <meta name="referrer" content="no-referrer" />
-
-
-<p>标题为包名，后面序号为优先级1-4，优先级递减</p>
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true,
+  postUpdate: '2020-09-04 11:28:08'
+}</script><noscript><style type="text/css">
+#nav {
+  opacity: 1
+}
+.justified-gallery img {
+  opacity: 1
+}
+</style></noscript><meta name="generator" content="Hexo 5.1.1"></head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/head.gif" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">75</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">47</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div id="body-wrap"><div id="sidebar"><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#java-lang"><span class="toc-number">1.</span> <span class="toc-text">java.lang</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java-util"><span class="toc-number">2.</span> <span class="toc-text">java.util</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java-util-concurrent"><span class="toc-number">3.</span> <span class="toc-text">java.util.concurrent</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java-util-concurrent-atomic"><span class="toc-number">4.</span> <span class="toc-text">java.util.concurrent.atomic</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java-lang-reflect"><span class="toc-number">5.</span> <span class="toc-text">java.lang.reflect</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java-lang-annotation"><span class="toc-number">6.</span> <span class="toc-text">java.lang.annotation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java-util-concurrent-locks"><span class="toc-number">7.</span> <span class="toc-text">java.util.concurrent.locks</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java-io"><span class="toc-number">8.</span> <span class="toc-text">java.io</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java-nio"><span class="toc-number">9.</span> <span class="toc-text">java.nio</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java-sql"><span class="toc-number">10.</span> <span class="toc-text">java.sql</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#java-net"><span class="toc-number">11.</span> <span class="toc-text">java.net</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0%E7%AE%80%E7%89%88"><span class="toc-number"></span> <span class="toc-text">阅读笔记简版</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Object"><span class="toc-number">1.</span> <span class="toc-text">Object</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#String"><span class="toc-number">2.</span> <span class="toc-text">String</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AbstractStringBuilder"><span class="toc-number">3.</span> <span class="toc-text">AbstractStringBuilder</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#StringBuffer"><span class="toc-number">4.</span> <span class="toc-text">StringBuffer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ArrayList"><span class="toc-number">5.</span> <span class="toc-text">ArrayList</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LinkedList"><span class="toc-number">6.</span> <span class="toc-text">LinkedList</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HashMap"><span class="toc-number">7.</span> <span class="toc-text">HashMap</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hashtable"><span class="toc-number">8.</span> <span class="toc-text">Hashtable</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HashSet%EF%BC%9A%E5%A7%94%E6%89%98%E7%BB%99HashMap%EF%BC%8C%E5%85%B6Value%E6%98%AF%E5%90%8C%E4%B8%80%E4%B8%AA%E9%BB%98%E8%AE%A4%E5%AF%B9%E8%B1%A1"><span class="toc-number">9.</span> <span class="toc-text">HashSet：委托给HashMap，其Value是同一个默认对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LinkedHashMap%E7%BB%A7%E6%89%BFHashMap"><span class="toc-number">10.</span> <span class="toc-text">LinkedHashMap继承HashMap</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LinkedHashSet%E7%BB%A7%E6%89%BFHashSet%EF%BC%9A%E4%B8%8D%E7%9F%A5%E9%81%93%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E7%9A%84%E9%A1%BA%E5%BA%8F%EF%BC%9F"><span class="toc-number">11.</span> <span class="toc-text">LinkedHashSet继承HashSet：不知道如何实现的顺序？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AbstractMap%E7%BB%B4%E6%8A%A4EntrySet%EF%BC%8CAbstractSet%E7%BB%B4%E6%8A%A4Iterator%EF%BC%8CAbstractList%E7%BB%B4%E6%8A%A4Iterator"><span class="toc-number">12.</span> <span class="toc-text">AbstractMap维护EntrySet，AbstractSet维护Iterator，AbstractList维护Iterator</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ConcurrentHashMap"><span class="toc-number">13.</span> <span class="toc-text">ConcurrentHashMap</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TreeMap"><span class="toc-number">14.</span> <span class="toc-text">TreeMap</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TreeSet%EF%BC%9A%E5%A7%94%E6%89%98TreeMap%E5%AE%9E%E7%8E%B0"><span class="toc-number">15.</span> <span class="toc-text">TreeSet：委托TreeMap实现</span></a></li></ol></div></div></div><header class="post-bg" id="page-header" style="background-image: url(/img/head.gif)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">snmlm</a></span><span id="menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">读java源码的顺序</div></div><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2018-08-30T16:00:00.000Z" title="发表于 2018-08-31 00:00:00">2018-08-31</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2020-09-04T03:28:08.806Z" title="更新于 2020-09-04 11:28:08">2020-09-04</time></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><p>标题为包名，后面序号为优先级1-4，优先级递减</p>
 <h3 id="java-lang"><a href="#java-lang" class="headerlink" title="java.lang"></a>java.lang</h3><ul>
 <li>Object 1</li>
 <li>String 1<a id="more"></a></li>
@@ -435,224 +282,5 @@ In..." />
 <li>Entry{K k, V v, Entry parent, left, right, boolean color}</li>
 <li>Entry root，int size， int modeCount</li>
 </ul>
-<h3 id="TreeSet：委托TreeMap实现"><a href="#TreeSet：委托TreeMap实现" class="headerlink" title="TreeSet：委托TreeMap实现"></a>TreeSet：委托TreeMap实现</h3>
-        <h2>相关文章</h2><ul><li><a href="/tools/20190307/">数字大小写</a></li><li><a href="/java/basics/20190415/">java类中缓存机制类</a></li><li><a href="/java/basics/20190416/">java调用js方法</a></li><li><a href="/java/basics/20190418/">==和equals</a></li><li><a href="/java/basics/20190419/">java总结</a></li></ul>
-    </div>
-    
-    <div class="post-footer">
-        <div class="col-sm-10">
-            <div>
-                <b>本文链接</b>：<a href="/java/basics/20200831/" target="_blank">读java源码的顺序</a>
-            </div>
-            <div>
-                
-                    转载声明：本博客由snmlm创作，采用 <a href="https://creativecommons.org/licenses/by-nc-nd/3.0/" target="_blank"> CC BY 3.0 CN </a> 许可协议。可自由转载、引用，但需署名作者且注明文章出处。
-                
-            </div>
-            <div>
-                
-            </div>
-        </div>
-    </div>
-</article>
-
-<div class="article-nav prev-next-wrap clearfix">
-    
-        <a target="_blank" href="/java/basics/20200903/" class="pre-post btn btn-default"
-           title='for与foreach用法的区别'>
-            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
-            <span class="hidden-xs">for与foreach用法的区别</span>
-        </a>
-    
-    
-        <a target="_blank" href="/daily/Hexo_spfk_LiveRe_GithubPages/" class="next-post btn btn-default"
-           title='Hexo博客+spfk主题+LiveRe评论+Github pages'>
-            <span class="hidden-lg">下一篇</span>
-            <span class="hidden-xs">Hexo博客+spfk主题+LiveRe评论+Github pages</span><i class="fa fa-angle-right fa-fw"></i>
-        </a>
-    
-</div>
-
-
-    <div id="comments">
-        
-   <p>评论系统未开启，无法评论！</p>
-
-    </div>
-
-
-
-
-
-
-                </main>
-                
-    <aside class="col-md-4 sidebar">
-        
-        <div class="widget about-me">
-    <div class="row">
-        <div class="col-md-5">
-            <img src="/head.gif" alt="snmlm" class="img-responsive center-block">
-        </div>
-        <div class="col-md-7">
-            <a class="series-a" href="javascript:void(0)">个人博客</a>
-            <ul>
-                <li><b>• 喝奶补钙</b></li>
-                <li><b>• 管住嘴，迈开腿</b></li>
-                <li><b>• 日常更新</b></li>
-            </ul>
-        </div>
-    </div>
-    <hr class="divider-hr">
-    <div class="content social">
-        
-            <a href="//github.com/snmlm" rel="external nofollow" title="GitHub" target="_blank">
-                <i class="github fa fa-github"></i>
-            </a>
-        
-            <a href="//gitee.com/snmlm" rel="external nofollow" title="Gitee" target="_blank">
-                <i class="git fa fa-git"></i>
-            </a>
-        
-            <a href="mailto:913813112@qq.com" rel="external nofollow" title="邮箱" target="_blank">
-                <i class="envelope-o fa fa-envelope-o"></i>
-            </a>
-        
-            <a href="/atom.xml" rel="external nofollow" title="RSS" target="_blank">
-                <i class="feed fa fa-feed"></i>
-            </a>
-        
-    </div>
-</div>
-
-
-
-
-        
-        
-    <div class="widget">
-        <h3 class="title">分类</h3>
-        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Assembly-Language-Second-Edition/"><i class="fa" aria-hidden="true">Assembly-Language-Second-Edition</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/"><i class="fa" aria-hidden="true">hexo</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/"><i class="fa" aria-hidden="true">java</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tcp-ip/"><i class="fa" aria-hidden="true">tcp-ip</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%91%E6%8C%87offer/"><i class="fa" aria-hidden="true">剑指offer</i></a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/"><i class="fa" aria-hidden="true">工具</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"><i class="fa" aria-hidden="true">开发工具</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%80%BB%E7%BB%93/"><i class="fa" aria-hidden="true">总结</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%97%A5%E5%B8%B8/"><i class="fa" aria-hidden="true">日常</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%89%E7%82%B9%E4%B8%9C%E8%A5%BF/"><i class="fa" aria-hidden="true">有点东西</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9E%B6%E6%9E%84/"><i class="fa" aria-hidden="true">架构</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%BA%90%E7%A0%81/"><i class="fa" aria-hidden="true">源码</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link current" href="/categories/%E7%9F%A5%E8%AF%86%E7%82%B9/"><i class="fa" aria-hidden="true">知识点</i></a><span class="category-list-count">41</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/"><i class="fa" aria-hidden="true">算法</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BB%8F%E9%AA%8C/"><i class="fa" aria-hidden="true">经验</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%95%E9%A2%98/"><i class="fa" aria-hidden="true">试题</i></a><span class="category-list-count">1</span></li></ul>
-    </div>
-
-
-        
-        
-  <div class="widget">
-    <h3 class="title">标签</h3>
-    <div class="content tag-cloud">
-        
-            <canvas width="300" height="300" id="tag-cloud-3d">
-                <a href="/tags/Books/" style="font-size: 11.67px;">Books</a> <a href="/tags/dubbo/" style="font-size: 11.67px;">dubbo</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 11.67px;">hexo</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/java8/" style="font-size: 10px;">java8</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/mysql/" style="font-size: 16.67px;">mysql</a> <a href="/tags/redis/" style="font-size: 15px;">redis</a> <a href="/tags/servlet/" style="font-size: 11.67px;">servlet</a> <a href="/tags/spring/" style="font-size: 15px;">spring</a> <a href="/tags/spring-boot/" style="font-size: 11.67px;">spring boot</a> <a href="/tags/zookeeper/" style="font-size: 10px;">zookeeper</a> <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 10px;">动态规划</a> <a href="/tags/%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">协议</a> <a href="/tags/%E5%98%BF%E5%98%BF%E5%98%BF/" style="font-size: 10px;">嘿嘿嘿</a> <a href="/tags/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97/" style="font-size: 13.33px;">工作日志</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 11.67px;">数据结构</a> <a href="/tags/%E6%96%B9%E6%A1%88/" style="font-size: 10px;">方案</a> <a href="/tags/%E6%97%A5%E5%B8%B8/" style="font-size: 11.67px;">日常</a> <a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 10px;">架构</a> <a href="/tags/%E6%B1%87%E6%80%BB/" style="font-size: 11.67px;">汇总</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 18.33px;">算法</a> <a href="/tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" style="font-size: 10px;">解决方案</a> <a href="/tags/%E8%AF%95%E9%A2%98/" style="font-size: 10px;">试题</a>
-            </canvas>
-        
-    </div>
-  </div>
-
-
-        
-    </aside>
-
-            </div>
-        </div>
-    </section>
-    <footer class="main-footer">
-    <div class="container">
-        <div class="row">
-        </div>
-    </div>
-</footer>
-
-<a id="back-to-top" class="icon-btn hide">
-	<i class="fa fa-chevron-up"></i>
-</a>
-
-
-
-
-    <div class="copyright">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="busuanzi">
-    
-        访问量:
-        <strong id="busuanzi_value_site_pv">
-            <i class="fa fa-spinner fa-spin"></i>
-        </strong>
-        &nbsp; | &nbsp;
-        访客数:
-        <strong id="busuanzi_value_site_uv">
-            <i class="fa fa-spinner fa-spin"></i>
-        </strong>
-    
-</div>
-
-            </div>
-            <!-- <div class="col-sm-12">
-                <span>Copyright &copy; 2018
-                </span> |
-                <span>
-                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
-                </span> |
-                <span>
-                    Theme by <a href="//github.com/itmuch/hexo-theme-snmlm.git" class="copyright-links" target="_blank" rel="nofollow">SNMLM</a>
-                </span>
-            </div> -->
-        </div>
-    </div>
-</div>
-
-
-<script src="/js/jquery.min.js"></script>
-
-
-<script src="/js/bootstrap.min.js"></script>
-
-
-<script src="/js/bootstrap-hover-dropdown.min.js"></script>
-
-
-	
-<script src="/js/search.js?rev=@@hash.js"></script>
-
-
-
-
-    
-<script src="/assets/tagcanvas.min.js?rev=2.9.js"></script>
-
-    <script>
-        var tagOption = {
-            textColour: '#29afec', // 字体颜色
-            outlineMethod: 'block', // 选中模式
-            outlineColour: '#FFDAB9', // 选中模式的颜色
-            interval: 30 || 30, // 动画帧之间的时间间隔，值越大，转动幅度越大
-            textHeight: 13,
-            outlineRadius: 3,
-            freezeActive: true || '', // 选中的标签是否继续滚动
-            frontSelect: true || '', // 不选标签云后部的标签
-            initial: [0.1, -0.1],
-            depth: 0.5,
-            decel: 0.95,
-            maxSpeed: 0.03,
-            reverse: true || '', // 是否反向触发
-            fadeIn: 500, // 进入动画时间
-            wheelZoom: false || '' // 是否启用鼠标滚轮
-        }
-        TagCanvas.Start('tag-cloud-3d','',tagOption);
-    </script>
-
-
-
-    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-
-
-<script src="/js/app.js?rev=@@hash.js"></script>
-
-
-
-
-</body>
-</html>
+<h3 id="TreeSet：委托TreeMap实现"><a href="#TreeSet：委托TreeMap实现" class="headerlink" title="TreeSet：委托TreeMap实现"></a>TreeSet：委托TreeMap实现</h3></div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">snmlm</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://snmlm.github.io/java/basics/20200831/">https://snmlm.github.io/java/basics/20200831/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://snmlm.github.io" target="_blank">snmlm</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/java/">java</a><a class="post-meta__tags" href="/tags/%E6%BA%90%E7%A0%81/">源码</a></div><div class="post_share"><div class="social-share" data-image="/img/head.gif" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-full"><a href="/hexo/20180928/"><img class="prev-cover" src="/null" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Hexo博客+spfk主题+LiveRe评论+Github pages</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/java/basics/20190501/" title="Java7/8 中的 HashMap 和 ConcurrentHashMap 全解析"><img class="cover" src="/null"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-05-01</div><div class="title">Java7/8 中的 HashMap 和 ConcurrentHashMap 全解析</div></div></a></div><div><a href="/tools/20190307/" title="数字大小写"><img class="cover" src="/null"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-03-07</div><div class="title">数字大小写</div></div></a></div><div><a href="/java/basics/20181010/" title="for与foreach用法的区别"><img class="cover" src="/img/head.gif"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2018-10-10</div><div class="title">for与foreach用法的区别</div></div></a></div><div><a href="/java/basics/20181011/" title="System.gc()与Object.finalize()的区别"><img class="cover" src="/null"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2018-10-11</div><div class="title">System.gc()与Object.finalize()的区别</div></div></a></div><div><a href="/java/basics/20181012/" title="java Object"><img class="cover" src="/null"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2018-10-12</div><div class="title">java Object</div></div></a></div><div><a href="/java/basics/20190415/" title="java类中缓存机制类"><img class="cover" src="/null"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-04-15</div><div class="title">java类中缓存机制类</div></div></a></div></div></div></article></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2018 - 2020 By snmlm</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><section id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></div></body></html>

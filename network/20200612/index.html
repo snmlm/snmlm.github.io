@@ -1,227 +1,85 @@
-<!DOCTYPE HTML>
-<html lang="zh-CN">
-<head>
-    <!--Setting-->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
-    <meta http-equiv="Cache-Control" content="no-siteapp">
-    <meta http-equiv="Cache-Control" content="no-transform">
-    <meta name="renderer" content="webkit|ie-comp|ie-stand">
-    <meta name="apple-mobile-web-app-capable" content="snmlm">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="format-detection" content="telephone=no,email=no,adress=no">
-    <meta name="browsermode" content="application">
-    <meta name="screen-orientation" content="portrait">
-    <meta name="theme-version" content="1.0.0">
-    <meta name="root" content="/">
-    <link rel="dns-prefetch" href="https://snmlm.github.io">
-    <!--SEO-->
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>rest与rpc区别 | snmlm</title><meta name="description" content="OSI网络七层模型 第一层：应用层。定义了用于在网络中进行通信和传输数据的接口； 第二层：表示层。定义不同的系统中数据的传输格式，编码和解码规范等； 第三层：会话层。管理用户的会话，控制用户间逻辑连接的建立和中断； 第四层：传输层。管理着网络中的端到端的数据传输； 第五层：网络层。定义网络设备间如何传输数据； 第六层：链路层。将上面的网络层的数据包封装成数据帧，便于物理层传输； 第七层：物理层。这"><meta name="keywords" content="协议"><meta name="author" content="snmlm"><meta name="copyright" content="snmlm"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://snmlm.github.io/network/20200612/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta property="og:type" content="article"><meta property="og:title" content="rest与rpc区别"><meta property="og:url" content="https://snmlm.github.io/network/20200612/"><meta property="og:site_name" content="snmlm"><meta property="og:description" content="OSI网络七层模型 第一层：应用层。定义了用于在网络中进行通信和传输数据的接口； 第二层：表示层。定义不同的系统中数据的传输格式，编码和解码规范等； 第三层：会话层。管理用户的会话，控制用户间逻辑连接的建立和中断； 第四层：传输层。管理着网络中的端到端的数据传输； 第五层：网络层。定义网络设备间如何传输数据； 第六层：链路层。将上面的网络层的数据包封装成数据帧，便于物理层传输； 第七层：物理层。这"><meta property="og:image" content="https://snmlm.github.io/img/head.gif"><meta property="article:published_time" content="2020-09-03T06:35:42.120Z"><meta property="article:modified_time" content="2020-09-04T03:35:57.920Z"><meta name="twitter:card" content="summary"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  hexoversion: '5.1.1',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime: '天',
+  date_suffix: {"one_hour":"刚刚","hours":"小时前","day":"天前"},
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: {"bookmark":{"message_prev":"按","message_next":"键将本页加入书签"},"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  baiduPush: false,
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
 
-    <meta name="keywords" content="协议" />
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+      const now = new Date()
+      const expiryDay = ttl * 86400000
+      const item = {
+        value: value,
+        expiry: now.getTime() + expiryDay,
+      }
+      localStorage.setItem(key, JSON.stringify(item))
+    },
+  
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
 
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
 
-    <meta name="description" content=" 
-#### OSI网络七层模型
-* 第一层：应用层。定义了用于在网络中进行通信和传输数据的接口；
-* 第二层：表示层。定义不同的系统中数据的传输格式，编码和解码规范等；
-* 第三层：会话层。管理用户的会话，控制用户间逻辑连接的建立和中断；
-* 第四层：传输层。管理着网络中的端到端的数据传输；..." />
-
-
-
-<meta name="robots" content="all" />
-<meta name="google" content="all" />
-<meta name="googlebot" content="all" />
-<meta name="verify" content="all" />
-    <!--Title-->
-
-
-<title>rest与rpc区别 | snmlm</title>
-
-
-    <link rel="alternate" href="/atom.xml" title="snmlm" type="application/atom+xml">
-
-
-    <link rel="icon" href="/favicon-n.png">
-
-    
-
-
-
-
-<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7.css">
-<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0.css">
-<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
-
-
-
-
-
-    
-
-
-
-
-
-    
-
-<meta name="generator" content="Hexo 5.1.1"></head>
-
-
-<!--[if lte IE 8]>
-<style>
-    html{ font-size: 1em }
-</style>
-<![endif]-->
-<!--[if lte IE 9]>
-<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
-<![endif]-->
-
-<body>
-    
-    <nav class="main-navigation">
-    <div class="container">
-        <div class="row clearfix">
-            <div class="col-md-12 column">
-                <nav class="navbar navbar-default" style="background-color:#fff;border:0;margin-bottom:0"
-                     role="navigation">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse"
-                                data-target="#navbar-collapse-1">
-                            <span class="sr-only">切</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="logo" href="/">
-                            <img src="/head.gif"/>
-                        </a>
-                    </div>
-
-                    <div class="collapse navbar-collapse" style="border:0;" id="navbar-collapse-1">
-                        <ul class="nav navbar-nav">
-                            
-                                
-                                    <li>
-                                        <a href="/about" target="_blank">
-                                            <i class="fa fa-user"></i>
-                                            关于我
-                                        </a>
-                                    </li>
-                                
-                            
-                                
-                                    <li>
-                                        <a href="/archives" target="_blank">
-                                            <i class="fa fa-archive"></i>
-                                            归档
-                                        </a>
-                                    </li>
-                                
-                            
-                        </ul>
-                        
-                            <form id="search-form" class="navbar-form navbar-right">
-                                <div class="form-group input-group">
-                                    <input type="text" id="local-search-input" class="form-control"
-                                           placeholder="搜我..."/>
-                                    <span class="input-group-btn">
-                                        <a class="btn btn-default">
-                                            <i class="fa fa-search"></i>
-                                        </a>
-                                    </span>
-                                </div>
-                                <div id="local-search-result" class="local-search-result-cls"></div>
-                            </form>
-                        
-                    </div>
-                </nav>
-            </div>
-        </div>
-    </div>
-</nav>
-
-    <a href="http://github.com/snmlm" target="_blank">
-        <img style="position: absolute; width:100px; top: 0; left: 0; border: 0;"
-             src="/img/fork-me.png"
-             alt="Fork me on GitHub">
-    </a>
-
-
-    <section class="content-wrap">
-        <div class="container">
-            <div class="row">
-                <main class="col-md-8 main-content m-post">
-                    
-
-<p id="process"></p>
-<article class="post">
-    <div class="post-head">
-        <h1 id="rest与rpc区别">
-            
-                rest与rpc区别
-            
-        </h1>
-        <div class="post-meta">
-    
-        <span class="categories-meta fa-wrap">
-            <i class="fa fa-folder-open-o"></i>
-            <a class="category-link" href="/categories/%E7%9F%A5%E8%AF%86%E7%82%B9/">知识点</a>
-        </span>
-    
-
-    
-        <span class="fa-wrap">
-            <i class="fa fa-tags"></i>
-            <span class="tags-meta">
-                
-                    <a class="tag-none-link" href="/tags/%E5%8D%8F%E8%AE%AE/" rel="tag">协议</a>
-                
-            </span>
-        </span>
-    
-
-    
-        
-        <span class="fa-wrap">
-            <i class="fa fa-clock-o"></i>
-            <span class="date-meta">2020/09/03</span>
-        </span>
-        
-            <span class="fa-wrap">
-                <i class="fa fa-eye"></i>
-                <span id="busuanzi_value_page_pv"></span>
-            </span>
-        
-    
-</div>
-        
-        
-    </div>
-    
-    <div class="post-body post-content">
-        
-    <div class="toc-article">
-        <strong>
-            目录
-        </strong>
-        <div class="toc-content">
-            <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFREST"><span class="toc-text">什么是REST</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%B5%84%E6%BA%90%EF%BC%88Resources%EF%BC%89"><span class="toc-text">资源（Resources）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%A1%A8%E7%8E%B0%E5%B1%82%EF%BC%88Representation%EF%BC%89"><span class="toc-text">表现层（Representation）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E8%BD%AC%E5%8C%96%EF%BC%88State-Transfer%EF%BC%89"><span class="toc-text">状态转化（State Transfer）</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#RESTful-API"><span class="toc-text">RESTful API</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HTTP"><span class="toc-text">HTTP</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#rpc"><span class="toc-text">rpc</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#dubbo%E4%B8%8Erpc"><span class="toc-text">dubbo与rpc</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BC%A0%E8%BE%93%EF%BC%88Transport%EF%BC%89"><span class="toc-text">传输（Transport）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#I-O-%E6%A8%A1%E5%9E%8B%EF%BC%88I-O-Model%EF%BC%89"><span class="toc-text">I&#x2F;O 模型（I&#x2F;O Model）</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E4%BC%A0%E7%BB%9F%E7%9A%84%E9%98%BB%E5%A1%9E-I-O%E6%A8%A1%E5%9E%8B"><span class="toc-text">传统的阻塞 I&#x2F;O模型</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#I-O-%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8"><span class="toc-text">I&#x2F;O 多路复用</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%BC%82%E6%AD%A5-I-O"><span class="toc-text">异步 I&#x2F;O</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Schema-%E5%92%8C%E5%BA%8F%E5%88%97%E5%8C%96%EF%BC%88Schema-amp-Data-Serialization%EF%BC%89"><span class="toc-text">Schema 和序列化（Schema &amp; Data Serialization）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8D%8F%E8%AE%AE%E7%BB%93%E6%9E%84%EF%BC%88Wire-Protocol%EF%BC%89"><span class="toc-text">协议结构（Wire Protocol）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8F%AF%E9%9D%A0%E6%80%A7%EF%BC%88Reliability%EF%BC%89"><span class="toc-text">可靠性（Reliability）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%98%93%E7%94%A8%E6%80%A7%EF%BC%88Ease-of-use%EF%BC%89"><span class="toc-text">易用性（Ease of use）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%B7%A5%E4%B8%9A%E7%95%8C%E7%9A%84-RPC-%E6%A1%86%E6%9E%B6%E4%B8%80%E8%A7%88"><span class="toc-text">工业界的 RPC 框架一览</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%97%A2%E7%84%B6%E6%9C%89-HTTP-%E8%AF%B7%E6%B1%82%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%98%E8%A6%81%E7%94%A8-RPC-%E8%B0%83%E7%94%A8"><span class="toc-text">既然有 HTTP 请求，为什么还要用 RPC 调用</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A8%80%E5%BD%92%E6%AD%A3%E4%BC%A0"><span class="toc-text">言归正传</span></a></li></ol>
-        </div>
-    </div>
-
-
-         <meta name="referrer" content="no-referrer" />
-#### OSI网络七层模型
-* 第一层：应用层。定义了用于在网络中进行通信和传输数据的接口；
-* 第二层：表示层。定义不同的系统中数据的传输格式，编码和解码规范等；
-* 第三层：会话层。管理用户的会话，控制用户间逻辑连接的建立和中断；
-* 第四层：传输层。管理着网络中的端到端的数据传输；
-* 第五层：网络层。定义网络设备间如何传输数据；
-* 第六层：链路层。将上面的网络层的数据包封装成数据帧，便于物理层传输；
-* 第七层：物理层。这一层主要就是传输这些二进制数据<a id="more"></a>
-
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true,
+  postUpdate: '2020-09-04 11:35:57'
+}</script><noscript><style type="text/css">
+#nav {
+  opacity: 1
+}
+.justified-gallery img {
+  opacity: 1
+}
+</style></noscript><meta name="generator" content="Hexo 5.1.1"></head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/head.gif" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">75</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">47</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div id="body-wrap"><div id="sidebar"><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#OSI%E7%BD%91%E7%BB%9C%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.</span> <span class="toc-text">OSI网络七层模型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFREST"><span class="toc-number">2.</span> <span class="toc-text">什么是REST</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%B5%84%E6%BA%90%EF%BC%88Resources%EF%BC%89"><span class="toc-number">2.1.</span> <span class="toc-text">资源（Resources）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%A1%A8%E7%8E%B0%E5%B1%82%EF%BC%88Representation%EF%BC%89"><span class="toc-number">2.2.</span> <span class="toc-text">表现层（Representation）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E8%BD%AC%E5%8C%96%EF%BC%88State-Transfer%EF%BC%89"><span class="toc-number">2.3.</span> <span class="toc-text">状态转化（State Transfer）</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#RESTful-API"><span class="toc-number">3.</span> <span class="toc-text">RESTful API</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HTTP"><span class="toc-number">4.</span> <span class="toc-text">HTTP</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#rpc"><span class="toc-number">5.</span> <span class="toc-text">rpc</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#dubbo%E4%B8%8Erpc"><span class="toc-number">6.</span> <span class="toc-text">dubbo与rpc</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BC%A0%E8%BE%93%EF%BC%88Transport%EF%BC%89"><span class="toc-number">6.1.</span> <span class="toc-text">传输（Transport）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#I-O-%E6%A8%A1%E5%9E%8B%EF%BC%88I-O-Model%EF%BC%89"><span class="toc-number">6.2.</span> <span class="toc-text">I&#x2F;O 模型（I&#x2F;O Model）</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E4%BC%A0%E7%BB%9F%E7%9A%84%E9%98%BB%E5%A1%9E-I-O%E6%A8%A1%E5%9E%8B"><span class="toc-number">6.2.1.</span> <span class="toc-text">传统的阻塞 I&#x2F;O模型</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#I-O-%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8"><span class="toc-number">6.2.2.</span> <span class="toc-text">I&#x2F;O 多路复用</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%BC%82%E6%AD%A5-I-O"><span class="toc-number">6.2.3.</span> <span class="toc-text">异步 I&#x2F;O</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Schema-%E5%92%8C%E5%BA%8F%E5%88%97%E5%8C%96%EF%BC%88Schema-amp-Data-Serialization%EF%BC%89"><span class="toc-number">6.3.</span> <span class="toc-text">Schema 和序列化（Schema &amp; Data Serialization）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8D%8F%E8%AE%AE%E7%BB%93%E6%9E%84%EF%BC%88Wire-Protocol%EF%BC%89"><span class="toc-number">6.4.</span> <span class="toc-text">协议结构（Wire Protocol）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8F%AF%E9%9D%A0%E6%80%A7%EF%BC%88Reliability%EF%BC%89"><span class="toc-number">6.5.</span> <span class="toc-text">可靠性（Reliability）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%98%93%E7%94%A8%E6%80%A7%EF%BC%88Ease-of-use%EF%BC%89"><span class="toc-number">6.6.</span> <span class="toc-text">易用性（Ease of use）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%B7%A5%E4%B8%9A%E7%95%8C%E7%9A%84-RPC-%E6%A1%86%E6%9E%B6%E4%B8%80%E8%A7%88"><span class="toc-number">6.7.</span> <span class="toc-text">工业界的 RPC 框架一览</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%97%A2%E7%84%B6%E6%9C%89-HTTP-%E8%AF%B7%E6%B1%82%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%98%E8%A6%81%E7%94%A8-RPC-%E8%B0%83%E7%94%A8"><span class="toc-number">6.8.</span> <span class="toc-text">既然有 HTTP 请求，为什么还要用 RPC 调用</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A8%80%E5%BD%92%E6%AD%A3%E4%BC%A0"><span class="toc-number">7.</span> <span class="toc-text">言归正传</span></a></li></ol></div></div></div><header class="post-bg" id="page-header" style="background-image: url(/img/head.gif)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">snmlm</a></span><span id="menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">rest与rpc区别</div></div><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-09-03T06:35:42.120Z" title="发表于 2020-09-03 14:35:42">2020-09-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2020-09-04T03:35:57.920Z" title="更新于 2020-09-04 11:35:57">2020-09-04</time></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h4 id="OSI网络七层模型"><a href="#OSI网络七层模型" class="headerlink" title="OSI网络七层模型"></a>OSI网络七层模型</h4><ul>
+<li>第一层：应用层。定义了用于在网络中进行通信和传输数据的接口；</li>
+<li>第二层：表示层。定义不同的系统中数据的传输格式，编码和解码规范等；</li>
+<li>第三层：会话层。管理用户的会话，控制用户间逻辑连接的建立和中断；</li>
+<li>第四层：传输层。管理着网络中的端到端的数据传输；</li>
+<li>第五层：网络层。定义网络设备间如何传输数据；</li>
+<li>第六层：链路层。将上面的网络层的数据包封装成数据帧，便于物理层传输；</li>
+<li>第七层：物理层。这一层主要就是传输这些二进制数据<a id="more"></a></li>
+</ul>
 <p>实际应用过程中，五层协议结构里面是没有表示层和会话层的。应该说它们和应用层合并了。我们应该将重点放在应用层和传输层这两个层面，因为RPC主要是基于TCP/IP协议（传输层协议），HTTP主要是基于HTTP协议（应用层协议）。</p>
 <h4 id="什么是REST"><a href="#什么是REST" class="headerlink" title="什么是REST"></a>什么是REST</h4><p>Fielding将他对互联网软件的架构原则，定名为REST，即Representational State Transfer的缩写。<br>REST是一种架构风格，指的是一组架构约束条件和原则。满足这些约束条件和原则的应用程序或设计就是 RESTful。REST规范把所有内容都视为资源，网络上一切皆资源。REST并没有创造新的技术，组件或服务，只是使用Web的现有特征和能力。 </p>
 <h5 id="资源（Resources）"><a href="#资源（Resources）" class="headerlink" title="资源（Resources）"></a>资源（Resources）</h5><p>所谓”资源”，就是网络上的一个实体，或者说是网络上的一个具体信息。它可以是一段文本、一张图片、一首歌曲、一种服务，总之就是一个具体的实在。你可以用一个URI（统一资源定位符）指向它，每种资源对应一个特定的URI。要获取这个资源，访问它的URI就可以，因此URI就成了每一个资源的地址或独一无二的识别符。<br>REST的名称”表现层状态转化”中，省略了主语。”表现层”其实指的是”资源”（Resources）的”表现层”。</p>
@@ -349,227 +207,8 @@
 <blockquote>
 <p>HTTP/1.0 200 OK<br>Content-Type: text/plain<br>Content-Length: 137582<br>Expires: Thu, 05 Dec 1997 16:00:00 GMT<br>Last-Modified: Wed, 5 August 1996 15:55:28 GMT<br>Server: Apache 0.84</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">&lt;body&gt;Hello World&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">&lt;body&gt;Hello World&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
 
 <p>即使编码协议也就是body是使用二进制编码协议，报文元数据也就是header头的键值对却用了文本编码，非常占字节数。如上图所使用的报文中有效字节数仅仅占约 30%，也就是70%的时间用于传输元数据废编码。当然实际情况下报文内容可能会比这个长，但是报头所占的比例也是非常可观的。<br>自定义tcp协议可以极大地简化传输头内容。<br>所谓的效率优势是针对http1.1协议来讲的，http2.0协议已经优化编码效率问题，像grpc这种rpc库使用的就是http2.0协议。这么来说吧http容器的性能测试单位通常是kqps，自定义tpc协议则通常是以10kqps到100kqps为基准简单来说成熟的rpc库相对http容器，<br>更多的是封装了“服务发现”，”错误重试”一类面向服务的高级特性。可以这么理解，rpc框架是面向服务的更高级的封装。如果把一个http server容器上封装一层服务发现和函数代理调用，那它就已经可以做一个rpc框架了。</p>
-
-        
-    </div>
-    
-    <div class="post-footer">
-        <div class="col-sm-10">
-            <div>
-                <b>本文链接</b>：<a href="/network/20200612/" target="_blank">rest与rpc区别</a>
-            </div>
-            <div>
-                
-                    转载声明：本博客由snmlm创作，采用 <a href="https://creativecommons.org/licenses/by-nc-nd/3.0/" target="_blank"> CC BY 3.0 CN </a> 许可协议。可自由转载、引用，但需署名作者且注明文章出处。
-                
-            </div>
-            <div>
-                
-            </div>
-        </div>
-    </div>
-</article>
-
-<div class="article-nav prev-next-wrap clearfix">
-    
-        <a target="_blank" href="/offer/Offer_00/" class="pre-post btn btn-default"
-           title='剑指offer 汇总'>
-            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
-            <span class="hidden-xs">剑指offer 汇总</span>
-        </a>
-    
-    
-        <a target="_blank" href="/network/20190311/" class="next-post btn btn-default"
-           title='tcp-ip'>
-            <span class="hidden-lg">下一篇</span>
-            <span class="hidden-xs">tcp-ip</span><i class="fa fa-angle-right fa-fw"></i>
-        </a>
-    
-</div>
-
-
-    <div id="comments">
-        
-   <p>评论系统未开启，无法评论！</p>
-
-    </div>
-
-
-
-
-
-
-                </main>
-                
-    <aside class="col-md-4 sidebar">
-        
-        <div class="widget about-me">
-    <div class="row">
-        <div class="col-md-5">
-            <img src="/head.gif" alt="snmlm" class="img-responsive center-block">
-        </div>
-        <div class="col-md-7">
-            <a class="series-a" href="javascript:void(0)">个人博客</a>
-            <ul>
-                <li><b>• 喝奶补钙</b></li>
-                <li><b>• 管住嘴，迈开腿</b></li>
-                <li><b>• 日常更新</b></li>
-            </ul>
-        </div>
-    </div>
-    <hr class="divider-hr">
-    <div class="content social">
-        
-            <a href="//github.com/snmlm" rel="external nofollow" title="GitHub" target="_blank">
-                <i class="github fa fa-github"></i>
-            </a>
-        
-            <a href="//gitee.com/snmlm" rel="external nofollow" title="Gitee" target="_blank">
-                <i class="git fa fa-git"></i>
-            </a>
-        
-            <a href="mailto:913813112@qq.com" rel="external nofollow" title="邮箱" target="_blank">
-                <i class="envelope-o fa fa-envelope-o"></i>
-            </a>
-        
-            <a href="/atom.xml" rel="external nofollow" title="RSS" target="_blank">
-                <i class="feed fa fa-feed"></i>
-            </a>
-        
-    </div>
-</div>
-
-
-
-
-        
-        
-    <div class="widget">
-        <h3 class="title">分类</h3>
-        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Assembly-Language-Second-Edition/"><i class="fa" aria-hidden="true">Assembly-Language-Second-Edition</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/"><i class="fa" aria-hidden="true">hexo</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/"><i class="fa" aria-hidden="true">java</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tcp-ip/"><i class="fa" aria-hidden="true">tcp-ip</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%91%E6%8C%87offer/"><i class="fa" aria-hidden="true">剑指offer</i></a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/"><i class="fa" aria-hidden="true">工具</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"><i class="fa" aria-hidden="true">开发工具</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%80%BB%E7%BB%93/"><i class="fa" aria-hidden="true">总结</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%97%A5%E5%B8%B8/"><i class="fa" aria-hidden="true">日常</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%89%E7%82%B9%E4%B8%9C%E8%A5%BF/"><i class="fa" aria-hidden="true">有点东西</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9E%B6%E6%9E%84/"><i class="fa" aria-hidden="true">架构</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%BA%90%E7%A0%81/"><i class="fa" aria-hidden="true">源码</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link current" href="/categories/%E7%9F%A5%E8%AF%86%E7%82%B9/"><i class="fa" aria-hidden="true">知识点</i></a><span class="category-list-count">41</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/"><i class="fa" aria-hidden="true">算法</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BB%8F%E9%AA%8C/"><i class="fa" aria-hidden="true">经验</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%95%E9%A2%98/"><i class="fa" aria-hidden="true">试题</i></a><span class="category-list-count">1</span></li></ul>
-    </div>
-
-
-        
-        
-  <div class="widget">
-    <h3 class="title">标签</h3>
-    <div class="content tag-cloud">
-        
-            <canvas width="300" height="300" id="tag-cloud-3d">
-                <a href="/tags/Books/" style="font-size: 11.67px;">Books</a> <a href="/tags/dubbo/" style="font-size: 11.67px;">dubbo</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 11.67px;">hexo</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/java8/" style="font-size: 10px;">java8</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/mysql/" style="font-size: 16.67px;">mysql</a> <a href="/tags/redis/" style="font-size: 15px;">redis</a> <a href="/tags/servlet/" style="font-size: 11.67px;">servlet</a> <a href="/tags/spring/" style="font-size: 15px;">spring</a> <a href="/tags/spring-boot/" style="font-size: 11.67px;">spring boot</a> <a href="/tags/zookeeper/" style="font-size: 10px;">zookeeper</a> <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 10px;">动态规划</a> <a href="/tags/%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">协议</a> <a href="/tags/%E5%98%BF%E5%98%BF%E5%98%BF/" style="font-size: 10px;">嘿嘿嘿</a> <a href="/tags/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97/" style="font-size: 13.33px;">工作日志</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 11.67px;">数据结构</a> <a href="/tags/%E6%96%B9%E6%A1%88/" style="font-size: 10px;">方案</a> <a href="/tags/%E6%97%A5%E5%B8%B8/" style="font-size: 11.67px;">日常</a> <a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 10px;">架构</a> <a href="/tags/%E6%B1%87%E6%80%BB/" style="font-size: 11.67px;">汇总</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 18.33px;">算法</a> <a href="/tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" style="font-size: 10px;">解决方案</a> <a href="/tags/%E8%AF%95%E9%A2%98/" style="font-size: 10px;">试题</a>
-            </canvas>
-        
-    </div>
-  </div>
-
-
-        
-    </aside>
-
-            </div>
-        </div>
-    </section>
-    <footer class="main-footer">
-    <div class="container">
-        <div class="row">
-        </div>
-    </div>
-</footer>
-
-<a id="back-to-top" class="icon-btn hide">
-	<i class="fa fa-chevron-up"></i>
-</a>
-
-
-
-
-    <div class="copyright">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="busuanzi">
-    
-        访问量:
-        <strong id="busuanzi_value_site_pv">
-            <i class="fa fa-spinner fa-spin"></i>
-        </strong>
-        &nbsp; | &nbsp;
-        访客数:
-        <strong id="busuanzi_value_site_uv">
-            <i class="fa fa-spinner fa-spin"></i>
-        </strong>
-    
-</div>
-
-            </div>
-            <!-- <div class="col-sm-12">
-                <span>Copyright &copy; 2018
-                </span> |
-                <span>
-                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
-                </span> |
-                <span>
-                    Theme by <a href="//github.com/itmuch/hexo-theme-snmlm.git" class="copyright-links" target="_blank" rel="nofollow">SNMLM</a>
-                </span>
-            </div> -->
-        </div>
-    </div>
-</div>
-
-
-<script src="/js/jquery.min.js"></script>
-
-
-<script src="/js/bootstrap.min.js"></script>
-
-
-<script src="/js/bootstrap-hover-dropdown.min.js"></script>
-
-
-	
-<script src="/js/search.js?rev=@@hash.js"></script>
-
-
-
-
-    
-<script src="/assets/tagcanvas.min.js?rev=2.9.js"></script>
-
-    <script>
-        var tagOption = {
-            textColour: '#29afec', // 字体颜色
-            outlineMethod: 'block', // 选中模式
-            outlineColour: '#FFDAB9', // 选中模式的颜色
-            interval: 30 || 30, // 动画帧之间的时间间隔，值越大，转动幅度越大
-            textHeight: 13,
-            outlineRadius: 3,
-            freezeActive: true || '', // 选中的标签是否继续滚动
-            frontSelect: true || '', // 不选标签云后部的标签
-            initial: [0.1, -0.1],
-            depth: 0.5,
-            decel: 0.95,
-            maxSpeed: 0.03,
-            reverse: true || '', // 是否反向触发
-            fadeIn: 500, // 进入动画时间
-            wheelZoom: false || '' // 是否启用鼠标滚轮
-        }
-        TagCanvas.Start('tag-cloud-3d','',tagOption);
-    </script>
-
-
-
-    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-
-
-<script src="/js/app.js?rev=@@hash.js"></script>
-
-
-
-
-</body>
-</html>
+</div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">snmlm</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://snmlm.github.io/network/20200612/">https://snmlm.github.io/network/20200612/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://snmlm.github.io" target="_blank">snmlm</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%8D%8F%E8%AE%AE/">协议</a></div><div class="post_share"><div class="social-share" data-image="/img/head.gif" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/HZ/"><img class="prev-cover" src="/null" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">汇总</div></div></a></div><div class="next-post pull-right"><a href="/network/20190311/"><img class="next-cover" src="/null" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">tcp-ip</div></div></a></div></nav></article></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2018 - 2020 By snmlm</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><section id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></div></body></html>
