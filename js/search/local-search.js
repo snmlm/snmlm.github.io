@@ -54,8 +54,7 @@ $(function () {
 
   function search (path) {
     $.ajax({
-      //url: GLOBAL_CONFIG.root + path,
-      url: "https://raw.githubusercontent.com/snmlm/snmlm.github.io/master/search.xml",
+      url: GLOBAL_CONFIG.root + path,
       dataType: 'xml',
       success: function (xmlResponse) {
         // get the contents from search data
