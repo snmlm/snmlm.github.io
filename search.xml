@@ -4,7 +4,58 @@
   
     
     <entry>
-      <title>强引用，弱引用，软引用，虚引用</title>
+      <title>java基础 多线程</title>
+      <link href="/java/basics/20200916/"/>
+      <url>/java/basics/20200916/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> java </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>java基础 四种访问权限</title>
+      <link href="/java/basics/20200914/"/>
+      <url>/java/basics/20200914/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> java </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>java基础 运算符</title>
+      <link href="/java/basics/20200915/"/>
+      <url>/java/basics/20200915/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> java </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>java基础 强引用，弱引用，软引用，虚引用</title>
       <link href="/java/basics/20200909/"/>
       <url>/java/basics/20200909/</url>
       
@@ -21,7 +72,7 @@
     
     
     <entry>
-      <title>反射</title>
+      <title>java基础 反射</title>
       <link href="/java/basics/20200908/"/>
       <url>/java/basics/20200908/</url>
       
@@ -38,7 +89,7 @@
     
     
     <entry>
-      <title>BigDecimal</title>
+      <title>java基础 BigDecimal</title>
       <link href="/java/basics/20200907/"/>
       <url>/java/basics/20200907/</url>
       
@@ -108,24 +159,7 @@
     
     
     <entry>
-      <title>工作日志202009</title>
-      <link href="/workLog/202009/"/>
-      <url>/workLog/202009/</url>
-      
-      
-      
-        <tags>
-            
-            <tag> 工作日志 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>String、StringBuffer、StringBulider</title>
+      <title>java基础 String、StringBuffer、StringBulider</title>
       <link href="/java/basics/20200817/"/>
       <url>/java/basics/20200817/</url>
       
@@ -153,23 +187,6 @@
             <tag> redis </tag>
             
             <tag> 架构模式 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>工作日志202008</title>
-      <link href="/workLog/202008/"/>
-      <url>/workLog/202008/</url>
-      
-      
-      
-        <tags>
-            
-            <tag> 工作日志 </tag>
             
         </tags>
       
@@ -214,7 +231,7 @@
     
     
     <entry>
-      <title>重写与重载</title>
+      <title>java基础 重写与重载</title>
       <link href="/java/basics/20200701/"/>
       <url>/java/basics/20200701/</url>
       
@@ -231,7 +248,7 @@
     
     
     <entry>
-      <title>return和finally执行问题</title>
+      <title>java基础 return和finally执行问题</title>
       <link href="/java/basics/20200702/"/>
       <url>/java/basics/20200702/</url>
       
@@ -240,23 +257,6 @@
         <tags>
             
             <tag> java </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>工作日志202007</title>
-      <link href="/workLog/202007/"/>
-      <url>/workLog/202007/</url>
-      
-      
-      
-        <tags>
-            
-            <tag> 工作日志 </tag>
             
         </tags>
       
@@ -322,7 +322,7 @@
     
     
     <entry>
-      <title>全面理解servlet</title>
+      <title>java基础 全面理解servlet</title>
       <link href="/java/basics/20200609/"/>
       <url>/java/basics/20200609/</url>
       
@@ -341,7 +341,7 @@
     
     
     <entry>
-      <title>jsp和servlet有什么区别</title>
+      <title>java基础 jsp和servlet有什么区别</title>
       <link href="/java/basics/20200608/"/>
       <url>/java/basics/20200608/</url>
       
@@ -400,7 +400,7 @@
     
     
     <entry>
-      <title>java基础类型</title>
+      <title>java基础 基础类型</title>
       <link href="/java/basics/20200508/"/>
       <url>/java/basics/20200508/</url>
       
@@ -664,7 +664,7 @@
     
     
     <entry>
-      <title>mysql 性能优化梳理</title>
+      <title>mysql性能优化梳理</title>
       <link href="/database/mysql/20191009/"/>
       <url>/database/mysql/20191009/</url>
       
@@ -833,7 +833,7 @@
     
     
     <entry>
-      <title>Java7/8 中的 HashMap 和 ConcurrentHashMap 全解析</title>
+      <title>java基础 7/8中的 HashMap 和 ConcurrentHashMap 全解析</title>
       <link href="/java/basics/20190501/"/>
       <url>/java/basics/20190501/</url>
       
@@ -869,7 +869,7 @@
     
     
     <entry>
-      <title>MySQL5.7中Derived table变形记</title>
+      <title>mysql5.7中Derived table变形记</title>
       <link href="/database/mysql/20190426/"/>
       <url>/database/mysql/20190426/</url>
       
@@ -888,7 +888,7 @@
     
     
     <entry>
-      <title>MySQL索引底层实现原理</title>
+      <title>mysql索引底层实现原理</title>
       <link href="/database/mysql/20190425/"/>
       <url>/database/mysql/20190425/</url>
       
@@ -979,7 +979,7 @@
     
     
     <entry>
-      <title>java子类继承加载顺序</title>
+      <title>java基础 子类继承加载顺序</title>
       <link href="/java/basics/20190420/"/>
       <url>/java/basics/20190420/</url>
       
@@ -998,26 +998,7 @@
     
     
     <entry>
-      <title>java总结</title>
-      <link href="/java/basics/20190419/"/>
-      <url>/java/basics/20190419/</url>
-      
-      
-      
-        <tags>
-            
-            <tag> java </tag>
-            
-            <tag> 总结 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>==和equals</title>
+      <title>java基础 ==和equals</title>
       <link href="/java/basics/20190418/"/>
       <url>/java/basics/20190418/</url>
       
@@ -1305,7 +1286,7 @@
     
     
     <entry>
-      <title>java Object</title>
+      <title>java基础 Object</title>
       <link href="/java/basics/20181012/"/>
       <url>/java/basics/20181012/</url>
       
@@ -1358,7 +1339,7 @@
     
     
     <entry>
-      <title>for与foreach用法的区别</title>
+      <title>java基础 for与foreach用法的区别</title>
       <link href="/java/basics/20181010/"/>
       <url>/java/basics/20181010/</url>
       
@@ -1394,7 +1375,7 @@
     
     
     <entry>
-      <title>读java源码的顺序</title>
+      <title>java基础 读java源码的顺序</title>
       <link href="/java/basics/20200831/"/>
       <url>/java/basics/20200831/</url>
       
