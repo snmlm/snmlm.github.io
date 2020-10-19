@@ -4,6 +4,57 @@
   
     
     <entry>
+      <title>java基础 线程通信</title>
+      <link href="/java/basics/20201015/"/>
+      <url>/java/basics/20201015/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> java </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>java基础 volatile详解</title>
+      <link href="/java/basics/20201014/"/>
+      <url>/java/basics/20201014/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> java </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>java基础 线程安全</title>
+      <link href="/java/basics/20201013/"/>
+      <url>/java/basics/20201013/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> java </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>java基础 多线程</title>
       <link href="/java/basics/20200916/"/>
       <url>/java/basics/20200916/</url>
@@ -21,9 +72,9 @@
     
     
     <entry>
-      <title>java基础 四种访问权限</title>
-      <link href="/java/basics/20200914/"/>
-      <url>/java/basics/20200914/</url>
+      <title>java基础 运算符</title>
+      <link href="/java/basics/20200915/"/>
+      <url>/java/basics/20200915/</url>
       
       
       
@@ -38,9 +89,9 @@
     
     
     <entry>
-      <title>java基础 运算符</title>
-      <link href="/java/basics/20200915/"/>
-      <url>/java/basics/20200915/</url>
+      <title>java基础 四种访问权限</title>
+      <link href="/java/basics/20200914/"/>
+      <url>/java/basics/20200914/</url>
       
       
       
