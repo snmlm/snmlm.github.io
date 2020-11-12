@@ -4,6 +4,74 @@
   
     
     <entry>
+      <title>jvm 类加载器</title>
+      <link href="/java/jvm/20201112/"/>
+      <url>/java/jvm/20201112/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> jvm </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>jvm 类的加载过程</title>
+      <link href="/java/jvm/20201109/"/>
+      <url>/java/jvm/20201109/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> jvm </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>jvm 指令手册</title>
+      <link href="/java/jvm/20201111/"/>
+      <url>/java/jvm/20201111/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> jvm </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>jvm class字节码文件结构</title>
+      <link href="/java/jvm/20201110/"/>
+      <url>/java/jvm/20201110/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> jvm </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>java基础 线程通信</title>
       <link href="/java/basics/20201015/"/>
       <url>/java/basics/20201015/</url>
@@ -72,9 +140,9 @@
     
     
     <entry>
-      <title>java基础 运算符</title>
-      <link href="/java/basics/20200915/"/>
-      <url>/java/basics/20200915/</url>
+      <title>java基础 四种访问权限</title>
+      <link href="/java/basics/20200914/"/>
+      <url>/java/basics/20200914/</url>
       
       
       
@@ -89,9 +157,9 @@
     
     
     <entry>
-      <title>java基础 四种访问权限</title>
-      <link href="/java/basics/20200914/"/>
-      <url>/java/basics/20200914/</url>
+      <title>java基础 运算符</title>
+      <link href="/java/basics/20200915/"/>
+      <url>/java/basics/20200915/</url>
       
       
       
@@ -469,8 +537,8 @@
     
     <entry>
       <title>剑指offer 汇总</title>
-      <link href="/offer/Offer_00/"/>
-      <url>/offer/Offer_00/</url>
+      <link href="/algorithm/offer/Offer_00/"/>
+      <url>/algorithm/offer/Offer_00/</url>
       
       
       
@@ -488,8 +556,8 @@
     
     <entry>
       <title>01 二维数组中的查找</title>
-      <link href="/offer/Offer_01/"/>
-      <url>/offer/Offer_01/</url>
+      <link href="/algorithm/offer/Offer_01/"/>
+      <url>/algorithm/offer/Offer_01/</url>
       
       
       
@@ -507,8 +575,8 @@
     
     <entry>
       <title>02 替换空格</title>
-      <link href="/offer/Offer_02/"/>
-      <url>/offer/Offer_02/</url>
+      <link href="/algorithm/offer/Offer_02/"/>
+      <url>/algorithm/offer/Offer_02/</url>
       
       
       
@@ -526,8 +594,8 @@
     
     <entry>
       <title>03 从尾到头打印链表</title>
-      <link href="/offer/Offer_03/"/>
-      <url>/offer/Offer_03/</url>
+      <link href="/algorithm/offer/Offer_03/"/>
+      <url>/algorithm/offer/Offer_03/</url>
       
       
       
@@ -545,8 +613,8 @@
     
     <entry>
       <title>05 重建二叉树</title>
-      <link href="/offer/Offer_04/"/>
-      <url>/offer/Offer_04/</url>
+      <link href="/algorithm/offer/Offer_04/"/>
+      <url>/algorithm/offer/Offer_04/</url>
       
       
       
@@ -564,8 +632,8 @@
     
     <entry>
       <title>05 用两个栈实现队列</title>
-      <link href="/offer/Offer_05/"/>
-      <url>/offer/Offer_05/</url>
+      <link href="/algorithm/offer/Offer_05/"/>
+      <url>/algorithm/offer/Offer_05/</url>
       
       
       
@@ -583,8 +651,8 @@
     
     <entry>
       <title>06 旋转数组的最小数字</title>
-      <link href="/offer/Offer_06/"/>
-      <url>/offer/Offer_06/</url>
+      <link href="/algorithm/offer/Offer_06/"/>
+      <url>/algorithm/offer/Offer_06/</url>
       
       
       
@@ -602,8 +670,8 @@
     
     <entry>
       <title>07 斐波那契数列</title>
-      <link href="/offer/Offer_07/"/>
-      <url>/offer/Offer_07/</url>
+      <link href="/algorithm/offer/Offer_07/"/>
+      <url>/algorithm/offer/Offer_07/</url>
       
       
       
@@ -621,8 +689,8 @@
     
     <entry>
       <title>08 跳台阶</title>
-      <link href="/offer/Offer_08/"/>
-      <url>/offer/Offer_08/</url>
+      <link href="/algorithm/offer/Offer_08/"/>
+      <url>/algorithm/offer/Offer_08/</url>
       
       
       
@@ -640,8 +708,8 @@
     
     <entry>
       <title>09 变态跳台阶</title>
-      <link href="/offer/Offer_09/"/>
-      <url>/offer/Offer_09/</url>
+      <link href="/algorithm/offer/Offer_09/"/>
+      <url>/algorithm/offer/Offer_09/</url>
       
       
       
@@ -659,8 +727,8 @@
     
     <entry>
       <title>10 矩形覆盖</title>
-      <link href="/offer/Offer_10/"/>
-      <url>/offer/Offer_10/</url>
+      <link href="/algorithm/offer/Offer_10/"/>
+      <url>/algorithm/offer/Offer_10/</url>
       
       
       
@@ -678,8 +746,8 @@
     
     <entry>
       <title>11 二进制中1的个数</title>
-      <link href="/offer/Offer_11/"/>
-      <url>/offer/Offer_11/</url>
+      <link href="/algorithm/offer/Offer_11/"/>
+      <url>/algorithm/offer/Offer_11/</url>
       
       
       
@@ -697,8 +765,8 @@
     
     <entry>
       <title>12 数值的整数次方</title>
-      <link href="/offer/Offer_12/"/>
-      <url>/offer/Offer_12/</url>
+      <link href="/algorithm/offer/Offer_12/"/>
+      <url>/algorithm/offer/Offer_12/</url>
       
       
       
@@ -819,6 +887,40 @@
             <tag> 待更新 </tag>
             
             <tag> mysql </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>详解mysql的for update</title>
+      <link href="/database/mysql/20201021/"/>
+      <url>/database/mysql/20201021/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> mysql </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>orcale随笔</title>
+      <link href="/database/orcale/20201102/"/>
+      <url>/database/orcale/20201102/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> orcale </tag>
             
         </tags>
       

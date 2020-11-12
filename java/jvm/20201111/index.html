@@ -1,0 +1,352 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>jvm 指令手册 | snmlm</title><meta name="description" content="栈和局部变量操作将常量压入栈的指令 aconst_null 将null对象引用压入栈 iconst_m1 将int类型常量-1压入栈 iconst_0 将int类型常量0压入栈 iconst_1 将int类型常量1压入栈 iconst_2 将int类型常量2压入栈 iconst_3 将int类型常量3压入栈 iconst_4 将int类型常量4压入栈 iconst_5 将int类型常量5压入栈 l"><meta name="keywords" content="jvm"><meta name="author" content="snmlm"><meta name="copyright" content="snmlm"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://snmlm.github.io/java/jvm/20201111/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta property="og:type" content="article"><meta property="og:title" content="jvm 指令手册"><meta property="og:url" content="https://snmlm.github.io/java/jvm/20201111/"><meta property="og:site_name" content="snmlm"><meta property="og:description" content="栈和局部变量操作将常量压入栈的指令 aconst_null 将null对象引用压入栈 iconst_m1 将int类型常量-1压入栈 iconst_0 将int类型常量0压入栈 iconst_1 将int类型常量1压入栈 iconst_2 将int类型常量2压入栈 iconst_3 将int类型常量3压入栈 iconst_4 将int类型常量4压入栈 iconst_5 将int类型常量5压入栈 l"><meta property="og:image" content="https://snmlm.github.io/img/head.gif"><meta property="article:published_time" content="2020-11-11T07:36:02.729Z"><meta property="article:modified_time" content="2020-11-12T06:54:35.618Z"><meta name="twitter:card" content="summary"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  hexoversion: '5.1.1',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime: '天',
+  date_suffix: {"one_hour":"刚刚","hours":"小时前","day":"天前"},
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: {"bookmark":{"message_prev":"按","message_next":"键将本页加入书签"},"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  baiduPush: false,
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+    },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true,
+  postUpdate: '2020-11-12 14:54:35'
+}</script><noscript><style type="text/css">
+#nav {
+  opacity: 1
+}
+.justified-gallery img {
+  opacity: 1
+}
+</style></noscript><meta name="generator" content="Hexo 5.1.1"></head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" data-lazy-src="/img/head.gif" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">85</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">47</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div id="body-wrap"><div id="sidebar"><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A0%88%E5%92%8C%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E6%93%8D%E4%BD%9C"><span class="toc-number">1.</span> <span class="toc-text">栈和局部变量操作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%86%E5%B8%B8%E9%87%8F%E5%8E%8B%E5%85%A5%E6%A0%88%E7%9A%84%E6%8C%87%E4%BB%A4"><span class="toc-number">1.1.</span> <span class="toc-text">将常量压入栈的指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8E%E6%A0%88%E4%B8%AD%E7%9A%84%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E4%B8%AD%E8%A3%85%E8%BD%BD%E5%80%BC%E7%9A%84%E6%8C%87%E4%BB%A4"><span class="toc-number">1.2.</span> <span class="toc-text">从栈中的局部变量中装载值的指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%86%E6%A0%88%E4%B8%AD%E7%9A%84%E5%80%BC%E5%AD%98%E5%85%A5%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E7%9A%84%E6%8C%87%E4%BB%A4"><span class="toc-number">1.3.</span> <span class="toc-text">将栈中的值存入局部变量的指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E7%94%A8-%E6%97%A0%E7%B1%BB%E5%9E%8B%EF%BC%89%E6%A0%88%E6%93%8D%E4%BD%9C"><span class="toc-number">1.4.</span> <span class="toc-text">通用(无类型）栈操作</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="toc-number">2.</span> <span class="toc-text">类型转换</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B4%E6%95%B0%E8%BF%90%E7%AE%97"><span class="toc-number">3.</span> <span class="toc-text">整数运算</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97"><span class="toc-number">4.</span> <span class="toc-text">逻辑运算</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A7%BB%E4%BD%8D%E6%93%8D%E4%BD%9C"><span class="toc-number">4.1.</span> <span class="toc-text">移位操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%89%E4%BD%8D%E5%B8%83%E5%B0%94%E8%BF%90%E7%AE%97"><span class="toc-number">4.2.</span> <span class="toc-text">按位布尔运算</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%AE%E7%82%B9%E8%BF%90%E7%AE%97"><span class="toc-number">4.3.</span> <span class="toc-text">浮点运算</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1%E5%92%8C%E6%95%B0%E7%BB%84"><span class="toc-number">5.</span> <span class="toc-text">对象和数组</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1%E6%93%8D%E4%BD%9C%E6%8C%87%E4%BB%A4"><span class="toc-number">5.1.</span> <span class="toc-text">对象操作指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E7%BB%84%E6%93%8D%E4%BD%9C%E6%8C%87%E4%BB%A4"><span class="toc-number">5.2.</span> <span class="toc-text">数组操作指令</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8E%A7%E5%88%B6%E6%B5%81"><span class="toc-number">6.</span> <span class="toc-text">控制流</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9D%A1%E4%BB%B6%E5%88%86%E6%94%AF%E6%8C%87%E4%BB%A4"><span class="toc-number">6.1.</span> <span class="toc-text">条件分支指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AF%94%E8%BE%83%E6%8C%87%E4%BB%A4"><span class="toc-number">6.2.</span> <span class="toc-text">比较指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A0%E6%9D%A1%E4%BB%B6%E8%BD%AC%E7%A7%BB%E6%8C%87%E4%BB%A4"><span class="toc-number">6.3.</span> <span class="toc-text">无条件转移指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A8%E8%B7%B3%E8%BD%AC%E6%8C%87%E4%BB%A4"><span class="toc-number">6.4.</span> <span class="toc-text">表跳转指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%82%E5%B8%B8"><span class="toc-number">6.5.</span> <span class="toc-text">异常</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E8%B0%83%E7%94%A8%E4%B8%8E%E8%BF%94%E5%9B%9E"><span class="toc-number">7.</span> <span class="toc-text">方法调用与返回</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E8%B0%83%E7%94%A8%E6%8C%87%E4%BB%A4"><span class="toc-number">7.1.</span> <span class="toc-text">方法调用指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E8%BF%94%E5%9B%9E%E6%8C%87%E4%BB%A4"><span class="toc-number">7.2.</span> <span class="toc-text">方法返回指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5"><span class="toc-number">7.3.</span> <span class="toc-text">线程同步</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#JVM%E6%8C%87%E4%BB%A4%E5%8A%A9%E8%AE%B0%E7%AC%A6"><span class="toc-number">8.</span> <span class="toc-text">JVM指令助记符</span></a></li></ol></div></div></div><header class="post-bg" id="page-header" style="background-image: url(/img/head.gif)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">snmlm</a></span><span id="menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">jvm 指令手册</div></div><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-11-11T07:36:02.729Z" title="发表于 2020-11-11 15:36:02">2020-11-11</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2020-11-12T06:54:35.618Z" title="更新于 2020-11-12 14:54:35">2020-11-12</time></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h1 id="栈和局部变量操作"><a href="#栈和局部变量操作" class="headerlink" title="栈和局部变量操作"></a>栈和局部变量操作</h1><h2 id="将常量压入栈的指令"><a href="#将常量压入栈的指令" class="headerlink" title="将常量压入栈的指令"></a>将常量压入栈的指令</h2><ul>
+<li>aconst_null 将null对象引用压入栈</li>
+<li>iconst_m1 将int类型常量-1压入栈</li>
+<li>iconst_0 将int类型常量0压入栈</li>
+<li>iconst_1 将int类型常量1压入栈</li>
+<li>iconst_2 将int类型常量2压入栈</li>
+<li>iconst_3 将int类型常量3压入栈</li>
+<li>iconst_4 将int类型常量4压入栈</li>
+<li>iconst_5 将int类型常量5压入栈</li>
+<li>lconst_0 将long类型常量0压入栈</li>
+<li>lconst_1 将long类型常量1压入栈</li>
+<li>fconst_0 将float类型常量0压入栈</li>
+<li>fconst_1 将float类型常量1压入栈</li>
+<li>dconst_0 将double类型常量0压入栈</li>
+<li>dconst_1 将double类型常量1压入栈</li>
+<li>bipush 将一个8位带符号整数压入栈</li>
+<li>sipush 将16位带符号整数压入栈</li>
+<li>ldc 把常量池中的项压入栈</li>
+<li>ldc_w 把常量池中的项压入栈（使用宽索引）</li>
+<li>ldc2_w 把常量池中long类型或者double类型的项压入栈（使用宽索引）</li>
+</ul>
+<h2 id="从栈中的局部变量中装载值的指令"><a href="#从栈中的局部变量中装载值的指令" class="headerlink" title="从栈中的局部变量中装载值的指令"></a>从栈中的局部变量中装载值的指令</h2><ul>
+<li>iload 从局部变量中装载int类型值</li>
+<li>lload 从局部变量中装载long类型值</li>
+<li>fload 从局部变量中装载float类型值</li>
+<li>dload 从局部变量中装载double类型值</li>
+<li>aload 从局部变量中装载引用类型值（refernce）</li>
+<li>iload_0 从局部变量0中装载int类型值</li>
+<li>iload_1 从局部变量1中装载int类型值</li>
+<li>iload_2 从局部变量2中装载int类型值</li>
+<li>iload_3 从局部变量3中装载int类型值</li>
+<li>lload_0 从局部变量0中装载long类型值</li>
+<li>lload_1 从局部变量1中装载long类型值</li>
+<li>lload_2 从局部变量2中装载long类型值</li>
+<li>lload_3 从局部变量3中装载long类型值</li>
+<li>fload_0 从局部变量0中装载float类型值</li>
+<li>fload_1 从局部变量1中装载float类型值</li>
+<li>fload_2 从局部变量2中装载float类型值</li>
+<li>fload_3 从局部变量3中装载float类型值</li>
+<li>dload_0 从局部变量0中装载double类型值</li>
+<li>dload_1 从局部变量1中装载double类型值</li>
+<li>dload_2 从局部变量2中装载double类型值</li>
+<li>dload_3 从局部变量3中装载double类型值</li>
+<li>aload_0 从局部变量0中装载引用类型值</li>
+<li>aload_1 从局部变量1中装载引用类型值</li>
+<li>aload_2 从局部变量2中装载引用类型值</li>
+<li>aload_3 从局部变量3中装载引用类型值</li>
+<li>iaload 从数组中装载int类型值</li>
+<li>laload 从数组中装载long类型值</li>
+<li>faload 从数组中装载float类型值</li>
+<li>daload 从数组中装载double类型值</li>
+<li>aaload 从数组中装载引用类型值</li>
+<li>baload 从数组中装载byte类型或boolean类型值</li>
+<li>caload 从数组中装载char类型值</li>
+<li>saload 从数组中装载short类型值</li>
+</ul>
+<h2 id="将栈中的值存入局部变量的指令"><a href="#将栈中的值存入局部变量的指令" class="headerlink" title="将栈中的值存入局部变量的指令"></a>将栈中的值存入局部变量的指令</h2><ul>
+<li>istore 将int类型值存入局部变量</li>
+<li>lstore 将long类型值存入局部变量</li>
+<li>fstore 将float类型值存入局部变量</li>
+<li>dstore 将double类型值存入局部变量</li>
+<li>astore 将将引用类型或returnAddress类型值存入局部变量</li>
+<li>istore_0 将int类型值存入局部变量0</li>
+<li>istore_1 将int类型值存入局部变量1</li>
+<li>istore_2 将int类型值存入局部变量2</li>
+<li>istore_3 将int类型值存入局部变量3</li>
+<li>lstore_0 将long类型值存入局部变量0</li>
+<li>lstore_1 将long类型值存入局部变量1</li>
+<li>lstore_2 将long类型值存入局部变量2</li>
+<li>lstore_3 将long类型值存入局部变量3</li>
+<li>fstore_0 将float类型值存入局部变量0</li>
+<li>fstore_1 将float类型值存入局部变量1</li>
+<li>fstore_2 将float类型值存入局部变量2</li>
+<li>fstore_3 将float类型值存入局部变量3</li>
+<li>dstore_0 将double类型值存入局部变量0</li>
+<li>dstore_1 将double类型值存入局部变量1</li>
+<li>dstore_2 将double类型值存入局部变量2</li>
+<li>dstore_3 将double类型值存入局部变量3</li>
+<li>astore_0 将引用类型或returnAddress类型值存入局部变量0</li>
+<li>astore_1 将引用类型或returnAddress类型值存入局部变量1</li>
+<li>astore_2 将引用类型或returnAddress类型值存入局部变量2</li>
+<li>astore_3 将引用类型或returnAddress类型值存入局部变量3</li>
+<li>iastore 将int类型值存入数组中</li>
+<li>lastore 将long类型值存入数组中</li>
+<li>fastore 将float类型值存入数组中</li>
+<li>dastore 将double类型值存入数组中</li>
+<li>aastore 将引用类型值存入数组中</li>
+<li>bastore 将byte类型或者boolean类型值存入数组中</li>
+<li>castore 将char类型值存入数组中</li>
+<li>sastore 将short类型值存入数组中</li>
+<li>wide指令</li>
+<li>wide 使用附加字节扩展局部变量索引</li>
+</ul>
+<h2 id="通用-无类型）栈操作"><a href="#通用-无类型）栈操作" class="headerlink" title="通用(无类型）栈操作"></a>通用(无类型）栈操作</h2><ul>
+<li>nop 不做任何操作</li>
+<li>pop 弹出栈顶端一个字长的内容</li>
+<li>pop2 弹出栈顶端两个字长的内容</li>
+<li>dup 复制栈顶部一个字长内容</li>
+<li>dup_x1 复制栈顶部一个字长的内容，然后将复制内容及原来弹出的两个字长的内容压入栈</li>
+<li>dup_x2 复制栈顶部一个字长的内容，然后将复制内容及原来弹出的三个字长的内容压入栈</li>
+<li>dup2 复制栈顶部两个字长内容</li>
+<li>dup2_x1 复制栈顶部两个字长的内容，然后将复制内容及原来弹出的三个字长的内容压入栈</li>
+<li>dup2_x2 复制栈顶部两个字长的内容，然后将复制内容及原来弹出的四个字长的内容压入栈</li>
+<li>swap 交换栈顶部两个字长内容</li>
+</ul>
+<h1 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h1><ul>
+<li>i2l 把int类型的数据转化为long类型</li>
+<li>i2f 把int类型的数据转化为float类型</li>
+<li>i2d 把int类型的数据转化为double类型</li>
+<li>l2i 把long类型的数据转化为int类型</li>
+<li>l2f 把long类型的数据转化为float类型</li>
+<li>l2d 把long类型的数据转化为double类型</li>
+<li>f2i 把float类型的数据转化为int类型</li>
+<li>f2l 把float类型的数据转化为long类型</li>
+<li>f2d 把float类型的数据转化为double类型</li>
+<li>d2i 把double类型的数据转化为int类型</li>
+<li>d2l 把double类型的数据转化为long类型</li>
+<li>d2f 把double类型的数据转化为float类型</li>
+<li>i2b 把int类型的数据转化为byte类型</li>
+<li>i2c 把int类型的数据转化为char类型</li>
+<li>i2s 把int类型的数据转化为short类型</li>
+</ul>
+<h1 id="整数运算"><a href="#整数运算" class="headerlink" title="整数运算"></a>整数运算</h1><ul>
+<li>iadd 执行int类型的加法</li>
+<li>ladd 执行long类型的加法</li>
+<li>isub 执行int类型的减法</li>
+<li>lsub 执行long类型的减法</li>
+<li>imul 执行int类型的乘法</li>
+<li>lmul 执行long类型的乘法</li>
+<li>idiv 执行int类型的除法</li>
+<li>ldiv 执行long类型的除法</li>
+<li>irem 计算int类型除法的余数</li>
+<li>lrem 计算long类型除法的余数</li>
+<li>ineg 对一个int类型值进行取反操作</li>
+<li>lneg 对一个long类型值进行取反操作</li>
+<li>iinc 把一个常量值加到一个int类型的局部变量上</li>
+</ul>
+<h1 id="逻辑运算"><a href="#逻辑运算" class="headerlink" title="逻辑运算"></a>逻辑运算</h1><h2 id="移位操作"><a href="#移位操作" class="headerlink" title="移位操作"></a>移位操作</h2><ul>
+<li>ishl 执行int类型的向左移位操作</li>
+<li>lshl 执行long类型的向左移位操作</li>
+<li>ishr 执行int类型的向右移位操作</li>
+<li>lshr 执行long类型的向右移位操作</li>
+<li>iushr 执行int类型的向右逻辑移位操作</li>
+<li>lushr 执行long类型的向右逻辑移位操作</li>
+</ul>
+<h2 id="按位布尔运算"><a href="#按位布尔运算" class="headerlink" title="按位布尔运算"></a>按位布尔运算</h2><ul>
+<li>iand 对int类型值进行“逻辑与”操作</li>
+<li>land 对long类型值进行“逻辑与”操作</li>
+<li>ior 对int类型值进行“逻辑或”操作</li>
+<li>lor 对long类型值进行“逻辑或”操作</li>
+<li>ixor 对int类型值进行“逻辑异或”操作</li>
+<li>lxor 对long类型值进行“逻辑异或”操作</li>
+</ul>
+<h2 id="浮点运算"><a href="#浮点运算" class="headerlink" title="浮点运算"></a>浮点运算</h2><ul>
+<li>fadd 执行float类型的加法</li>
+<li>dadd 执行double类型的加法</li>
+<li>fsub 执行float类型的减法</li>
+<li>dsub 执行double类型的减法</li>
+<li>fmul 执行float类型的乘法</li>
+<li>dmul 执行double类型的乘法</li>
+<li>fdiv 执行float类型的除法</li>
+<li>ddiv 执行double类型的除法</li>
+<li>frem 计算float类型除法的余数</li>
+<li>drem 计算double类型除法的余数</li>
+<li>fneg 将一个float类型的数值取反</li>
+<li>dneg 将一个double类型的数值取反</li>
+</ul>
+<h1 id="对象和数组"><a href="#对象和数组" class="headerlink" title="对象和数组"></a>对象和数组</h1><h2 id="对象操作指令"><a href="#对象操作指令" class="headerlink" title="对象操作指令"></a>对象操作指令</h2><ul>
+<li>new 创建一个新对象</li>
+<li>checkcast 确定对象为所给定的类型。后跟目标类，判断栈顶元素是否为目标类 / 接口的实例。如果不是便抛出异常</li>
+<li>getfield 从对象中获取字段</li>
+<li>putfield 设置对象中字段的值</li>
+<li>getstatic 从类中获取静态字段</li>
+<li>putstatic 设置类中静态字段的值</li>
+<li>instanceof 判断对象是否为给定的类型。后跟目标类，判断栈顶元素是否为目标类 / 接口的实例。是则压入 1，否则压入 0</li>
+</ul>
+<h2 id="数组操作指令"><a href="#数组操作指令" class="headerlink" title="数组操作指令"></a>数组操作指令</h2><ul>
+<li>newarray 分配数据成员类型为基本上数据类型的新数组</li>
+<li>anewarray 分配数据成员类型为引用类型的新数组</li>
+<li>arraylength 获取数组长度</li>
+<li>multianewarray 分配新的多维数组</li>
+</ul>
+<h1 id="控制流"><a href="#控制流" class="headerlink" title="控制流"></a>控制流</h1><h2 id="条件分支指令"><a href="#条件分支指令" class="headerlink" title="条件分支指令"></a>条件分支指令</h2><ul>
+<li>ifeq 如果等于0，则跳转</li>
+<li>ifne 如果不等于0，则跳转</li>
+<li>iflt 如果小于0，则跳转</li>
+<li>ifge 如果大于等于0，则跳转</li>
+<li>ifgt 如果大于0，则跳转</li>
+<li>ifle 如果小于等于0，则跳转</li>
+<li>if_icmpcq 如果两个int值相等，则跳转</li>
+<li>if_icmpne 如果两个int类型值不相等，则跳转</li>
+<li>if_icmplt 如果一个int类型值小于另外一个int类型值，则跳转</li>
+<li>if_icmpge 如果一个int类型值大于或者等于另外一个int类型值，则跳转</li>
+<li>if_icmpgt 如果一个int类型值大于另外一个int类型值，则跳转</li>
+<li>if_icmple 如果一个int类型值小于或者等于另外一个int类型值，则跳转</li>
+<li>ifnull 如果等于null，则跳转</li>
+<li>ifnonnull 如果不等于null，则跳转</li>
+<li>if_acmpeq 如果两个对象引用相等，则跳转</li>
+<li>if_acmpnc 如果两个对象引用不相等，则跳转</li>
+</ul>
+<h2 id="比较指令"><a href="#比较指令" class="headerlink" title="比较指令"></a>比较指令</h2><ul>
+<li>lcmp 比较long类型值</li>
+<li>fcmpl 比较float类型值（当遇到NaN时，返回-1）</li>
+<li>fcmpg 比较float类型值（当遇到NaN时，返回1）</li>
+<li>dcmpl 比较double类型值（当遇到NaN时，返回-1）</li>
+<li>dcmpg 比较double类型值（当遇到NaN时，返回1）</li>
+</ul>
+<h2 id="无条件转移指令"><a href="#无条件转移指令" class="headerlink" title="无条件转移指令"></a>无条件转移指令</h2><ul>
+<li>goto 无条件跳转</li>
+<li>goto_w 无条件跳转（宽索引）</li>
+</ul>
+<h2 id="表跳转指令"><a href="#表跳转指令" class="headerlink" title="表跳转指令"></a>表跳转指令</h2><ul>
+<li>tableswitch 通过索引访问跳转表，并跳转</li>
+<li>lookupswitch 通过键值匹配访问跳转表，并执行跳转操作</li>
+</ul>
+<h2 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h2><ul>
+<li>athrow 抛出异常或错误。将栈顶异常抛出</li>
+<li>finally子句</li>
+<li>jsr 跳转到子例程</li>
+<li>jsr_w 跳转到子例程（宽索引）</li>
+<li>rct 从子例程返回</li>
+</ul>
+<h1 id="方法调用与返回"><a href="#方法调用与返回" class="headerlink" title="方法调用与返回"></a>方法调用与返回</h1><h2 id="方法调用指令"><a href="#方法调用指令" class="headerlink" title="方法调用指令"></a>方法调用指令</h2><ul>
+<li>invokcvirtual 运行时按照对象的类来调用实例方法</li>
+<li>invokespecial 根据编译时类型来调用实例方法</li>
+<li>invokestatic 调用类（静态）方法</li>
+<li>invokcinterface 调用接口方法</li>
+</ul>
+<h2 id="方法返回指令"><a href="#方法返回指令" class="headerlink" title="方法返回指令"></a>方法返回指令</h2><ul>
+<li>ireturn 从方法中返回int类型的数据</li>
+<li>lreturn 从方法中返回long类型的数据</li>
+<li>freturn 从方法中返回float类型的数据</li>
+<li>dreturn 从方法中返回double类型的数据</li>
+<li>areturn 从方法中返回引用类型的数据</li>
+<li>return 从方法中返回，返回值为void</li>
+</ul>
+<h2 id="线程同步"><a href="#线程同步" class="headerlink" title="线程同步"></a>线程同步</h2><ul>
+<li>montiorenter 进入并获取对象监视器。即：为栈顶对象加锁</li>
+<li>monitorexit 释放并退出对象监视器。即：为栈顶对象解锁</li>
+</ul>
+<h1 id="JVM指令助记符"><a href="#JVM指令助记符" class="headerlink" title="JVM指令助记符"></a>JVM指令助记符</h1><ul>
+<li>变量到操作数栈：iload,iload_,lload,lload_,fload,fload_,dload,dload_,aload,aload_</li>
+<li>操作数栈到变量：istore,istore_,lstore,lstore_,fstore,fstore_,dstore,dstor_,astore,astore_</li>
+<li>常数到操作数栈：bipush,sipush,ldc,ldc_w,ldc2_w,aconst_null,iconst_ml,iconst_,lconst_,fconst_,dconst_</li>
+<li>加：iadd,ladd,fadd,dadd</li>
+<li>减：isub,lsub,fsub,dsub</li>
+<li>乘：imul,lmul,fmul,dmul</li>
+<li>除：idiv,ldiv,fdiv,ddiv</li>
+<li>余数：irem,lrem,frem,drem</li>
+<li>取负：ineg,lneg,fneg,dneg</li>
+<li>移位：ishl,lshr,iushr,lshl,lshr,lushr</li>
+<li>按位或：ior,lor</li>
+<li>按位与：iand,land</li>
+<li>按位异或：ixor,lxor</li>
+<li>类型转换：i2l,i2f,i2d,l2f,l2d,f2d(放宽数值转换)</li>
+<li>i2b,i2c,i2s,l2i,f2i,f2l,d2i,d2l,d2f(缩窄数值转换)</li>
+<li>创建类实便：new</li>
+<li>创建新数组：newarray,anewarray,multianwarray</li>
+<li>访问类的域和类实例域：getfield,putfield,getstatic,putstatic</li>
+<li>把数据装载到操作数栈：baload,caload,saload,iaload,laload,faload,daload,aaload</li>
+<li>从操作数栈存存储到数组：bastore,castore,sastore,iastore,lastore,fastore,dastore,aastore</li>
+<li>获取数组长度：arraylength</li>
+<li>检相类实例或数组属性：instanceof,checkcast</li>
+<li>操作数栈管理：pop,pop2,dup,dup2,dup_xl,dup2_xl,dup_x2,dup2_x2,swap</li>
+<li>有条件转移：ifeq,iflt,ifle,ifne,ifgt,ifge,ifnull,ifnonnull,if_icmpeq,if_icmpene,</li>
+<li>if_icmplt,if_icmpgt,if_icmple,if_icmpge,if_acmpeq,if_acmpne,lcmp,fcmpl</li>
+<li>fcmpg,dcmpl,dcmpg</li>
+<li>复合条件转移：tableswitch,lookupswitch</li>
+<li>无条件转移：goto,goto_w,jsr,jsr_w,ret</li>
+<li>调度对象的实便方法：invokevirtual</li>
+<li>调用由接口实现的方法：invokeinterface</li>
+<li>调用需要特殊处理的实例方法：invokespecial</li>
+<li>调用命名类中的静态方法：invokestatic</li>
+<li>方法返回：ireturn,lreturn,freturn,dreturn,areturn,return</li>
+<li>异常：athrow</li>
+<li>finally关键字的实现使用：jsr,jsr_w,ret</li>
+</ul>
+</div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">snmlm</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://snmlm.github.io/java/jvm/20201111/">https://snmlm.github.io/java/jvm/20201111/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://snmlm.github.io" target="_blank">snmlm</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/jvm/">jvm</a></div><div class="post_share"><div class="social-share" data-image="/img/head.gif" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/java/jvm/20201109/"><img class="prev-cover" data-lazy-src="/img/head.gif" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">jvm 类的加载过程</div></div></a></div><div class="next-post pull-right"><a href="/java/jvm/20201110/"><img class="next-cover" data-lazy-src="/img/head.gif" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">jvm class字节码文件结构</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/java/jvm/20201110/" title="jvm class字节码文件结构"><img class="cover" data-lazy-src="/img/head.gif"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-11-11</div><div class="title">jvm class字节码文件结构</div></div></a></div><div><a href="/java/jvm/20201109/" title="jvm 类的加载过程"><img class="cover" data-lazy-src="/img/head.gif"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-11-11</div><div class="title">jvm 类的加载过程</div></div></a></div><div><a href="/java/jvm/20201112/" title="jvm 类加载器"><img class="cover" data-lazy-src="/img/head.gif"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-11-12</div><div class="title">jvm 类加载器</div></div></a></div></div></div></article></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2018 - 2020 By snmlm</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><section id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/jsdelivr.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></div></body></html>

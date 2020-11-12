@@ -1,0 +1,218 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>jvm 类加载器 | snmlm</title><meta name="description" content="类加载器jvm支持两种类型的加载器，分别为引导类加载器（Bootstrap ClassLoader）和自定义类加载器（User-Defined ClassLoader）从概念上来说，自定义加载器一般指的是程序中由开发人员自定义的一类类加载器，单java虚拟机规范缺没有这么定义，而是将所有派生与抽象类ClassLoader的类加载期都划分为自定义加载器。常见的有4种类加载器：  引导加载器（Boot"><meta name="keywords" content="jvm"><meta name="author" content="snmlm"><meta name="copyright" content="snmlm"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://snmlm.github.io/java/jvm/20201112/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta property="og:type" content="article"><meta property="og:title" content="jvm 类加载器"><meta property="og:url" content="https://snmlm.github.io/java/jvm/20201112/"><meta property="og:site_name" content="snmlm"><meta property="og:description" content="类加载器jvm支持两种类型的加载器，分别为引导类加载器（Bootstrap ClassLoader）和自定义类加载器（User-Defined ClassLoader）从概念上来说，自定义加载器一般指的是程序中由开发人员自定义的一类类加载器，单java虚拟机规范缺没有这么定义，而是将所有派生与抽象类ClassLoader的类加载期都划分为自定义加载器。常见的有4种类加载器：  引导加载器（Boot"><meta property="og:image" content="https://snmlm.github.io/img/head.gif"><meta property="article:published_time" content="2020-11-12T01:06:46.710Z"><meta property="article:modified_time" content="2020-11-12T06:56:36.134Z"><meta name="twitter:card" content="summary"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  hexoversion: '5.1.1',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime: '天',
+  date_suffix: {"one_hour":"刚刚","hours":"小时前","day":"天前"},
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: {"bookmark":{"message_prev":"按","message_next":"键将本页加入书签"},"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  baiduPush: false,
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+    },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true,
+  postUpdate: '2020-11-12 14:56:36'
+}</script><noscript><style type="text/css">
+#nav {
+  opacity: 1
+}
+.justified-gallery img {
+  opacity: 1
+}
+</style></noscript><meta name="generator" content="Hexo 5.1.1"></head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" data-lazy-src="/img/head.gif" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">85</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">47</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div id="body-wrap"><div id="sidebar"><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8"><span class="toc-number">1.</span> <span class="toc-text">类加载器</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8%E5%85%B3%E7%B3%BB"><span class="toc-number">2.</span> <span class="toc-text">类加载器关系</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%9C%BA%E5%88%B6"><span class="toc-number">2.1.</span> <span class="toc-text">双亲委派机制</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96ClassLoader%E7%9A%84%E8%B7%AF%E5%BE%84"><span class="toc-number">3.</span> <span class="toc-text">获取ClassLoader的路径</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#class%E5%AF%B9%E8%B1%A1%E6%98%AF%E5%90%A6%E4%B8%BA%E5%90%8C%E4%B8%80%E4%B8%AA%E7%B1%BB"><span class="toc-number">4.</span> <span class="toc-text">class对象是否为同一个类</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%B1%BB%E7%9A%84%E4%B8%BB%E5%8A%A8%E4%BD%BF%E7%94%A8%E5%92%8C%E8%A2%AB%E5%8A%A8%E4%BD%BF%E7%94%A8"><span class="toc-number">5.</span> <span class="toc-text">类的主动使用和被动使用</span></a></li></ol></div></div></div><header class="post-bg" id="page-header" style="background-image: url(/img/head.gif)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">snmlm</a></span><span id="menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">jvm 类加载器</div></div><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-11-12T01:06:46.710Z" title="发表于 2020-11-12 09:06:46">2020-11-12</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2020-11-12T06:56:36.134Z" title="更新于 2020-11-12 14:56:36">2020-11-12</time></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h1 id="类加载器"><a href="#类加载器" class="headerlink" title="类加载器"></a>类加载器</h1><p>jvm支持两种类型的加载器，分别为引导类加载器（Bootstrap ClassLoader）和自定义类加载器（User-Defined ClassLoader）<br>从概念上来说，自定义加载器一般指的是程序中由开发人员自定义的一类类加载器，单java虚拟机规范缺没有这么定义，而是将所有派生与抽象类ClassLoader的类加载期都划分为自定义加载器。<br>常见的有4种类加载器：</p>
+<ul>
+<li>引导加载器（Bootstrap ClassLoader）<ul>
+<li>加载java的核心类库（JAVA_HOME/jre/lib/rt.jar、resourecs.jar或sum.boot.class.path路径下的内容），用于提供jvm自身需要的类</li>
+<li>由C++实现，并不继承java.lang.ClassLoader，嵌套在jvm内部</li>
+<li>加载扩展类加载器和应用程序类加载器，并指定为他的父类加载器</li>
+<li>出于安全考虑，Bootstrap启动类加载器只加载包名为java、javax、sun等开头的类。</li>
+</ul>
+</li>
+<li>扩展类加载器（Extensions ClassLoader）<ul>
+<li>它负责加载JRE的扩展目录，jre/lib/ext目录下或者由java.ext.dirs系统属性指定的目录中的JAR包的类。</li>
+<li>由Java语言实现,是sun.misc.Launcher的内部类，父加载是java.net.URLClassLoader，间接继承java.lang.ClassLoader</li>
+</ul>
+</li>
+<li>系统（应用程序）类加载器（System/Application ClassLoader）<ul>
+<li>加载环境变量classpath或系统属性java.class.path指定路径下的类库</li>
+<li>程序中默认的类加载，一般来说，java应用中的类都由他来加载</li>
+<li>由Java语言实现,是sun.misc.Launcher的内部类，父加载是java.net.URLClassLoader，间接继承java.lang.ClassLoader</li>
+</ul>
+</li>
+<li>自定义类加载器（User Defined ClassLoader）<ul>
+<li>意义<ul>
+<li>隔离类加载 <ul>
+<li>在多模块，多中间件应用中，来解决类冲突，模块之间，类加载的独立</li>
+</ul>
+</li>
+<li>修改类加载的方式<ul>
+<li>个性化加载，动态加载，不想通过扩展类加载器和系统类加载器</li>
+</ul>
+</li>
+<li>扩展加载源<ul>
+<li>比如数据库</li>
+</ul>
+</li>
+<li>防止源码泄漏<ul>
+<li>加密</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>实现<ul>
+<li>可以继承URLClassLoader</li>
+<li>可以继承ClassLoader，重载findClass方法，不破坏双亲委派机制</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="类加载器关系"><a href="#类加载器关系" class="headerlink" title="类加载器关系"></a>类加载器关系</h1><p>sun.misc.Launcher,它是一个java虚拟机的入口应用</p>
+<ul>
+<li>abstract ClassLoader 抽象类<ul>
+<li>loadClass(String) 调用入口，内部调用父类的loadClass和findClass</li>
+<li>findClass(String) 本类获取类对象，调用defineClass</li>
+<li>defineClass(byte[],int,int) 从二进制字节中获取类对象</li>
+<li>resolveClass(Class&lt;?&gt;) 解析类对象</li>
+<li>SecureClassLoader<ul>
+<li>URLClassLoader<ul>
+<li>findClass(String) </li>
+<li>ExtClassLoader 扩展类加载器</li>
+<li>AppClassLoader 系统类加载器<ul>
+<li>loadClass(String) 加载类，会调用上层加载器</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>类加载器直接是包含关系，上层包含下层，下层加载的类，上册是不知道的。</p>
+<ul>
+<li>引导加载器 由于是本地方法，所以无法获取地址和对象，加载<ul>
+<li>扩展类加载器 <ul>
+<li>系统（应用程序）类加载器<ul>
+<li>自定义类加载器（不破坏双亲委派机制的情况下，自定义一般属于最下层）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="双亲委派机制"><a href="#双亲委派机制" class="headerlink" title="双亲委派机制"></a>双亲委派机制</h2><ul>
+<li>防止重复加载类<ul>
+<li>加载器加载时，入口是在最下层的，逐层向上委托</li>
+<li>上层加载过，下层就不会加载</li>
+<li>上层无法加载，下层才会自己去加载</li>
+</ul>
+</li>
+<li>防止class被篡改<ul>
+<li>这样导致重新写一个与java核心一样的同包同名的类是无法被加载的<ul>
+<li>java.lang.String 沙箱安全机制</li>
+</ul>
+</li>
+<li>加密过的class，也无法被加载，需自定义加载器</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">protected Class&lt;?&gt; load<span class="constructor">Class(String <span class="params">name</span>, <span class="params">boolean</span> <span class="params">resolve</span>)</span> throws ClassNotFoundException&#123;</span><br><span class="line">    synchronized (get<span class="constructor">ClassLoadingLock(<span class="params">name</span>)</span>) &#123;</span><br><span class="line">        <span class="comment">// First, check if the class has already been loaded</span></span><br><span class="line">        Class&lt;?&gt; c = find<span class="constructor">LoadedClass(<span class="params">name</span>)</span>;<span class="comment">//类加载缓存列表，防止重复加载</span></span><br><span class="line">        <span class="keyword">if</span> (c<span class="operator"> == </span>null) &#123;</span><br><span class="line">            long t0 = <span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>nano<span class="constructor">Time()</span>;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> (parent != null) &#123;</span><br><span class="line">                    c = parent.load<span class="constructor">Class(<span class="params">name</span>, <span class="params">false</span>)</span>;<span class="comment">//调用父类的loadClass</span></span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    c = find<span class="constructor">BootstrapClassOrNull(<span class="params">name</span>)</span>;<span class="comment">//调用引导类加载器</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125; catch (ClassNotFoundException e) &#123;</span><br><span class="line">                <span class="comment">// ClassNotFoundException thrown if class not found</span></span><br><span class="line">                <span class="comment">// from the non-null parent class loader</span></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (c<span class="operator"> == </span>null) &#123;<span class="comment">//父类没获取到</span></span><br><span class="line">                <span class="comment">// If still not found, then invoke findClass in order</span></span><br><span class="line">                <span class="comment">// to find the class.</span></span><br><span class="line">                long t1 = <span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>nano<span class="constructor">Time()</span>;</span><br><span class="line">                c = find<span class="constructor">Class(<span class="params">name</span>)</span>;<span class="comment">//本类获取</span></span><br><span class="line"></span><br><span class="line">                <span class="comment">// this is the defining class loader; record the stats</span></span><br><span class="line">                sun.misc.<span class="module-access"><span class="module"><span class="identifier">PerfCounter</span>.</span></span>get<span class="constructor">ParentDelegationTime()</span>.add<span class="constructor">Time(<span class="params">t1</span> - <span class="params">t0</span>)</span>;</span><br><span class="line">                sun.misc.<span class="module-access"><span class="module"><span class="identifier">PerfCounter</span>.</span></span>get<span class="constructor">FindClassTime()</span>.add<span class="constructor">ElapsedTimeFrom(<span class="params">t1</span>)</span>;</span><br><span class="line">                sun.misc.<span class="module-access"><span class="module"><span class="identifier">PerfCounter</span>.</span></span>get<span class="constructor">FindClasses()</span>.increment<span class="literal">()</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (resolve) &#123;</span><br><span class="line">            resolve<span class="constructor">Class(<span class="params">c</span>)</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        return c;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="获取ClassLoader的路径"><a href="#获取ClassLoader的路径" class="headerlink" title="获取ClassLoader的路径"></a>获取ClassLoader的路径</h1><ul>
+<li>获取当前类的ClassLoader<ul>
+<li>clazz.getClassLoader()</li>
+</ul>
+</li>
+<li>获取当前线程上下文的ClassLoader<ul>
+<li>Thread.currentThread().getContextClassLoader()</li>
+</ul>
+</li>
+<li>获取系统的ClassLoader<ul>
+<li>ClassLoader.getSystemClassLoader()</li>
+</ul>
+</li>
+<li>获取调用者的ClassLoader<ul>
+<li>DriverManager.getCallerClassLoader()</li>
+</ul>
+</li>
+</ul>
+<h1 id="class对象是否为同一个类"><a href="#class对象是否为同一个类" class="headerlink" title="class对象是否为同一个类"></a>class对象是否为同一个类</h1><p>必要条件：</p>
+<ul>
+<li>类的完整类名必须一致，包括包名</li>
+<li>加载这个类的ClassLoader（实例对象的ClassLoader）必须相同</li>
+</ul>
+<h1 id="类的主动使用和被动使用"><a href="#类的主动使用和被动使用" class="headerlink" title="类的主动使用和被动使用"></a>类的主动使用和被动使用</h1><ul>
+<li>主动<ul>
+<li>创建类的实例</li>
+<li>访问某个类或接口的静态变量，或者对该静态变量赋值</li>
+<li>调用类的静态方法</li>
+<li>反射</li>
+<li>初始化一个类的子类</li>
+<li>java虚拟机启动时被表名为启动类的类</li>
+<li>jdk7开始童工动态语言支持<ul>
+<li>java.lang.invoke.MethodHandle实例的解析结果REF_getStatic、REF_putStatic、REF_invokeStatic句柄对应的类没有初始化，则初始化</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>被动<ul>
+<li>除了以上主动，其余都是被动，都不会导致类的初始化</li>
+</ul>
+</li>
+</ul>
+</div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">snmlm</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://snmlm.github.io/java/jvm/20201112/">https://snmlm.github.io/java/jvm/20201112/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://snmlm.github.io" target="_blank">snmlm</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/jvm/">jvm</a></div><div class="post_share"><div class="social-share" data-image="/img/head.gif" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/java/jvm/20201109/"><img class="next-cover" data-lazy-src="/img/head.gif" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">jvm 类的加载过程</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/java/jvm/20201110/" title="jvm class字节码文件结构"><img class="cover" data-lazy-src="/img/head.gif"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-11-11</div><div class="title">jvm class字节码文件结构</div></div></a></div><div><a href="/java/jvm/20201111/" title="jvm 指令手册"><img class="cover" data-lazy-src="/img/head.gif"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-11-11</div><div class="title">jvm 指令手册</div></div></a></div><div><a href="/java/jvm/20201109/" title="jvm 类的加载过程"><img class="cover" data-lazy-src="/img/head.gif"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-11-11</div><div class="title">jvm 类的加载过程</div></div></a></div></div></div></article></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2018 - 2020 By snmlm</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><section id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/jsdelivr.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></div></body></html>
