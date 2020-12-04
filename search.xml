@@ -4,6 +4,23 @@
   
     
     <entry>
+      <title>java基础 线程池</title>
+      <link href="/java/basics/20201203/"/>
+      <url>/java/basics/20201203/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> java </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>spring 自定义注解</title>
       <link href="/java/spring/20201202/"/>
       <url>/java/spring/20201202/</url>
@@ -642,8 +659,6 @@
       
       
         <tags>
-            
-            <tag> 待更新 </tag>
             
             <tag> java </tag>
             
