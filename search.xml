@@ -4,6 +4,161 @@
   
     
     <entry>
+      <title>用户态和内核态</title>
+      <link href="/system/20210415/"/>
+      <url>/system/20210415/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> 计算机 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>游戏</title>
+      <link href="/game/game/"/>
+      <url>/game/game/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> 玩起来 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>加密</title>
+      <link href="/system/20210414/"/>
+      <url>/system/20210414/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> 计算机 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>mysql中的UTF-8</title>
+      <link href="/database/mysql/20210413/"/>
+      <url>/database/mysql/20210413/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> mysql </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>tomcat等web服务器的工作原理</title>
+      <link href="/project/tomcat/20210413/"/>
+      <url>/project/tomcat/20210413/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> 项目 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>es优化</title>
+      <link href="/project/elasticsearch/20210413/"/>
+      <url>/project/elasticsearch/20210413/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> 项目 </tag>
+            
+            <tag> es </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>零拷贝</title>
+      <link href="/daily/20210413/"/>
+      <url>/daily/20210413/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> 原理 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>字符集</title>
+      <link href="/system/20210413/"/>
+      <url>/system/20210413/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> 计算机 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>编码</title>
+      <link href="/system/20210412/"/>
+      <url>/system/20210412/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> 计算机 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>vue</title>
       <link href="/vue/"/>
       <url>/vue/</url>
@@ -47,23 +202,6 @@
         <tags>
             
             <tag> spring </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>学习计划</title>
-      <link href="/learn/"/>
-      <url>/learn/</url>
-      
-      
-      
-        <tags>
-            
-            <tag> 计划 </tag>
             
         </tags>
       
@@ -1751,8 +1889,8 @@
     
     <entry>
       <title>linux CTRL+Z和CTRL+C区别</title>
-      <link href="/liunx/20190410/"/>
-      <url>/liunx/20190410/</url>
+      <link href="/system/liunx/20190410/"/>
+      <url>/system/liunx/20190410/</url>
       
       
       
