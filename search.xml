@@ -4,6 +4,57 @@
   
     
     <entry>
+      <title>redis 基础</title>
+      <link href="/database/redis/20210427/"/>
+      <url>/database/redis/20210427/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> redis </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>mongodb 基础</title>
+      <link href="/database/mongodb/20210428/"/>
+      <url>/database/mongodb/20210428/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> mongodb </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>NoSQL 前置</title>
+      <link href="/database/mongodb/20210427/"/>
+      <url>/database/mongodb/20210427/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> mongodb </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>复习</title>
       <link href="/fx/"/>
       <url>/fx/</url>
