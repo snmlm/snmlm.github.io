@@ -1,0 +1,171 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>zookeeper知识点 | snmlm</title><meta name="description" content="zookeeper是什么&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Zookeeper是基于Google Chubby论文的开源实现，它主要是用来解决分布式应用中经常遇到的一些数据管理问题，如：统一命名服务、状态同步服务、集群管理、配置管理 等等。 由于Hadoop生态系统中很多项目都依赖于zookeeper，如Pig，Hive等， 似乎很像一个"><meta name="keywords" content="tools,zookeeper"><meta name="author" content="snmlm"><meta name="copyright" content="snmlm"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://snmlm.github.io/tools/zookeeper/20190926/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta property="og:type" content="article"><meta property="og:title" content="zookeeper知识点"><meta property="og:url" content="https://snmlm.github.io/tools/zookeeper/20190926/"><meta property="og:site_name" content="snmlm"><meta property="og:description" content="zookeeper是什么&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Zookeeper是基于Google Chubby论文的开源实现，它主要是用来解决分布式应用中经常遇到的一些数据管理问题，如：统一命名服务、状态同步服务、集群管理、配置管理 等等。 由于Hadoop生态系统中很多项目都依赖于zookeeper，如Pig，Hive等， 似乎很像一个"><meta property="og:image" content="https://snmlm.github.io/img/head.gif"><meta property="article:published_time" content="2019-09-25T16:00:00.000Z"><meta property="article:modified_time" content="2021-05-06T14:29:11.960Z"><meta name="twitter:card" content="summary"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  hexoversion: '5.1.1',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime: '天',
+  date_suffix: {"one_hour":"刚刚","hours":"小时前","day":"天前"},
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: {"bookmark":{"message_prev":"按","message_next":"键将本页加入书签"},"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  baiduPush: false,
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+    },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true,
+  postUpdate: '2021-05-06 22:29:11'
+}</script><noscript><style type="text/css">
+#nav {
+  opacity: 1
+}
+.justified-gallery img {
+  opacity: 1
+}
+</style></noscript><meta name="generator" content="Hexo 5.1.1"></head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" data-lazy-src="/img/head.gif" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">128</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">57</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div id="body-wrap"><div id="sidebar"><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#zookeeper%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">1.</span> <span class="toc-text">zookeeper是什么</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#zookeeper%E6%8F%90%E4%BE%9B%E4%BA%86%E4%BB%80%E4%B9%88"><span class="toc-number">2.</span> <span class="toc-text">zookeeper提供了什么</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#zookeeper%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F"><span class="toc-number">3.</span> <span class="toc-text">zookeeper文件系统</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#zookeeper%E9%80%9A%E7%9F%A5%E6%9C%BA%E5%88%B6"><span class="toc-number">4.</span> <span class="toc-text">zookeeper通知机制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#zookeeper%E6%9C%89%E5%93%AA%E4%BA%9B%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">5.</span> <span class="toc-text">zookeeper有哪些应用场景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#zk%E7%9A%84%E5%91%BD%E5%90%8D%E6%9C%8D%E5%8A%A1"><span class="toc-number">6.</span> <span class="toc-text">zk的命名服务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#zk%E7%9A%84%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86"><span class="toc-number">7.</span> <span class="toc-text">zk的配置管理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#zookeeper%E9%9B%86%E7%BE%A4%E7%AE%A1%E7%90%86"><span class="toc-number">8.</span> <span class="toc-text">zookeeper集群管理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#zookeeper%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81"><span class="toc-number">9.</span> <span class="toc-text">zookeeper分布式锁</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#zk%E9%98%9F%E5%88%97%E7%AE%A1%E7%90%86"><span class="toc-number">10.</span> <span class="toc-text">zk队列管理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#zk%E6%95%B0%E6%8D%AE%E5%A4%8D%E5%88%B6"><span class="toc-number">11.</span> <span class="toc-text">zk数据复制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#zookeeper%E6%98%AF%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E4%BA%8B%E5%8A%A1%E7%9A%84%E9%A1%BA%E5%BA%8F%E4%B8%80%E8%87%B4%E6%80%A7%E7%9A%84"><span class="toc-number">12.</span> <span class="toc-text">zookeeper是如何保证事务的顺序一致性的</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#zk%E9%9B%86%E7%BE%A4%E4%B8%8Bserver%E5%B7%A5%E4%BD%9C%E7%8A%B6%E6%80%81"><span class="toc-number">13.</span> <span class="toc-text">zk集群下server工作状态</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#zookeeper%E6%98%AF%E5%A6%82%E4%BD%95%E9%80%89%E4%B8%BELeader%E7%9A%84"><span class="toc-number">14.</span> <span class="toc-text">zookeeper是如何选举Leader的</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#zookeeper%E5%90%8C%E6%AD%A5%E6%B5%81%E7%A8%8B"><span class="toc-number">15.</span> <span class="toc-text">zookeeper同步流程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E9%80%9A%E7%9F%A5%E5%92%8C%E5%8D%8F%E8%B0%83"><span class="toc-number">16.</span> <span class="toc-text">分布式通知和协调</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#zk%E7%9A%84session%E6%9C%BA%E5%88%B6"><span class="toc-number">17.</span> <span class="toc-text">zk的session机制</span></a></li></ol></div></div></div><header class="post-bg" id="page-header" style="background-image: url(/img/head.gif)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">snmlm</a></span><span id="menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">zookeeper知识点</div></div><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2019-09-25T16:00:00.000Z" title="发表于 2019-09-26 00:00:00">2019-09-26</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-05-06T14:29:11.960Z" title="更新于 2021-05-06 22:29:11">2021-05-06</time></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h4 id="zookeeper是什么"><a href="#zookeeper是什么" class="headerlink" title="zookeeper是什么"></a>zookeeper是什么</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Zookeeper是基于Google Chubby论文的开源实现，它主要是用来解决分布式应用中经常遇到的一些数据管理问题，如：统一命名服务、状态同步服务、集群管理、配置管理 等等。 由于Hadoop生态系统中很多项目都依赖于zookeeper，如Pig，Hive等， 似乎很像一个动物园管理员，于是取名为Zookeeper。<a id="more"></a></p>
+<h4 id="zookeeper提供了什么"><a href="#zookeeper提供了什么" class="headerlink" title="zookeeper提供了什么"></a>zookeeper提供了什么</h4><ul>
+<li>文件系统</li>
+<li>通知机制<h4 id="zookeeper文件系统"><a href="#zookeeper文件系统" class="headerlink" title="zookeeper文件系统"></a>zookeeper文件系统</h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;zookeeper提供一个类似unix文件系统目录的多层级节点命名空间（节点称为znode）。与文件系统不同的是，这些节点都可以设置关联的数据，而文件系统中只有文件节点可以存放数据而目录节点不行。zookeeper为了保证高吞吐和低延迟，在内存中维护了这个树状的目录结构，这种特性使得zookeeper不能用于存放大量的数据，每个节点的存放数据上限为1M。<h4 id="zookeeper通知机制"><a href="#zookeeper通知机制" class="headerlink" title="zookeeper通知机制"></a>zookeeper通知机制</h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;client端会对某个znode建立一个watcher事件，当该znode发生变化时，zk会主动通知watch这个znode的client，然后client根据znode的变化来做出业务上的改变等。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;watcher的特点：</li>
+<li>轻量级：一个callback函数。</li>
+<li>异步性：不会block正常的读写请求。</li>
+<li>主动推送：Watch被触发时，由Zookeeper服务端主动将更新推送给客户端。</li>
+<li>一次性：数据变化时，Watch只会被触发一次。如果客户端想得到后续更新的通知，必须要在 Watch 被触发后重新注册一个 Watch。</li>
+<li>仅通知：仅通知变更类型，不附带变更后的结果。</li>
+<li>顺序性：如果多个更新触发了多个Watch，那 Watch 被触发的顺序与更新顺序一致。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;使用watch的注意事项：</li>
+<li>由于watcher是一次性的，所以需要自己去实现永久watch</li>
+<li>如果被watch的节点频繁更新，会出现“丢数据”的情况</li>
+<li>watcher数量过多会导致性能下降<h4 id="zookeeper有哪些应用场景"><a href="#zookeeper有哪些应用场景" class="headerlink" title="zookeeper有哪些应用场景"></a>zookeeper有哪些应用场景</h4></li>
+<li>名字服务</li>
+<li>配置管理</li>
+<li>集群管理</li>
+<li>分布式锁</li>
+<li>队列管理</li>
+<li>消息订阅</li>
+</ul>
+<h4 id="zk的命名服务"><a href="#zk的命名服务" class="headerlink" title="zk的命名服务"></a>zk的命名服务</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;命名服务是指通过指定的名字来获取资源或者服务的地址，利用zk创建一个全局的路径，即是唯一的路径，这个路径就可以作为一个名字，指向集群中的集群，提供的服务的地址，或者一个远程的对象等等。</p>
+<h4 id="zk的配置管理"><a href="#zk的配置管理" class="headerlink" title="zk的配置管理"></a>zk的配置管理</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;程序分布式的部署在不同的机器上，将程序的配置信息放在zk的znode下，当有配置发生改变时，也就是znode发生变化时，可以通过改变zk中某个目录节点的内容，利用watcher通知给各个客户端，从而更改配置。</p>
+<h4 id="zookeeper集群管理"><a href="#zookeeper集群管理" class="headerlink" title="zookeeper集群管理"></a>zookeeper集群管理</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;所谓集群管理无在乎两点：是否有机器退出和加入、选举master。 对于第一点，所有机器约定在父目录下创建临时目录节点，然后监听父目录节点的子节点变化消息。一旦有机器挂掉，该机器与 zookeeper的连接断开，其所创建的临时目录节点被删除，所有其他机器都收到通知：某个兄弟目录被删除，于是，所有人都知道：它上船了。 新机器加入也是类似，所有机器收到通知：新兄弟目录加入，highcount又有了，对于第二点，我们稍微改变一下，所有机器创建临时顺序编号目录节点，每次选取编号最小的机器作为master就好。</p>
+<h4 id="zookeeper分布式锁"><a href="#zookeeper分布式锁" class="headerlink" title="zookeeper分布式锁"></a>zookeeper分布式锁</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;有了zookeeper的一致性文件系统，锁的问题变得容易。锁服务可以分为两类，一个是保持独占，另一个是控制时序。 对于第一类，我们将zookeeper上的一个znode看作是一把锁，通过createznode的方式来实现。所有客户端都去创建 /distribute_lock 节点，最终成功创建的那个客户端也即拥有了这把锁。用完删除掉自己创建的distribute_lock 节点就释放出锁。 对于第二类， /distribute_lock 已经预先存在，所有客户端在它下面创建临时顺序编号目录节点，和选master一样，编号最小的获得锁，用完删除，依次方便。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;获取分布式锁的流程<br><img src= "/img/loading.gif" data-lazy-src="https://raw.githubusercontent.com/snmlm/resources/master/picture/Nlms57L.png"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在获取分布式锁的时候在locker节点下创建临时顺序节点，释放锁的时候删除该临时节点。客户端调用createNode方法在locker下创建临时顺序节点， 然后调用getChildren(“locker”)来获取locker下面的所有子节点，注意此时不用设置任何Watcher。客户端获取到所有的子节点path之后，如果发现自己创建的节点在所有创建的子节点序号最小，那么就认为该客户端获取到了锁。如果发现自己创建的节点并非locker所有子节点中最小的，说明自己还没有获取到锁，此时客户端需要找到比自己小的那个节点，然后对其调用exist()方法，同时对其注册事件监听器。之后，让这个被关注的节点删除，则客户端的Watcher会收到相应通知，此时再次判断自己创建的节点是否是locker子节点中序号最小的，如果是则获取到了锁，如果不是则重复以上步骤继续获取到比自己小的一个节点并注册监听。当前这个过程中还需要许多的逻辑判断。<br><img src= "/img/loading.gif" data-lazy-src="https://raw.githubusercontent.com/snmlm/resources/master/picture/jSkhsaA.png"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;代码的实现主要是基于互斥锁，获取分布式锁的重点逻辑在于BaseDistributedLock，实现了基于Zookeeper实现分布式锁的细节。</p>
+<h4 id="zk队列管理"><a href="#zk队列管理" class="headerlink" title="zk队列管理"></a>zk队列管理</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;两种类型的队列： 1、同步队列，当一个队列的成员都聚齐时，这个队列才可用，否则一直等待所有成员到达。 2、队列按照 FIFO 方式进行入队和出队操作。 第一类，在约定目录下创建临时目录节点，监听节点数目是否是我们要求的数目。 第二类，和分布式锁服务中的控制时序场景基本原理一致，入列有编号，出列按编号。在特定的目录下创建PERSISTENT_SEQUENTIAL节点，创建成功时Watcher通知等待的队列，队列删除序列号最小的节点用以消费。此场景下Zookeeper的znode用于消息存储，znode存储的数据就是消息队列中的消息内容，SEQUENTIAL序列号就是消息的编号，按序取出即可。由于创建的节点是持久化的，所以不必担心队列消息的丢失问题。</p>
+<h4 id="zk数据复制"><a href="#zk数据复制" class="headerlink" title="zk数据复制"></a>zk数据复制</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Zookeeper作为一个集群提供一致的数据服务，自然，它要在所有机器间做数据复制。数据复制的好处： 1、容错：一个节点出错，不致于让整个系统停止工作，别的节点可以接管它的工作； 2、提高系统的扩展能力 ：把负载分布到多个节点上，或者增加节点来提高系统的负载能力； 3、提高性能：让客户端本地访问就近的节点，提高用户访问速度。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;从客户端读写访问的透明度来看，数据复制集群系统分下面两种： 1、写主(WriteMaster) ：对数据的修改提交给指定的节点。读无此限制，可以读取任何一个节点。这种情况下客户端需要对读与写进行区别，俗称读写分离； 2、写任意(Write Any)：对数据的修改可提交给任意的节点，跟读一样。这种情况下，客户端对集群节点的角色与变化透明。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;对zookeeper来说，它采用的方式是写任意。通过增加机器，它的读吞吐能力和响应能力扩展性非常好，而写，随着机器的增多吞吐能力肯定下降（这也是它建立observer的原因），而响应能力则取决于具体实现方式，是延迟复制保持最终一致性，还是立即复制快速响应。</p>
+<h4 id="zookeeper是如何保证事务的顺序一致性的"><a href="#zookeeper是如何保证事务的顺序一致性的" class="headerlink" title="zookeeper是如何保证事务的顺序一致性的"></a>zookeeper是如何保证事务的顺序一致性的</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;zookeeper采用了递增的事务Id来标识，所有的proposal（提议）都在被提出的时候加上了zxid，zxid实际上是一个64位的数字，高32位是epoch（时期; 纪元; 世; 新时代）用来标识leader是否发生改变，如果有新的leader产生出来，epoch会自增，低32位用来递增计数。当新产生proposal的时候，会依据数据库的两阶段过程，首先会向其他的server发出事务执行请求，如果超过半数的机器都能执行并且能够成功，那么就会开始执行。</p>
+<h4 id="zk集群下server工作状态"><a href="#zk集群下server工作状态" class="headerlink" title="zk集群下server工作状态"></a>zk集群下server工作状态</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;每个Server在工作过程中有四种状态：</p>
+<ul>
+<li>LOOKING：当前Server不知道leader是谁，正在搜寻</li>
+<li>LEADING：当前server角色为leader</li>
+<li>FOLLOWING：当前server角色为follower</li>
+<li>OBSERVING：当前server角色为observer</li>
+</ul>
+<h4 id="zookeeper是如何选举Leader的"><a href="#zookeeper是如何选举Leader的" class="headerlink" title="zookeeper是如何选举Leader的"></a>zookeeper是如何选举Leader的</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当leader崩溃或者leader失去大多数的follower，这时zk进入恢复模式，恢复模式需要重新选举出一个新的leader，让所有的Server都恢复到一个正确的状态。Zk的选举算法有两种：一种是基于basic paxos实现的，另外一种是基于fast paxos算法实现的。系统默认的选举算法为fast paxos。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1、Zookeeper选主流程(basic paxos) （1）选举线程由当前Server发起选举的线程担任，其主要功能是对投票结果进行统计，并选出推荐的Server； （2）选举线程首先向所有Server发起一次询问(包括自己)； （3）选举线程收到回复后，验证是否是自己发起的询问(验证zxid是否一致)，然后获取对方的id(myid)，并存储到当前询问对象列表中，最后获取对方提议的leader相关信息(id,zxid)，并将这些信息存储到当次选举的投票记录表中； （4）收到所有Server回复以后，就计算出zxid最大的那个Server，并将这个Server相关信息设置成下一次要投票的Server； （5）线程将当前zxid最大的Server设置为当前Server要推荐的Leader，如果此时获胜的Server获得n/2 + 1的Server票数，设置当前推荐的leader为获胜的Server，将根据获胜的Server相关信息设置自己的状态，否则，继续这个过程，直到leader被选举出来。 通过流程分析我们可以得出：要使Leader获得多数Server的支持，则Server总数必须是奇数2n+1，且存活的Server的数目不得少于n+1. 每个Server启动后都会重复以上流程。在恢复模式下，如果是刚从崩溃状态恢复的或者刚启动的server还会从磁盘快照中恢复数据和会话信息，zk会记录事务日志并定期进行快照，方便在恢复时进行状态恢复。<br><img src= "/img/loading.gif" data-lazy-src="https://raw.githubusercontent.com/snmlm/resources/master/picture/qmfke99.png"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2、Zookeeper选主流程(fast paxos) fast paxos流程是在选举过程中，某Server首先向所有Server提议自己要成为leader，当其它Server收到提议以后，解决epoch和 zxid的冲突，并接受对方的提议，然后向对方发送接受提议完成的消息，重复这个流程，最后一定能选举出Leader。<br><img src= "/img/loading.gif" data-lazy-src="https://raw.githubusercontent.com/snmlm/resources/master/picture/L4TOaSl.png"></p>
+<h4 id="zookeeper同步流程"><a href="#zookeeper同步流程" class="headerlink" title="zookeeper同步流程"></a>zookeeper同步流程</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;选完Leader以后，zk就进入状态同步过程。</p>
+<ul>
+<li>Leader等待Follower和Observer连接；</li>
+<li>Follower连接leader，将最大的zxid发送给leader；</li>
+<li>Leader根据follower的zxid确定同步点；</li>
+<li>完成同步后通知follower 已经成为uptodate状态；</li>
+<li>Follower收到uptodate消息后，又可以重新接受client的请求进行服务了。</li>
+</ul>
+<p><img src= "/img/loading.gif" data-lazy-src="https://raw.githubusercontent.com/snmlm/resources/master/picture/QulqU95.png"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数据同步的4种方式：</p>
+<ul>
+<li>SNAP-全量同步<ul>
+<li>条件：peerLastZxid&lt;minCommittedLog</li>
+<li>说明：证明二者数据差异太大，follower数据过于陈旧，leader发送快照SNAP指令给follower全量同步数据，即leader将所有数据全量同步到follower</li>
+</ul>
+</li>
+<li>DIFF-增量同步<ul>
+<li>条件：minCommittedLog&lt;=peerLastZxid&lt;=maxCommittedLog</li>
+<li>说明：证明二者数据差异不大，follower上有一些leader上已经提交的提议proposal未同步，此时需要增量提交这些提议即可</li>
+</ul>
+</li>
+<li>TRUNC-仅回滚同步<ul>
+<li>条件：peerLastZxid&gt;minCommittedLog</li>
+<li>说明：证明follower上有些提议proposal并未在leader上提交，follower需要回滚到zxid为minCommittedLog对应的事务操作</li>
+</ul>
+</li>
+<li>TRUNC+DIFF-回滚+增量同步<ul>
+<li>条件：minCommittedLog&lt;=peerLastZxid&lt;=maxCommittedLog</li>
+<li>说明：leader a已经将事务truncA提交到本地事务日志中，但没有成功发起proposal协议进行投票就宕机了；然后集群中剔除原leader a重新选举出新leader b，又提交了若干新的提议proposal，然后原leader a重新服务又加入到集群中说明：此时a,b都有一些对方未提交的事务，若b是leader, a需要先回滚truncA然后增量同步新leader b上的数据。</li>
+</ul>
+</li>
+</ul>
+<h4 id="分布式通知和协调"><a href="#分布式通知和协调" class="headerlink" title="分布式通知和协调"></a>分布式通知和协调</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;对于系统调度来说：操作人员发送通知实际是通过控制台改变某个节点的状态，然后zk将这些变化发送给注册了这个节点的watcher的所有客户端。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;对于执行情况汇报：每个工作进程都在某个目录下创建一个临时节点。并携带工作的进度数据，这样汇总的进程可以监控目录子节点的变化获得工作进度的实时的全局情况。</p>
+<h4 id="zk的session机制"><a href="#zk的session机制" class="headerlink" title="zk的session机制"></a>zk的session机制</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;zookeeper会为每个客户端分配一个session，类似于web服务器一样，用来标识客户端的身份。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;session的作用：</p>
+<ul>
+<li>客户端标识</li>
+<li>超时检查</li>
+<li>请求的顺序执行</li>
+<li>维护临时节点的生命周期</li>
+<li>watcher通知</li>
+</ul>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;session的状态：</p>
+<ul>
+<li>CONNECTING</li>
+<li>CONNECTED</li>
+<li>RECONNECTING</li>
+<li>RECONNECTED</li>
+<li>CLOSED</li>
+</ul>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;session的属性：</p>
+<ul>
+<li>SessionID：会话ID，全局唯一</li>
+<li>TimeOut：会话超时时间</li>
+<li>TickTime：下次会话超时时间点</li>
+<li>isClosing：会话是否已经被关闭</li>
+</ul>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sessionID的构成：</p>
+<ul>
+<li>高8位代表创建Session时所在的zk节点的id</li>
+<li>中间40位代表zk节点当前角色在创建的时候的时间戳</li>
+<li>低16位是一个计数器，初始值为0</li>
+</ul>
+</div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">snmlm</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://snmlm.github.io/tools/zookeeper/20190926/">https://snmlm.github.io/tools/zookeeper/20190926/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://snmlm.github.io" target="_blank">snmlm</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/tools/">tools</a><a class="post-meta__tags" href="/tags/zookeeper/">zookeeper</a></div><div class="post_share"><div class="social-share" data-image="/img/head.gif" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/database/redis/20190927/"><img class="prev-cover" data-lazy-src="/img/head.gif" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">redis 淘汰策略</div></div></a></div><div class="next-post pull-right"><a href="/tools/springboot/20190710/"><img class="next-cover" data-lazy-src="/img/head.gif" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">spring boot项目</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/demo/20190307/" title="数字大小写"><img class="cover" data-lazy-src="/img/head.gif"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-03-07</div><div class="title">数字大小写</div></div></a></div><div><a href="/tools/dubbo/20190412/" title="dubbo的坑与填坑"><img class="cover" data-lazy-src="/img/head.gif"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-04-12</div><div class="title">dubbo的坑与填坑</div></div></a></div><div><a href="/tools/dubbo/20190414/" title="dubbo 配置加载顺序"><img class="cover" data-lazy-src="/img/head.gif"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-04-14</div><div class="title">dubbo 配置加载顺序</div></div></a></div><div><a href="/tools/git/20210506/" title="git ssh切换https"><img class="cover" data-lazy-src="/img/head.gif"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-05-06</div><div class="title">git ssh切换https</div></div></a></div><div><a href="/tools/spring/20190411/" title="spring容器外调用容器内的对象"><img class="cover" data-lazy-src="/img/head.gif"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-04-11</div><div class="title">spring容器外调用容器内的对象</div></div></a></div><div><a href="/tools/spring/20190421/" title="spring加载对象问题（坑）"><img class="cover" data-lazy-src="/img/head.gif"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-04-21</div><div class="title">spring加载对象问题（坑）</div></div></a></div></div></div></article></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2018 - 2021 By snmlm</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><section id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/jsdelivr.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></div></body></html>

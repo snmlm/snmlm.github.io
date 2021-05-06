@@ -4,9 +4,28 @@
   
     
     <entry>
+      <title>git ssh切换https</title>
+      <link href="/tools/git/20210506/"/>
+      <url>/tools/git/20210506/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> tools </tag>
+            
+            <tag> git </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>idea 自动部署</title>
-      <link href="/tools/20210428/"/>
-      <url>/tools/20210428/</url>
+      <link href="/tools/idea/20210428/"/>
+      <url>/tools/idea/20210428/</url>
       
       
       
@@ -92,12 +111,14 @@
     
     <entry>
       <title>LocalDate、LocalTime、LocalDateTime序列化问题</title>
-      <link href="/java/springboot/20210427/"/>
-      <url>/java/springboot/20210427/</url>
+      <link href="/tools/springboot/20210427/"/>
+      <url>/tools/springboot/20210427/</url>
       
       
       
         <tags>
+            
+            <tag> tools </tag>
             
             <tag> spring boot </tag>
             
@@ -109,12 +130,16 @@
     
     <entry>
       <title>Spring Cloud Alibaba引入问题</title>
-      <link href="/java/springboot/springcould/20210427/"/>
-      <url>/java/springboot/springcould/20210427/</url>
+      <link href="/tools/springboot/springcould/20210427/"/>
+      <url>/tools/springboot/springcould/20210427/</url>
       
       
       
         <tags>
+            
+            <tag> tools </tag>
+            
+            <tag> spring boot </tag>
             
             <tag> spring cloud </tag>
             
@@ -246,15 +271,32 @@
     
     
     <entry>
-      <title>es优化</title>
-      <link href="/project/elasticsearch/20210413/"/>
-      <url>/project/elasticsearch/20210413/</url>
+      <title>mysql中的UTF-8</title>
+      <link href="/database/mysql/20210413/"/>
+      <url>/database/mysql/20210413/</url>
       
       
       
         <tags>
             
-            <tag> 项目 </tag>
+            <tag> mysql </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>es优化</title>
+      <link href="/tools/elasticsearch/20210413/"/>
+      <url>/tools/elasticsearch/20210413/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> tools </tag>
             
             <tag> es </tag>
             
@@ -266,31 +308,16 @@
     
     <entry>
       <title>tomcat等web服务器的工作原理</title>
-      <link href="/project/tomcat/20210413/"/>
-      <url>/project/tomcat/20210413/</url>
+      <link href="/tools/tomcat/20210413/"/>
+      <url>/tools/tomcat/20210413/</url>
       
       
       
         <tags>
             
-            <tag> 项目 </tag>
+            <tag> tools </tag>
             
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>mysql中的UTF-8</title>
-      <link href="/database/mysql/20210413/"/>
-      <url>/database/mysql/20210413/</url>
-      
-      
-      
-        <tags>
-            
-            <tag> mysql </tag>
+            <tag> tomcat </tag>
             
         </tags>
       
@@ -334,12 +361,14 @@
     
     <entry>
       <title>spring 自定义注解</title>
-      <link href="/java/spring/20201202/"/>
-      <url>/java/spring/20201202/</url>
+      <link href="/tools/spring/20201202/"/>
+      <url>/tools/spring/20201202/</url>
       
       
       
         <tags>
+            
+            <tag> tools </tag>
             
             <tag> spring </tag>
             
@@ -364,6 +393,44 @@
       <title>13 调整数组顺序使奇数位于偶数前面</title>
       <link href="/algorithm/offer/Offer_13/"/>
       <url>/algorithm/offer/Offer_13/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> 算法 </tag>
+            
+            <tag> 剑指offer </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>14 链表中倒数第k个结点</title>
+      <link href="/algorithm/offer/Offer_14/"/>
+      <url>/algorithm/offer/Offer_14/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> 算法 </tag>
+            
+            <tag> 剑指offer </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>15 反转链表</title>
+      <link href="/algorithm/offer/Offer_15/"/>
+      <url>/algorithm/offer/Offer_15/</url>
       
       
       
@@ -437,123 +504,9 @@
     
     
     <entry>
-      <title>14 链表中倒数第k个结点</title>
-      <link href="/algorithm/offer/Offer_14/"/>
-      <url>/algorithm/offer/Offer_14/</url>
-      
-      
-      
-        <tags>
-            
-            <tag> 算法 </tag>
-            
-            <tag> 剑指offer </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>15 反转链表</title>
-      <link href="/algorithm/offer/Offer_15/"/>
-      <url>/algorithm/offer/Offer_15/</url>
-      
-      
-      
-        <tags>
-            
-            <tag> 算法 </tag>
-            
-            <tag> 剑指offer </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>21 弹出序列</title>
-      <link href="/algorithm/offer/Offer_21/"/>
-      <url>/algorithm/offer/Offer_21/</url>
-      
-      
-      
-        <tags>
-            
-            <tag> 算法 </tag>
-            
-            <tag> 剑指offer </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>20 包含min函数的栈</title>
       <link href="/algorithm/offer/Offer_20/"/>
       <url>/algorithm/offer/Offer_20/</url>
-      
-      
-      
-        <tags>
-            
-            <tag> 算法 </tag>
-            
-            <tag> 剑指offer </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>19 顺时针打印矩阵</title>
-      <link href="/algorithm/offer/Offer_19/"/>
-      <url>/algorithm/offer/Offer_19/</url>
-      
-      
-      
-        <tags>
-            
-            <tag> 算法 </tag>
-            
-            <tag> 剑指offer </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>24 二叉树中和为某一值的路径</title>
-      <link href="/algorithm/offer/Offer_24/"/>
-      <url>/algorithm/offer/Offer_24/</url>
-      
-      
-      
-        <tags>
-            
-            <tag> 算法 </tag>
-            
-            <tag> 剑指offer </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>23 二叉搜索树的后序遍历序列</title>
-      <link href="/algorithm/offer/Offer_23/"/>
-      <url>/algorithm/offer/Offer_23/</url>
       
       
       
@@ -589,9 +542,9 @@
     
     
     <entry>
-      <title>27 字符串的排列</title>
-      <link href="/algorithm/offer/Offer_27/"/>
-      <url>/algorithm/offer/Offer_27/</url>
+      <title>19 顺时针打印矩阵</title>
+      <link href="/algorithm/offer/Offer_19/"/>
+      <url>/algorithm/offer/Offer_19/</url>
       
       
       
@@ -608,9 +561,28 @@
     
     
     <entry>
-      <title>28 数组中出现次数超过一半的数字</title>
-      <link href="/algorithm/offer/Offer_28/"/>
-      <url>/algorithm/offer/Offer_28/</url>
+      <title>23 二叉搜索树的后序遍历序列</title>
+      <link href="/algorithm/offer/Offer_23/"/>
+      <url>/algorithm/offer/Offer_23/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> 算法 </tag>
+            
+            <tag> 剑指offer </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>24 二叉树中和为某一值的路径</title>
+      <link href="/algorithm/offer/Offer_24/"/>
+      <url>/algorithm/offer/Offer_24/</url>
       
       
       
@@ -646,9 +618,9 @@
     
     
     <entry>
-      <title>30 连续子数组的最大和</title>
-      <link href="/algorithm/offer/Offer_30/"/>
-      <url>/algorithm/offer/Offer_30/</url>
+      <title>26 二叉搜索树与双向链表</title>
+      <link href="/algorithm/offer/Offer_26/"/>
+      <url>/algorithm/offer/Offer_26/</url>
       
       
       
@@ -665,9 +637,85 @@
     
     
     <entry>
-      <title>31 整数中1出现的次数（从1到n整数中1出现的次数）</title>
-      <link href="/algorithm/offer/Offer_31/"/>
-      <url>/algorithm/offer/Offer_31/</url>
+      <title>27 字符串的排列</title>
+      <link href="/algorithm/offer/Offer_27/"/>
+      <url>/algorithm/offer/Offer_27/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> 算法 </tag>
+            
+            <tag> 剑指offer </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>21 弹出序列</title>
+      <link href="/algorithm/offer/Offer_21/"/>
+      <url>/algorithm/offer/Offer_21/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> 算法 </tag>
+            
+            <tag> 剑指offer </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>28 数组中出现次数超过一半的数字</title>
+      <link href="/algorithm/offer/Offer_28/"/>
+      <url>/algorithm/offer/Offer_28/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> 算法 </tag>
+            
+            <tag> 剑指offer </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>29 最小的K个数</title>
+      <link href="/algorithm/offer/Offer_29/"/>
+      <url>/algorithm/offer/Offer_29/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> 算法 </tag>
+            
+            <tag> 剑指offer </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>30 连续子数组的最大和</title>
+      <link href="/algorithm/offer/Offer_30/"/>
+      <url>/algorithm/offer/Offer_30/</url>
       
       
       
@@ -722,28 +770,9 @@
     
     
     <entry>
-      <title>29 最小的K个数</title>
-      <link href="/algorithm/offer/Offer_29/"/>
-      <url>/algorithm/offer/Offer_29/</url>
-      
-      
-      
-        <tags>
-            
-            <tag> 算法 </tag>
-            
-            <tag> 剑指offer </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>26 二叉搜索树与双向链表</title>
-      <link href="/algorithm/offer/Offer_26/"/>
-      <url>/algorithm/offer/Offer_26/</url>
+      <title>31 整数中1出现的次数（从1到n整数中1出现的次数）</title>
+      <link href="/algorithm/offer/Offer_31/"/>
+      <url>/algorithm/offer/Offer_31/</url>
       
       
       
@@ -1090,12 +1119,14 @@
     
     <entry>
       <title>spring 启动</title>
-      <link href="/java/spring/20200710/"/>
-      <url>/java/spring/20200710/</url>
+      <link href="/tools/spring/20200710/"/>
+      <url>/tools/spring/20200710/</url>
       
       
       
         <tags>
+            
+            <tag> tools </tag>
             
             <tag> spring </tag>
             
@@ -1160,14 +1191,16 @@
     
     <entry>
       <title>spring aop</title>
-      <link href="/java/spring/20200611/"/>
-      <url>/java/spring/20200611/</url>
+      <link href="/tools/spring/20200611/"/>
+      <url>/tools/spring/20200611/</url>
       
       
       
         <tags>
             
             <tag> 待更新 </tag>
+            
+            <tag> tools </tag>
             
             <tag> spring </tag>
             
@@ -1179,12 +1212,14 @@
     
     <entry>
       <title>spring ioc</title>
-      <link href="/java/spring/20200610/"/>
-      <url>/java/spring/20200610/</url>
+      <link href="/tools/spring/20200610/"/>
+      <url>/tools/spring/20200610/</url>
       
       
       
         <tags>
+            
+            <tag> tools </tag>
             
             <tag> spring </tag>
             
@@ -1362,6 +1397,25 @@
     
     
     <entry>
+      <title>05 重建二叉树</title>
+      <link href="/algorithm/offer/Offer_04/"/>
+      <url>/algorithm/offer/Offer_04/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> 算法 </tag>
+            
+            <tag> 剑指offer </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>05 用两个栈实现队列</title>
       <link href="/algorithm/offer/Offer_05/"/>
       <url>/algorithm/offer/Offer_05/</url>
@@ -1400,9 +1454,9 @@
     
     
     <entry>
-      <title>05 重建二叉树</title>
-      <link href="/algorithm/offer/Offer_04/"/>
-      <url>/algorithm/offer/Offer_04/</url>
+      <title>09 变态跳台阶</title>
+      <link href="/algorithm/offer/Offer_09/"/>
+      <url>/algorithm/offer/Offer_09/</url>
       
       
       
@@ -1438,9 +1492,9 @@
     
     
     <entry>
-      <title>07 斐波那契数列</title>
-      <link href="/algorithm/offer/Offer_07/"/>
-      <url>/algorithm/offer/Offer_07/</url>
+      <title>10 矩形覆盖</title>
+      <link href="/algorithm/offer/Offer_10/"/>
+      <url>/algorithm/offer/Offer_10/</url>
       
       
       
@@ -1495,28 +1549,9 @@
     
     
     <entry>
-      <title>10 矩形覆盖</title>
-      <link href="/algorithm/offer/Offer_10/"/>
-      <url>/algorithm/offer/Offer_10/</url>
-      
-      
-      
-        <tags>
-            
-            <tag> 算法 </tag>
-            
-            <tag> 剑指offer </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>09 变态跳台阶</title>
-      <link href="/algorithm/offer/Offer_09/"/>
-      <url>/algorithm/offer/Offer_09/</url>
+      <title>07 斐波那契数列</title>
+      <link href="/algorithm/offer/Offer_07/"/>
+      <url>/algorithm/offer/Offer_07/</url>
       
       
       
@@ -1593,12 +1628,14 @@
     
     <entry>
       <title>zookeeper知识点</title>
-      <link href="/java/zookeeper/20190926/"/>
-      <url>/java/zookeeper/20190926/</url>
+      <link href="/tools/zookeeper/20190926/"/>
+      <url>/tools/zookeeper/20190926/</url>
       
       
       
         <tags>
+            
+            <tag> tools </tag>
             
             <tag> zookeeper </tag>
             
@@ -1610,14 +1647,35 @@
     
     <entry>
       <title>spring boot项目</title>
-      <link href="/java/springboot/20190710/"/>
-      <url>/java/springboot/20190710/</url>
+      <link href="/tools/springboot/20190710/"/>
+      <url>/tools/springboot/20190710/</url>
       
       
       
         <tags>
             
+            <tag> tools </tag>
+            
             <tag> spring boot </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>mysql连接</title>
+      <link href="/database/mysql/20200630/"/>
+      <url>/database/mysql/20200630/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> 待更新 </tag>
+            
+            <tag> mysql </tag>
             
         </tags>
       
@@ -1652,25 +1710,6 @@
         <tags>
             
             <tag> orcale </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>mysql连接</title>
-      <link href="/database/mysql/20200630/"/>
-      <url>/database/mysql/20200630/</url>
-      
-      
-      
-        <tags>
-            
-            <tag> 待更新 </tag>
-            
-            <tag> mysql </tag>
             
         </tags>
       
@@ -1847,8 +1886,8 @@
     
     <entry>
       <title>利用activityMQ做处理，消息的顺序性和服务处理的时效性问题</title>
-      <link href="/java/activitymq/20190422/"/>
-      <url>/java/activitymq/20190422/</url>
+      <link href="/tools/activitymq/20190422/"/>
+      <url>/tools/activitymq/20190422/</url>
       
       
       
@@ -1866,14 +1905,16 @@
     
     <entry>
       <title>spring加载对象问题（坑）</title>
-      <link href="/java/spring/20190421/"/>
-      <url>/java/spring/20190421/</url>
+      <link href="/tools/spring/20190421/"/>
+      <url>/tools/spring/20190421/</url>
       
       
       
         <tags>
             
-            <tag> java </tag>
+            <tag> tools </tag>
+            
+            <tag> spring </tag>
             
         </tags>
       
@@ -1953,12 +1994,14 @@
     
     <entry>
       <title>dubbo 配置加载顺序</title>
-      <link href="/java/dubbo/20190414/"/>
-      <url>/java/dubbo/20190414/</url>
+      <link href="/tools/dubbo/20190414/"/>
+      <url>/tools/dubbo/20190414/</url>
       
       
       
         <tags>
+            
+            <tag> tools </tag>
             
             <tag> dubbo </tag>
             
@@ -1970,12 +2013,14 @@
     
     <entry>
       <title>spring boot 配置加载顺序</title>
-      <link href="/java/springboot/20190413/"/>
-      <url>/java/springboot/20190413/</url>
+      <link href="/tools/springboot/20190413/"/>
+      <url>/tools/springboot/20190413/</url>
       
       
       
         <tags>
+            
+            <tag> tools </tag>
             
             <tag> spring boot </tag>
             
@@ -1987,16 +2032,16 @@
     
     <entry>
       <title>dubbo的坑与填坑</title>
-      <link href="/java/dubbo/20190412/"/>
-      <url>/java/dubbo/20190412/</url>
+      <link href="/tools/dubbo/20190412/"/>
+      <url>/tools/dubbo/20190412/</url>
       
       
       
         <tags>
             
-            <tag> dubbo </tag>
+            <tag> tools </tag>
             
-            <tag> 持续更新 </tag>
+            <tag> dubbo </tag>
             
         </tags>
       
@@ -2006,12 +2051,14 @@
     
     <entry>
       <title>spring容器外调用容器内的对象</title>
-      <link href="/java/spring/20190411/"/>
-      <url>/java/spring/20190411/</url>
+      <link href="/tools/spring/20190411/"/>
+      <url>/tools/spring/20190411/</url>
       
       
       
         <tags>
+            
+            <tag> tools </tag>
             
             <tag> spring </tag>
             
@@ -2133,8 +2180,8 @@
     
     <entry>
       <title>数字大小写</title>
-      <link href="/tools/20190307/"/>
-      <url>/tools/20190307/</url>
+      <link href="/demo/20190307/"/>
+      <url>/demo/20190307/</url>
       
       
       
