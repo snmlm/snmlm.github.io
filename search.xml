@@ -4,6 +4,44 @@
   
     
     <entry>
+      <title>spirng bean的循环依赖以及解决方式</title>
+      <link href="/tools/spring/20210511/"/>
+      <url>/tools/spring/20210511/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> tools </tag>
+            
+            <tag> spring </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>spirng AOP</title>
+      <link href="/tools/spring/20210508/"/>
+      <url>/tools/spring/20210508/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> tools </tag>
+            
+            <tag> spring </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>mysql 添加行号</title>
       <link href="/database/mysql/20210507/"/>
       <url>/database/mysql/20210507/</url>
@@ -1046,25 +1084,6 @@
     
     
     <entry>
-      <title>spirng aop</title>
-      <link href="/tools/spring/20210508/"/>
-      <url>/tools/spring/20210508/</url>
-      
-      
-      
-        <tags>
-            
-            <tag> tools </tag>
-            
-            <tag> spring </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>汇总</title>
       <link href="/hz/"/>
       <url>/hz/</url>
@@ -1237,27 +1256,6 @@
             <tag> 方案 </tag>
             
             <tag> 待更新 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>spring aop</title>
-      <link href="/tools/spring/20200611/"/>
-      <url>/tools/spring/20200611/</url>
-      
-      
-      
-        <tags>
-            
-            <tag> 待更新 </tag>
-            
-            <tag> tools </tag>
-            
-            <tag> spring </tag>
             
         </tags>
       
