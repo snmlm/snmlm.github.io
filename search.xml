@@ -4,6 +4,44 @@
   
     
     <entry>
+      <title>lombok</title>
+      <link href="/tools/lombok/20210517/"/>
+      <url>/tools/lombok/20210517/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> tools </tag>
+            
+            <tag> lombok </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>mybiatis</title>
+      <link href="/tools/mybiatis/20210512/"/>
+      <url>/tools/mybiatis/20210512/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> tools </tag>
+            
+            <tag> mybiatis </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>spirng bean的循环依赖以及解决方式</title>
       <link href="/tools/spring/20210511/"/>
       <url>/tools/spring/20210511/</url>
