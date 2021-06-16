@@ -1,0 +1,288 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>nacos 基本介绍 | snmlm</title><meta name="description" content="什么是nacos Nacos 是阿里巴巴推出来的一个新开源项目，这是一个更易于构建云原生应用的动态服务发现、配置管理和服务管理平台。 Nacos 致力于帮助您发现、配置和管理微服务。Nacos 提供了一组简单易用的特性集，帮助您快速实现动态服务发现、服务配置、服务元数据及流量管理。 Nacos 帮助您更敏捷和容易地构建、交付和管理微服务平台。 Nacos 是构建以“服务”为中心的现代应用架构 (例"><meta name="keywords" content="tools,nacos"><meta name="author" content="snmlm"><meta name="copyright" content="snmlm"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://snmlm.github.io/tools/nacos/20210616/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta property="og:type" content="article"><meta property="og:title" content="nacos 基本介绍"><meta property="og:url" content="https://snmlm.github.io/tools/nacos/20210616/"><meta property="og:site_name" content="snmlm"><meta property="og:description" content="什么是nacos Nacos 是阿里巴巴推出来的一个新开源项目，这是一个更易于构建云原生应用的动态服务发现、配置管理和服务管理平台。 Nacos 致力于帮助您发现、配置和管理微服务。Nacos 提供了一组简单易用的特性集，帮助您快速实现动态服务发现、服务配置、服务元数据及流量管理。 Nacos 帮助您更敏捷和容易地构建、交付和管理微服务平台。 Nacos 是构建以“服务”为中心的现代应用架构 (例"><meta property="og:image" content="https://snmlm.github.io/img/head.gif"><meta property="article:published_time" content="2021-06-15T16:00:00.000Z"><meta property="article:modified_time" content="2021-06-16T07:11:56.838Z"><meta name="twitter:card" content="summary"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  hexoversion: '5.1.1',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime: '天',
+  date_suffix: {"one_hour":"刚刚","hours":"小时前","day":"天前"},
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: {"bookmark":{"message_prev":"按","message_next":"键将本页加入书签"},"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  baiduPush: false,
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+    },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true,
+  postUpdate: '2021-06-16 15:11:56'
+}</script><noscript><style type="text/css">
+#nav {
+  opacity: 1
+}
+.justified-gallery img {
+  opacity: 1
+}
+</style></noscript><meta name="generator" content="Hexo 5.1.1"></head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" data-lazy-src="/img/head.gif" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">141</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">64</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div id="body-wrap"><div id="sidebar"><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFnacos"><span class="toc-number">1.</span> <span class="toc-text">什么是nacos</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E7%89%B9%E6%80%A7"><span class="toc-number">2.</span> <span class="toc-text">关键特性</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9C%B0%E5%9B%BE"><span class="toc-number">3.</span> <span class="toc-text">地图</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%94%9F%E6%80%81%E5%9B%BE"><span class="toc-number">4.</span> <span class="toc-text">生态图</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#nacos-%E6%A6%82%E5%BF%B5"><span class="toc-number">5.</span> <span class="toc-text">nacos 概念</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9E%B6%E6%9E%84%E5%9B%BE"><span class="toc-number">6.</span> <span class="toc-text">架构图</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%80%BB%E8%BE%91%E6%9E%B6%E6%9E%84"><span class="toc-number">7.</span> <span class="toc-text">逻辑架构</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9E%84%E5%BB%BA%E7%89%A9%E3%80%81%E9%83%A8%E7%BD%B2%E5%8F%8A%E5%90%AF%E5%8A%A8%E6%A8%A1%E5%BC%8F"><span class="toc-number">8.</span> <span class="toc-text">构建物、部署及启动模式</span></a></li></ol></div></div></div><header class="post-bg" id="page-header" style="background-image: url(/img/head.gif)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">snmlm</a></span><span id="menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">nacos 基本介绍</div></div><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-06-15T16:00:00.000Z" title="发表于 2021-06-16 00:00:00">2021-06-16</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-06-16T07:11:56.838Z" title="更新于 2021-06-16 15:11:56">2021-06-16</time></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h1 id="什么是nacos"><a href="#什么是nacos" class="headerlink" title="什么是nacos"></a>什么是nacos</h1><ul>
+<li>Nacos 是阿里巴巴推出来的一个新开源项目，这是一个更易于构建云原生应用的动态服务发现、配置管理和服务管理平台。</li>
+<li>Nacos 致力于帮助您发现、配置和管理微服务。Nacos 提供了一组简单易用的特性集，帮助您快速实现动态服务发现、服务配置、服务元数据及流量管理。</li>
+<li>Nacos 帮助您更敏捷和容易地构建、交付和管理微服务平台。 Nacos 是构建以“服务”为中心的现代应用架构 (例如微服务范式、云原生范式) 的服务基础设施。</li>
+<li>官网：<a target="_blank" rel="noopener" href="https://nacos.io/">https://nacos.io</a></li>
+<li>官方文档：<a target="_blank" rel="noopener" href="https://nacos.io/zh-cn/docs/quick-start.html">https://nacos.io/zh-cn/docs/quick-start.html</a></li>
+</ul>
+<h1 id="关键特性"><a href="#关键特性" class="headerlink" title="关键特性"></a>关键特性</h1><ul>
+<li>服务发现和服务健康监测<ul>
+<li>Nacos 支持基于 DNS 和基于 RPC 的服务发现。服务提供者使用 原生SDK、OpenAPI、或一个独立的Agent TODO注册 Service 后，服务消费者可以使用DNS TODO 或HTTP&amp;API查找和发现服务。</li>
+<li>Nacos 提供对服务的实时的健康检查，阻止向不健康的主机或服务实例发送请求。Nacos 支持传输层 (PING 或 TCP)和应用层 (如 HTTP、MySQL、用户自定义）的健康检查。 对于复杂的云环境和网络拓扑环境中（如 VPC、边缘网络等）服务的健康检查，Nacos 提供了 agent 上报模式和服务端主动检测2种健康检查模式。Nacos 还提供了统一的健康检查仪表盘，帮助您根据健康状态管理服务的可用性及流量。</li>
+</ul>
+</li>
+<li>动态配置服务<ul>
+<li>动态配置服务可以让您以中心化、外部化和动态化的方式管理所有环境的应用配置和服务配置。</li>
+<li>动态配置消除了配置变更时重新部署应用和服务的需要，让配置管理变得更加高效和敏捷。</li>
+<li>配置中心化管理让实现无状态服务变得更简单，让服务按需弹性扩展变得更容易。</li>
+<li>Nacos 提供了一个简洁易用的UI (控制台样例 Demo) 帮助您管理所有的服务和应用的配置。Nacos 还提供包括配置版本跟踪、金丝雀发布、一键回滚配置以及客户端配置更新状态跟踪在内的一系列开箱即用的配置管理特性，帮助您更安全地在生产环境中管理配置变更和降低配置变更带来的风险。</li>
+</ul>
+</li>
+<li>动态 DNS 服务<ul>
+<li>动态 DNS 服务支持权重路由，让您更容易地实现中间层负载均衡、更灵活的路由策略、流量控制以及数据中心内网的简单DNS解析服务。动态DNS服务还能让您更容易地实现以 DNS 协议为基础的服务发现，以帮助您消除耦合到厂商私有服务发现 API 上的风险。</li>
+<li>Nacos 提供了一些简单的 DNS APIs TODO 帮助您管理服务的关联域名和可用的 IP:PORT 列表.</li>
+</ul>
+</li>
+<li>服务及其元数据管理<ul>
+<li>Nacos 能让您从微服务平台建设的视角管理数据中心的所有服务及元数据，包括管理服务的描述、生命周期、服务的静态依赖分析、服务的健康状态、服务的流量管理、路由及安全策略、服务的 SLA 以及最首要的 metrics 统计数据。</li>
+</ul>
+</li>
+<li>Dubbo 4.0 + Nacos 2.0 开放的服务平台<br><img src= "/img/loading.gif" data-lazy-src="https://raw.githubusercontent.com/snmlm/resources/master/picture/20210616_3.png"></li>
+<li>Kubernetes + Spring Cloud 统一服务管理<br><img src= "/img/loading.gif" data-lazy-src="https://raw.githubusercontent.com/snmlm/resources/master/picture/20210616_4.png"></li>
+</ul>
+<h1 id="地图"><a href="#地图" class="headerlink" title="地图"></a>地图</h1><p><img src= "/img/loading.gif" data-lazy-src="https://raw.githubusercontent.com/snmlm/resources/master/picture/20210616_1.png"></p>
+<ul>
+<li>特性大图：要从功能特性，非功能特性，全面介绍我们要解的问题域的特性诉求</li>
+<li>架构大图：通过清晰架构，让您快速进入 Nacos 世界</li>
+<li>业务大图：利用当前特性可以支持的业务场景，及其最佳实践</li>
+<li>生态大图：系统梳理 Nacos 和主流技术生态的关系</li>
+<li>优势大图：展示 Nacos 核心竞争力</li>
+<li>战略大图：要从战略到战术层面讲 Nacos 的宏观优势</li>
+</ul>
+<h1 id="生态图"><a href="#生态图" class="headerlink" title="生态图"></a>生态图</h1><p><img src= "/img/loading.gif" data-lazy-src="https://raw.githubusercontent.com/snmlm/resources/master/picture/20210616_2.png"><br>如 Nacos 全景图所示，Nacos 无缝支持一些主流的开源生态，例如</p>
+<ul>
+<li>Spring Cloud</li>
+<li>Apache Dubbo and Dubbo Mesh</li>
+<li>Kubernetes and CNCF。</li>
+</ul>
+<h1 id="nacos-概念"><a href="#nacos-概念" class="headerlink" title="nacos 概念"></a>nacos 概念</h1><ul>
+<li>地域<ul>
+<li>物理的数据中心，资源创建成功后不能更改</li>
+</ul>
+</li>
+<li>可用区<ul>
+<li>同一地域内，电力和网络相互独立的屋里区域。同一可用区内，实例的网络延迟较低。</li>
+</ul>
+</li>
+<li>接入点<ul>
+<li>地域的某个服务的入口域名。</li>
+</ul>
+</li>
+<li>命名空间<ul>
+<li>用于进行租户粒度的配置隔离。不同的命名空间下，可以存在相同的Group或Data ID的配置。Namespace的常用场景之一是不同环境的配置的区分隔离，例如开发测试环境和生产环境的资源（如配置、服务）隔离等。</li>
+</ul>
+</li>
+<li>配置<ul>
+<li>在系统开发过程中，开发者通常会将一些需要变更的参数、变量等从代码中分离出来独立管理，以独立的配置文件的形式存在。目的是让静态的系统工件或者交付物（如 WAR，JAR 包等）更好地和实际的物理运行环境进行适配。配置管理一般包含在系统部署的过程中，由系统管理员或者运维人员完成。配置变更是调整系统运行时的行为的有效手段。</li>
+</ul>
+</li>
+<li>配置管理<ul>
+<li>系统配置的编辑、存储、分发、变更管理、历史版本管理、变更审计等所有与配置相关的活动。</li>
+</ul>
+</li>
+<li>配置项<ul>
+<li>一个具体的可配置的参数与其值域，通常以 param-key=param-value 的形式存在。例如我们常配置系统的日志输出级别（logLevel=INFO|WARN|ERROR） 就是一个配置项。</li>
+</ul>
+</li>
+<li>配置集<ul>
+<li>一组相关或者不相关的配置项的集合称为配置集。在系统中，一个配置文件通常就是一个配置集，包含了系统各个方面的配置。例如，一个配置集可能包含了数据源、线程池、日志级别等配置项。</li>
+</ul>
+</li>
+<li>配置集 ID<ul>
+<li>Nacos 中的某个配置集的 ID。配置集 ID 是组织划分配置的维度之一。Data ID 通常用于组织划分系统的配置集。一个系统或者应用可以包含多个配置集，每个配置集都可以被一个有意义的名称标识。Data ID 通常采用类 Java 包（如 com.taobao.tc.refund.log.level）的命名规则保证全局唯一性。此命名规则非强制。</li>
+</ul>
+</li>
+<li>配置分组<ul>
+<li>Nacos 中的一组配置集，是组织配置的维度之一。通过一个有意义的字符串（如 Buy 或 Trade ）对配置集进行分组，从而区分 Data ID 相同的配置集。当您在 Nacos 上创建一个配置时，如果未填写配置分组的名称，则配置分组的名称默认采用 DEFAULT_GROUP 。配置分组的常见场景：不同的应用或组件使用了相同的配置类型，如 database_url 配置和 MQ_topic 配置。</li>
+</ul>
+</li>
+<li>配置快照<ul>
+<li>Nacos 的客户端 SDK 会在本地生成配置的快照。当客户端无法连接到 Nacos Server 时，可以使用配置快照显示系统的整体容灾能力。配置快照类似于 Git 中的本地 commit，也类似于缓存，会在适当的时机更新，但是并没有缓存过期（expiration）的概念。</li>
+</ul>
+</li>
+<li>服务<ul>
+<li>通过预定义接口网络访问的提供给客户端的软件功能。</li>
+</ul>
+</li>
+<li>服务名<ul>
+<li>服务提供的标识，通过该标识可以唯一确定其指代的服务。</li>
+</ul>
+</li>
+<li>服务注册中心<ul>
+<li>存储服务实例和服务负载均衡策略的数据库。</li>
+</ul>
+</li>
+<li>服务发现<ul>
+<li>在计算机网络上，（通常使用服务名）对服务下的实例的地址和元数据进行探测，并以预先定义的接口提供给客户端进行查询。</li>
+</ul>
+</li>
+<li>元信息<ul>
+<li>Nacos数据（如配置和服务）描述信息，如服务版本、权重、容灾策略、负载均衡策略、鉴权配置、各种自定义标签 (label)，从作用范围来看，分为服务级别的元信息、集群的元信息及实例的元信息。</li>
+</ul>
+</li>
+<li>应用<ul>
+<li>用于标识服务提供方的服务的属性。</li>
+</ul>
+</li>
+<li>服务分组<ul>
+<li>不同的服务可以归类到同一分组。</li>
+</ul>
+</li>
+<li>虚拟集群<ul>
+<li>同一个服务下的所有服务实例组成一个默认集群, 集群可以被进一步按需求划分，划分的单位可以是虚拟集群。</li>
+</ul>
+</li>
+<li>实例<ul>
+<li>提供一个或多个服务的具有可访问网络地址（IP:Port）的进程。</li>
+</ul>
+</li>
+<li>权重<ul>
+<li>实例级别的配置。权重为浮点数。权重越大，分配给该实例的流量越大。</li>
+</ul>
+</li>
+<li>健康检查<ul>
+<li>以指定方式检查服务下挂载的实例 (Instance) 的健康度，从而确认该实例 (Instance) 是否能提供服务。根据检查结果，实例 (Instance) 会被判断为健康或不健康。对服务发起解析请求时，不健康的实例 (Instance) 不会返回给客户端。</li>
+</ul>
+</li>
+<li>健康保护阈值<ul>
+<li>为了防止因过多实例 (Instance) 不健康导致流量全部流向健康实例 (Instance) ，继而造成流量压力把健康 健康实例 (Instance) 压垮并形成雪崩效应，应将健康保护阈值定义为一个 0 到 1 之间的浮点数。当域名健康实例 (Instance) 占总服务实例 (Instance) 的比例小于该值时，无论实例 (Instance) 是否健康，都会将这个实例 (Instance) 返回给客户端。这样做虽然损失了一部分流量，但是保证了集群的剩余健康实例 (Instance) 能正常工作。</li>
+</ul>
+</li>
+</ul>
+<h1 id="架构图"><a href="#架构图" class="headerlink" title="架构图"></a>架构图</h1><p><img src= "/img/loading.gif" data-lazy-src="https://raw.githubusercontent.com/snmlm/resources/master/picture/20210616_5.jpeg"></p>
+<ul>
+<li>服务 (Service)<ul>
+<li>服务是指一个或一组软件功能（例如特定信息的检索或一组操作的执行），其目的是不同的客户端可以为不同的目的重用（例如通过跨进程的网络调用）。Nacos 支持主流的服务生态，如 Kubernetes Service、gRPC|Dubbo RPC Service 或者 Spring Cloud RESTful Service.</li>
+</ul>
+</li>
+<li>服务注册中心 (Service Registry)<ul>
+<li>服务注册中心，它是服务，其实例及元数据的数据库。服务实例在启动时注册到服务注册表，并在关闭时注销。服务和路由器的客户端查询服务注册表以查找服务的可用实例。服务注册中心可能会调用服务实例的健康检查 API 来验证它是否能够处理请求。</li>
+</ul>
+</li>
+<li>服务元数据 (Service Metadata)<ul>
+<li>服务元数据是指包括服务端点(endpoints)、服务标签、服务版本号、服务实例权重、路由规则、安全策略等描述服务的数据</li>
+</ul>
+</li>
+<li>服务提供方 (Service Provider)<ul>
+<li>是指提供可复用和可调用服务的应用方</li>
+</ul>
+</li>
+<li>服务消费方 (Service Consumer)<ul>
+<li>是指会发起对某个服务调用的应用方</li>
+</ul>
+</li>
+<li>配置 (Configuration)<ul>
+<li>在系统开发过程中通常会将一些需要变更的参数、变量等从代码中分离出来独立管理，以独立的配置文件的形式存在。目的是让静态的系统工件或者交付物（如 WAR，JAR 包等）更好地和实际的物理运行环境进行适配。配置管理一般包含在系统部署的过程中，由系统管理员或者运维人员完成这个步骤。配置变更是调整系统运行时的行为的有效手段之一。</li>
+</ul>
+</li>
+<li>配置管理 (Configuration Management)<ul>
+<li>在数据中心中，系统中所有配置的编辑、存储、分发、变更管理、历史版本管理、变更审计等所有与配置相关的活动统称为配置管理。</li>
+</ul>
+</li>
+<li>名字服务 (Naming Service)<ul>
+<li>提供分布式系统中所有对象(Object)、实体(Entity)的“名字”到关联的元数据之间的映射管理服务，例如 ServiceName -&gt; Endpoints Info, Distributed Lock Name -&gt; Lock Owner/Status Info, DNS Domain Name -&gt; IP List, 服务发现和 DNS 就是名字服务的2大场景。</li>
+</ul>
+</li>
+<li>配置服务 (Configuration Service)<ul>
+<li>在服务或者应用运行过程中，提供动态配置或者元数据以及配置管理的服务提供者。</li>
+</ul>
+</li>
+</ul>
+<h1 id="逻辑架构"><a href="#逻辑架构" class="headerlink" title="逻辑架构"></a>逻辑架构</h1><p><img src= "/img/loading.gif" data-lazy-src="https://raw.githubusercontent.com/snmlm/resources/master/picture/20210616_6.png"></p>
+<ul>
+<li>服务管理：实现服务CRUD，域名CRUD，服务健康状态检查，服务权重管理等功能</li>
+<li>配置管理：实现配置管CRUD，版本管理，灰度管理，监听管理，推送轨迹，聚合数据等功能</li>
+<li>元数据管理：提供元数据CURD 和打标能力</li>
+<li>插件机制：实现三个模块可分可合能力，实现扩展点SPI机制</li>
+<li>事件机制：实现异步化事件通知，sdk数据变化异步通知等逻辑</li>
+<li>日志模块：管理日志分类，日志级别，日志可移植性（尤其避免冲突），日志格式，异常码+帮助文档</li>
+<li>回调机制：sdk通知数据，通过统一的模式回调用户处理。接口和数据结构需要具备可扩展性</li>
+<li>寻址模式：解决ip，域名，nameserver、广播等多种寻址模式，需要可扩展</li>
+<li>推送通道：解决server与存储、server间、server与sdk间推送性能问题</li>
+<li>容量管理：管理每个租户，分组下的容量，防止存储被写爆，影响服务可用性</li>
+<li>流量管理：按照租户，分组等多个维度对请求频率，长链接个数，报文大小，请求流控进行控制</li>
+<li>缓存机制：容灾目录，本地缓存，server缓存机制。容灾目录使用需要工具</li>
+<li>启动模式：按照单机模式，配置模式，服务模式，dns模式，或者all模式，启动不同的程序+UI</li>
+<li>一致性协议：解决不同数据，不同一致性要求情况下，不同一致性机制</li>
+<li>存储模块：解决数据持久化、非持久化存储，解决数据分片问题</li>
+<li>Nameserver：解决namespace到clusterid的路由问题，解决用户环境与nacos物理环境映射问题</li>
+<li>CMDB：解决元数据存储，与三方cmdb系统对接问题，解决应用，人，资源关系</li>
+<li>Metrics：暴露标准metrics数据，方便与三方监控系统打通</li>
+<li>Trace：暴露标准trace，方便与SLA系统打通，日志白平化，推送轨迹等能力，并且可以和计量计费系统打通</li>
+<li>接入管理：相当于阿里云开通服务，分配身份、容量、权限过程</li>
+<li>用户管理：解决用户管理，登录，sso等问题</li>
+<li>权限管理：解决身份识别，访问控制，角色管理等问题</li>
+<li>审计系统：扩展接口方便与不同公司审计系统打通</li>
+<li>通知系统：核心数据变更，或者操作，方便通过SMS系统打通，通知到对应人数据变更</li>
+<li>OpenAPI：暴露标准Rest风格HTTP接口，简单易用，方便多语言集成</li>
+<li>Console：易用控制台，做服务管理、配置管理等操作</li>
+<li>SDK：多语言sdk</li>
+<li>Agent：dns-f类似模式，或者与mesh等方案集成</li>
+<li>CLI：命令行对产品进行轻量化管理，像git一样好用</li>
+</ul>
+<h1 id="构建物、部署及启动模式"><a href="#构建物、部署及启动模式" class="headerlink" title="构建物、部署及启动模式"></a>构建物、部署及启动模式</h1><p><img src= "/img/loading.gif" data-lazy-src="https://raw.githubusercontent.com/snmlm/resources/master/picture/20210616_7.png"></p>
+</div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">snmlm</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://snmlm.github.io/tools/nacos/20210616/">https://snmlm.github.io/tools/nacos/20210616/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://snmlm.github.io" target="_blank">snmlm</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/tools/">tools</a><a class="post-meta__tags" href="/tags/nacos/">nacos</a></div><div class="post_share"><div class="social-share" data-image="/img/head.gif" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/database/mysql/20210615/"><img class="next-cover" data-lazy-src="/img/head.gif" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">mysql 报错记录 ONLY_FULL_GROUP_BY</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/demo/20190307/" title="数字大小写"><img class="cover" data-lazy-src="/img/head.gif"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-03-07</div><div class="title">数字大小写</div></div></a></div><div><a href="/tools/dubbo/20190412/" title="dubbo的坑与填坑"><img class="cover" data-lazy-src="/img/head.gif"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-04-12</div><div class="title">dubbo的坑与填坑</div></div></a></div><div><a href="/tools/dubbo/20190414/" title="dubbo 配置加载顺序"><img class="cover" data-lazy-src="/img/head.gif"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-04-14</div><div class="title">dubbo 配置加载顺序</div></div></a></div><div><a href="/tools/elasticsearch/20210413/" title="es优化"><img class="cover" data-lazy-src="/img/head.gif"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-04-13</div><div class="title">es优化</div></div></a></div><div><a href="/tools/elasticsearch/20210608/" title="认识 elasticsearch"><img class="cover" data-lazy-src="/img/head.gif"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-06-08</div><div class="title">认识 elasticsearch</div></div></a></div><div><a href="/tools/git/20210506/" title="git ssh切换https"><img class="cover" data-lazy-src="/img/head.gif"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-05-06</div><div class="title">git ssh切换https</div></div></a></div></div></div></article></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2018 - 2021 By snmlm</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><section id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/jsdelivr.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></div></body></html>
