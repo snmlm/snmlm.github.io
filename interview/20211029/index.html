@@ -1,0 +1,209 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Dubbo面试题 | snmlm</title><meta name="description" content="Dubbo 有几种配置方式？https:&#x2F;&#x2F;dubbo.apache.org&#x2F;zh&#x2F;docs&#x2F;concepts&#x2F;configuration&#x2F; 官方文档按照编程方式可以分为四种方式：API配置、XML配置、Annotation配置、属性配置。还有自定义bean实现配置。实际上所有的配置，都是有对应的类去实现和加载。 Dubbo 如何和 Spring Boot 进行集成？官方提供提供了集成库 dubb"><meta name="keywords" content="interview"><meta name="author" content="snmlm"><meta name="copyright" content="snmlm"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://snmlm.github.io/interview/20211029/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta property="og:type" content="article"><meta property="og:title" content="Dubbo面试题"><meta property="og:url" content="https://snmlm.github.io/interview/20211029/"><meta property="og:site_name" content="snmlm"><meta property="og:description" content="Dubbo 有几种配置方式？https:&#x2F;&#x2F;dubbo.apache.org&#x2F;zh&#x2F;docs&#x2F;concepts&#x2F;configuration&#x2F; 官方文档按照编程方式可以分为四种方式：API配置、XML配置、Annotation配置、属性配置。还有自定义bean实现配置。实际上所有的配置，都是有对应的类去实现和加载。 Dubbo 如何和 Spring Boot 进行集成？官方提供提供了集成库 dubb"><meta property="og:image" content="https://snmlm.github.io/img/head.gif"><meta property="article:published_time" content="2021-11-03T12:44:45.056Z"><meta property="article:modified_time" content="2021-11-03T13:04:10.975Z"><meta name="twitter:card" content="summary"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  hexoversion: '5.1.1',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime: '天',
+  date_suffix: {"one_hour":"刚刚","hours":"小时前","day":"天前"},
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: {"bookmark":{"message_prev":"按","message_next":"键将本页加入书签"},"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  baiduPush: false,
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+    },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true,
+  postUpdate: '2021-11-03 21:04:10'
+}</script><noscript><style type="text/css">
+#nav {
+  opacity: 1
+}
+.justified-gallery img {
+  opacity: 1
+}
+</style></noscript><meta name="generator" content="Hexo 5.1.1"></head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" data-lazy-src="/img/head.gif" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">157</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">67</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div id="body-wrap"><div id="sidebar"><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Dubbo-%E6%9C%89%E5%87%A0%E7%A7%8D%E9%85%8D%E7%BD%AE%E6%96%B9%E5%BC%8F%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">Dubbo 有几种配置方式？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Dubbo-%E5%A6%82%E4%BD%95%E5%92%8C-Spring-Boot-%E8%BF%9B%E8%A1%8C%E9%9B%86%E6%88%90%EF%BC%9F"><span class="toc-number">1.1.</span> <span class="toc-text">Dubbo 如何和 Spring Boot 进行集成？</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Dubbo-%E8%B0%83%E7%94%A8%E6%98%AF%E5%90%8C%E6%AD%A5%E7%9A%84%E5%90%97%EF%BC%9F"><span class="toc-number">2.</span> <span class="toc-text">Dubbo 调用是同步的吗？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B0%88%E8%B0%88%E5%AF%B9-Dubbo-%E7%9A%84%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E6%9C%BA%E5%88%B6%EF%BC%9F"><span class="toc-number">3.</span> <span class="toc-text">谈谈对 Dubbo 的异常处理机制？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Dubbo-%E5%A6%82%E4%BD%95%E5%81%9A%E5%8F%82%E6%95%B0%E6%A0%A1%E9%AA%8C%EF%BC%9F"><span class="toc-number">4.</span> <span class="toc-text">Dubbo 如何做参数校验？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Dubbo-%E5%8F%AF%E4%BB%A5%E5%AF%B9%E8%B0%83%E7%94%A8%E7%BB%93%E6%9E%9C%E8%BF%9B%E8%A1%8C%E7%BC%93%E5%AD%98%E5%90%97"><span class="toc-number">5.</span> <span class="toc-text">Dubbo 可以对调用结果进行缓存吗?</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83%E6%8C%82%E4%BA%86%E8%BF%98%E5%8F%AF%E4%BB%A5%E9%80%9A%E4%BF%A1%E5%90%97%EF%BC%9F"><span class="toc-number">6.</span> <span class="toc-text">注册中心挂了还可以通信吗？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Dubbo-%E5%9C%A8-Zookeeper-%E5%AD%98%E5%82%A8%E4%BA%86%E5%93%AA%E4%BA%9B%E4%BF%A1%E6%81%AF%EF%BC%9F"><span class="toc-number">7.</span> <span class="toc-text">Dubbo 在 Zookeeper 存储了哪些信息？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Dubbo-Provider-%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E4%BC%98%E9%9B%85%E5%81%9C%E6%9C%BA%EF%BC%9F"><span class="toc-number">8.</span> <span class="toc-text">Dubbo Provider 如何实现优雅停机？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E6%8F%90%E4%BE%9B%E6%96%B9%E7%9A%84%E4%BC%98%E9%9B%85%E5%81%9C%E6%9C%BA%E8%BF%87%E7%A8%8B"><span class="toc-number">8.1.</span> <span class="toc-text">服务提供方的优雅停机过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E6%B6%88%E8%B4%B9%E6%96%B9%E7%9A%84%E4%BC%98%E9%9B%85%E5%81%9C%E6%9C%BA%E8%BF%87%E7%A8%8B"><span class="toc-number">8.2.</span> <span class="toc-text">服务消费方的优雅停机过程</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Dubbo-Provider-%E5%BC%82%E5%B8%B8%E5%85%B3%E9%97%AD%E6%97%B6%EF%BC%8C%E5%A6%82%E4%BD%95%E4%BB%8E%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83%E4%B8%8B%E7%BA%BF%EF%BC%9F"><span class="toc-number">9.</span> <span class="toc-text">Dubbo Provider 异常关闭时，如何从注册中心下线？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Dubbo-Consumer-%E5%8F%AA%E8%83%BD%E8%B0%83%E7%94%A8%E4%BB%8E%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83%E8%8E%B7%E5%8F%96%E7%9A%84-Provider-%E4%B9%88%EF%BC%9F"><span class="toc-number">10.</span> <span class="toc-text">Dubbo Consumer 只能调用从注册中心获取的 Provider 么？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Dubbo-%E6%94%AF%E6%8C%81%E5%93%AA%E4%BA%9B%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE%EF%BC%9F"><span class="toc-number">11.</span> <span class="toc-text">Dubbo 支持哪些通信协议？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%9C%AC%E5%9C%B0%E6%9A%B4%E9%9C%B2%E5%92%8C%E8%BF%9C%E7%A8%8B%E6%9A%B4%E9%9C%B2%EF%BC%8C%E4%BB%96%E4%BB%AC%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="toc-number">12.</span> <span class="toc-text">什么是本地暴露和远程暴露，他们的区别？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Dubbo-%E4%BD%BF%E7%94%A8%E4%BB%80%E4%B9%88%E9%80%9A%E4%BF%A1%E6%A1%86%E6%9E%B6%EF%BC%9F"><span class="toc-number">13.</span> <span class="toc-text">Dubbo 使用什么通信框架？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Dubbo-%E6%94%AF%E6%8C%81%E5%93%AA%E4%BA%9B%E5%BA%8F%E5%88%97%E5%8C%96%E6%96%B9%E5%BC%8F%EF%BC%9F"><span class="toc-number">14.</span> <span class="toc-text">Dubbo 支持哪些序列化方式？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Dubbo-%E6%9C%89%E5%93%AA%E4%BA%9B%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E7%AD%96%E7%95%A5%EF%BC%9F"><span class="toc-number">15.</span> <span class="toc-text">Dubbo 有哪些负载均衡策略？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Dubbo-%E6%9C%89%E5%93%AA%E4%BA%9B%E9%9B%86%E7%BE%A4%E5%AE%B9%E9%94%99%E7%AD%96%E7%95%A5%EF%BC%9F"><span class="toc-number">16.</span> <span class="toc-text">Dubbo 有哪些集群容错策略？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Dubbo-%E6%9C%89%E5%93%AA%E4%BA%9B%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E7%AD%96%E7%95%A5%EF%BC%9F"><span class="toc-number">17.</span> <span class="toc-text">Dubbo 有哪些动态代理策略？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Dubbo-SPI-%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">18.</span> <span class="toc-text">Dubbo SPI 的设计思想是什么？</span></a></li></ol></div></div></div><header class="post-bg" id="page-header" style="background-image: url(/img/head.gif)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">snmlm</a></span><span id="menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">Dubbo面试题</div></div><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-11-03T12:44:45.056Z" title="发表于 2021-11-03 20:44:45">2021-11-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-11-03T13:04:10.975Z" title="更新于 2021-11-03 21:04:10">2021-11-03</time></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h1 id="Dubbo-有几种配置方式？"><a href="#Dubbo-有几种配置方式？" class="headerlink" title="Dubbo 有几种配置方式？"></a>Dubbo 有几种配置方式？</h1><p><a target="_blank" rel="noopener" href="https://dubbo.apache.org/zh/docs/concepts/configuration/">https://dubbo.apache.org/zh/docs/concepts/configuration/</a> 官方文档<br>按照编程方式可以分为四种方式：API配置、XML配置、Annotation配置、属性配置。<br>还有自定义bean实现配置。实际上所有的配置，都是有对应的类去实现和加载。</p>
+<h2 id="Dubbo-如何和-Spring-Boot-进行集成？"><a href="#Dubbo-如何和-Spring-Boot-进行集成？" class="headerlink" title="Dubbo 如何和 Spring Boot 进行集成？"></a>Dubbo 如何和 Spring Boot 进行集成？</h2><p>官方提供提供了集成库 dubbo-spring-boot ，对应仓库为 <a target="_blank" rel="noopener" href="https://github.com/apache/incubator-dubbo-spring-boot-project">https://github.com/apache/incubator-dubbo-spring-boot-project</a> 。<br><a target="_blank" rel="noopener" href="http://static.iocoder.cn/images/Dubbo/2018_03_01/01.png">http://static.iocoder.cn/images/Dubbo/2018_03_01/01.png</a></p>
+<h1 id="Dubbo-调用是同步的吗？"><a href="#Dubbo-调用是同步的吗？" class="headerlink" title="Dubbo 调用是同步的吗？"></a>Dubbo 调用是同步的吗？</h1><p>默认情况下，调用是同步的方式。<br>可以异步，Consumer、Provider均可异步</p>
+<h1 id="谈谈对-Dubbo-的异常处理机制？"><a href="#谈谈对-Dubbo-的异常处理机制？" class="headerlink" title="谈谈对 Dubbo 的异常处理机制？"></a>谈谈对 Dubbo 的异常处理机制？</h1><p>dubbo的异常处理类是com.alibaba.dubbo.rpc.filter.ExceptionFilter 类</p>
+<ul>
+<li>如果provider实现了GenericService接口,直接抛出</li>
+<li>如果是checked异常，直接抛出</li>
+<li>在方法签名上有声明，直接抛出</li>
+<li>异常类和接口类在同一jar包里，直接抛出</li>
+<li>是JDK自带的异常，直接抛出</li>
+<li>是Dubbo本身的异常，直接抛出</li>
+<li>否则，包装成RuntimeException抛给客户端</li>
+</ul>
+<h1 id="Dubbo-如何做参数校验？"><a href="#Dubbo-如何做参数校验？" class="headerlink" title="Dubbo 如何做参数校验？"></a>Dubbo 如何做参数校验？</h1><p>参数验证功能是基于 JSR303 实现的，用户只需标识 JSR303 标准的验证 annotation，并通过声明 filter 来实现验证。</p>
+<ul>
+<li>参数校验功能，通过参数校验过滤器 ValidationFilter 来实现。</li>
+<li>ValidationFilter 在 Dubbo Provider 和 Consumer 都可生效。<ul>
+<li>如果我们将校验注解写在 Service 接口的方法上，那么 Consumer 在本地就会校验。如果校验不通过，直接抛出校验失败的异常，不会发起 Dubbo 调用。</li>
+<li>如果我们将校验注解写在 Service 实现的方法上，那么 Consumer 在本地不会校验，而是由 Provider 校验。</li>
+</ul>
+</li>
+</ul>
+<h1 id="Dubbo-可以对调用结果进行缓存吗"><a href="#Dubbo-可以对调用结果进行缓存吗" class="headerlink" title="Dubbo 可以对调用结果进行缓存吗?"></a>Dubbo 可以对调用结果进行缓存吗?</h1><p>Dubbo 通过 CacheFilter 过滤器，提供结果缓存的功能，且既可以适用于 Consumer 也可以适用于 Provider 。<br>通过结果缓存，用于加速热门数据的访问速度，Dubbo 提供声明式缓存，以减少用户加缓存的工作量。<br>Dubbo 目前提供三种实现：</p>
+<ul>
+<li>lru ：基于最近最少使用原则删除多余缓存，保持最热的数据被缓存。</li>
+<li>threadlocal ：当前线程缓存，比如一个页面渲染，用到很多 portal，每个 portal 都要去查用户信息，通过线程缓存，可以减少这种多余访问。</li>
+<li>jcache ：与 JSR107 集成，可以桥接各种缓存实现。</li>
+</ul>
+<h1 id="注册中心挂了还可以通信吗？"><a href="#注册中心挂了还可以通信吗？" class="headerlink" title="注册中心挂了还可以通信吗？"></a>注册中心挂了还可以通信吗？</h1><p>可以，影响服务的上下线，不影响已上线的服务以及通信</p>
+<h1 id="Dubbo-在-Zookeeper-存储了哪些信息？"><a href="#Dubbo-在-Zookeeper-存储了哪些信息？" class="headerlink" title="Dubbo 在 Zookeeper 存储了哪些信息？"></a>Dubbo 在 Zookeeper 存储了哪些信息？</h1><p>Zookeeper 是 Apacahe Hadoop 的子项目，是一个树型的目录服务，支持变更推送<br>zookeeper：</p>
+<ul>
+<li>Root<ul>
+<li>Service<ul>
+<li>Type<ul>
+<li>URL</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="Dubbo-Provider-如何实现优雅停机？"><a href="#Dubbo-Provider-如何实现优雅停机？" class="headerlink" title="Dubbo Provider 如何实现优雅停机？"></a>Dubbo Provider 如何实现优雅停机？</h1><p>Dubbo 是通过 JDK 的 ShutdownHook 来完成优雅停机的，所以如果用户使用 kill -9 PID 等强制关闭指令，是不会执行优雅停机的，只有通过 kill PID 时，才会执行。<br>因为大多数情况下，Dubbo 的声明周期是交给 Spring 进行管理，所以在最新的 Dubbo 版本中，增加了对 Spring 关闭事件的监听，从而关闭 Dubbo 服务。</p>
+<h2 id="服务提供方的优雅停机过程"><a href="#服务提供方的优雅停机过程" class="headerlink" title="服务提供方的优雅停机过程"></a>服务提供方的优雅停机过程</h2><ul>
+<li>首先，从注册中心中取消注册自己，从而使消费者不要再拉取到它。</li>
+<li>然后，sleep 10 秒( 可配 )，等到服务消费，接收到注册中心通知到该服务提供者已经下线，加大了在不重试情况下优雅停机的成功率。😈 此处是个概率学，嘻嘻。</li>
+<li>之后，广播 READONLY 事件给所有 Consumer 们，告诉它们不要在调用我了！！！【很有趣的一个步骤】并且，如果此处注册中心挂掉的情况，依然能达到告诉 Consumer ，我要下线了的功能。</li>
+<li>再之后，sleep 10 毫秒，保证 Consumer 们，尽可能接收到该消息。</li>
+<li>再再之后，先标记为不接收新请求，新请求过来时直接报错，让客户端重试其它机器。</li>
+<li>再再再之后，关闭心跳线程。</li>
+<li>最后，检测线程池中的线程是否正在运行，如果有，等待所有线程执行完成，除非超时，则强制关闭。</li>
+<li>最最后，关闭服务器。</li>
+</ul>
+<h2 id="服务消费方的优雅停机过程"><a href="#服务消费方的优雅停机过程" class="headerlink" title="服务消费方的优雅停机过程"></a>服务消费方的优雅停机过程</h2><ul>
+<li>停止时，不再发起新的调用请求，所有新的调用在客户端即报错。</li>
+<li>然后，检测有没有请求的响应还没有返回，等待响应返回，除非超时，则强制关闭。</li>
+</ul>
+<h1 id="Dubbo-Provider-异常关闭时，如何从注册中心下线？"><a href="#Dubbo-Provider-异常关闭时，如何从注册中心下线？" class="headerlink" title="Dubbo Provider 异常关闭时，如何从注册中心下线？"></a>Dubbo Provider 异常关闭时，如何从注册中心下线？</h1><p>Zookeeper上创建临时节点，在Provider异常关闭时，等待Zookeeper会话超时，临时节点会自动删除。<br>redis上是key/Map的形式，map的key是url，value是过期时间，为例保证实时性，不使用 Redis 的自动过期机制，而是通过监控中心。正常状态Consumer和Provider定期延长过期时间。异常关闭，会被监控中心删除掉节点并通知下线。</p>
+<h1 id="Dubbo-Consumer-只能调用从注册中心获取的-Provider-么？"><a href="#Dubbo-Consumer-只能调用从注册中心获取的-Provider-么？" class="headerlink" title="Dubbo Consumer 只能调用从注册中心获取的 Provider 么？"></a>Dubbo Consumer 只能调用从注册中心获取的 Provider 么？</h1><p>不是，Consumer 可以强制直连 Provider 。在配置直接指定ip和端口即可。<br>另外还可以只订阅，不让Provider发布，也是在配置中设置。</p>
+<h1 id="Dubbo-支持哪些通信协议？"><a href="#Dubbo-支持哪些通信协议？" class="headerlink" title="Dubbo 支持哪些通信协议？"></a>Dubbo 支持哪些通信协议？</h1><ul>
+<li>dubbo://  缺省协议采用单一长连接和 NIO 异步通讯，适合于小数据量大并发的服务调用，以及服务消费者机器数远大于服务提供者机器数的情况。</li>
+<li>http:// 短连接同步传输，传入传出参数数据包大小混合，提供者比消费者个数多，可用浏览器查看，可用表单或URL传入参数，暂不支持传文件。</li>
+<li>rmi:// RMI 协议采用 JDK 标准的 java.rmi.* 实现，采用阻塞式短连接和 JDK 标准序列化方式。</li>
+<li>webservice://</li>
+<li>hessian://</li>
+<li>thrift://</li>
+<li>memcached://</li>
+<li>redis://</li>
+<li>grpc:// 2.7.5版本开始支持grpc，计划使用http2</li>
+<li>jsonrpc:// 正在孵化</li>
+</ul>
+<h1 id="什么是本地暴露和远程暴露，他们的区别？"><a href="#什么是本地暴露和远程暴露，他们的区别？" class="headerlink" title="什么是本地暴露和远程暴露，他们的区别？"></a>什么是本地暴露和远程暴露，他们的区别？</h1><p>远程暴露，比较好理解。我们看到的，都是远程暴露。每次 Consumer 调用 Provider 都是跨进程，需要进行网络通信。<br>本地暴露，本地调用使用了 injvm:// 协议，是一个伪协议，它不开启端口，不发起远程调用，只在 JVM 内直接关联，但执行 Dubbo 的 Filter 链。</p>
+<h1 id="Dubbo-使用什么通信框架？"><a href="#Dubbo-使用什么通信框架？" class="headerlink" title="Dubbo 使用什么通信框架？"></a>Dubbo 使用什么通信框架？</h1><p>通信框架：</p>
+<ul>
+<li>Netty3</li>
+<li>Netty4</li>
+<li>Mina</li>
+<li>Grizzly</li>
+</ul>
+<p>那么 Dubbo 是如何做技术选型和实现的呢？Dubbo 在通信层拆分成了 API 层、实现层。项目结构如下：</p>
+<ul>
+<li>API 层：<ul>
+<li>dubbo-remoting-api</li>
+</ul>
+</li>
+<li>实现层：<ul>
+<li>dubbo-remoting-netty3</li>
+<li>dubbo-remoting-netty4</li>
+<li>dubbo-remoting-mina</li>
+<li>dubbo-remoting-grizzly<br>再配合上 Dubbo SPI 的机制，使用者可以自定义使用哪一种具体的实现。<br>dubbo最新版，默认使用Netty4版本。</li>
+</ul>
+</li>
+</ul>
+<h1 id="Dubbo-支持哪些序列化方式？"><a href="#Dubbo-支持哪些序列化方式？" class="headerlink" title="Dubbo 支持哪些序列化方式？"></a>Dubbo 支持哪些序列化方式？</h1><ul>
+<li>Hessian2 基于 Hessian 实现的序列化拓展。dubbo:// 协议的默认序列化方案。<ul>
+<li>Hessian 除了是 Web 服务，也提供了其序列化实现，因此 Dubbo 基于它实现了序列化拓展。</li>
+<li>另外，Dubbo 维护了自己的 hessian-lite ，对 Hessian 2 的 序列化 部分的精简、改进、BugFix。</li>
+</ul>
+</li>
+<li>Dubbo ：Dubbo 自己实现的序列化拓展。</li>
+<li>Kryo ：基于 Kryo 实现的序列化拓展。</li>
+<li>FST ：基于 FST 实现的序列化拓展。</li>
+<li>JSON ：基于 Fastjson 实现的序列化拓展。</li>
+<li>NativeJava ：基于 Java 原生的序列化拓展。</li>
+<li>CompactedJava ：在 NativeJava 的基础上，实现了对 ClassDescriptor 的处理。</li>
+<li>Protobuf：后续的吧，孵化中？</li>
+</ul>
+<h1 id="Dubbo-有哪些负载均衡策略？"><a href="#Dubbo-有哪些负载均衡策略？" class="headerlink" title="Dubbo 有哪些负载均衡策略？"></a>Dubbo 有哪些负载均衡策略？</h1><ul>
+<li>Random LoadBalance 默认随机，可按权重</li>
+<li>RoundRobin LoadBalance 轮询</li>
+<li>LeastActive LoadBalance 最少活跃调用数，相同活跃数的随机，活跃数指调用前后计数差。</li>
+<li>ConsistentHash LoadBalance 一致性 Hash，相同参数的请求总是发到同一提供者。</li>
+</ul>
+<h1 id="Dubbo-有哪些集群容错策略？"><a href="#Dubbo-有哪些集群容错策略？" class="headerlink" title="Dubbo 有哪些集群容错策略？"></a>Dubbo 有哪些集群容错策略？</h1><ul>
+<li>Failover Cluster 失败自动切换，当出现失败，重试其它服务器。retries=”2”设置重试次数，不包含第一次</li>
+<li>Failfast Cluster 快速失败，只发起一次调用，失败立即报错。</li>
+<li>Failsafe Cluster 失败安全，出现异常时，直接忽略。</li>
+<li>Failback Cluster 失败自动恢复，后台记录失败请求，定时重发。</li>
+<li>Forking Cluster 并行调用多个服务器，只要一个成功即返回。forks=”2” 来设置最大并行数。</li>
+<li>roadcast Cluster 广播调用所有提供者，逐个调用，任意一台报错则报错。</li>
+</ul>
+<h1 id="Dubbo-有哪些动态代理策略？"><a href="#Dubbo-有哪些动态代理策略？" class="headerlink" title="Dubbo 有哪些动态代理策略？"></a>Dubbo 有哪些动态代理策略？</h1><p>动态代理：</p>
+<ul>
+<li>Javassist</li>
+<li>JDK 原生自带</li>
+<li>CGLIB</li>
+<li>ASM</li>
+</ul>
+<p>Dubbo动态代理使用了 Javassist 和 JDK 两种方式。</p>
+<ul>
+<li>默认情况下，使用 Javassist 。性能原因</li>
+<li>可通过 SPI 机制，切换使用 JDK 的方式。</li>
+</ul>
+<p>那么是不是 JDK 代理就没意义？<br>实际上，JDK 代理在 JDK 1.8 版本下，性能已经有很大的提升，并且无需引入三方工具的依赖，也是非常棒的选择。所以，Spring 和 Motan 在动态代理生成上，优先选择 JDK 代理。</p>
+<h1 id="Dubbo-SPI-的设计思想是什么？"><a href="#Dubbo-SPI-的设计思想是什么？" class="headerlink" title="Dubbo SPI 的设计思想是什么？"></a>Dubbo SPI 的设计思想是什么？</h1></div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">snmlm</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://snmlm.github.io/interview/20211029/">https://snmlm.github.io/interview/20211029/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://snmlm.github.io" target="_blank">snmlm</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/interview/">interview</a></div><div class="post_share"><div class="social-share" data-image="/img/head.gif" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/interview/20211101/"><img class="prev-cover" data-lazy-src="/img/head.gif" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Spring面试题</div></div></a></div><div class="next-post pull-right"><a href="/regluar/20210901/"><img class="next-cover" data-lazy-src="/img/head.gif" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">正则 0.00-100.00</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/interview/20211103_1/" title="REST面试题"><img class="cover" data-lazy-src="/img/head.gif"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-11-03</div><div class="title">REST面试题</div></div></a></div><div><a href="/interview/20211103_2/" title="Spring Boot面试题"><img class="cover" data-lazy-src="/img/head.gif"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-11-03</div><div class="title">Spring Boot面试题</div></div></a></div><div><a href="/interview/20211103/" title="Spring MVC面试题"><img class="cover" data-lazy-src="/img/head.gif"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-11-03</div><div class="title">Spring MVC面试题</div></div></a></div><div><a href="/interview/20211101/" title="Spring面试题"><img class="cover" data-lazy-src="/img/head.gif"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-11-03</div><div class="title">Spring面试题</div></div></a></div></div></div></article></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2018 - 2021 By snmlm</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><section id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/jsdelivr.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></div></body></html>
