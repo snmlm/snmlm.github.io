@@ -4,6 +4,40 @@
   
     
     <entry>
+      <title>leetcode23-合并K个升序链表</title>
+      <link href="/algorithm/leetcode/leetcode_23/"/>
+      <url>/algorithm/leetcode/leetcode_23/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> leetcode </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>leetcode24-两两交换链表中的节点</title>
+      <link href="/algorithm/leetcode/leetcode_24/"/>
+      <url>/algorithm/leetcode/leetcode_24/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> leetcode </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>leetcode21-合并两个有序链</title>
       <link href="/algorithm/leetcode/leetcode_21/"/>
       <url>/algorithm/leetcode/leetcode_21/</url>
@@ -24,23 +58,6 @@
       <title>leetcode22-括号生成</title>
       <link href="/algorithm/leetcode/leetcode_22/"/>
       <url>/algorithm/leetcode/leetcode_22/</url>
-      
-      
-      
-        <tags>
-            
-            <tag> leetcode </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>leetcode23-合并K个升序链表</title>
-      <link href="/algorithm/leetcode/leetcode_23/"/>
-      <url>/algorithm/leetcode/leetcode_23/</url>
       
       
       
