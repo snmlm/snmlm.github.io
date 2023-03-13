@@ -4,6 +4,57 @@
   
     
     <entry>
+      <title>leetcode27-移除元素</title>
+      <link href="/algorithm/leetcode/leetcode_27/"/>
+      <url>/algorithm/leetcode/leetcode_27/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> leetcode </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>leetcode28-找出字符串中第一个匹配项的下标</title>
+      <link href="/algorithm/leetcode/leetcode_28/"/>
+      <url>/algorithm/leetcode/leetcode_28/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> leetcode </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>leetcode26-删除有序数组中的重复项</title>
+      <link href="/algorithm/leetcode/leetcode_26/"/>
+      <url>/algorithm/leetcode/leetcode_26/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> leetcode </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Mysql面试题</title>
       <link href="/database/mysql/20230309/"/>
       <url>/database/mysql/20230309/</url>
@@ -21,9 +72,9 @@
     
     
     <entry>
-      <title>leetcode23-合并K个升序链表</title>
-      <link href="/algorithm/leetcode/leetcode_23/"/>
-      <url>/algorithm/leetcode/leetcode_23/</url>
+      <title>leetcode25-K个一组反转链表</title>
+      <link href="/algorithm/leetcode/leetcode_25/"/>
+      <url>/algorithm/leetcode/leetcode_25/</url>
       
       
       
@@ -41,6 +92,23 @@
       <title>leetcode24-两两交换链表中的节点</title>
       <link href="/algorithm/leetcode/leetcode_24/"/>
       <url>/algorithm/leetcode/leetcode_24/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> leetcode </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>leetcode23-合并K个升序链表</title>
+      <link href="/algorithm/leetcode/leetcode_23/"/>
+      <url>/algorithm/leetcode/leetcode_23/</url>
       
       
       
@@ -89,9 +157,9 @@
     
     
     <entry>
-      <title>leetcode19-删除链表的倒数第N个结点</title>
-      <link href="/algorithm/leetcode/leetcode_19/"/>
-      <url>/algorithm/leetcode/leetcode_19/</url>
+      <title>leetcode20-有效括号</title>
+      <link href="/algorithm/leetcode/leetcode_20/"/>
+      <url>/algorithm/leetcode/leetcode_20/</url>
       
       
       
@@ -106,9 +174,9 @@
     
     
     <entry>
-      <title>leetcode20-有效括号</title>
-      <link href="/algorithm/leetcode/leetcode_20/"/>
-      <url>/algorithm/leetcode/leetcode_20/</url>
+      <title>leetcode19-删除链表的倒数第N个结点</title>
+      <link href="/algorithm/leetcode/leetcode_19/"/>
+      <url>/algorithm/leetcode/leetcode_19/</url>
       
       
       
@@ -140,9 +208,9 @@
     
     
     <entry>
-      <title>leetcode16-最接近的三数之和</title>
-      <link href="/algorithm/leetcode/leetcode_16/"/>
-      <url>/algorithm/leetcode/leetcode_16/</url>
+      <title>leetcode18-四数值和</title>
+      <link href="/algorithm/leetcode/leetcode_18/"/>
+      <url>/algorithm/leetcode/leetcode_18/</url>
       
       
       
@@ -157,9 +225,9 @@
     
     
     <entry>
-      <title>leetcode18-四数值和</title>
-      <link href="/algorithm/leetcode/leetcode_18/"/>
-      <url>/algorithm/leetcode/leetcode_18/</url>
+      <title>leetcode16-最接近的三数之和</title>
+      <link href="/algorithm/leetcode/leetcode_16/"/>
+      <url>/algorithm/leetcode/leetcode_16/</url>
       
       
       
@@ -208,9 +276,9 @@
     
     
     <entry>
-      <title>leetcode10-正则表达式匹配</title>
-      <link href="/algorithm/leetcode/leetcode_10/"/>
-      <url>/algorithm/leetcode/leetcode_10/</url>
+      <title>leetcode11-整数转罗马数字</title>
+      <link href="/algorithm/leetcode/leetcode_12/"/>
+      <url>/algorithm/leetcode/leetcode_12/</url>
       
       
       
@@ -242,9 +310,9 @@
     
     
     <entry>
-      <title>leetcode13-罗马数字转整数</title>
-      <link href="/algorithm/leetcode/leetcode_13/"/>
-      <url>/algorithm/leetcode/leetcode_13/</url>
+      <title>leetcode10-正则表达式匹配</title>
+      <link href="/algorithm/leetcode/leetcode_10/"/>
+      <url>/algorithm/leetcode/leetcode_10/</url>
       
       
       
@@ -259,9 +327,9 @@
     
     
     <entry>
-      <title>leetcode11-整数转罗马数字</title>
-      <link href="/algorithm/leetcode/leetcode_12/"/>
-      <url>/algorithm/leetcode/leetcode_12/</url>
+      <title>leetcode13-罗马数字转整数</title>
+      <link href="/algorithm/leetcode/leetcode_13/"/>
+      <url>/algorithm/leetcode/leetcode_13/</url>
       
       
       
@@ -293,9 +361,9 @@
     
     
     <entry>
-      <title>leetcode3-无重复字符串的最长子串</title>
-      <link href="/algorithm/leetcode/leetcode_3/"/>
-      <url>/algorithm/leetcode/leetcode_3/</url>
+      <title>leetcode4-寻找两个正序数组的中位数</title>
+      <link href="/algorithm/leetcode/leetcode_4/"/>
+      <url>/algorithm/leetcode/leetcode_4/</url>
       
       
       
@@ -310,9 +378,9 @@
     
     
     <entry>
-      <title>leetcode4-寻找两个正序数组的中位数</title>
-      <link href="/algorithm/leetcode/leetcode_4/"/>
-      <url>/algorithm/leetcode/leetcode_4/</url>
+      <title>leetcode3-无重复字符串的最长子串</title>
+      <link href="/algorithm/leetcode/leetcode_3/"/>
+      <url>/algorithm/leetcode/leetcode_3/</url>
       
       
       
@@ -344,9 +412,9 @@
     
     
     <entry>
-      <title>leetcode7-整数反转</title>
-      <link href="/algorithm/leetcode/leetcode_7/"/>
-      <url>/algorithm/leetcode/leetcode_7/</url>
+      <title>leetcode9-回文数</title>
+      <link href="/algorithm/leetcode/leetcode_9/"/>
+      <url>/algorithm/leetcode/leetcode_9/</url>
       
       
       
@@ -361,9 +429,9 @@
     
     
     <entry>
-      <title>leetcode9-回文数</title>
-      <link href="/algorithm/leetcode/leetcode_9/"/>
-      <url>/algorithm/leetcode/leetcode_9/</url>
+      <title>leetcode7-整数反转</title>
+      <link href="/algorithm/leetcode/leetcode_7/"/>
+      <url>/algorithm/leetcode/leetcode_7/</url>
       
       
       
@@ -1974,9 +2042,9 @@
     
     
     <entry>
-      <title>java基础 四种访问权限</title>
-      <link href="/java/basics/20200914/"/>
-      <url>/java/basics/20200914/</url>
+      <title>java基础 运算符</title>
+      <link href="/java/basics/20200915/"/>
+      <url>/java/basics/20200915/</url>
       
       
       
@@ -1991,9 +2059,9 @@
     
     
     <entry>
-      <title>java基础 运算符</title>
-      <link href="/java/basics/20200915/"/>
-      <url>/java/basics/20200915/</url>
+      <title>java基础 四种访问权限</title>
+      <link href="/java/basics/20200914/"/>
+      <url>/java/basics/20200914/</url>
       
       
       
@@ -2366,9 +2434,9 @@
     
     
     <entry>
-      <title>剑指offer 汇总</title>
-      <link href="/algorithm/offer/Offer_00/"/>
-      <url>/algorithm/offer/Offer_00/</url>
+      <title>01 二维数组中的查找</title>
+      <link href="/algorithm/offer/Offer_01/"/>
+      <url>/algorithm/offer/Offer_01/</url>
       
       
       
@@ -2423,6 +2491,25 @@
     
     
     <entry>
+      <title>剑指offer 汇总</title>
+      <link href="/algorithm/offer/Offer_00/"/>
+      <url>/algorithm/offer/Offer_00/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> 算法 </tag>
+            
+            <tag> 剑指offer </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>05 重建二叉树</title>
       <link href="/algorithm/offer/Offer_04/"/>
       <url>/algorithm/offer/Offer_04/</url>
@@ -2461,9 +2548,9 @@
     
     
     <entry>
-      <title>08 跳台阶</title>
-      <link href="/algorithm/offer/Offer_08/"/>
-      <url>/algorithm/offer/Offer_08/</url>
+      <title>09 变态跳台阶</title>
+      <link href="/algorithm/offer/Offer_09/"/>
+      <url>/algorithm/offer/Offer_09/</url>
       
       
       
@@ -2480,9 +2567,9 @@
     
     
     <entry>
-      <title>07 斐波那契数列</title>
-      <link href="/algorithm/offer/Offer_07/"/>
-      <url>/algorithm/offer/Offer_07/</url>
+      <title>08 跳台阶</title>
+      <link href="/algorithm/offer/Offer_08/"/>
+      <url>/algorithm/offer/Offer_08/</url>
       
       
       
@@ -2518,9 +2605,9 @@
     
     
     <entry>
-      <title>09 变态跳台阶</title>
-      <link href="/algorithm/offer/Offer_09/"/>
-      <url>/algorithm/offer/Offer_09/</url>
+      <title>07 斐波那契数列</title>
+      <link href="/algorithm/offer/Offer_07/"/>
+      <url>/algorithm/offer/Offer_07/</url>
       
       
       
@@ -2537,9 +2624,9 @@
     
     
     <entry>
-      <title>01 二维数组中的查找</title>
-      <link href="/algorithm/offer/Offer_01/"/>
-      <url>/algorithm/offer/Offer_01/</url>
+      <title>11 二进制中1的个数</title>
+      <link href="/algorithm/offer/Offer_11/"/>
+      <url>/algorithm/offer/Offer_11/</url>
       
       
       
@@ -2578,25 +2665,6 @@
       <title>10 矩形覆盖</title>
       <link href="/algorithm/offer/Offer_10/"/>
       <url>/algorithm/offer/Offer_10/</url>
-      
-      
-      
-        <tags>
-            
-            <tag> 算法 </tag>
-            
-            <tag> 剑指offer </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>11 二进制中1的个数</title>
-      <link href="/algorithm/offer/Offer_11/"/>
-      <url>/algorithm/offer/Offer_11/</url>
       
       
       
@@ -2710,15 +2778,13 @@
     
     
     <entry>
-      <title>mysql连接</title>
-      <link href="/database/mysql/20200630/"/>
-      <url>/database/mysql/20200630/</url>
+      <title>详解mysql的for update</title>
+      <link href="/database/mysql/20201021/"/>
+      <url>/database/mysql/20201021/</url>
       
       
       
         <tags>
-            
-            <tag> 待更新 </tag>
             
             <tag> mysql </tag>
             
@@ -2729,13 +2795,15 @@
     
     
     <entry>
-      <title>详解mysql的for update</title>
-      <link href="/database/mysql/20201021/"/>
-      <url>/database/mysql/20201021/</url>
+      <title>mysql连接</title>
+      <link href="/database/mysql/20200630/"/>
+      <url>/database/mysql/20200630/</url>
       
       
       
         <tags>
+            
+            <tag> 待更新 </tag>
             
             <tag> mysql </tag>
             
