@@ -4,6 +4,23 @@
   
     
     <entry>
+      <title>leetcode30-串联所有单词的子串</title>
+      <link href="/algorithm/leetcode/leetcode_30/"/>
+      <url>/algorithm/leetcode/leetcode_30/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> leetcode </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>git help gc处理</title>
       <link href="/tools/git/20230331/"/>
       <url>/tools/git/20230331/</url>
@@ -42,6 +59,23 @@
     
     
     <entry>
+      <title>leetcode27-移除元素</title>
+      <link href="/algorithm/leetcode/leetcode_27/"/>
+      <url>/algorithm/leetcode/leetcode_27/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> leetcode </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>leetcode28-找出字符串中第一个匹配项的下标</title>
       <link href="/algorithm/leetcode/leetcode_28/"/>
       <url>/algorithm/leetcode/leetcode_28/</url>
@@ -62,23 +96,6 @@
       <title>leetcode29-两数相除</title>
       <link href="/algorithm/leetcode/leetcode_29/"/>
       <url>/algorithm/leetcode/leetcode_29/</url>
-      
-      
-      
-        <tags>
-            
-            <tag> leetcode </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>leetcode27-移除元素</title>
-      <link href="/algorithm/leetcode/leetcode_27/"/>
-      <url>/algorithm/leetcode/leetcode_27/</url>
       
       
       
@@ -365,9 +382,9 @@
     
     
     <entry>
-      <title>leetcode10-正则表达式匹配</title>
-      <link href="/algorithm/leetcode/leetcode_11/"/>
-      <url>/algorithm/leetcode/leetcode_11/</url>
+      <title>leetcode13-罗马数字转整数</title>
+      <link href="/algorithm/leetcode/leetcode_13/"/>
+      <url>/algorithm/leetcode/leetcode_13/</url>
       
       
       
@@ -382,9 +399,9 @@
     
     
     <entry>
-      <title>leetcode13-罗马数字转整数</title>
-      <link href="/algorithm/leetcode/leetcode_13/"/>
-      <url>/algorithm/leetcode/leetcode_13/</url>
+      <title>leetcode10-正则表达式匹配</title>
+      <link href="/algorithm/leetcode/leetcode_11/"/>
+      <url>/algorithm/leetcode/leetcode_11/</url>
       
       
       
@@ -416,9 +433,9 @@
     
     
     <entry>
-      <title>leetcode3-无重复字符串的最长子串</title>
-      <link href="/algorithm/leetcode/leetcode_3/"/>
-      <url>/algorithm/leetcode/leetcode_3/</url>
+      <title>leetcode4-寻找两个正序数组的中位数</title>
+      <link href="/algorithm/leetcode/leetcode_4/"/>
+      <url>/algorithm/leetcode/leetcode_4/</url>
       
       
       
@@ -433,9 +450,9 @@
     
     
     <entry>
-      <title>leetcode4-寻找两个正序数组的中位数</title>
-      <link href="/algorithm/leetcode/leetcode_4/"/>
-      <url>/algorithm/leetcode/leetcode_4/</url>
+      <title>leetcode3-无重复字符串的最长子串</title>
+      <link href="/algorithm/leetcode/leetcode_3/"/>
+      <url>/algorithm/leetcode/leetcode_3/</url>
       
       
       
@@ -467,23 +484,6 @@
     
     
     <entry>
-      <title>leetcode6-字形变换</title>
-      <link href="/algorithm/leetcode/leetcode_6/"/>
-      <url>/algorithm/leetcode/leetcode_6/</url>
-      
-      
-      
-        <tags>
-            
-            <tag> leetcode </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>leetcode9-回文数</title>
       <link href="/algorithm/leetcode/leetcode_9/"/>
       <url>/algorithm/leetcode/leetcode_9/</url>
@@ -501,9 +501,60 @@
     
     
     <entry>
+      <title>leetcode6-字形变换</title>
+      <link href="/algorithm/leetcode/leetcode_6/"/>
+      <url>/algorithm/leetcode/leetcode_6/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> leetcode </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>leetcode1-两数之和</title>
       <link href="/algorithm/leetcode/leetcode_1/"/>
       <url>/algorithm/leetcode/leetcode_1/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> leetcode </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>leetcode5-最长回文子串</title>
+      <link href="/algorithm/leetcode/leetcode_5/"/>
+      <url>/algorithm/leetcode/leetcode_5/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> leetcode </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>leetcode8-字符串转换整数（atoi）</title>
+      <link href="/algorithm/leetcode/leetcode_8/"/>
+      <url>/algorithm/leetcode/leetcode_8/</url>
       
       
       
@@ -548,40 +599,6 @@
             <tag> tools </tag>
             
             <tag> docker </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>leetcode8-字符串转换整数（atoi）</title>
-      <link href="/algorithm/leetcode/leetcode_8/"/>
-      <url>/algorithm/leetcode/leetcode_8/</url>
-      
-      
-      
-        <tags>
-            
-            <tag> leetcode </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>leetcode5-最长回文子串</title>
-      <link href="/algorithm/leetcode/leetcode_5/"/>
-      <url>/algorithm/leetcode/leetcode_5/</url>
-      
-      
-      
-        <tags>
-            
-            <tag> leetcode </tag>
             
         </tags>
       
@@ -747,23 +764,6 @@
     
     
     <entry>
-      <title>公考行测数量关系备考指导：年龄问题</title>
-      <link href="/civilServants/20210719_1/"/>
-      <url>/civilServants/20210719_1/</url>
-      
-      
-      
-        <tags>
-            
-            <tag> 行测 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>公考行测逻辑填空里的“词风”的妙用</title>
       <link href="/civilServants/20210719/"/>
       <url>/civilServants/20210719/</url>
@@ -781,9 +781,9 @@
     
     
     <entry>
-      <title>公考行测数量关系：解和定最值问题有妙招</title>
-      <link href="/civilServants/20210716/"/>
-      <url>/civilServants/20210716/</url>
+      <title>公考行测数量关系备考指导：年龄问题</title>
+      <link href="/civilServants/20210719_1/"/>
+      <url>/civilServants/20210719_1/</url>
       
       
       
@@ -815,9 +815,9 @@
     
     
     <entry>
-      <title>公考行测言语理解与表达细节判断题之抓住逻辑词</title>
-      <link href="/civilServants/20210715_1/"/>
-      <url>/civilServants/20210715_1/</url>
+      <title>公考行测数量关系：解和定最值问题有妙招</title>
+      <link href="/civilServants/20210716/"/>
+      <url>/civilServants/20210716/</url>
       
       
       
@@ -835,6 +835,23 @@
       <title>公考行测判断推理评价型题目中的集合概念与非集合概念</title>
       <link href="/civilServants/20210715/"/>
       <url>/civilServants/20210715/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> 行测 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>公考行测言语理解与表达细节判断题之抓住逻辑词</title>
+      <link href="/civilServants/20210715_1/"/>
+      <url>/civilServants/20210715_1/</url>
       
       
       
@@ -974,6 +991,23 @@
     
     
     <entry>
+      <title>java基础 io</title>
+      <link href="/java/basics/20210608/"/>
+      <url>/java/basics/20210608/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> java </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>认识 elasticsearch</title>
       <link href="/tools/elasticsearch/20210608/"/>
       <url>/tools/elasticsearch/20210608/</url>
@@ -985,23 +1019,6 @@
             <tag> tools </tag>
             
             <tag> elasticsearch </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>java基础 io</title>
-      <link href="/java/basics/20210608/"/>
-      <url>/java/basics/20210608/</url>
-      
-      
-      
-        <tags>
-            
-            <tag> java </tag>
             
         </tags>
       
@@ -1240,9 +1257,9 @@
     
     
     <entry>
-      <title>mongodb 基础</title>
-      <link href="/database/mongodb/20210428/"/>
-      <url>/database/mongodb/20210428/</url>
+      <title>NoSQL 前置</title>
+      <link href="/database/mongodb/20210427/"/>
+      <url>/database/mongodb/20210427/</url>
       
       
       
@@ -1257,9 +1274,9 @@
     
     
     <entry>
-      <title>NoSQL 前置</title>
-      <link href="/database/mongodb/20210427/"/>
-      <url>/database/mongodb/20210427/</url>
+      <title>mongodb 基础</title>
+      <link href="/database/mongodb/20210428/"/>
+      <url>/database/mongodb/20210428/</url>
       
       
       
@@ -1562,25 +1579,6 @@
     
     
     <entry>
-      <title>13 调整数组顺序使奇数位于偶数前面</title>
-      <link href="/algorithm/offer/Offer_13/"/>
-      <url>/algorithm/offer/Offer_13/</url>
-      
-      
-      
-        <tags>
-            
-            <tag> 算法 </tag>
-            
-            <tag> 剑指offer </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>14 链表中倒数第k个结点</title>
       <link href="/algorithm/offer/Offer_14/"/>
       <url>/algorithm/offer/Offer_14/</url>
@@ -1600,9 +1598,9 @@
     
     
     <entry>
-      <title>15 反转链表</title>
-      <link href="/algorithm/offer/Offer_15/"/>
-      <url>/algorithm/offer/Offer_15/</url>
+      <title>16 合并两个排序的链表</title>
+      <link href="/algorithm/offer/Offer_16/"/>
+      <url>/algorithm/offer/Offer_16/</url>
       
       
       
@@ -1619,9 +1617,28 @@
     
     
     <entry>
-      <title>18 二叉树的镜像</title>
-      <link href="/algorithm/offer/Offer_18/"/>
-      <url>/algorithm/offer/Offer_18/</url>
+      <title>17 树的子结构</title>
+      <link href="/algorithm/offer/Offer_17/"/>
+      <url>/algorithm/offer/Offer_17/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> 算法 </tag>
+            
+            <tag> 剑指offer </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>13 调整数组顺序使奇数位于偶数前面</title>
+      <link href="/algorithm/offer/Offer_13/"/>
+      <url>/algorithm/offer/Offer_13/</url>
       
       
       
@@ -1676,28 +1693,9 @@
     
     
     <entry>
-      <title>17 树的子结构</title>
-      <link href="/algorithm/offer/Offer_17/"/>
-      <url>/algorithm/offer/Offer_17/</url>
-      
-      
-      
-        <tags>
-            
-            <tag> 算法 </tag>
-            
-            <tag> 剑指offer </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>16 合并两个排序的链表</title>
-      <link href="/algorithm/offer/Offer_16/"/>
-      <url>/algorithm/offer/Offer_16/</url>
+      <title>18 二叉树的镜像</title>
+      <link href="/algorithm/offer/Offer_18/"/>
+      <url>/algorithm/offer/Offer_18/</url>
       
       
       
@@ -1717,44 +1715,6 @@
       <title>21 弹出序列</title>
       <link href="/algorithm/offer/Offer_21/"/>
       <url>/algorithm/offer/Offer_21/</url>
-      
-      
-      
-        <tags>
-            
-            <tag> 算法 </tag>
-            
-            <tag> 剑指offer </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>25 复杂链表的复制</title>
-      <link href="/algorithm/offer/Offer_25/"/>
-      <url>/algorithm/offer/Offer_25/</url>
-      
-      
-      
-        <tags>
-            
-            <tag> 算法 </tag>
-            
-            <tag> 剑指offer </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>24 二叉树中和为某一值的路径</title>
-      <link href="/algorithm/offer/Offer_24/"/>
-      <url>/algorithm/offer/Offer_24/</url>
       
       
       
@@ -1809,28 +1769,9 @@
     
     
     <entry>
-      <title>28 数组中出现次数超过一半的数字</title>
-      <link href="/algorithm/offer/Offer_28/"/>
-      <url>/algorithm/offer/Offer_28/</url>
-      
-      
-      
-        <tags>
-            
-            <tag> 算法 </tag>
-            
-            <tag> 剑指offer </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>29 最小的K个数</title>
-      <link href="/algorithm/offer/Offer_29/"/>
-      <url>/algorithm/offer/Offer_29/</url>
+      <title>24 二叉树中和为某一值的路径</title>
+      <link href="/algorithm/offer/Offer_24/"/>
+      <url>/algorithm/offer/Offer_24/</url>
       
       
       
@@ -1866,6 +1807,63 @@
     
     
     <entry>
+      <title>28 数组中出现次数超过一半的数字</title>
+      <link href="/algorithm/offer/Offer_28/"/>
+      <url>/algorithm/offer/Offer_28/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> 算法 </tag>
+            
+            <tag> 剑指offer </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>25 复杂链表的复制</title>
+      <link href="/algorithm/offer/Offer_25/"/>
+      <url>/algorithm/offer/Offer_25/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> 算法 </tag>
+            
+            <tag> 剑指offer </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>15 反转链表</title>
+      <link href="/algorithm/offer/Offer_15/"/>
+      <url>/algorithm/offer/Offer_15/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> 算法 </tag>
+            
+            <tag> 剑指offer </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>27 字符串的排列</title>
       <link href="/algorithm/offer/Offer_27/"/>
       <url>/algorithm/offer/Offer_27/</url>
@@ -1885,9 +1883,47 @@
     
     
     <entry>
+      <title>29 最小的K个数</title>
+      <link href="/algorithm/offer/Offer_29/"/>
+      <url>/algorithm/offer/Offer_29/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> 算法 </tag>
+            
+            <tag> 剑指offer </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>33</title>
       <link href="/algorithm/offer/Offer_33/"/>
       <url>/algorithm/offer/Offer_33/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> 算法 </tag>
+            
+            <tag> 剑指offer </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>31 整数中1出现的次数（从1到n整数中1出现的次数）</title>
+      <link href="/algorithm/offer/Offer_31/"/>
+      <url>/algorithm/offer/Offer_31/</url>
       
       
       
@@ -1926,25 +1962,6 @@
       <title>32 把数据组排成最小的数</title>
       <link href="/algorithm/offer/Offer_32/"/>
       <url>/algorithm/offer/Offer_32/</url>
-      
-      
-      
-        <tags>
-            
-            <tag> 算法 </tag>
-            
-            <tag> 剑指offer </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>31 整数中1出现的次数（从1到n整数中1出现的次数）</title>
-      <link href="/algorithm/offer/Offer_31/"/>
-      <url>/algorithm/offer/Offer_31/</url>
       
       
       
@@ -2326,9 +2343,9 @@
     
     
     <entry>
-      <title>java基础 return和finally执行问题</title>
-      <link href="/java/basics/20200702/"/>
-      <url>/java/basics/20200702/</url>
+      <title>java基础 重写与重载</title>
+      <link href="/java/basics/20200701/"/>
+      <url>/java/basics/20200701/</url>
       
       
       
@@ -2343,9 +2360,9 @@
     
     
     <entry>
-      <title>java基础 重写与重载</title>
-      <link href="/java/basics/20200701/"/>
-      <url>/java/basics/20200701/</url>
+      <title>java基础 return和finally执行问题</title>
+      <link href="/java/basics/20200702/"/>
+      <url>/java/basics/20200702/</url>
       
       
       
@@ -2489,6 +2506,25 @@
     
     
     <entry>
+      <title>02 替换空格</title>
+      <link href="/algorithm/offer/Offer_02/"/>
+      <url>/algorithm/offer/Offer_02/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> 算法 </tag>
+            
+            <tag> 剑指offer </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>剑指offer 汇总</title>
       <link href="/algorithm/offer/Offer_00/"/>
       <url>/algorithm/offer/Offer_00/</url>
@@ -2527,66 +2563,9 @@
     
     
     <entry>
-      <title>02 替换空格</title>
-      <link href="/algorithm/offer/Offer_02/"/>
-      <url>/algorithm/offer/Offer_02/</url>
-      
-      
-      
-        <tags>
-            
-            <tag> 算法 </tag>
-            
-            <tag> 剑指offer </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>05 用两个栈实现队列</title>
-      <link href="/algorithm/offer/Offer_05/"/>
-      <url>/algorithm/offer/Offer_05/</url>
-      
-      
-      
-        <tags>
-            
-            <tag> 算法 </tag>
-            
-            <tag> 剑指offer </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>03 从尾到头打印链表</title>
       <link href="/algorithm/offer/Offer_03/"/>
       <url>/algorithm/offer/Offer_03/</url>
-      
-      
-      
-        <tags>
-            
-            <tag> 算法 </tag>
-            
-            <tag> 剑指offer </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>05 重建二叉树</title>
-      <link href="/algorithm/offer/Offer_04/"/>
-      <url>/algorithm/offer/Offer_04/</url>
       
       
       
@@ -2622,9 +2601,9 @@
     
     
     <entry>
-      <title>06 旋转数组的最小数字</title>
-      <link href="/algorithm/offer/Offer_06/"/>
-      <url>/algorithm/offer/Offer_06/</url>
+      <title>05 重建二叉树</title>
+      <link href="/algorithm/offer/Offer_04/"/>
+      <url>/algorithm/offer/Offer_04/</url>
       
       
       
@@ -2641,9 +2620,9 @@
     
     
     <entry>
-      <title>10 矩形覆盖</title>
-      <link href="/algorithm/offer/Offer_10/"/>
-      <url>/algorithm/offer/Offer_10/</url>
+      <title>09 变态跳台阶</title>
+      <link href="/algorithm/offer/Offer_09/"/>
+      <url>/algorithm/offer/Offer_09/</url>
       
       
       
@@ -2660,9 +2639,9 @@
     
     
     <entry>
-      <title>11 二进制中1的个数</title>
-      <link href="/algorithm/offer/Offer_11/"/>
-      <url>/algorithm/offer/Offer_11/</url>
+      <title>05 用两个栈实现队列</title>
+      <link href="/algorithm/offer/Offer_05/"/>
+      <url>/algorithm/offer/Offer_05/</url>
       
       
       
@@ -2698,9 +2677,9 @@
     
     
     <entry>
-      <title>12 数值的整数次方</title>
-      <link href="/algorithm/offer/Offer_12/"/>
-      <url>/algorithm/offer/Offer_12/</url>
+      <title>06 旋转数组的最小数字</title>
+      <link href="/algorithm/offer/Offer_06/"/>
+      <url>/algorithm/offer/Offer_06/</url>
       
       
       
@@ -2717,9 +2696,47 @@
     
     
     <entry>
-      <title>09 变态跳台阶</title>
-      <link href="/algorithm/offer/Offer_09/"/>
-      <url>/algorithm/offer/Offer_09/</url>
+      <title>11 二进制中1的个数</title>
+      <link href="/algorithm/offer/Offer_11/"/>
+      <url>/algorithm/offer/Offer_11/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> 算法 </tag>
+            
+            <tag> 剑指offer </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>10 矩形覆盖</title>
+      <link href="/algorithm/offer/Offer_10/"/>
+      <url>/algorithm/offer/Offer_10/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> 算法 </tag>
+            
+            <tag> 剑指offer </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>12 数值的整数次方</title>
+      <link href="/algorithm/offer/Offer_12/"/>
+      <url>/algorithm/offer/Offer_12/</url>
       
       
       
