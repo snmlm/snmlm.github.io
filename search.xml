@@ -4,6 +4,40 @@
   
     
     <entry>
+      <title>软件高可用实践那些事儿</title>
+      <link href="/framework/framework_1/"/>
+      <url>/framework/framework_1/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> 架构 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>手把手教你落地DDD</title>
+      <link href="/framework/framework_2/"/>
+      <url>/framework/framework_2/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> 架构 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>leetcode50-Pow(x,n)</title>
       <link href="/algorithm/leetcode/leetcode_50/"/>
       <url>/algorithm/leetcode/leetcode_50/</url>
