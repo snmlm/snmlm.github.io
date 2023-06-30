@@ -4,6 +4,40 @@
   
     
     <entry>
+      <title>leetcode144-二叉树的前序遍历</title>
+      <link href="/algorithm/leetcode/leetcode_144/"/>
+      <url>/algorithm/leetcode/leetcode_144/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> leetcode </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>leetcode144-二叉树的后序遍历</title>
+      <link href="/algorithm/leetcode/leetcode_145/"/>
+      <url>/algorithm/leetcode/leetcode_145/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> leetcode </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>leetcode110-平衡二叉树</title>
       <link href="/algorithm/leetcode/leetcode_110/"/>
       <url>/algorithm/leetcode/leetcode_110/</url>
