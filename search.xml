@@ -4,6 +4,57 @@
   
     
     <entry>
+      <title>leetcode53-最大子数组和</title>
+      <link href="/algorithm/leetcode/leetcode_53/"/>
+      <url>/algorithm/leetcode/leetcode_53/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> leetcode </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>leetcode55-跳跃游戏</title>
+      <link href="/algorithm/leetcode/leetcode_55/"/>
+      <url>/algorithm/leetcode/leetcode_55/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> leetcode </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>leetcode 动态规划</title>
+      <link href="/algorithm/leetcode/leetcode_dynamic_planning/"/>
+      <url>/algorithm/leetcode/leetcode_dynamic_planning/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> leetcode </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>leetcode144-二叉树的前序遍历</title>
       <link href="/algorithm/leetcode/leetcode_144/"/>
       <url>/algorithm/leetcode/leetcode_144/</url>
@@ -1361,9 +1412,9 @@
     
     
     <entry>
-      <title>公考行测判断推理评价型题目中的集合概念与非集合概念</title>
-      <link href="/civilServants/20210715/"/>
-      <url>/civilServants/20210715/</url>
+      <title>公考行测言语理解与表达细节判断题之抓住逻辑词</title>
+      <link href="/civilServants/20210715_1/"/>
+      <url>/civilServants/20210715_1/</url>
       
       
       
@@ -1378,9 +1429,9 @@
     
     
     <entry>
-      <title>公考行测言语理解与表达细节判断题之抓住逻辑词</title>
-      <link href="/civilServants/20210715_1/"/>
-      <url>/civilServants/20210715_1/</url>
+      <title>公考行测判断推理评价型题目中的集合概念与非集合概念</title>
+      <link href="/civilServants/20210715/"/>
+      <url>/civilServants/20210715/</url>
       
       
       
@@ -1520,23 +1571,6 @@
     
     
     <entry>
-      <title>java基础 io</title>
-      <link href="/java/basics/20210608/"/>
-      <url>/java/basics/20210608/</url>
-      
-      
-      
-        <tags>
-            
-            <tag> java </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>认识 elasticsearch</title>
       <link href="/tools/elasticsearch/20210608/"/>
       <url>/tools/elasticsearch/20210608/</url>
@@ -1548,6 +1582,23 @@
             <tag> tools </tag>
             
             <tag> elasticsearch </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>java基础 io</title>
+      <link href="/java/basics/20210608/"/>
+      <url>/java/basics/20210608/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> java </tag>
             
         </tags>
       
@@ -1613,27 +1664,6 @@
     
     
     <entry>
-      <title>spirng整合mybatis</title>
-      <link href="/tools/spring/20210517/"/>
-      <url>/tools/spring/20210517/</url>
-      
-      
-      
-        <tags>
-            
-            <tag> tools </tag>
-            
-            <tag> spring </tag>
-            
-            <tag> mybatis </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>spirng mvc</title>
       <link href="/tools/springmvc/20210518/"/>
       <url>/tools/springmvc/20210518/</url>
@@ -1647,6 +1677,27 @@
             <tag> spring </tag>
             
             <tag> springmvc </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>spirng整合mybatis</title>
+      <link href="/tools/spring/20210517/"/>
+      <url>/tools/spring/20210517/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> tools </tag>
+            
+            <tag> mybatis </tag>
+            
+            <tag> spring </tag>
             
         </tags>
       
@@ -1966,23 +2017,6 @@
     
     
     <entry>
-      <title>零拷贝</title>
-      <link href="/daily/20210413/"/>
-      <url>/daily/20210413/</url>
-      
-      
-      
-        <tags>
-            
-            <tag> 原理 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>字符集</title>
       <link href="/system/20210413/"/>
       <url>/system/20210413/</url>
@@ -1992,6 +2026,23 @@
         <tags>
             
             <tag> 计算机 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>零拷贝</title>
+      <link href="/daily/20210413/"/>
+      <url>/daily/20210413/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> 原理 </tag>
             
         </tags>
       
@@ -2127,25 +2178,6 @@
     
     
     <entry>
-      <title>14 链表中倒数第k个结点</title>
-      <link href="/algorithm/offer/Offer_14/"/>
-      <url>/algorithm/offer/Offer_14/</url>
-      
-      
-      
-        <tags>
-            
-            <tag> 算法 </tag>
-            
-            <tag> 剑指offer </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>15 反转链表</title>
       <link href="/algorithm/offer/Offer_15/"/>
       <url>/algorithm/offer/Offer_15/</url>
@@ -2165,9 +2197,9 @@
     
     
     <entry>
-      <title>16 合并两个排序的链表</title>
-      <link href="/algorithm/offer/Offer_16/"/>
-      <url>/algorithm/offer/Offer_16/</url>
+      <title>14 链表中倒数第k个结点</title>
+      <link href="/algorithm/offer/Offer_14/"/>
+      <url>/algorithm/offer/Offer_14/</url>
       
       
       
@@ -2203,25 +2235,6 @@
     
     
     <entry>
-      <title>18 二叉树的镜像</title>
-      <link href="/algorithm/offer/Offer_18/"/>
-      <url>/algorithm/offer/Offer_18/</url>
-      
-      
-      
-        <tags>
-            
-            <tag> 算法 </tag>
-            
-            <tag> 剑指offer </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>19 顺时针打印矩阵</title>
       <link href="/algorithm/offer/Offer_19/"/>
       <url>/algorithm/offer/Offer_19/</url>
@@ -2241,9 +2254,28 @@
     
     
     <entry>
-      <title>22 从上往下打印二叉树</title>
-      <link href="/algorithm/offer/Offer_22/"/>
-      <url>/algorithm/offer/Offer_22/</url>
+      <title>16 合并两个排序的链表</title>
+      <link href="/algorithm/offer/Offer_16/"/>
+      <url>/algorithm/offer/Offer_16/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> 算法 </tag>
+            
+            <tag> 剑指offer </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>18 二叉树的镜像</title>
+      <link href="/algorithm/offer/Offer_18/"/>
+      <url>/algorithm/offer/Offer_18/</url>
       
       
       
@@ -2263,6 +2295,25 @@
       <title>20 包含min函数的栈</title>
       <link href="/algorithm/offer/Offer_20/"/>
       <url>/algorithm/offer/Offer_20/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> 算法 </tag>
+            
+            <tag> 剑指offer </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>22 从上往下打印二叉树</title>
+      <link href="/algorithm/offer/Offer_22/"/>
+      <url>/algorithm/offer/Offer_22/</url>
       
       
       
@@ -2336,25 +2387,6 @@
     
     
     <entry>
-      <title>25 复杂链表的复制</title>
-      <link href="/algorithm/offer/Offer_25/"/>
-      <url>/algorithm/offer/Offer_25/</url>
-      
-      
-      
-        <tags>
-            
-            <tag> 算法 </tag>
-            
-            <tag> 剑指offer </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>26 二叉搜索树与双向链表</title>
       <link href="/algorithm/offer/Offer_26/"/>
       <url>/algorithm/offer/Offer_26/</url>
@@ -2393,9 +2425,47 @@
     
     
     <entry>
+      <title>29 最小的K个数</title>
+      <link href="/algorithm/offer/Offer_29/"/>
+      <url>/algorithm/offer/Offer_29/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> 算法 </tag>
+            
+            <tag> 剑指offer </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>27 字符串的排列</title>
       <link href="/algorithm/offer/Offer_27/"/>
       <url>/algorithm/offer/Offer_27/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> 算法 </tag>
+            
+            <tag> 剑指offer </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>30 连续子数组的最大和</title>
+      <link href="/algorithm/offer/Offer_30/"/>
+      <url>/algorithm/offer/Offer_30/</url>
       
       
       
@@ -2450,25 +2520,6 @@
     
     
     <entry>
-      <title>29 最小的K个数</title>
-      <link href="/algorithm/offer/Offer_29/"/>
-      <url>/algorithm/offer/Offer_29/</url>
-      
-      
-      
-        <tags>
-            
-            <tag> 算法 </tag>
-            
-            <tag> 剑指offer </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>33</title>
       <link href="/algorithm/offer/Offer_33/"/>
       <url>/algorithm/offer/Offer_33/</url>
@@ -2488,9 +2539,9 @@
     
     
     <entry>
-      <title>30 连续子数组的最大和</title>
-      <link href="/algorithm/offer/Offer_30/"/>
-      <url>/algorithm/offer/Offer_30/</url>
+      <title>25 复杂链表的复制</title>
+      <link href="/algorithm/offer/Offer_25/"/>
+      <url>/algorithm/offer/Offer_25/</url>
       
       
       
@@ -3111,66 +3162,9 @@
     
     
     <entry>
-      <title>05 重建二叉树</title>
-      <link href="/algorithm/offer/Offer_04/"/>
-      <url>/algorithm/offer/Offer_04/</url>
-      
-      
-      
-        <tags>
-            
-            <tag> 算法 </tag>
-            
-            <tag> 剑指offer </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>05 用两个栈实现队列</title>
-      <link href="/algorithm/offer/Offer_05/"/>
-      <url>/algorithm/offer/Offer_05/</url>
-      
-      
-      
-        <tags>
-            
-            <tag> 算法 </tag>
-            
-            <tag> 剑指offer </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>06 旋转数组的最小数字</title>
       <link href="/algorithm/offer/Offer_06/"/>
       <url>/algorithm/offer/Offer_06/</url>
-      
-      
-      
-        <tags>
-            
-            <tag> 算法 </tag>
-            
-            <tag> 剑指offer </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>07 斐波那契数列</title>
-      <link href="/algorithm/offer/Offer_07/"/>
-      <url>/algorithm/offer/Offer_07/</url>
       
       
       
@@ -3206,9 +3200,9 @@
     
     
     <entry>
-      <title>09 变态跳台阶</title>
-      <link href="/algorithm/offer/Offer_09/"/>
-      <url>/algorithm/offer/Offer_09/</url>
+      <title>07 斐波那契数列</title>
+      <link href="/algorithm/offer/Offer_07/"/>
+      <url>/algorithm/offer/Offer_07/</url>
       
       
       
@@ -3266,6 +3260,63 @@
       <title>12 数值的整数次方</title>
       <link href="/algorithm/offer/Offer_12/"/>
       <url>/algorithm/offer/Offer_12/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> 算法 </tag>
+            
+            <tag> 剑指offer </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>05 用两个栈实现队列</title>
+      <link href="/algorithm/offer/Offer_05/"/>
+      <url>/algorithm/offer/Offer_05/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> 算法 </tag>
+            
+            <tag> 剑指offer </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>05 重建二叉树</title>
+      <link href="/algorithm/offer/Offer_04/"/>
+      <url>/algorithm/offer/Offer_04/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> 算法 </tag>
+            
+            <tag> 剑指offer </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>09 变态跳台阶</title>
+      <link href="/algorithm/offer/Offer_09/"/>
+      <url>/algorithm/offer/Offer_09/</url>
       
       
       
@@ -3379,15 +3430,13 @@
     
     
     <entry>
-      <title>mysql连接</title>
-      <link href="/database/mysql/20200630/"/>
-      <url>/database/mysql/20200630/</url>
+      <title>详解mysql的for update</title>
+      <link href="/database/mysql/20201021/"/>
+      <url>/database/mysql/20201021/</url>
       
       
       
         <tags>
-            
-            <tag> 待更新 </tag>
             
             <tag> mysql </tag>
             
@@ -3398,13 +3447,15 @@
     
     
     <entry>
-      <title>详解mysql的for update</title>
-      <link href="/database/mysql/20201021/"/>
-      <url>/database/mysql/20201021/</url>
+      <title>mysql连接</title>
+      <link href="/database/mysql/20200630/"/>
+      <url>/database/mysql/20200630/</url>
       
       
       
         <tags>
+            
+            <tag> 待更新 </tag>
             
             <tag> mysql </tag>
             
