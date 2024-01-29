@@ -1,0 +1,850 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>汇总 | snmlm</title><meta name="description" content="计算机原理基础 计算机基础原理 CPU&#x2F;内存&#x2F;硬盘 软硬件关联 计算机内核原理   Windows系统介绍 环境变量 PATH&#x2F;CLASSPATH DOS命令   虚拟机安装与使用 VMWARE Linux Centos7安装   Linux系统介绍 进程&#x2F;文件命令 网络安全命令 shell命令   网络通信介绍 网络分层 网络基础知识 TCP UDP HTTP Socket     JAVA核"><meta name="keywords" content="脑图"><meta name="author" content="snmlm"><meta name="copyright" content="snmlm"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://snmlm.github.io/hznew/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta property="og:type" content="article"><meta property="og:title" content="汇总"><meta property="og:url" content="https://snmlm.github.io/hznew/"><meta property="og:site_name" content="snmlm"><meta property="og:description" content="计算机原理基础 计算机基础原理 CPU&#x2F;内存&#x2F;硬盘 软硬件关联 计算机内核原理   Windows系统介绍 环境变量 PATH&#x2F;CLASSPATH DOS命令   虚拟机安装与使用 VMWARE Linux Centos7安装   Linux系统介绍 进程&#x2F;文件命令 网络安全命令 shell命令   网络通信介绍 网络分层 网络基础知识 TCP UDP HTTP Socket     JAVA核"><meta property="og:image" content="https://snmlm.github.io/img/head.gif"><meta property="article:published_time" content="2024-01-28T16:00:00.000Z"><meta property="article:modified_time" content="2024-01-29T09:00:10.040Z"><meta name="twitter:card" content="summary"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  hexoversion: '5.1.1',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime: '天',
+  date_suffix: {"one_hour":"刚刚","hours":"小时前","day":"天前"},
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: {"bookmark":{"message_prev":"按","message_next":"键将本页加入书签"},"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  baiduPush: false,
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+    },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: false,
+  postUpdate: '2024-01-29 17:00:10'
+}</script><noscript><style type="text/css">
+#nav {
+  opacity: 1
+}
+.justified-gallery img {
+  opacity: 1
+}
+</style></noscript><meta name="generator" content="Hexo 5.1.1"></head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" data-lazy-src="/img/head.gif" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">232</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">74</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/head.gif)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">snmlm</a></span><span id="menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">汇总</div></div><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-01-28T16:00:00.000Z" title="发表于 2024-01-29 00:00:00">2024-01-29</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-01-29T09:00:10.040Z" title="更新于 2024-01-29 17:00:10">2024-01-29</time></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><ul>
+<li>计算机原理基础<ul>
+<li>计算机基础原理<ul>
+<li>CPU/内存/硬盘</li>
+<li>软硬件关联</li>
+<li>计算机内核原理</li>
+</ul>
+</li>
+<li>Windows系统介绍<ul>
+<li>环境变量</li>
+<li>PATH/CLASSPATH</li>
+<li>DOS命令</li>
+</ul>
+</li>
+<li>虚拟机安装与使用<ul>
+<li>VMWARE</li>
+<li>Linux Centos7安装</li>
+</ul>
+</li>
+<li>Linux系统介绍<ul>
+<li>进程/文件命令</li>
+<li>网络安全命令</li>
+<li>shell命令</li>
+</ul>
+</li>
+<li>网络通信介绍<ul>
+<li>网络分层</li>
+<li>网络基础知识</li>
+<li>TCP</li>
+<li>UDP</li>
+<li>HTTP</li>
+<li>Socket</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>JAVA核心基础（JAVA SE）<ul>
+<li>开发环境准备<ul>
+<li>Java语言发展史</li>
+<li>JDk的下载与安装</li>
+<li>Path环境变量的配置</li>
+</ul>
+</li>
+<li>Java入门语法<ul>
+<li>HelloWorld</li>
+<li>基本数据类型</li>
+<li>常量</li>
+<li>变量</li>
+<li>数据类型转换</li>
+<li>操作符</li>
+<li>流控制<ul>
+<li>if</li>
+<li>switch</li>
+<li>for</li>
+<li>三元</li>
+<li>while</li>
+<li>do while</li>
+<li>递归</li>
+</ul>
+</li>
+<li>面对对象核心<ul>
+<li>类和对象</li>
+<li>方法</li>
+<li>可变参数</li>
+<li>访问修饰符</li>
+<li>this</li>
+<li>super</li>
+<li>三大特性<ul>
+<li>封装</li>
+<li>继承</li>
+<li>多态</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>异常<ul>
+<li>try catch finally</li>
+<li>throws</li>
+<li>throwable</li>
+<li>exception error</li>
+<li>自定义异常</li>
+</ul>
+</li>
+<li>数组<ul>
+<li>数组初始化</li>
+<li>多维数组</li>
+</ul>
+</li>
+<li>系统类<ul>
+<li>基本类型包装类</li>
+<li>String StringBuilder StringBufer</li>
+<li>日期类<ul>
+<li>Date LocalTime Dalendar</li>
+<li>SimpleDateFormat</li>
+</ul>
+</li>
+<li>BigDecimal</li>
+<li>System</li>
+<li>值传递和地址传递</li>
+</ul>
+</li>
+<li>集合和泛型<ul>
+<li>迭代器</li>
+<li>泛型</li>
+<li>List<ul>
+<li>ArrayList</li>
+<li>LinkedList</li>
+</ul>
+</li>
+<li>Set<ul>
+<li>HashSet</li>
+<li>TreeSet</li>
+</ul>
+</li>
+<li>Map<ul>
+<li>HashMap</li>
+<li>TreeMap</li>
+</ul>
+</li>
+<li>Queue</li>
+<li>Deque</li>
+<li>Collections工具</li>
+</ul>
+</li>
+<li>线程<ul>
+<li>进程与线程</li>
+<li>并行与串行</li>
+<li>多线程实现<ul>
+<li>Thread</li>
+<li>Runnable</li>
+<li>线程池 Executors<ul>
+<li>概念</li>
+<li>使用</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>常用API<ul>
+<li>设置优先级</li>
+<li>线程休眠</li>
+<li>线程让步</li>
+<li>线程重点</li>
+<li>线程中断</li>
+<li>线程守护</li>
+</ul>
+</li>
+<li>线程生命周期</li>
+<li>线程安全性<ul>
+<li>线程安全问题</li>
+<li>同步代码块</li>
+<li>同步方式</li>
+<li>Lock锁</li>
+</ul>
+</li>
+<li>并发容器 Concurrent包下<ul>
+<li>ConcurrentHashMap</li>
+<li>CopyOnWriteArrayList</li>
+<li>CopyOnWriteArraySet</li>
+</ul>
+</li>
+<li>原子操作<ul>
+<li>基本类型<ul>
+<li>AtomicInterger</li>
+<li>AtomicLong</li>
+<li>AtomicBoolean</li>
+</ul>
+</li>
+<li>数组<ul>
+<li>AtomicIntergerArray</li>
+<li>AtomicLongArray</li>
+<li>AtomicReferenceArray</li>
+</ul>
+</li>
+<li>引用类型<ul>
+<li>AtomicReference</li>
+<li>AtomicReferenceFieldUpdater</li>
+<li>AtomicMarkableReference</li>
+</ul>
+</li>
+<li>字段类型<ul>
+<li>AtomicIntergerFieldUpdater</li>
+<li>AtomicLongFieldUpdater</li>
+<li>AtomicStampedReference</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>IO流<ul>
+<li>InputStream</li>
+<li>OutputStream</li>
+<li>FileInputStream</li>
+<li>FileOutputStream</li>
+<li>FileReader</li>
+<li>FileWrite</li>
+<li>BufferInputStream</li>
+<li>BufferOutputStream</li>
+<li>序列化、反序列化</li>
+<li>Properties</li>
+</ul>
+</li>
+<li>反射<ul>
+<li>反射机制</li>
+<li>获取Class</li>
+<li>获取方法</li>
+<li>获取成员变量</li>
+<li>修改变量值</li>
+<li>获取注解</li>
+</ul>
+</li>
+<li>网络<ul>
+<li>三要素<ul>
+<li>ip</li>
+<li>端口</li>
+<li>协议<ul>
+<li>UDP</li>
+<li>TCP</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>NIO<ul>
+<li>Buffer的使用</li>
+<li>Channel的使用</li>
+<li>Selector的使用</li>
+</ul>
+</li>
+<li>自定义非阻塞式的HTTP静态服务器</li>
+</ul>
+</li>
+<li>JDK7新特性<ul>
+<li>改进的 switch 语句，支持字符串、枚举类型和数值型数据</li>
+<li>try-with-resources 语句，自动关闭资源</li>
+<li>泛型实例化类型推断</li>
+<li>数字字面量可以使用下划线来分隔数字</li>
+<li>新增了 Fork/Join 框架，用于并行计算</li>
+<li>NIO 2.0，支持异步 I/O 操作和文件系统操作</li>
+<li>动态语言支持，包括 InvokeDynamic 指令和 JSR 292 等</li>
+</ul>
+</li>
+<li>JDk8新特性<ul>
+<li>Lambda 表达式，用于函数式编程</li>
+<li>Stream API，用于处理集合和数组等数据流</li>
+<li>接口默认方法和静态方法</li>
+<li>新的日期时间 API，取代了旧的 Date 和 Calendar 类</li>
+<li>Nashorn JavaScript 引擎，替代了 Rhino 引擎</li>
+</ul>
+</li>
+<li>JDK9新特性<ul>
+<li>模块化系统，提高了代码可重用性和安全性</li>
+<li>JShell，交互式命令行工具，用于快速测试和调试代码</li>
+<li>改进的 HTTP 客户端，支持 HTTP/2 和 WebSocket</li>
+<li>多版本兼容的 JAR 文件，使得在不同版本的 Java 中使用相同的 JAR 文件更加容易</li>
+<li>改进的 GC，包括 G1 垃圾回收器</li>
+</ul>
+</li>
+<li>JDK10新特性<ul>
+<li>局部变量类型推断，可以使用 var 关键字代替具体类型</li>
+<li>改进的 ThreadLocalRandom 类，用于生成伪随机数</li>
+<li>废弃了一些不安全的加密算法</li>
+<li>安全地存储公私钥对，提高了安全性</li>
+</ul>
+</li>
+<li>JDK11新特性<ul>
+<li>HTTP/2 标准化，成为默认的 HTTP 客户端实现</li>
+<li>改进的字符串 API，包括 strip() 和 repeat() 等方法</li>
+<li>新增了本地变量语法，用于声明局部变量</li>
+<li>废弃了一些废弃的模块和类</li>
+</ul>
+</li>
+<li>JDK12新特性<ul>
+<li>改进的 Switch 语句，支持 Lambda 表达式</li>
+<li>新增了一些 String 方法，包括 transform() 和 indent() 等</li>
+<li>新增了一个微型 GC，用于优化小堆内存分配的应用程序</li>
+</ul>
+</li>
+<li>JDK13新特性<ul>
+<li>ZGC 垃圾回收器，支持大内存、低延迟应用程序</li>
+<li>改进的 Switch 语句，支持 Yield 语句</li>
+<li>改进的文本块语法，用于多行文本字符串</li>
+</ul>
+</li>
+<li>JDK14新特性<ul>
+<li>改进的 Switch 语句，支持 Pattern 匹配</li>
+<li>新增了 Records 类，用于定义不可变数据类</li>
+<li>改进的 NullPointerException 错误信息</li>
+</ul>
+</li>
+<li>JDK15新特性<ul>
+<li>改进的 GC，包括 ZGC 和 Shenandoah</li>
+<li>新增了 Sealed 类，用于限制继承和实现</li>
+<li>新增了 Text Blocks，用于处理多行字符串。</li>
+</ul>
+</li>
+<li>JDK16新特性<ul>
+<li>改进的垃圾回收器，包括 ZGC 和 Shenandoah</li>
+<li>新增了 Records 的扩展，包括 sealed 和 non-sealed 标注</li>
+<li>新增了 Vector API，用于并行计算</li>
+</ul>
+</li>
+<li>JDK17新特性<ul>
+<li>基于 OpenJDK 11 的长期支持（LTS）版本</li>
+<li>服务提供者接口（SPAPI），取代了旧的类路径扩展机制</li>
+<li>基于 CDS 归档的应用程序快照（Application Class-Data Sharing）</li>
+<li>改进的 ZGC 和 Shenandoah 垃圾回收器，包括堆外内存分配和统一 MappedByteBuffer 等改进</li>
+<li>预计还会包括随机生成器增强、G1 GC 的垃圾回收暂停时间预测等其他改进</li>
+<li>Sealed Classes(密封类)</li>
+</ul>
+</li>
+<li>JDK18新特性<ul>
+<li>默认 UTF-8</li>
+<li>简单的 web 服务器</li>
+<li>重新实现核心的方法反射</li>
+<li>地址解析 SPI</li>
+<li>java API 文档支持代码片段</li>
+<li>矢量 api (孵化)</li>
+<li>外部函数和内存 api 二次孵化</li>
+<li>switch 模式匹配 (第二次预览)</li>
+<li>ZGC,SerialGC,ParallelGC 支持字符串消除</li>
+<li>从 Filer 中传递始发元素(Originating Elements)到 JavaFileManager</li>
+<li>Charset.forName() 采用默认值回退</li>
+<li>引入新的系统属性 java.properties.date</li>
+<li>Messager 接口添加方法: printError, printWarning, 和 printNote</li>
+<li>Elements 增加获取最外层元素方法</li>
+<li>SourceVersion 与 Runtime.Version 朴素映射</li>
+<li>提升编译回放</li>
+<li>使卡表(card table)的卡片大小可配置</li>
+<li>关于卡表</li>
+<li>允许 将 G1 的分区大小设置到 512MB</li>
+<li>JDK Flight Recorder Event for Finalization</li>
+<li>SunPKCS11 Provider 支持部分 PKCS#11 v3.0 的 API</li>
+<li>KeyStore 增加新方法 getAttributes</li>
+<li>keytool 增加新选项 -version</li>
+<li>PKCS12 KeyStore 保存和加载支持密码为空</li>
+<li>finalize 方法被弃用</li>
+<li>内部类的封闭实例字段被省略</li>
+</ul>
+</li>
+<li>JDK19新特性<ul>
+<li>Record 模式匹配 (Preview)</li>
+<li>虚拟线程 (预览)</li>
+<li>Switch 模式匹配 (三次预览)</li>
+<li>Linux/RISC-V Port</li>
+<li>Vector API (四次孵化)</li>
+<li>外部函数 &amp; 内存 API (Preview)</li>
+<li>Structured Concurrency (Incubator)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>数据库核心技术<ul>
+<li>MySql<ul>
+<li>数据库设计</li>
+<li>增删改查</li>
+<li>函数与定义函数</li>
+<li>SQL</li>
+<li>多表关系<ul>
+<li>一对多</li>
+<li>多对一</li>
+<li>一对一</li>
+<li>多对多</li>
+</ul>
+</li>
+<li>多表关联查询</li>
+<li>子查询</li>
+<li>视图</li>
+<li>索引</li>
+<li>查询优化</li>
+<li>存储过程<ul>
+<li>游标</li>
+</ul>
+</li>
+<li>事务</li>
+<li>触发器</li>
+<li>数据结构<ul>
+<li>二叉树</li>
+<li>B树</li>
+<li>B+数</li>
+</ul>
+</li>
+<li>数据引擎</li>
+</ul>
+</li>
+<li>JDBC<ul>
+<li>JDBC四大核心</li>
+<li>JDBC的事务控制</li>
+<li>JDBC的增删改查</li>
+<li>DBUtils的使用</li>
+</ul>
+</li>
+<li>数据库连接池<ul>
+<li>C3P0连接池</li>
+<li>Durid连接池</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>WEB网页技术<ul>
+<li>静态Web基础<ul>
+<li>HTML<ul>
+<li>HTML基础使用</li>
+<li>HTML常用标签</li>
+<li>HTML5新特性</li>
+</ul>
+</li>
+<li>CSS<ul>
+<li>CSS选择器</li>
+<li>常用样式</li>
+<li>盒子模型与布局</li>
+<li>CSS3新特性</li>
+</ul>
+</li>
+<li>JavaScirpt<ul>
+<li>JS基本语法</li>
+<li>数组</li>
+<li>函数</li>
+<li>对象</li>
+<li>js面向对象</li>
+<li>常用内置对象</li>
+<li>js事件绑定、触发</li>
+<li>jsDOM操作及api</li>
+<li>jsBOM对象及api</li>
+<li>ECMA6新特性<ul>
+<li>let&amp;const</li>
+<li>结构&amp;字符串</li>
+<li>箭头函数</li>
+<li>对象优化</li>
+<li>map，reduce</li>
+<li>promise异步编排</li>
+<li>模块化</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>JQuery<ul>
+<li>jq语法</li>
+<li>jq核心函数</li>
+<li>jq选择器</li>
+<li>jqDOM操作</li>
+<li>jq事件</li>
+<li>jq动画</li>
+<li>jq遍历</li>
+</ul>
+</li>
+<li>Vue.js<ul>
+<li>MVVM思想</li>
+<li>指令</li>
+<li>计算属性和监听器</li>
+<li>组件化</li>
+<li>生命周期和钩子函数</li>
+<li>ajax请求</li>
+<li>vue-cli</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>JAVA EE<ul>
+<li>Tomcat<ul>
+<li>静态资源和动态资源</li>
+<li>系统结构 C/S和B/S</li>
+<li>Tomcat目录</li>
+<li>Tomcat部署项目</li>
+</ul>
+</li>
+<li>Servlet<ul>
+<li>实现</li>
+<li>生命周期</li>
+<li>线程安全</li>
+<li>上下文对象</li>
+<li>四大核心<ul>
+<li>Request</li>
+<li>Response</li>
+<li>ServletContext</li>
+<li>ServletConfig</li>
+</ul>
+</li>
+<li>Cookie</li>
+<li>Session</li>
+</ul>
+</li>
+<li>JSP<ul>
+<li>JSP语法</li>
+<li>JSP原理</li>
+<li>JSP脚本片段&amp;表达式</li>
+<li>JSP声明&amp;指令</li>
+<li>JSP九大隐式对象</li>
+</ul>
+</li>
+<li>EL表达式<ul>
+<li>使用</li>
+<li>取值原理</li>
+<li>11大隐含对象</li>
+<li>函数库</li>
+</ul>
+</li>
+<li>JSTL<ul>
+<li>JSTL-核心标签库</li>
+<li>JSTL-函数标签库</li>
+</ul>
+</li>
+<li>Filter、Listener<ul>
+<li>Filter原理及配置</li>
+<li>Filter声明周期</li>
+<li>Filter登陆验证</li>
+<li>Listener原理及配置</li>
+</ul>
+</li>
+<li>文件上传和下载<ul>
+<li>commons-io&amp;commons-fileupload实现文件上传</li>
+<li>文件下载<ul>
+<li>直接下载</li>
+<li>通过文件流下载</li>
+<li>文件下载响应头</li>
+<li>文件下载中文乱码&amp;浏览器兼容</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Java后端框架<ul>
+<li>Maven<ul>
+<li>配置</li>
+<li>项目中pom.xml、依赖管理<ul>
+<li>微服务Spring Cloud</li>
+</ul>
+</li>
+<li>依赖</li>
+<li>生命周期</li>
+</ul>
+</li>
+<li>Git<ul>
+<li>常用操作</li>
+</ul>
+</li>
+<li>Srping<ul>
+<li>IOC<ul>
+<li>XmlClassPathApplicationContext容器</li>
+<li>bean</li>
+<li>DI</li>
+<li>depends-on</li>
+<li>懒加载bean</li>
+<li>自动注入</li>
+<li>Bean作用域</li>
+<li>生命周期</li>
+<li>spring创建第三方bean对象</li>
+<li>spring引用外部配置文件</li>
+<li>SpEL的使用</li>
+<li>常用注解<ul>
+<li>@ComponetScan</li>
+<li>@Componet<ul>
+<li>@Controller</li>
+<li>@Service</li>
+<li>@Repostiry</li>
+</ul>
+</li>
+<li>@AutoWired</li>
+<li>@Resource</li>
+<li>@Inject</li>
+<li>@Bean</li>
+<li>@Configuration</li>
+<li>@Conditional</li>
+<li>@Value</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>AOP<ul>
+<li>JDK动态代理和CGLIB动态代理</li>
+<li>AOP切入点表达式</li>
+<li>通知方法的执行顺序</li>
+<li>@Before 在目标方法之前运行 前置通知</li>
+<li>@After 在目标方法之后运行 后置通知</li>
+<li>@AfterReturning 在目标方法正常返回之后运行 返回通知</li>
+<li>@AfterThrowing 在目标方法抛出异常后运行 异常通知</li>
+<li>@Around 环绕 环绕通知</li>
+</ul>
+</li>
+<li>声明式事务<ul>
+<li>Spring Jdbc Template</li>
+<li>设置隔离级别（isolation）</li>
+<li>事务的传播特性</li>
+<li>基于xml的事务配置</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>SpringMVC<ul>
+<li>SpringMVC实现原理</li>
+<li>请求处理<ul>
+<li>请求参数处理<ul>
+<li>@RequestParam</li>
+<li>@RequestHeader</li>
+<li>@CookieValue</li>
+</ul>
+</li>
+<li>复杂数据类型处理<ul>
+<li>JavaBean数据绑定</li>
+<li>嵌套对象数据绑定</li>
+<li>数据、集合绑定</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>乱码问题的解决</li>
+<li>请求映射处理<ul>
+<li>@RequestMapping<ul>
+<li>@GetMapping</li>
+<li>@PostMapping</li>
+<li>@PutMapping</li>
+<li>@DeleteMapping</li>
+</ul>
+</li>
+<li>@PathVariable</li>
+<li>RESTFul</li>
+</ul>
+</li>
+<li>静态资源的访问</li>
+<li>响应处理<ul>
+<li>视图解析器VIewResolver</li>
+<li>视图控制器&lt;view-controller&gt;</li>
+<li>Model、Map、ModelMap</li>
+<li>ModelAndView</li>
+<li>SpringMVC操作session<ul>
+<li>@SesscionAttribute</li>
+<li>@SesscionAttributes</li>
+<li>HttpSession</li>
+</ul>
+</li>
+<li>@ModelAttribute</li>
+<li>SpringMVC的线程安全问题</li>
+<li>forward实现页面跳转</li>
+<li>redirect实现页面重定向</li>
+<li>重定向和转发的区别</li>
+</ul>
+</li>
+<li>类型转换&amp;数据格式化&amp;数据验证<ul>
+<li>内置类型转换器</li>
+<li>自定义类型转换器</li>
+<li>内置数据格式化</li>
+<li>数据校验</li>
+<li>使用SpringMVC标签库</li>
+</ul>
+</li>
+<li>JSON处理<ul>
+<li>@ResponeseBody 响应json</li>
+<li>@RequestBody 接收json参数</li>
+</ul>
+</li>
+<li>上传<ul>
+<li>MultipartResolver<ul>
+<li>单个文件上传</li>
+<li>多个文件上传</li>
+<li>多文件多线程上传</li>
+<li>上传磁盘路径显示图片</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>下载<ul>
+<li>servlet原生下载方式</li>
+<li>ResponseEntity定制响应内容</li>
+<li>ResponseEntity实现下载</li>
+</ul>
+</li>
+<li>拦截器<ul>
+<li>自定义拦截器</li>
+<li>拦截器的顺序</li>
+<li>拦截器和过滤器的区别</li>
+</ul>
+</li>
+<li>国际化<ul>
+<li>通过浏览器语言设置国际化</li>
+<li>通过超链接来切换国际化</li>
+<li>国际化类型转换和验证失败的信息</li>
+<li>国际化代码中的内容</li>
+</ul>
+</li>
+<li>异常处理<ul>
+<li>内置异常处理解析器</li>
+<li>统一异常处理<ul>
+<li>@ControllerAdvice</li>
+<li>@ExceptionHandler</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>JRebel 热部署</li>
+</ul>
+</li>
+<li>MyBatis<ul>
+<li>数据库操作框架历程、<ul>
+<li>JDBC</li>
+<li>DBUtils</li>
+<li>JDBCTemplate</li>
+<li>Hibernate</li>
+<li>Mybatis</li>
+</ul>
+</li>
+<li>配置<ul>
+<li>日志的配置</li>
+<li>全局配置文件</li>
+<li>MapperXML</li>
+</ul>
+</li>
+<li>参数<ul>
+<li>${}和#{}的区别</li>
+<li>javaBean</li>
+<li>map</li>
+<li>@Param</li>
+</ul>
+</li>
+<li>返回<ul>
+<li>ResultType<ul>
+<li>pojo</li>
+<li>Map</li>
+<li>List</li>
+</ul>
+</li>
+<li>ResultMap</li>
+</ul>
+</li>
+<li>高级结果映射<ul>
+<li>联合查询</li>
+<li>嵌套结果<ul>
+<li>一对多</li>
+<li>多对一</li>
+</ul>
+</li>
+<li>嵌套查询<ul>
+<li>一对多</li>
+<li>多对一</li>
+</ul>
+</li>
+<li>延迟查询</li>
+</ul>
+</li>
+<li>动态sql<ul>
+<li>&lt;if&gt;</li>
+<li>&lt;where&gt;</li>
+<li>&lt;trim&gt;</li>
+<li>&lt;foreach&gt; </li>
+<li>&lt;choose&gt;、&lt;when&gt;、&lt;otherwise&gt;</li>
+<li>&lt;set&gt;</li>
+</ul>
+</li>
+<li>缓存<ul>
+<li>一级缓存</li>
+<li>二级缓存<ul>
+<li>缓存的属性</li>
+<li>二级缓存的作用范围</li>
+<li>整合第三方缓存</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>逆向工程</li>
+<li>分页插件<ul>
+<li>自定义分页插件</li>
+<li>PageHelper分页插件使用</li>
+<li>PageHelper原理</li>
+</ul>
+</li>
+<li>SSM框架整合</li>
+</ul>
+</li>
+<li></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">snmlm</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://snmlm.github.io/hznew/">https://snmlm.github.io/hznew/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://snmlm.github.io" target="_blank">snmlm</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E8%84%91%E5%9B%BE/">脑图</a></div><div class="post_share"><div class="social-share" data-image="/img/head.gif" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/algorithm/leetcode/leetcode_54/"><img class="next-cover" data-lazy-src="/img/head.gif" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">leetcode54-螺旋矩阵</div></div></a></div></nav></article></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2018 - 2024 By snmlm</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><section id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/jsdelivr.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></div></body></html>
