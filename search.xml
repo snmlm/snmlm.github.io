@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>nginx的n种用法</title>
+      <link href="/tools/nginx/20240205/"/>
+      <url>/tools/nginx/20240205/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> tools </tag>
+            
+            <tag> nginx </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>汇总</title>
       <link href="/hznew/"/>
       <url>/hznew/</url>
@@ -1013,6 +1032,23 @@
     
     
     <entry>
+      <title>leetcode11-整数转罗马数字</title>
+      <link href="/algorithm/leetcode/leetcode_12/"/>
+      <url>/algorithm/leetcode/leetcode_12/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> leetcode </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>leetcode13-罗马数字转整数</title>
       <link href="/algorithm/leetcode/leetcode_13/"/>
       <url>/algorithm/leetcode/leetcode_13/</url>
@@ -1118,23 +1154,6 @@
       <title>leetcode9-回文数</title>
       <link href="/algorithm/leetcode/leetcode_9/"/>
       <url>/algorithm/leetcode/leetcode_9/</url>
-      
-      
-      
-        <tags>
-            
-            <tag> leetcode </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>leetcode11-整数转罗马数字</title>
-      <link href="/algorithm/leetcode/leetcode_12/"/>
-      <url>/algorithm/leetcode/leetcode_12/</url>
       
       
       
