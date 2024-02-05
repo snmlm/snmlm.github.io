@@ -1,0 +1,422 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>分布式事务 | snmlm</title><meta name="description" content="分布式事务CAP原则CAP原则又叫CAP定理，同时又被称作布鲁尔定理（Brewer’s theorem），指的是在一个分布式系统中，不可能同时满足以下三点 。  一致性（Consistency） 指强一致性，在写操作完成后开始的任何读操作都必须返回该值，或者后续写操作的结果。 响应为最新数据   可用性（Availability） 可用性（高可用）是指：每次向未崩溃的节点发送请求，总能保证收到响应"><meta name="keywords" content="java"><meta name="author" content="snmlm"><meta name="copyright" content="snmlm"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://snmlm.github.io/java/basics/20240205/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta property="og:type" content="article"><meta property="og:title" content="分布式事务"><meta property="og:url" content="https://snmlm.github.io/java/basics/20240205/"><meta property="og:site_name" content="snmlm"><meta property="og:description" content="分布式事务CAP原则CAP原则又叫CAP定理，同时又被称作布鲁尔定理（Brewer’s theorem），指的是在一个分布式系统中，不可能同时满足以下三点 。  一致性（Consistency） 指强一致性，在写操作完成后开始的任何读操作都必须返回该值，或者后续写操作的结果。 响应为最新数据   可用性（Availability） 可用性（高可用）是指：每次向未崩溃的节点发送请求，总能保证收到响应"><meta property="og:image" content="https://snmlm.github.io/img/head.gif"><meta property="article:published_time" content="2024-02-04T16:00:00.000Z"><meta property="article:modified_time" content="2024-02-05T05:39:03.467Z"><meta name="twitter:card" content="summary"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  hexoversion: '5.1.1',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime: '天',
+  date_suffix: {"one_hour":"刚刚","hours":"小时前","day":"天前"},
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: {"bookmark":{"message_prev":"按","message_next":"键将本页加入书签"},"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  baiduPush: false,
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+    },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true,
+  postUpdate: '2024-02-05 13:39:03'
+}</script><noscript><style type="text/css">
+#nav {
+  opacity: 1
+}
+.justified-gallery img {
+  opacity: 1
+}
+</style></noscript><meta name="generator" content="Hexo 5.1.1"></head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" data-lazy-src="/img/head.gif" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">235</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">75</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div id="body-wrap"><div id="sidebar"><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1"><span class="toc-number">1.</span> <span class="toc-text">分布式事务</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#CAP%E5%8E%9F%E5%88%99"><span class="toc-number">1.1.</span> <span class="toc-text">CAP原则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8F%AA%E8%83%BD%E5%9C%A8A%E5%92%8CC%E4%B9%8B%E9%97%B4%E5%81%9A%E5%87%BA%E5%8F%96%E8%88%8D%EF%BC%9F"><span class="toc-number">1.2.</span> <span class="toc-text">为什么只能在A和C之间做出取舍？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E8%87%B4%E6%80%A7%E6%9C%89%E5%87%A0%E7%A7%8D%E5%88%86%E7%B1%BB%EF%BC%9F"><span class="toc-number">1.3.</span> <span class="toc-text">一致性有几种分类？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Base%E7%90%86%E8%AE%BA"><span class="toc-number">1.4.</span> <span class="toc-text">Base理论</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E6%9C%89%E5%93%AA%E5%87%A0%E7%A7%8D%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%EF%BC%9F"><span class="toc-number">1.5.</span> <span class="toc-text">分布式事务有哪几种解决方案？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E9%98%B6%E6%AE%B5%E6%8F%90%E4%BA%A4%EF%BC%882PC%EF%BC%89"><span class="toc-number">1.6.</span> <span class="toc-text">2阶段提交（2PC）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E9%98%B6%E6%AE%B5%EF%BC%88%E6%8A%95%E7%A5%A8%E9%98%B6%E6%AE%B5%EF%BC%89"><span class="toc-number">1.6.1.</span> <span class="toc-text">准备阶段（投票阶段）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E4%BA%A4%E9%98%B6%E6%AE%B5"><span class="toc-number">1.6.2.</span> <span class="toc-text">提交阶段</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E9%98%B6%E6%AE%B5%E6%8F%90%E4%BA%A4%EF%BC%883PC%EF%BC%89"><span class="toc-number">1.7.</span> <span class="toc-text">3阶段提交（3PC）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TCC-%E4%BA%8B%E5%8A%A1%E8%A1%A5%E5%81%BF"><span class="toc-number">1.8.</span> <span class="toc-text">TCC(事务补偿)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E7%BB%88%E4%B8%80%E8%87%B4%E6%80%A7%E4%BF%9D%E8%AF%81"><span class="toc-number">1.8.1.</span> <span class="toc-text">最终一致性保证</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%A1%88%E6%80%BB%E7%BB%93"><span class="toc-number">1.8.2.</span> <span class="toc-text">方案总结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0%E6%B6%88%E6%81%AF%E8%A1%A8"><span class="toc-number">1.9.</span> <span class="toc-text">本地消息表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MQ%E4%BA%8B%E5%8A%A1%E6%96%B9%E6%A1%88%EF%BC%88%E5%8F%AF%E9%9D%A0%E6%B6%88%E6%81%AF%E4%BA%8B%E5%8A%A1%EF%BC%89"><span class="toc-number">1.10.</span> <span class="toc-text">MQ事务方案（可靠消息事务）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E5%A4%A7%E5%8A%AA%E5%8A%9B%E9%80%9A%E7%9F%A5"><span class="toc-number">1.11.</span> <span class="toc-text">最大努力通知</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Saga-%E4%BA%8B%E5%8A%A1"><span class="toc-number">1.12.</span> <span class="toc-text">Saga 事务</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E5%8D%8F%E8%B0%83"><span class="toc-number">1.12.1.</span> <span class="toc-text">命令协调</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E7%BC%96%E6%8E%92"><span class="toc-number">1.12.2.</span> <span class="toc-text">事件编排</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">1.13.</span> <span class="toc-text">总结</span></a></li></ol></li></ol></div></div></div><header class="post-bg" id="page-header" style="background-image: url(/img/head.gif)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">snmlm</a></span><span id="menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">分布式事务</div></div><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-02-04T16:00:00.000Z" title="发表于 2024-02-05 00:00:00">2024-02-05</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-02-05T05:39:03.467Z" title="更新于 2024-02-05 13:39:03">2024-02-05</time></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h1 id="分布式事务"><a href="#分布式事务" class="headerlink" title="分布式事务"></a>分布式事务</h1><h2 id="CAP原则"><a href="#CAP原则" class="headerlink" title="CAP原则"></a>CAP原则</h2><p>CAP原则又叫CAP定理，同时又被称作布鲁尔定理（Brewer’s theorem），指的是在一个分布式系统中，不可能同时满足以下三点 。</p>
+<ul>
+<li>一致性（Consistency）<ul>
+<li>指强一致性，在写操作完成后开始的任何读操作都必须返回该值，或者后续写操作的结果。</li>
+<li>响应为最新数据</li>
+</ul>
+</li>
+<li>可用性（Availability）<ul>
+<li>可用性（高可用）是指：每次向未崩溃的节点发送请求，总能保证收到响应数据（允许不是最新数据）</li>
+<li>响应可以为非最新数据</li>
+</ul>
+</li>
+<li>分区容忍性（Partition tolerance）<ul>
+<li>分布式系统在遇到任何网络分区故障的时候，仍然能够对外提供满足一致性和可用性的服务，也就是说，服务器A 和B 发送给对方的任何消息都是可以放弃的，也就是说A和B可能因为各种意外情况，导致无法成功进行同步，分布式系统要能容忍这种情况。除非整个网络环境都发生了故障。</li>
+</ul>
+</li>
+</ul>
+<h2 id="为什么只能在A和C之间做出取舍？"><a href="#为什么只能在A和C之间做出取舍？" class="headerlink" title="为什么只能在A和C之间做出取舍？"></a>为什么只能在A和C之间做出取舍？</h2><p>分布式系统中，必须满足 CAP 中的 P，此时只能在 C/A 之间作出取舍。<br>如果选择了CA ，舍弃了P，说白了就是一个单体架构。</p>
+<h2 id="一致性有几种分类？"><a href="#一致性有几种分类？" class="headerlink" title="一致性有几种分类？"></a>一致性有几种分类？</h2><p>CAP理论告诉我们只能在C、A之间选择，在分布式事务的最终解决方案中一般选择牺牲一致性来获取可用性和分区容错性。</p>
+<blockquote>
+<p>牺牲一致性是指牺牲强一致性，转由弱一致性代替。</p>
+</blockquote>
+<p>一致性可以分为以下三种：</p>
+<ul>
+<li>强一致性<ul>
+<li>一个集群需要对外部提供强一致性，所以只要集群内部某一台服务器的数据发生了改变，那么就需要等待集群内其他服务器的数据同步完成后，才能正常的对外提供服务。</li>
+<li>保证了强一致性，务必会损耗可用性 。</li>
+</ul>
+</li>
+<li>弱一致性<ul>
+<li>系统中的某个数据被更新后，后续对该数据的读取操作可能 得到更新后的值，也可能是更改前的值。</li>
+</ul>
+</li>
+<li>最终一致性<ul>
+<li>简单说，就是在一段时间后，节点间的数据会最终达到一致状态。</li>
+</ul>
+</li>
+</ul>
+<h2 id="Base理论"><a href="#Base理论" class="headerlink" title="Base理论"></a>Base理论</h2><p>BASE理论是对CAP 中的一致性和可用性进行一个权衡的结果，理论的核心思想就是：我们无法做到强一致，但每个应用都可以根据自身的业务特点，采用适当的方式来使系统达到最终一致性。</p>
+<ul>
+<li>BA（Basic Available）基本可用<ul>
+<li>整个系统在某些不可抗力的情况下，仍然能够保证“可用性”，即一定时间内仍然能够返回一个明确的结果。</li>
+</ul>
+</li>
+<li>S（Soft State）柔性状态<ul>
+<li>称为柔性状态，是指允许系统中的数据存在中间状态，并认为该中间状态的存在不会影响系统的整体可用性，即允许系统不同节点的数据副本之间进行数据同步的过程存在延时。</li>
+</ul>
+</li>
+<li>E（Eventual Consisstency）最终一致性<ul>
+<li>同一数据的不同副本的状态，可以不需要实时一致，但一定要保证经过一定时间后仍然是一致的。</li>
+</ul>
+</li>
+</ul>
+<h2 id="分布式事务有哪几种解决方案？"><a href="#分布式事务有哪几种解决方案？" class="headerlink" title="分布式事务有哪几种解决方案？"></a>分布式事务有哪几种解决方案？</h2><p>在分布式架构下，每个节点只知晓自己操作的失败或者成功，无法得知其他节点的状态。当一个事务跨多个节点时，为了保持事务的原子性与一致性，而引入一个协调者 来统一掌控所有参与者 的操作结果，并指示它们是否要把操作结果进行真正的提交 或者回滚 （rollback）。</p>
+<h2 id="2阶段提交（2PC）"><a href="#2阶段提交（2PC）" class="headerlink" title="2阶段提交（2PC）"></a>2阶段提交（2PC）</h2><p>二阶段提交协议（Two-phase Commit，即 2PC）是常用的分布式事务解决方案，即将事务的提交过程分为两个阶段来进行处理。</p>
+<ul>
+<li>两个阶段分别为：<ul>
+<li>准备阶段</li>
+<li>提交阶段</li>
+</ul>
+</li>
+<li>参与的角色：<ul>
+<li>事务协调者（事务管理器）：事务的发起者</li>
+<li>事务参与者（资源管理器）：事务的执行者</li>
+</ul>
+</li>
+</ul>
+<h3 id="准备阶段（投票阶段）"><a href="#准备阶段（投票阶段）" class="headerlink" title="准备阶段（投票阶段）"></a>准备阶段（投票阶段）</h3><p>这是两阶段的第一段，这一阶段只是准备阶段，由事务的协调者发起询问参与者是否可以提交事务，但是这一阶段并未提交事务。</p>
+<ul>
+<li>协调者向所有参与者发送事务内容，询问是否可以提交事务，并等待答复</li>
+<li>各参与者执行事务操作，将 undo 和 redo 信息记入事务日志中（但不提交事务）</li>
+<li>如参与者执行成功，给协调者反馈同意 ，否则反馈中止</li>
+</ul>
+<h3 id="提交阶段"><a href="#提交阶段" class="headerlink" title="提交阶段"></a>提交阶段</h3><p>这一段阶段属于2PC的第二阶段（提交 执行阶段），协调者发起正式提交事务的请求，当所有参与者都回复同意时，则意味着完成事务。</p>
+<ul>
+<li>协调者节点向所有参与者节点发出正式提交 (commit)的请求。</li>
+<li>参与者节点正式完成操作，并释放在整个事务期间内占用的资源。</li>
+<li>参与者节点向协调者节点发送ack完成 消息。</li>
+<li>协调者节点收到所有参与者节点反馈的ack完成 消息后，完成事务。</li>
+</ul>
+<p>但是如果任意一个参与者节点在第一阶段 返回的消息为终止 ，或者协调者节点在第一阶段的询问超时之前无法获取所有参与者节点的响应消息时，那么这个事务将会被回滚。</p>
+<ul>
+<li>协调者节点向所有参与者节点发出回滚操作 (rollback)的请求。</li>
+<li>参与者节点利用阶段1写入的undo信息执行回滚，并释放在整个事务期间内占用的资源。</li>
+<li>参与者节点向协调者节点发送ack回滚完成 消息。</li>
+<li>协调者节点受到所有参与者节点反馈的ack回滚完成 消息后，取消事务。</li>
+</ul>
+<p>不管最后结果如何，第二阶段都会结束当前事务。</p>
+<ul>
+<li>2PC的缺点<ul>
+<li>性能问题 ：执行过程中，所有参与节点都是事务阻塞型的。当参与者占有公共资源时，其他第三方节点访问公共资源不得不处于阻塞状态。</li>
+<li>可靠性问题 ：参与者发生故障。协调者需要给每个参与者额外指定超时机制，超时后整个事务失败。协调者发生故障。参与者会一直阻塞下去。需要额外的备机进行容错。</li>
+<li>数据一致性问题 ：二阶段无法解决的问题：协调者在发出commit消息之后宕机，而唯一接收到这条消息的参与者同时也宕机了。那么即使协调者通过选举协议产生了新的协调者，这条事务的状态也是不确定的，没人知道事务是否被已经提交。</li>
+<li>实现复杂 ：牺牲了可用性，对性能影响较大，不适合高并发高性能场景。</li>
+</ul>
+</li>
+<li>2PC的优点<ul>
+<li>尽量保证了数据的强一致，适合对数据强一致要求很高的关键领域。（其实也不能100%保证强一致）</li>
+</ul>
+</li>
+</ul>
+<h2 id="3阶段提交（3PC）"><a href="#3阶段提交（3PC）" class="headerlink" title="3阶段提交（3PC）"></a>3阶段提交（3PC）</h2><p>三阶段提交协议，是二阶段提交协议的改进版本，三阶段提交有两个改动点。</p>
+<ul>
+<li>在协调者和参与者中都引入超时机制</li>
+<li>在第一阶段和第二阶段中插入一个准备阶段。保证了在最后提交阶段之前各参与节点的状态是一致的。</li>
+</ul>
+<p>也就是说，除了引入超时机制之外，3PC把2PC的准备阶段再次一分为二，这样三阶段提交就有CanCommit、PreCommit、DoCommit三个阶段。</p>
+<ul>
+<li><p>CanCommit阶段</p>
+<ul>
+<li>3PC的CanCommit阶段其实和2PC的准备阶段很像。协调者向参与者发送commit请求，参与者如果可以提交就返回Yes响应，否则返回No响应。</li>
+<li>事务询问：协调者向所有参与者发出包含事务内容的 canCommit 请求，询问是否可以提交事务，并等待所有参与者答复。</li>
+<li>响应反馈：参与者收到 canCommit 请求后，如果认为可以执行事务操作，则反馈 yes 并进入预备状态，否则反馈 no。</li>
+</ul>
+</li>
+<li><p>PreCommit阶段</p>
+<ul>
+<li>协调者根据参与者的反应情况来决定是否可以进行事务的PreCommit操作。根据响应情况，有以下两种可能。</li>
+<li>假如所有参与者均反馈 yes，协调者预执行事务。<ul>
+<li>发送预提交请求 ：协调者向参与者发送PreCommit请求，并进入准备阶段</li>
+<li>事务预提交 ：参与者接收到PreCommit请求后，会执行事务操作，并将undo和redo信息记录到事务日志中（但不提交事务）</li>
+<li>响应反馈 ：如果参与者成功的执行了事务操作，则返回ACK响应，同时开始等待最终指令。</li>
+</ul>
+</li>
+<li>假如有任何一个参与者向协调者发送了No响应，或者等待超时之后，协调者都没有接到参与者的响应，那么就执行事务的中断。<ul>
+<li>发送中断请求 ：协调者向所有参与者发送abort请求。</li>
+<li>中断事务 ：参与者收到来自协调者的abort请求之后（或超时之后，仍未收到协调者的请求），执行事务的中断。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>doCommit阶段</p>
+<ul>
+<li>执行提交<ul>
+<li>发送提交请求：协调接收到参与者发送的ACK响应，那么他将从预提交状态进入到提交状态。并向所有参与者发送doCommit请求。</li>
+<li>事务提交：参与者接收到doCommit请求之后，执行正式的事务提交。并在完成事务提交之后释放所有事务资源。</li>
+<li>响应反馈：事务提交完之后，向协调者发送ack响应。</li>
+<li>完成事务：协调者接收到所有参与者的ack响应之后，完成事务。</li>
+</ul>
+</li>
+<li>中断事务：任何一个参与者反馈 no，或者等待超时后协调者尚无法收到所有参与者的反馈，即中断事务<ul>
+<li>发送中断请求：如果协调者处于工作状态，向所有参与者发出 abort 请求</li>
+<li>事务回滚：参与者接收到abort请求之后，利用其在阶段二记录的undo信息来执行事务的回滚操作，并在完成回滚之后释放所有的事务资源。</li>
+<li>反馈结果：参与者完成事务回滚之后，向协调者反馈ACK消息</li>
+<li>中断事务：协调者接收到参与者反馈的ACK消息之后，执行事务的中断。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>优点</p>
+<ul>
+<li>相比二阶段提交，三阶段提交降低了阻塞范围，在等待超时后协调者或参与者会中断事务。避免了协调者单点问题，阶段 3 中协调者出现问题时，参与者会继续提交事务。</li>
+</ul>
+</li>
+<li><p>缺点</p>
+<ul>
+<li>数据不一致问题依然存在，当在参与者收到 preCommit 请求后等待 doCommit 指令时，此时如果协调者请求中断事务，而协调者无法与参与者正常通信，会导致参与者继续提交事务，造成数据不一致。</li>
+</ul>
+</li>
+</ul>
+<h2 id="TCC-事务补偿"><a href="#TCC-事务补偿" class="headerlink" title="TCC(事务补偿)"></a>TCC(事务补偿)</h2><p>TCC（Try Confirm Cancel）方案是一种应用层面侵入业务的两阶段提交。是目前最火的一种柔性事务方案，其核心思想是：针对每个操作，都要注册一个与其对应的确认和补偿（撤销）操作。</p>
+<ul>
+<li>第一阶段：Try（尝试），主要是对业务系统做检测及资源预留 (加锁，锁住资源)</li>
+<li>第二阶段：本阶段根据第一阶段的结果，决定是执行confirm还是cancel<ul>
+<li>Confirm（确认）：执行真正的业务（执行业务，释放锁）</li>
+<li>Cancle（取消）：是预留资源的取消（出问题，释放锁）</li>
+</ul>
+</li>
+</ul>
+<h3 id="最终一致性保证"><a href="#最终一致性保证" class="headerlink" title="最终一致性保证"></a>最终一致性保证</h3><ul>
+<li>TCC 事务机制以初步操作（Try）为中心的，确认操作（Confirm）和取消操作（Cancel）都是围绕初步操作（Try）而展开。因此，Try 阶段中的操作，其保障性是最好的，即使失败，仍然有取消操作（Cancel）可以将其执行结果撤销。</li>
+<li>Try阶段执行成功并开始执行 Confirm阶段时，默认 Confirm阶段是不会出错的。也就是说只要Try成功，Confirm一定成功（TCC设计之初的定义） 。</li>
+<li>Confirm与Cancel如果失败，由TCC框架进行==重试==补偿</li>
+<li>存在极低概率在CC环节彻底失败，则需要定时任务或人工介入</li>
+</ul>
+<h3 id="方案总结"><a href="#方案总结" class="headerlink" title="方案总结"></a>方案总结</h3><ul>
+<li>优点：<ul>
+<li>性能提升：具体业务来实现控制资源锁的粒度变小，不会锁定整个资源。</li>
+<li>数据最终一致性：基于 Confirm 和 Cancel 的幂等性，保证事务最终完成确认或者取消，保证数据的一致性。</li>
+<li>可靠性：解决了 XA 协议的协调者单点故障问题，由主业务方发起并控制整个业务活动，业务活动管理器也变成多点，引入集群。</li>
+</ul>
+</li>
+<li>缺点：<ul>
+<li>TCC 的 Try、Confirm 和 Cancel 操作功能要按具体业务来实现，业务耦合度较高，提高了开发成本。</li>
+</ul>
+</li>
+</ul>
+<h2 id="本地消息表"><a href="#本地消息表" class="headerlink" title="本地消息表"></a>本地消息表</h2><p>本地消息表的方案最初是由 eBay 提出，核心思路是将分布式事务拆分成本地事务进行处理。</p>
+<p>角色：</p>
+<ul>
+<li>事务主动方</li>
+<li>事务被动方</li>
+</ul>
+<p>通过在事务主动发起方额外新建事务消息表，事务发起方处理业务和记录事务消息在本地事务中完成，轮询事务消息表的数据发送事务消息，事务被动方基于消息中间件消费事务消息表中的事务。</p>
+<p>这样可以避免以下两种情况导致的数据不一致性：</p>
+<ul>
+<li>业务处理成功、事务消息发送失败</li>
+<li>业务处理失败、事务消息发送成功</li>
+</ul>
+<p>流程：</p>
+<ul>
+<li>①：事务主动方在同一个本地事务中处理业务和写消息表操作</li>
+<li>②：事务主动方通过消息中间件，通知事务被动方处理事务通知事务待消息。消息中间件可以基于 Kafka、RocketMQ 消息队列，事务主动方主动写消息到消息队列，事务消费方消费并处理消息队列中的消息。</li>
+<li>③：事务被动方通过消息中间件，通知事务主动方事务已处理的消息。</li>
+<li>④：事务主动方接收中间件的消息，更新消息表的状态为已处理。</li>
+</ul>
+<p>一些必要的容错处理如下：</p>
+<ul>
+<li><p>当①处理出错，由于还在事务主动方的本地事务中，直接回滚即可</p>
+</li>
+<li><p>当②、③处理出错，由于事务主动方本地保存了消息，只需要轮询消息重新通过消息中间件发送，事务被动方重新读取消息处理业务即可。</p>
+</li>
+<li><p>如果是业务上处理失败，事务被动方可以发消息给事务主动方回滚事务</p>
+</li>
+<li><p>如果事务被动方已经消费了消息，事务主动方需要回滚事务的话，需要发消息通知事务被动方进行回滚事务。</p>
+</li>
+<li><p>优点</p>
+<ul>
+<li>从应用设计开发的角度实现了消息数据的可靠性，消息数据的可靠性不依赖于消息中间件，弱化了对 MQ 中间件特性的依赖。</li>
+<li>方案轻量，容易实现。</li>
+</ul>
+</li>
+<li><p>缺点</p>
+<ul>
+<li>与具体的业务场景绑定，耦合性强，不可公用。</li>
+<li>消息数据与业务数据同库，占用业务系统资源。</li>
+<li>业务系统在使用关系型数据库的情况下，消息服务性能会受到关系型数据库并发性能的局限。</li>
+</ul>
+</li>
+</ul>
+<h2 id="MQ事务方案（可靠消息事务）"><a href="#MQ事务方案（可靠消息事务）" class="headerlink" title="MQ事务方案（可靠消息事务）"></a>MQ事务方案（可靠消息事务）</h2><p>基于 MQ 的分布式事务方案其实是对本地消息表的封装，将本地消息表基于 MQ 内部，其他方面的协议基本与本地消息表一致。<br>和本地消息表方案唯一不同就是将本地消息表存在了MQ内部，而不是业务数据库中。</p>
+<p>在本地消息表方案中，保证事务主动方发写业务表数据和写消息表数据的一致性是基于数据库事务，RocketMQ 的事务消息相对于普通 MQ提供了 2PC 的提交接口</p>
+<p>正常情况：事务主动方发消息<br>这种情况下，事务主动方服务正常，没有发生故障，发消息流程如下：</p>
+<ul>
+<li>步骤①：发送方向 MQ 服务端(MQ Server)发送 half 消息。</li>
+<li>步骤②：MQ Server 将消息持久化成功之后，向发送方 ack 确认消息已经发送成功。</li>
+<li>步骤③：发送方开始执行本地事务逻辑。</li>
+<li>步骤④：发送方根据本地事务执行结果向 MQ Server 提交二次确认（commit 或是 rollback）。</li>
+<li>步骤⑤：MQ Server 收到 commit 状态则将半消息标记为可投递，订阅方最终将收到该消息；MQ Server 收到 rollback 状态则删除半消息，订阅方将不会接受该消息。</li>
+</ul>
+<p>异常情况：事务主动方消息恢复<br>在断网或者应用重启等异常情况下，二次确认超时未到达 MQ Server，此时处理逻辑如下：</p>
+<ul>
+<li>步骤⑤：MQ Server 对该消息发起消息回查。</li>
+<li>步骤⑥：发送方收到消息回查后，需要检查对应消息的本地事务执行的最终结果。</li>
+<li>步骤⑦：发送方根据检查得到的本地事务的最终状态再次提交二次确认。</li>
+<li>步骤⑧：MQ Server基于 commit/rollback 对消息进行投递或者删除。</li>
+</ul>
+<p>优点<br>相比本地消息表方案，MQ 事务方案优点是：</p>
+<ul>
+<li>消息数据独立存储 ，降低业务系统与消息系统之间的耦合。</li>
+<li>吞吐量大于使用本地消息表方案。<br>缺点</li>
+<li>一次消息发送需要两次网络请求(half 消息 + commit/rollback 消息) 。</li>
+<li>业务处理服务需要实现消息状态回查接口。</li>
+</ul>
+<h2 id="最大努力通知"><a href="#最大努力通知" class="headerlink" title="最大努力通知"></a>最大努力通知</h2><p>最大努力通知也称为定期校对，是对MQ事务方案的进一步优化。它在事务主动方增加了消息校对的接口，如果事务被动方没有接收到消息，此时可以调用事务主动方提供的消息校对的接口主动获取。</p>
+<p>在可靠消息事务中，事务主动方需要将消息发送出去，并且消息接收方成功接收，这种可靠性发送是由事务主动方保证的；</p>
+<p>但是最大努力通知，事务主动方尽最大努力（重试，轮询….）将事务发送给事务接收方，但是仍然存在消息接收不到，此时需要事务被动方主动调用事务主动方的消息校对接口查询业务消息并消费，这种通知的可靠性是由事务被动方保证的。</p>
+<p>最大努力通知适用于业务通知类型，例如微信交易的结果，就是通过最大努力通知方式通知各个商户，既有回调通知，也有交易查询接口。</p>
+<h2 id="Saga-事务"><a href="#Saga-事务" class="headerlink" title="Saga 事务"></a>Saga 事务</h2><p>Saga 事务源于 1987 年普林斯顿大学的 Hecto 和 Kenneth 发表的如何处理 long lived transaction（长活事务）论文。</p>
+<p>Saga 事务核心思想是将长事务拆分为多个本地短事务，由 Saga 事务协调器协调，如果正常结束那就正常完成，如果某个步骤失败，则根据相反顺序一次调用补偿操作。</p>
+<p>Saga 事务基本协议如下：</p>
+<ul>
+<li>每个 Saga 事务由一系列幂等的有序子事务(sub-transaction) Ti 组成。</li>
+<li>每个 Ti 都有对应的幂等补偿动作 Ci，补偿动作用于撤销 Ti 造成的结果。</li>
+</ul>
+<p>TCC事务补偿机制有一个预留(Try)动作，相当于先报存一个草稿，然后才提交；Saga事务没有预留动作，直接提交。</p>
+<p>对于事务异常，Saga提供了两种恢复策略，分别如下：</p>
+<ul>
+<li>向后恢复(backward recovery)<ul>
+<li>在执行事务失败时，补偿所有已完成的事务，是“一退到底”的方式。</li>
+<li>对应的执行顺序为：T1,T2,T3,C3,C2,C1</li>
+</ul>
+</li>
+</ul>
+<p>这种做法的效果是撤销掉之前所有成功的子事务，使得整个 Saga 的执行结果撤销。</p>
+<ul>
+<li>向前恢复(forward recovery)<ul>
+<li>也称之为：勇往直前，对于执行不通过的事务，会尝试重试事务，这里有一个假设就是每个子事务最终都会成功。</li>
+<li>适用于必须要成功的场景，事务失败了重试，不需要补偿。</li>
+</ul>
+</li>
+</ul>
+<p>Saga事务有两种不同的实现方式，分别如下：</p>
+<ul>
+<li>命令协调（Order Orchestrator）</li>
+<li>事件编排（Event Choreographyo）</li>
+</ul>
+<h3 id="命令协调"><a href="#命令协调" class="headerlink" title="命令协调"></a>命令协调</h3><p>中央协调器（Orchestrator，简称 OSO）以命令/回复的方式与每项服务进行通信，全权负责告诉每个参与者该做什么以及什么时候该做什么。</p>
+<ul>
+<li>事务发起方的主业务逻辑请求 OSO 服务开启订单事务</li>
+<li>OSO 向库存服务请求扣减库存，库存服务回复处理结果。</li>
+<li>OSO 向订单服务请求创建订单，订单服务回复创建结果。</li>
+<li>OSO 向支付服务请求支付，支付服务回复处理结果。</li>
+<li>主业务逻辑接收并处理 OSO 事务处理结果回复。</li>
+</ul>
+<p>中央协调器必须事先知道执行整个订单事务所需的流程(例如通过读取配置)。如果有任何失败，它还负责通过向每个参与者发送命令来撤销之前的操作来协调分布式的回滚。</p>
+<p>基于中央协调器协调一切时，回滚要容易得多，因为协调器默认是执行正向流程，回滚时只要执行反向流程即可。</p>
+<h3 id="事件编排"><a href="#事件编排" class="headerlink" title="事件编排"></a>事件编排</h3><p>没有中央协调器（没有单点风险）时，每个服务产生并观察其他服务的事件，并决定是否应采取行动。</p>
+<p>在事件编排方法中，第一个服务执行一个事务，然后发布一个事件。该事件被一个或多个服务进行监听，这些服务再执行本地事务并发布（或不发布）新的事件。</p>
+<p>当最后一个服务执行本地事务并且不发布任何事件时，意味着分布式事务结束，或者它发布的事件没有被任何 Saga 参与者听到都意味着事务结束。</p>
+<ul>
+<li>事务发起方的主业务逻辑发布开始订单事件。</li>
+<li>库存服务监听开始订单事件，扣减库存，并发布库存已扣减事件。</li>
+<li>订单服务监听库存已扣减事件，创建订单，并发布订单已创建事件。</li>
+<li>支付服务监听订单已创建事件，进行支付，并发布订单已支付事件。</li>
+<li>主业务逻辑监听订单已支付事件并处理。</li>
+</ul>
+<p>事件/编排是实现 Saga 模式的自然方式，它很简单，容易理解，不需要太多的代码来构建。如果事务涉及 2 至 4 个步骤，则可能是非常合适的。</p>
+<ul>
+<li>优点<ul>
+<li>命令协调设计<ul>
+<li>服务之间关系简单，避免服务之间的循环依赖关系，因为 Saga 协调器会调用 Saga 参与者，但参与者不会调用协调器。</li>
+<li>程序开发简单，只需要执行命令/回复(其实回复消息也是一种事件消息)，降低参与者的复杂性。</li>
+<li>易维护扩展，在添加新步骤时，事务复杂性保持线性，回滚更容易管理，更容易实施和测试。</li>
+</ul>
+</li>
+<li>事件/编排设计<ul>
+<li>避免中央协调器单点故障风险。</li>
+<li>当涉及的步骤较少服务开发简单，容易实现。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>命令协调设计<ul>
+<li>中央协调器容易处理逻辑容易过于复杂，导致难以维护。</li>
+<li>存在协调器单点故障风险。</li>
+</ul>
+</li>
+<li>事件/编排设计<ul>
+<li>服务之间存在循环依赖的风险。</li>
+<li>当涉及的步骤较多，服务间关系混乱，难以追踪调测。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>由于 Saga 模型中没有 Prepare 阶段，因此事务间不能保证隔离性。</p>
+</blockquote>
+<p>当多个 Saga 事务操作同一资源时，就会产生更新丢失、脏数据读取等问题，这时需要在业务层控制并发，例如：在应用层面加锁，或者应用层面预先冻结资源。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li>2PC/3PC：依赖于数据库，能够很好的提供强一致性和强事务性，但相对来说延迟比较高，比较适合传统的单体应用，在同一个方法中存在跨库操作的情况，不适合高并发和高性能要求的场景。</li>
+<li>TCC：适用于执行时间确定且较短，实时性要求高，对数据一致性要求高，比如互联网金融企业最核心的三个服务：交易、支付、账务。</li>
+<li>本地消息表/MQ 事务：都适用于事务中参与方支持操作幂等，对一致性要求不高，业务上能容忍数据不一致到一个人工检查周期，事务涉及的参与方、参与环节较少，业务上有对账/校验系统兜底。</li>
+<li>Saga 事务：由于 Saga 事务不能保证隔离性，需要在业务层控制并发，适合于业务场景事务并发操作同一资源较少的情况。Saga 相比缺少预提交动作，导致补偿动作的实现比较麻烦，例如业务是发送短信，补偿动作则得再发送一次短信说明撤销，用户体验比较差。Saga 事务较适用于补偿动作容易处理的场景。</li>
+</ul>
+</div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">snmlm</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://snmlm.github.io/java/basics/20240205/">https://snmlm.github.io/java/basics/20240205/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://snmlm.github.io" target="_blank">snmlm</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/java/">java</a></div><div class="post_share"><div class="social-share" data-image="/img/head.gif" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/tools/nginx/20240205/"><img class="prev-cover" data-lazy-src="/img/head.gif" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">nginx的n种用法</div></div></a></div><div class="next-post pull-right"><a href="/java/basics/20240205_1/"><img class="next-cover" data-lazy-src="/img/head.gif" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">消息队列</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/java/basics/20181010/" title="java基础 for与foreach用法的区别"><img class="cover" data-lazy-src="/img/head.gif"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2018-10-10</div><div class="title">java基础 for与foreach用法的区别</div></div></a></div><div><a href="/java/basics/20181011/" title="System.gc()与Object.finalize()的区别"><img class="cover" data-lazy-src="/img/head.gif"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2018-10-11</div><div class="title">System.gc()与Object.finalize()的区别</div></div></a></div><div><a href="/java/basics/20181012/" title="java基础 Object"><img class="cover" data-lazy-src="/img/head.gif"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2018-10-12</div><div class="title">java基础 Object</div></div></a></div><div><a href="/java/basics/20190416/" title="java调用js方法"><img class="cover" data-lazy-src="/img/head.gif"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-04-16</div><div class="title">java调用js方法</div></div></a></div><div><a href="/java/basics/20190417/" title="ArrayList删除节点"><img class="cover" data-lazy-src="/img/head.gif"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-04-17</div><div class="title">ArrayList删除节点</div></div></a></div><div><a href="/java/basics/20190418/" title="java基础 ==和equals"><img class="cover" data-lazy-src="/img/head.gif"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-04-18</div><div class="title">java基础 ==和equals</div></div></a></div></div></div></article></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2018 - 2024 By snmlm</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><section id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/jsdelivr.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></div></body></html>

@@ -23,6 +23,40 @@
     
     
     <entry>
+      <title>分布式事务</title>
+      <link href="/java/basics/20240205/"/>
+      <url>/java/basics/20240205/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> java </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>消息队列</title>
+      <link href="/java/basics/20240205_1/"/>
+      <url>/java/basics/20240205_1/</url>
+      
+      
+      
+        <tags>
+            
+            <tag> java </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>汇总</title>
       <link href="/hznew/"/>
       <url>/hznew/</url>
